@@ -19,6 +19,9 @@
 		B5030AE91A43788800E23378 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5030AE81A43788800E23378 /* Images.xcassets */; };
 		B5030AEC1A43788800E23378 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5030AEA1A43788800E23378 /* LaunchScreen.xib */; };
 		B5030AF81A43788800E23378 /* academicusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030AF71A43788800E23378 /* academicusTests.m */; };
+		B5030B031A43852B00E23378 /* Portfolio.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B021A43852B00E23378 /* Portfolio.m */; };
+		B5030B061A4386E200E23378 /* Achievement.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B051A4386E200E23378 /* Achievement.m */; };
+		B5030B0A1A4388E500E23378 /* WorkExperience.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B091A4388E500E23378 /* WorkExperience.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,13 @@
 		B5030AF11A43788800E23378 /* academicusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = academicusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5030AF61A43788800E23378 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5030AF71A43788800E23378 /* academicusTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = academicusTests.m; sourceTree = "<group>"; };
+		B5030B011A43852B00E23378 /* Portfolio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Portfolio.h; sourceTree = "<group>"; };
+		B5030B021A43852B00E23378 /* Portfolio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Portfolio.m; sourceTree = "<group>"; };
+		B5030B041A4386E200E23378 /* Achievement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Achievement.h; sourceTree = "<group>"; };
+		B5030B051A4386E200E23378 /* Achievement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Achievement.m; sourceTree = "<group>"; };
+		B5030B071A43880700E23378 /* academicus-prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "academicus-prefix.pch"; sourceTree = "<group>"; };
+		B5030B081A4388E500E23378 /* WorkExperience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkExperience.h; sourceTree = "<group>"; };
+		B5030B091A4388E500E23378 /* WorkExperience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkExperience.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +106,13 @@
 		B5030AD71A43788800E23378 /* academicus */ = {
 			isa = PBXGroup;
 			children = (
+				B5030B071A43880700E23378 /* academicus-prefix.pch */,
+				B5030B081A4388E500E23378 /* WorkExperience.h */,
+				B5030B091A4388E500E23378 /* WorkExperience.m */,
+				B5030B011A43852B00E23378 /* Portfolio.h */,
+				B5030B021A43852B00E23378 /* Portfolio.m */,
+				B5030B041A4386E200E23378 /* Achievement.h */,
+				B5030B051A4386E200E23378 /* Achievement.m */,
 				B5030ADC1A43788800E23378 /* AppDelegate.h */,
 				B5030ADD1A43788800E23378 /* AppDelegate.m */,
 				B5030ADF1A43788800E23378 /* FirstViewController.h */,
@@ -247,6 +264,7 @@
 			files = (
 				A368B7A71A4388BE00F8089B /* AssessmentCriteria.m in Sources */,
 				A368B79E1A4380BC00F8089B /* Level.m in Sources */,
+				B5030B061A4386E200E23378 /* Achievement.m in Sources */,
 				B5030AE41A43788800E23378 /* SecondViewController.m in Sources */,
 				B5030ADE1A43788800E23378 /* AppDelegate.m in Sources */,
 				B5030AE11A43788800E23378 /* FirstViewController.m in Sources */,
@@ -376,6 +394,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "academicus/academicus-prefix.pch";
 				INFOPLIST_FILE = academicus/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -390,6 +410,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "academicus/academicus-prefix.pch";
 				INFOPLIST_FILE = academicus/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
