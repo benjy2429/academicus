@@ -10,4 +10,7 @@
 
 @interface Level : NSObject
 
+@property (strong) NSString *name;
+@property (strong) NSMutableArray *years;
+
 @end
