@@ -270,6 +270,8 @@
 				B5030AE11A43788800E23378 /* FirstViewController.m in Sources */,
 				A368B7A41A43876500F8089B /* Subject.m in Sources */,
 				A368B7A11A43861F00F8089B /* Year.m in Sources */,
+				B5030B031A43852B00E23378 /* Portfolio.m in Sources */,
+				B5030B0A1A4388E500E23378 /* WorkExperience.m in Sources */,
 				B5030ADB1A43788800E23378 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
