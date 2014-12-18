@@ -1,5 +1,5 @@
 //
-//  FirstViewController.h
+//  RemindersTableViewController.h
 //  academicus
 //
 //  Created by Ben on 18/12/2014.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FirstViewController : UIViewController
-
+@interface RemindersTableViewController : UITableViewController
 
 @end
-
