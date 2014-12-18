@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A368B79E1A4380BC00F8089B /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = A368B79D1A4380BC00F8089B /* Level.m */; };
 		B5030ADB1A43788800E23378 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030ADA1A43788800E23378 /* main.m */; };
 		B5030ADE1A43788800E23378 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030ADD1A43788800E23378 /* AppDelegate.m */; };
 		B5030AE11A43788800E23378 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030AE01A43788800E23378 /* FirstViewController.m */; };
@@ -28,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A368B79C1A4380BC00F8089B /* Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
+		A368B79D1A4380BC00F8089B /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
 		B5030AD51A43788800E23378 /* academicus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = academicus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5030AD91A43788800E23378 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5030ADA1A43788800E23378 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -89,6 +92,8 @@
 				B5030ADF1A43788800E23378 /* FirstViewController.h */,
 				B5030AE01A43788800E23378 /* FirstViewController.m */,
 				B5030AE21A43788800E23378 /* SecondViewController.h */,
+				A368B79C1A4380BC00F8089B /* Level.h */,
+				A368B79D1A4380BC00F8089B /* Level.m */,
 				B5030AE31A43788800E23378 /* SecondViewController.m */,
 				B5030AE51A43788800E23378 /* Main.storyboard */,
 				B5030AE81A43788800E23378 /* Images.xcassets */,
@@ -225,6 +230,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A368B79E1A4380BC00F8089B /* Level.m in Sources */,
 				B5030AE41A43788800E23378 /* SecondViewController.m in Sources */,
 				B5030ADE1A43788800E23378 /* AppDelegate.m in Sources */,
 				B5030AE11A43788800E23378 /* FirstViewController.m in Sources */,
