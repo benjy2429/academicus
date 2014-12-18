@@ -22,6 +22,7 @@
 		B5030B031A43852B00E23378 /* Portfolio.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B021A43852B00E23378 /* Portfolio.m */; };
 		B5030B061A4386E200E23378 /* Achievement.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B051A4386E200E23378 /* Achievement.m */; };
 		B5030B0A1A4388E500E23378 /* WorkExperience.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B091A4388E500E23378 /* WorkExperience.m */; };
+		B5030B0D1A438A6E00E23378 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B0C1A438A6E00E23378 /* Settings.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,8 @@
 		B5030B071A43880700E23378 /* academicus-prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "academicus-prefix.pch"; sourceTree = "<group>"; };
 		B5030B081A4388E500E23378 /* WorkExperience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkExperience.h; sourceTree = "<group>"; };
 		B5030B091A4388E500E23378 /* WorkExperience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkExperience.m; sourceTree = "<group>"; };
+		B5030B0B1A438A6E00E23378 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
+		B5030B0C1A438A6E00E23378 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +110,8 @@
 			isa = PBXGroup;
 			children = (
 				B5030B071A43880700E23378 /* academicus-prefix.pch */,
+				B5030B0B1A438A6E00E23378 /* Settings.h */,
+				B5030B0C1A438A6E00E23378 /* Settings.m */,
 				B5030B081A4388E500E23378 /* WorkExperience.h */,
 				B5030B091A4388E500E23378 /* WorkExperience.m */,
 				B5030B011A43852B00E23378 /* Portfolio.h */,
@@ -265,6 +270,7 @@
 				A368B7A71A4388BE00F8089B /* AssessmentCriteria.m in Sources */,
 				A368B79E1A4380BC00F8089B /* Level.m in Sources */,
 				B5030B061A4386E200E23378 /* Achievement.m in Sources */,
+				B5030B0D1A438A6E00E23378 /* Settings.m in Sources */,
 				B5030AE41A43788800E23378 /* SecondViewController.m in Sources */,
 				B5030ADE1A43788800E23378 /* AppDelegate.m in Sources */,
 				B5030AE11A43788800E23378 /* FirstViewController.m in Sources */,
