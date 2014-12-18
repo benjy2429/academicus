@@ -1,5 +1,5 @@
 //
-//  SecondViewController.h
+//  SettingsTableViewController.h
 //  academicus
 //
 //  Created by Ben on 18/12/2014.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SecondViewController : UIViewController
-
+@interface SettingsTableViewController : UITableViewController
 
 @end
-

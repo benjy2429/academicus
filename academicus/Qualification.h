@@ -1,5 +1,5 @@
 //
-//  Level.h
+//  Qualification.h
 //  academicus
 //
 //  Created by Luke on 18/12/2014.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Level : NSObject
+@interface Qualification : NSObject
 
 @property (strong) NSString *name;
 @property (strong) NSMutableArray *years;

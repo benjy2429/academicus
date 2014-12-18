@@ -7,14 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A368B79E1A4380BC00F8089B /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = A368B79D1A4380BC00F8089B /* Level.m */; };
+		A368B79E1A4380BC00F8089B /* Qualification.m in Sources */ = {isa = PBXBuildFile; fileRef = A368B79D1A4380BC00F8089B /* Qualification.m */; };
 		A368B7A11A43861F00F8089B /* Year.m in Sources */ = {isa = PBXBuildFile; fileRef = A368B7A01A43861F00F8089B /* Year.m */; };
 		A368B7A41A43876500F8089B /* Subject.m in Sources */ = {isa = PBXBuildFile; fileRef = A368B7A31A43876500F8089B /* Subject.m */; };
 		A368B7A71A4388BE00F8089B /* AssessmentCriteria.m in Sources */ = {isa = PBXBuildFile; fileRef = A368B7A61A4388BE00F8089B /* AssessmentCriteria.m */; };
 		B5030ADB1A43788800E23378 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030ADA1A43788800E23378 /* main.m */; };
 		B5030ADE1A43788800E23378 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030ADD1A43788800E23378 /* AppDelegate.m */; };
-		B5030AE11A43788800E23378 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030AE01A43788800E23378 /* FirstViewController.m */; };
-		B5030AE41A43788800E23378 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030AE31A43788800E23378 /* SecondViewController.m */; };
 		B5030AE71A43788800E23378 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5030AE51A43788800E23378 /* Main.storyboard */; };
 		B5030AE91A43788800E23378 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5030AE81A43788800E23378 /* Images.xcassets */; };
 		B5030AEC1A43788800E23378 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5030AEA1A43788800E23378 /* LaunchScreen.xib */; };
@@ -23,6 +21,10 @@
 		B5030B061A4386E200E23378 /* Achievement.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B051A4386E200E23378 /* Achievement.m */; };
 		B5030B0A1A4388E500E23378 /* WorkExperience.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B091A4388E500E23378 /* WorkExperience.m */; };
 		B5030B0D1A438A6E00E23378 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B0C1A438A6E00E23378 /* Settings.m */; };
+		B5030B101A438DC100E23378 /* RemindersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B0F1A438DC100E23378 /* RemindersTableViewController.m */; };
+		B5030B131A438DDF00E23378 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B121A438DDF00E23378 /* SettingsTableViewController.m */; };
+		B5030B161A438DFA00E23378 /* PortfolioTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B151A438DFA00E23378 /* PortfolioTableViewController.m */; };
+		B5030B191A438E1900E23378 /* QualificationsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B181A438E1900E23378 /* QualificationsTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,8 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A368B79C1A4380BC00F8089B /* Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
-		A368B79D1A4380BC00F8089B /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
+		A368B79C1A4380BC00F8089B /* Qualification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Qualification.h; sourceTree = "<group>"; };
+		A368B79D1A4380BC00F8089B /* Qualification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Qualification.m; sourceTree = "<group>"; };
 		A368B79F1A43861F00F8089B /* Year.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Year.h; sourceTree = "<group>"; };
 		A368B7A01A43861F00F8089B /* Year.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Year.m; sourceTree = "<group>"; };
 		A368B7A21A43876500F8089B /* Subject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Subject.h; sourceTree = "<group>"; };
@@ -49,10 +51,6 @@
 		B5030ADA1A43788800E23378 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B5030ADC1A43788800E23378 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B5030ADD1A43788800E23378 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B5030ADF1A43788800E23378 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		B5030AE01A43788800E23378 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		B5030AE21A43788800E23378 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		B5030AE31A43788800E23378 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		B5030AE61A43788800E23378 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B5030AE81A43788800E23378 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B5030AEB1A43788800E23378 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -68,6 +66,14 @@
 		B5030B091A4388E500E23378 /* WorkExperience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkExperience.m; sourceTree = "<group>"; };
 		B5030B0B1A438A6E00E23378 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		B5030B0C1A438A6E00E23378 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
+		B5030B0E1A438DC100E23378 /* RemindersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemindersTableViewController.h; sourceTree = "<group>"; };
+		B5030B0F1A438DC100E23378 /* RemindersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemindersTableViewController.m; sourceTree = "<group>"; };
+		B5030B111A438DDF00E23378 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
+		B5030B121A438DDF00E23378 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
+		B5030B141A438DFA00E23378 /* PortfolioTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortfolioTableViewController.h; sourceTree = "<group>"; };
+		B5030B151A438DFA00E23378 /* PortfolioTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortfolioTableViewController.m; sourceTree = "<group>"; };
+		B5030B171A438E1900E23378 /* QualificationsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QualificationsTableViewController.h; sourceTree = "<group>"; };
+		B5030B181A438E1900E23378 /* QualificationsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QualificationsTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +115,14 @@
 		B5030AD71A43788800E23378 /* academicus */ = {
 			isa = PBXGroup;
 			children = (
+				B5030B0E1A438DC100E23378 /* RemindersTableViewController.h */,
+				B5030B0F1A438DC100E23378 /* RemindersTableViewController.m */,
+				B5030B111A438DDF00E23378 /* SettingsTableViewController.h */,
+				B5030B121A438DDF00E23378 /* SettingsTableViewController.m */,
+				B5030B141A438DFA00E23378 /* PortfolioTableViewController.h */,
+				B5030B151A438DFA00E23378 /* PortfolioTableViewController.m */,
+				B5030B171A438E1900E23378 /* QualificationsTableViewController.h */,
+				B5030B181A438E1900E23378 /* QualificationsTableViewController.m */,
 				B5030B071A43880700E23378 /* academicus-prefix.pch */,
 				B5030B0B1A438A6E00E23378 /* Settings.h */,
 				B5030B0C1A438A6E00E23378 /* Settings.m */,
@@ -120,14 +134,10 @@
 				B5030B051A4386E200E23378 /* Achievement.m */,
 				B5030ADC1A43788800E23378 /* AppDelegate.h */,
 				B5030ADD1A43788800E23378 /* AppDelegate.m */,
-				B5030ADF1A43788800E23378 /* FirstViewController.h */,
-				B5030AE01A43788800E23378 /* FirstViewController.m */,
-				B5030AE21A43788800E23378 /* SecondViewController.h */,
-				B5030AE31A43788800E23378 /* SecondViewController.m */,
 				A368B7A51A4388BE00F8089B /* AssessmentCriteria.h */,
 				A368B7A61A4388BE00F8089B /* AssessmentCriteria.m */,
-				A368B79C1A4380BC00F8089B /* Level.h */,
-				A368B79D1A4380BC00F8089B /* Level.m */,
+				A368B79C1A4380BC00F8089B /* Qualification.h */,
+				A368B79D1A4380BC00F8089B /* Qualification.m */,
 				A368B7A21A43876500F8089B /* Subject.h */,
 				A368B7A31A43876500F8089B /* Subject.m */,
 				A368B79F1A43861F00F8089B /* Year.h */,
@@ -267,16 +277,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5030B131A438DDF00E23378 /* SettingsTableViewController.m in Sources */,
 				A368B7A71A4388BE00F8089B /* AssessmentCriteria.m in Sources */,
-				A368B79E1A4380BC00F8089B /* Level.m in Sources */,
+				A368B79E1A4380BC00F8089B /* Qualification.m in Sources */,
 				B5030B061A4386E200E23378 /* Achievement.m in Sources */,
 				B5030B0D1A438A6E00E23378 /* Settings.m in Sources */,
-				B5030AE41A43788800E23378 /* SecondViewController.m in Sources */,
 				B5030ADE1A43788800E23378 /* AppDelegate.m in Sources */,
-				B5030AE11A43788800E23378 /* FirstViewController.m in Sources */,
 				A368B7A41A43876500F8089B /* Subject.m in Sources */,
 				A368B7A11A43861F00F8089B /* Year.m in Sources */,
+				B5030B191A438E1900E23378 /* QualificationsTableViewController.m in Sources */,
+				B5030B101A438DC100E23378 /* RemindersTableViewController.m in Sources */,
 				B5030B031A43852B00E23378 /* Portfolio.m in Sources */,
+				B5030B161A438DFA00E23378 /* PortfolioTableViewController.m in Sources */,
 				B5030B0A1A4388E500E23378 /* WorkExperience.m in Sources */,
 				B5030ADB1A43788800E23378 /* main.m in Sources */,
 			);
