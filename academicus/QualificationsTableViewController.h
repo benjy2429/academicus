@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Qualification.h"
 
 @interface QualificationsTableViewController : UITableViewController
+
+@property (strong) NSMutableArray *qualifications;
 
 @end
