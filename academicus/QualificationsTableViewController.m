@@ -24,7 +24,7 @@
     [self.qualifications addObject:q];
     
     Qualification *q2 = [[Qualification alloc] init];
-    q2.name = @"Poo class";
+    q2.name = @"COM1002";
     [self.qualifications addObject:q2];
     
     // Uncomment the following line to preserve selection between presentations.
@@ -48,7 +48,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    if (self.isEditing && section == 0) {
+    if (self.isEditing && section == 1) {
         return 1;
     } else {
         return [self.qualifications count];
@@ -58,7 +58,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    BOOL isAddCell = (self.isEditing && indexPath.section == 0);
+    BOOL isAddCell = (self.isEditing && indexPath.section == 1);
     
     NSString *myIdentifier = (isAddCell) ? @"addCell" : @"qualificationCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:myIdentifier];
@@ -99,7 +99,7 @@
 
 
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
+    if (indexPath.section == 1) {
         return UITableViewCellEditingStyleInsert;
     } else {
         return UITableViewCellEditingStyleDelete;
@@ -112,13 +112,11 @@
     [self.tableView setEditing:editing animated:animated];
     if(editing) {
         [self.tableView beginUpdates];
-        [self.tableView insertSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationTop];
-        //[self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
+        [self.tableView insertSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationTop];
         [self.tableView endUpdates];
     } else {
         [self.tableView beginUpdates];
-        [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationTop];
-        //[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
+        [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationTop];
         [self.tableView endUpdates];
         // place here anything else to do when the done button is clicked
         
@@ -131,12 +129,25 @@
 }
 
 
+//Prevent re-ordering below the add new. Will move as far as possible rather than returning to its starting position
+- (NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath {
+    if (sourceIndexPath.section != proposedDestinationIndexPath.section) {
+        NSInteger row = 0;
+        if (sourceIndexPath.section < proposedDestinationIndexPath.section) {
+            row = [tableView numberOfRowsInSection:sourceIndexPath.section] - 1;
+        }
+        return [NSIndexPath indexPathForRow:row inSection:sourceIndexPath.section];
+    }
+    
+    return proposedDestinationIndexPath;
+}
+
 
 // Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the item to be re-orderable.
-    if (indexPath.section == 0) {
-        return YES;
+    if (indexPath.section == 1) {
+        return NO;
     } else {
         return YES;
     }
