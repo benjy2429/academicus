@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "Qualification.h"
 
+@class AddQualificationTableViewController;
+
 @protocol AddQualificationTableViewControllerDelegate <NSObject>
 
 - (void)addQualificationTableViewControllerDidCancel:(AddQualificationTableViewController*)controller;

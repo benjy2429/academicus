@@ -78,6 +78,14 @@
 }
 
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.isEditing && indexPath.section == 1 && indexPath.row == 0) {
+        [self performSegueWithIdentifier:@"addQualification" sender:self];
+    }
+}
+
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -146,18 +154,23 @@
 // Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the item to be re-orderable.
-    //if (indexPath.section == 0) {
-    //    return YES;
-    //} else {
-    //    return YES;
-    //}
-    
-    return YES;
+    if (indexPath.section == 1) {
+        return NO;
+    } else {
+        return YES;
+    }
 }
 
 
 - (void)addQualificationTableViewController:(id)controller didFinishAddingQualification:(Qualification *)qualification
 {
+    NSInteger newRowIndex = [self.qualifications count];
+    [self.qualifications addObject:qualification];
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:newRowIndex inSection:0];
+    NSArray *indexPaths = @[indexPath];
+    [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -176,7 +189,6 @@
         controller.delegate = self;
     }
 }
-
 
 /*
 #pragma mark - Navigation
