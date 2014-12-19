@@ -25,6 +25,7 @@
 		B5030B131A438DDF00E23378 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B121A438DDF00E23378 /* SettingsTableViewController.m */; };
 		B5030B161A438DFA00E23378 /* PortfolioTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B151A438DFA00E23378 /* PortfolioTableViewController.m */; };
 		B5030B191A438E1900E23378 /* QualificationsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B181A438E1900E23378 /* QualificationsTableViewController.m */; };
+		B5030B1F1A43C77B00E23378 /* AddQualificationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B1E1A43C77A00E23378 /* AddQualificationTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,8 @@
 		B5030B151A438DFA00E23378 /* PortfolioTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortfolioTableViewController.m; sourceTree = "<group>"; };
 		B5030B171A438E1900E23378 /* QualificationsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QualificationsTableViewController.h; sourceTree = "<group>"; };
 		B5030B181A438E1900E23378 /* QualificationsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QualificationsTableViewController.m; sourceTree = "<group>"; };
+		B5030B1D1A43C77A00E23378 /* AddQualificationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddQualificationTableViewController.h; sourceTree = "<group>"; };
+		B5030B1E1A43C77A00E23378 /* AddQualificationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddQualificationTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +146,8 @@
 				A368B79F1A43861F00F8089B /* Year.h */,
 				A368B7A01A43861F00F8089B /* Year.m */,
 				B5030AE51A43788800E23378 /* Main.storyboard */,
+				B5030B1D1A43C77A00E23378 /* AddQualificationTableViewController.h */,
+				B5030B1E1A43C77A00E23378 /* AddQualificationTableViewController.m */,
 				B5030AE81A43788800E23378 /* Images.xcassets */,
 				B5030AEA1A43788800E23378 /* LaunchScreen.xib */,
 				B5030AD81A43788800E23378 /* Supporting Files */,
@@ -283,6 +288,7 @@
 				B5030B061A4386E200E23378 /* Achievement.m in Sources */,
 				B5030B0D1A438A6E00E23378 /* Settings.m in Sources */,
 				B5030ADE1A43788800E23378 /* AppDelegate.m in Sources */,
+				B5030B1F1A43C77B00E23378 /* AddQualificationTableViewController.m in Sources */,
 				A368B7A41A43876500F8089B /* Subject.m in Sources */,
 				A368B7A11A43861F00F8089B /* Year.m in Sources */,
 				B5030B191A438E1900E23378 /* QualificationsTableViewController.m in Sources */,

@@ -135,10 +135,34 @@
 // Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the item to be re-orderable.
-    if (indexPath.section == 0) {
-        return YES;
-    } else {
-        return YES;
+    //if (indexPath.section == 0) {
+    //    return YES;
+    //} else {
+    //    return YES;
+    //}
+    
+    return YES;
+}
+
+
+- (void)addQualificationTableViewController:(id)controller didFinishAddingQualification:(Qualification *)qualification
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+- (void)addQualificationTableViewControllerDidCancel:(id)controller
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"addQualification"]) {
+        UINavigationController *navController = segue.destinationViewController;
+        AddQualificationTableViewController *controller = (AddQualificationTableViewController*) navController.topViewController;
+        controller.delegate = self;
     }
 }
 
