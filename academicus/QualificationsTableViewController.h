@@ -13,5 +13,6 @@
 @interface QualificationsTableViewController : UITableViewController <AddQualificationTableViewControllerDelegate>
 
 @property (strong) NSMutableArray *qualifications;
+@property (assign) BOOL inSwipeDeleteMode;
 
 @end

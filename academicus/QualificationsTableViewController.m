@@ -14,6 +14,16 @@
 
 @implementation QualificationsTableViewController
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _inSwipeDeleteMode = NO;
+    }
+    return self;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -43,12 +53,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return self.isEditing ? 2 : 1;
+    return (self.isEditing && !self.inSwipeDeleteMode) ? 2 : 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    if (self.isEditing && section == 1) {
+    if (self.isEditing && !self.inSwipeDeleteMode && section == 1) {
         return 1;
     } else {
         return [self.qualifications count];
@@ -58,7 +68,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    BOOL isAddCell = (self.isEditing && indexPath.section == 1);
+    BOOL isAddCell = (self.isEditing && !self.inSwipeDeleteMode && indexPath.section == 1);
     
     NSString *myIdentifier = (isAddCell) ? @"addCell" : @"qualificationCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:myIdentifier];
@@ -86,20 +96,12 @@
 }
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self.qualifications removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
@@ -107,7 +109,7 @@
 
 
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 1) {
+    if (!self.inSwipeDeleteMode && indexPath.section == 1) {
         return UITableViewCellEditingStyleInsert;
     } else {
         return UITableViewCellEditingStyleDelete;
@@ -117,8 +119,12 @@
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
     [super setEditing:editing animated:animated];
-    [self.tableView setEditing:editing animated:animated];
-    if(editing) {
+ 
+    if (self.inSwipeDeleteMode) {
+        return;
+    }
+    
+    if (editing) {
         [self.tableView beginUpdates];
         [self.tableView insertSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationTop];
         [self.tableView endUpdates];
@@ -188,6 +194,20 @@
         AddQualificationTableViewController *controller = (AddQualificationTableViewController*) navController.topViewController;
         controller.delegate = self;
     }
+}
+
+
+- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.inSwipeDeleteMode = YES;
+    [self setEditing:YES animated:YES];
+}
+
+
+- (void) tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self setEditing:NO animated:YES];
+    self.inSwipeDeleteMode = NO;
 }
 
 /*
