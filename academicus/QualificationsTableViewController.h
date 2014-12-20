@@ -13,6 +13,8 @@
 @interface QualificationsTableViewController : UITableViewController <AddQualificationTableViewControllerDelegate>
 
 @property (strong) NSMutableArray *qualifications;
+
+// This variable is used to determine whether the user clicked the edit button, or swiped a row
 @property (assign) BOOL inSwipeDeleteMode;
 
 @end
