@@ -6,22 +6,23 @@
 //  Copyright (c) 2014 sheffield. All rights reserved.
 //
 
-#import "AddQualificationTableViewController.h"
+#import "QualificationDetailTableViewController.h"
 
-@interface AddQualificationTableViewController ()
+@interface QualificationDetailTableViewController ()
 
 @end
 
-@implementation AddQualificationTableViewController
+@implementation QualificationDetailTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // If an item was passed through, change the window title and populate the fields with existing data
+    if (self.itemToEdit != nil) {
+        self.title = @"Edit Qualification";
+        self.nameField.text = self.itemToEdit.name;
+        self.doneBtn.enabled = YES;
+    }
 }
 
 
@@ -34,15 +35,20 @@
 
 - (IBAction)cancel
 {
-    [self.delegate addQualificationTableViewControllerDidCancel:self];
+    [self.delegate QualificationDetailTableViewControllerDidCancel:self];
 }
 
 
 - (IBAction)done
 {
-    Qualification *newQualification = [[Qualification alloc] init];
-    newQualification.name = self.nameField.text;
-    [self.delegate addQualificationTableViewController:self didFinishAddingQualification:newQualification];
+    if (self.itemToEdit != nil) {
+        self.itemToEdit.name = self.nameField.text;
+        [self.delegate QualificationDetailTableViewController:self didFinishEditingQualification:self.itemToEdit];
+    } else {
+        Qualification *newQualification = [[Qualification alloc] init];
+        newQualification.name = self.nameField.text;
+        [self.delegate QualificationDetailTableViewController:self didFinishAddingQualification:newQualification];
+    }
 }
 
 

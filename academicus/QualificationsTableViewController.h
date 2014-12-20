@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Qualification.h"
-#import "AddQualificationTableViewController.h"
+#import "QualificationDetailTableViewController.h"
 
-@interface QualificationsTableViewController : UITableViewController <AddQualificationTableViewControllerDelegate>
+@interface QualificationsTableViewController : UITableViewController <QualificationDetailTableViewControllerDelegate>
 
 @property (strong) NSMutableArray *qualifications;
 

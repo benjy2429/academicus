@@ -88,9 +88,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // If the user clicks the add button, perform a segue to the add page, otherwise do nothing
-    if (self.isEditing && indexPath.section == 1 && indexPath.row == 0) {
-        [self performSegueWithIdentifier:@"addQualification" sender:self];
+    if (self.isEditing && !self.inSwipeDeleteMode) {
+    
+        if (indexPath.section == 1 && indexPath.row == 0) {
+            // If the user clicks the add button, perform a segue to the add page
+            [self performSegueWithIdentifier:@"addQualification" sender:self];
+            
+        } else if (indexPath.section == 0) {
+            // If the user clicks an item cell in edit mode, perform a segue to the edit page
+            UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+            [self performSegueWithIdentifier:@"editQualification" sender:cell];
+        }
+        
     }
 }
 
@@ -193,29 +202,53 @@
 {
     if ([segue.identifier isEqualToString:@"addQualification"]) {
         UINavigationController *navController = segue.destinationViewController;
-        AddQualificationTableViewController *controller = (AddQualificationTableViewController*) navController.topViewController;
+        QualificationDetailTableViewController *controller = (QualificationDetailTableViewController*) navController.topViewController;
         controller.delegate = self;
+    } else if ([segue.identifier isEqualToString:@"editQualification"]) {
+        UINavigationController *navController = segue.destinationViewController;
+        QualificationDetailTableViewController *controller = (QualificationDetailTableViewController*) navController.topViewController;
+        controller.delegate = self;
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        controller.itemToEdit = self.qualifications[indexPath.row];
     }
 }
 
 
 #pragma mark - AddQualificationTableViewControllerDelegate
 
-- (void)addQualificationTableViewController:(id)controller didFinishAddingQualification:(Qualification *)qualification
+- (void)QualificationDetailTableViewController:(id)controller didFinishAddingQualification:(Qualification *)qualification
 {
+    // Add the new item to the data array
     NSInteger newRowIndex = [self.qualifications count];
     [self.qualifications addObject:qualification];
     
+    // Insert a new cell for the item into the table
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:newRowIndex inSection:0];
     NSArray *indexPaths = @[indexPath];
     [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
     
+    // Dismiss the add item view
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
-- (void)addQualificationTableViewControllerDidCancel:(id)controller
+- (void)QualificationDetailTableViewController:(id)controller didFinishEditingQualification:(Qualification *)qualification
 {
+    // Find the cell for this item and update the contents
+    NSInteger index = [self.qualifications indexOfObject:qualification];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    cell.textLabel.text = qualification.name;
+    
+    // Dismiss the edit item view
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+- (void)QualificationDetailTableViewControllerDidCancel:(id)controller
+{
+    // No action to take so dismiss the modal window
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

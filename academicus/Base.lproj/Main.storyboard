@@ -175,16 +175,17 @@
                     <navigationItem key="navigationItem" title="Qualifications" id="86K-dW-yZ6"/>
                     <connections>
                         <segue destination="YrI-tJ-hJh" kind="modal" identifier="addQualification" id="gyc-NN-0V3"/>
+                        <segue destination="YrI-tJ-hJh" kind="modal" identifier="editQualification" id="Xd4-sf-5Ck"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B7M-Yc-uiF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="697.60000000000002" y="-44.729999999999997"/>
         </scene>
-        <!--Add Qualification Table View Controller-->
+        <!--Add Qualification-->
         <scene sceneID="P5d-ga-HRH">
             <objects>
-                <tableViewController id="TFo-eO-hTk" customClass="AddQualificationTableViewController" sceneMemberID="viewController">
+                <tableViewController id="TFo-eO-hTk" customClass="QualificationDetailTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="tqa-xh-7RC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -218,7 +219,7 @@
                             <outlet property="delegate" destination="TFo-eO-hTk" id="Uol-qs-iBz"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="qwu-Tr-r8D">
+                    <navigationItem key="navigationItem" title="Add Qualification" id="qwu-Tr-r8D">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="A5g-uB-hGe">
                             <connections>
                                 <action selector="cancel" destination="TFo-eO-hTk" id="RNA-4z-fSD"/>
@@ -282,6 +283,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YrI-tJ-hJh" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="dXH-fm-CdP"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="OcP-qj-hiJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -301,4 +303,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="Xd4-sf-5Ck"/>
+    </inferredMetricsTieBreakers>
 </document>
