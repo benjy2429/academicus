@@ -10,6 +10,7 @@
 #import "Qualification.h"
 #import "Year.h"
 #import "YearDetailTableViewController.h"
+#import "SubjectsTableViewController.h"
 
 @interface YearsTableViewController : UITableViewController <YearDetailTableViewControllerDelegate>
 

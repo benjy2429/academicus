@@ -1,18 +1,18 @@
 //
-//  YearsTableViewController.m
+//  SubjectsTableViewController.m
 //  academicus
 //
-//  Created by Ben on 18/12/2014.
+//  Created by Luke on 21/12/2014.
 //  Copyright (c) 2014 sheffield. All rights reserved.
 //
 
-#import "YearsTableViewController.h"
+#import "SubjectsTableViewController.h"
 
-@interface YearsTableViewController ()
+@interface SubjectsTableViewController ()
 
 @end
 
-@implementation YearsTableViewController
+@implementation SubjectsTableViewController
 
 
 - (void)viewDidLoad
@@ -20,7 +20,7 @@
     [super viewDidLoad];
     
     // Set the view title to the qualification name
-    self.title = self.qualification.name;
+    self.title = self.year.name;
     
     // Initialise variable not in edit mode
     self.inSwipeDeleteMode = NO;
@@ -29,6 +29,10 @@
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 #pragma mark - Table view data source
 
@@ -47,10 +51,9 @@
     if (self.isEditing && !self.inSwipeDeleteMode && section == 1) {
         return 1;
     } else {
-        return [self.qualification.years count];
+        return [self.year.subjects count];
     }
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -58,7 +61,7 @@
     BOOL isAddCell = (self.isEditing && !self.inSwipeDeleteMode && indexPath.section == 1);
     
     // Assign the correct identifier for this cell
-    NSString *myIdentifier = (isAddCell) ? @"addCell" : @"yearCell";
+    NSString *myIdentifier = (isAddCell) ? @"addCell" : @"subjectCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:myIdentifier];
     
     if (cell == nil) {
@@ -67,10 +70,10 @@
     
     // Set the content for each type of cell
     if (isAddCell) {
-        cell.textLabel.text = @"Add new year";
+        cell.textLabel.text = @"Add new subejct";
     } else {
-        Year *currentYear = (Year*) [self.qualification.years objectAtIndex:indexPath.row];
-        cell.textLabel.text = currentYear.name;
+        Subject *currentSubject = (Subject*) [self.year.subjects objectAtIndex:indexPath.row];
+        cell.textLabel.text = currentSubject.name;
     }
     
     return cell;
@@ -83,17 +86,14 @@
         
         if (indexPath.section == 1 && indexPath.row == 0) {
             // If the user clicks the add button, perform a segue to the add page
-            [self performSegueWithIdentifier:@"addYear" sender:self];
+            [self performSegueWithIdentifier:@"addSubject" sender:self];
             
         } else if (indexPath.section == 0) {
             // If the user clicks an item cell in edit mode, perform a segue to the edit page
             UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-            [self performSegueWithIdentifier:@"editYear" sender:cell];
+            [self performSegueWithIdentifier:@"editSubject" sender:cell];
         }
         
-    } else {
-        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-        [self performSegueWithIdentifier:@"toSubjects" sender:cell];
     }
 }
 
@@ -102,6 +102,7 @@
 
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+    
 }
 
 
@@ -135,7 +136,7 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source and the table view
-        [self.qualification.years removeObjectAtIndex:indexPath.row];
+        [self.year.subjects removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
@@ -194,34 +195,28 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"addYear"]) {
+    if ([segue.identifier isEqualToString:@"addSubject"]) {
         UINavigationController *navController = segue.destinationViewController;
-        YearDetailTableViewController *controller = (YearDetailTableViewController*) navController.topViewController;
+        SubjectDetailTableViewController *controller = (SubjectDetailTableViewController*) navController.topViewController;
         controller.delegate = self;
-    } else if ([segue.identifier isEqualToString:@"editYear"]) {
+    } else if ([segue.identifier isEqualToString:@"editSubject"]) {
         UINavigationController *navController = segue.destinationViewController;
-        YearDetailTableViewController *controller = (YearDetailTableViewController*) navController.topViewController;
+        SubjectDetailTableViewController *controller = (SubjectDetailTableViewController*) navController.topViewController;
         controller.delegate = self;
         
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        controller.itemToEdit = self.qualification.years[indexPath.row];
-        
-    }  else if ([segue.identifier isEqualToString:@"toSubjects"]) {
-        SubjectsTableViewController *controller = (SubjectsTableViewController*) segue.destinationViewController;
-        
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        controller.year = self.qualification.years[indexPath.row];
+        controller.itemToEdit = self.year.subjects[indexPath.row];
     }
 }
 
 
 #pragma mark - YearDetailTableViewControllerDelegate
 
-- (void)YearDetailTableViewController:(id)controller didFinishAddingYear:(Year *)year
+- (void)SubjectDetailTableViewController:(id)controller didFinishAddingSubject:(Subject *)subject
 {
     // Add the new item to the data array
-    NSInteger newRowIndex = [self.qualification.years count];
-    [self.qualification.years addObject:year];
+    NSInteger newRowIndex = [self.year.subjects count];
+    [self.year.subjects addObject:subject];
     
     // Insert a new cell for the item into the table
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:newRowIndex inSection:0];
@@ -233,20 +228,20 @@
 }
 
 
-- (void)YearDetailTableViewController:(id)controller didFinishEditingYear:(Year *)year
+- (void)SubjectDetailTableViewController:(id)controller didFinishEditingSubject:(Subject *)subject
 {
     // Find the cell for this item and update the contents
-    NSInteger index = [self.qualification.years indexOfObject:year];
+    NSInteger index = [self.year.subjects indexOfObject:subject];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    cell.textLabel.text = year.name;
+    cell.textLabel.text = subject.name;
     
     // Dismiss the edit item view
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
-- (void)YearDetailTableViewControllerDidCancel:(id)controller
+- (void)SubjectDetailTableViewControllerDidCancel:(id)controller
 {
     // No action to take so dismiss the modal window
     [self dismissViewControllerAnimated:YES completion:nil];
