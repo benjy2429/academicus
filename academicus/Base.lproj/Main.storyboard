@@ -78,7 +78,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EVs-ot-11e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="615" y="1989"/>
+            <point key="canvasLocation" x="2295" y="1989"/>
         </scene>
         <!--Years-->
         <scene sceneID="gNV-ux-8kv">
@@ -479,8 +479,9 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Subjects" id="i2H-2Q-Ebh"/>
                     <connections>
-                        <segue destination="Drw-Ij-GAb" kind="modal" id="9ZD-bu-UiX"/>
+                        <segue destination="Drw-Ij-GAb" kind="modal" identifier="addSubject" id="9ZD-bu-UiX"/>
                         <segue destination="Drw-Ij-GAb" kind="modal" identifier="editSubject" id="EA4-An-DjK"/>
+                        <segue destination="aHi-lE-88q" kind="push" identifier="toAssessments" id="MVb-og-Zfz"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EbG-oO-Y7H" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -541,6 +542,109 @@
             </objects>
             <point key="canvasLocation" x="1432" y="1345"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="vT9-JI-JLk">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ImY-hw-5Xe" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ecw-P5-d9i">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="CKe-zT-zl9" kind="relationship" relationship="rootViewController" id="Bh7-Pn-tOY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xIj-kk-gpp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1838" y="645"/>
+        </scene>
+        <!--Assessment Criteria-->
+        <scene sceneID="EEt-We-J7Q">
+            <objects>
+                <tableViewController id="aHi-lE-88q" customClass="AssessmentsTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Teh-O1-AgJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="assessmentCell" id="MjC-3j-XGr">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MjC-3j-XGr" id="MBO-n8-egj">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="aHi-lE-88q" id="9tg-ZO-cPB"/>
+                            <outlet property="delegate" destination="aHi-lE-88q" id="1L3-2K-EC1"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Assessment Criteria" id="AyL-3P-reK"/>
+                    <connections>
+                        <segue destination="ImY-hw-5Xe" kind="modal" identifier="addAssessment" id="zvW-iK-Ohd"/>
+                        <segue destination="ImY-hw-5Xe" kind="modal" identifier="editAssessment" id="NcP-Du-DyI"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6zK-Cd-6IA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1838" y="-45"/>
+        </scene>
+        <!--Add Assessment Criteria-->
+        <scene sceneID="vn4-83-Zzf">
+            <objects>
+                <tableViewController id="CKe-zT-zl9" customClass="SubjectDetailTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="nV0-wt-tl8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection headerTitle="Name" id="EAb-Qr-WxI">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="sA0-bn-KsX">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sA0-bn-KsX" id="dB8-sP-RUN">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="gdp-OC-zry">
+                                                    <rect key="frame" x="15" y="7" width="290" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="CKe-zT-zl9" id="j0y-e3-tBF"/>
+                            <outlet property="delegate" destination="CKe-zT-zl9" id="X5K-au-0ag"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Add Assessment Criteria" id="Uix-X8-67k">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="CUp-SL-86b">
+                            <connections>
+                                <action selector="cancel" destination="CKe-zT-zl9" id="DFB-X8-tuT"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="x3R-gM-b6p">
+                            <connections>
+                                <action selector="done" destination="CKe-zT-zl9" id="QVg-Lt-bZO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="doneBtn" destination="x3R-gM-b6p" id="1bl-dV-cJQ"/>
+                        <outlet property="nameField" destination="gdp-OC-zry" id="dIB-a5-jxG"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MeY-FR-B9n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1838" y="1345"/>
+        </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -550,6 +654,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="Xd4-sf-5Ck"/>
         <segue reference="hLf-mw-eHg"/>
-        <segue reference="EA4-An-DjK"/>
+        <segue reference="9ZD-bu-UiX"/>
+        <segue reference="NcP-Du-DyI"/>
     </inferredMetricsTieBreakers>
 </document>

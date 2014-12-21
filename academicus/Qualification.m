@@ -15,9 +15,9 @@
     self = [super init];
     if (self) {
         _years = [[NSMutableArray alloc] init];
-        Year *s = [[Year alloc] init]; //REMOVE YEAR IMPORT
-        s.name = @"Test Year";
-        [_years addObject:s];
+        Year *y = [[Year alloc] init]; //REMOVE YEAR IMPORT
+        y.name = @"Test Year";
+        [_years addObject:y];
     }
     return self;
 }

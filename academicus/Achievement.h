@@ -12,6 +12,6 @@
 
 @property (strong) NSString *name;
 @property (strong) NSDate *dateAchieved;
-@property (strong) NSString *description;
+@property (strong) NSString *details;
 
 @end

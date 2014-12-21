@@ -17,6 +17,6 @@
 @property (strong) NSDate *endDate;
 @property (strong) NSString *refereeName;
 @property (strong) NSString *refereeEmail;
-@property (strong) NSString *description;
+@property (strong) NSString *details;
 
 @end

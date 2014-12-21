@@ -13,6 +13,8 @@
 		A368B7A71A4388BE00F8089B /* AssessmentCriteria.m in Sources */ = {isa = PBXBuildFile; fileRef = A368B7A61A4388BE00F8089B /* AssessmentCriteria.m */; };
 		A3981DEF1A473E4200334345 /* SubjectsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3981DEE1A473E4200334345 /* SubjectsTableViewController.m */; };
 		A3981DF21A473E6000334345 /* SubjectDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3981DF11A473E6000334345 /* SubjectDetailTableViewController.m */; };
+		A3981DF81A47595000334345 /* AssessmentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3981DF71A47595000334345 /* AssessmentsTableViewController.m */; };
+		A3981DFB1A47596F00334345 /* AssessmentDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3981DFA1A47596F00334345 /* AssessmentDetailTableViewController.m */; };
 		B5030ADB1A43788800E23378 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030ADA1A43788800E23378 /* main.m */; };
 		B5030ADE1A43788800E23378 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030ADD1A43788800E23378 /* AppDelegate.m */; };
 		B5030AE71A43788800E23378 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5030AE51A43788800E23378 /* Main.storyboard */; };
@@ -55,6 +57,10 @@
 		A3981DEE1A473E4200334345 /* SubjectsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectsTableViewController.m; sourceTree = "<group>"; };
 		A3981DF01A473E6000334345 /* SubjectDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectDetailTableViewController.h; sourceTree = "<group>"; };
 		A3981DF11A473E6000334345 /* SubjectDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectDetailTableViewController.m; sourceTree = "<group>"; };
+		A3981DF61A47595000334345 /* AssessmentsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssessmentsTableViewController.h; sourceTree = "<group>"; };
+		A3981DF71A47595000334345 /* AssessmentsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssessmentsTableViewController.m; sourceTree = "<group>"; };
+		A3981DF91A47596F00334345 /* AssessmentDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AssessmentDetailTableViewController.h; path = ../AssessmentDetailTableViewController.h; sourceTree = "<group>"; };
+		A3981DFA1A47596F00334345 /* AssessmentDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AssessmentDetailTableViewController.m; path = ../AssessmentDetailTableViewController.m; sourceTree = "<group>"; };
 		B5030AD51A43788800E23378 /* academicus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = academicus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5030AD91A43788800E23378 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5030ADA1A43788800E23378 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -124,6 +130,10 @@
 				A3981DEE1A473E4200334345 /* SubjectsTableViewController.m */,
 				A3981DF01A473E6000334345 /* SubjectDetailTableViewController.h */,
 				A3981DF11A473E6000334345 /* SubjectDetailTableViewController.m */,
+				A3981DF61A47595000334345 /* AssessmentsTableViewController.h */,
+				A3981DF71A47595000334345 /* AssessmentsTableViewController.m */,
+				A3981DF91A47596F00334345 /* AssessmentDetailTableViewController.h */,
+				A3981DFA1A47596F00334345 /* AssessmentDetailTableViewController.m */,
 				A3981DEC1A472FE200334345 /* Models */,
 			);
 			name = "Grades Management";
@@ -364,6 +374,8 @@
 				A368B7A71A4388BE00F8089B /* AssessmentCriteria.m in Sources */,
 				A368B79E1A4380BC00F8089B /* Qualification.m in Sources */,
 				B5030B061A4386E200E23378 /* Achievement.m in Sources */,
+				A3981DF81A47595000334345 /* AssessmentsTableViewController.m in Sources */,
+				A3981DFB1A47596F00334345 /* AssessmentDetailTableViewController.m in Sources */,
 				A3981DEF1A473E4200334345 /* SubjectsTableViewController.m in Sources */,
 				B5030B0D1A438A6E00E23378 /* Settings.m in Sources */,
 				B5030ADE1A43788800E23378 /* AppDelegate.m in Sources */,
