@@ -10,4 +10,12 @@
 
 @implementation Qualification
 
+- (id) init {
+    self = [super init];
+    if (self) {
+        _years = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
 @end

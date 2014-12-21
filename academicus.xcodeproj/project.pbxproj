@@ -103,6 +103,88 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A3981DE51A472ED800334345 /* Grades Management */ = {
+			isa = PBXGroup;
+			children = (
+				B5030B171A438E1900E23378 /* QualificationsTableViewController.h */,
+				B5030B181A438E1900E23378 /* QualificationsTableViewController.m */,
+				B5030B1D1A43C77A00E23378 /* QualificationDetailTableViewController.h */,
+				B5030B1E1A43C77A00E23378 /* QualificationDetailTableViewController.m */,
+				B5DED5971A46451500D22147 /* YearsTableViewController.h */,
+				B5DED5981A46451500D22147 /* YearsTableViewController.m */,
+				B5DED59A1A46470800D22147 /* YearDetailTableViewController.h */,
+				B5DED59B1A46470800D22147 /* YearDetailTableViewController.m */,
+				A3981DEC1A472FE200334345 /* Models */,
+			);
+			name = "Grades Management";
+			sourceTree = "<group>";
+		};
+		A3981DE61A472F1900334345 /* Reminders */ = {
+			isa = PBXGroup;
+			children = (
+				B5030B0E1A438DC100E23378 /* RemindersTableViewController.h */,
+				B5030B0F1A438DC100E23378 /* RemindersTableViewController.m */,
+			);
+			name = Reminders;
+			sourceTree = "<group>";
+		};
+		A3981DE71A472F2E00334345 /* Portfolio */ = {
+			isa = PBXGroup;
+			children = (
+				B5030B141A438DFA00E23378 /* PortfolioTableViewController.h */,
+				B5030B151A438DFA00E23378 /* PortfolioTableViewController.m */,
+				A3981DEB1A472FA500334345 /* Models */,
+			);
+			name = Portfolio;
+			sourceTree = "<group>";
+		};
+		A3981DE81A472F3C00334345 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B5030B111A438DDF00E23378 /* SettingsTableViewController.h */,
+				B5030B121A438DDF00E23378 /* SettingsTableViewController.m */,
+				A3981DEA1A472F9300334345 /* Models */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		A3981DEA1A472F9300334345 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B5030B0B1A438A6E00E23378 /* Settings.h */,
+				B5030B0C1A438A6E00E23378 /* Settings.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		A3981DEB1A472FA500334345 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B5030B011A43852B00E23378 /* Portfolio.h */,
+				B5030B021A43852B00E23378 /* Portfolio.m */,
+				B5030B041A4386E200E23378 /* Achievement.h */,
+				B5030B051A4386E200E23378 /* Achievement.m */,
+				B5030B081A4388E500E23378 /* WorkExperience.h */,
+				B5030B091A4388E500E23378 /* WorkExperience.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		A3981DEC1A472FE200334345 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A368B79C1A4380BC00F8089B /* Qualification.h */,
+				A368B79D1A4380BC00F8089B /* Qualification.m */,
+				A368B79F1A43861F00F8089B /* Year.h */,
+				A368B7A01A43861F00F8089B /* Year.m */,
+				A368B7A21A43876500F8089B /* Subject.h */,
+				A368B7A31A43876500F8089B /* Subject.m */,
+				A368B7A51A4388BE00F8089B /* AssessmentCriteria.h */,
+				A368B7A61A4388BE00F8089B /* AssessmentCriteria.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		B5030ACC1A43788800E23378 = {
 			isa = PBXGroup;
 			children = (
@@ -127,37 +209,11 @@
 				B5030B071A43880700E23378 /* academicus-prefix.pch */,
 				B5030ADC1A43788800E23378 /* AppDelegate.h */,
 				B5030ADD1A43788800E23378 /* AppDelegate.m */,
-				B5030B141A438DFA00E23378 /* PortfolioTableViewController.h */,
-				B5030B151A438DFA00E23378 /* PortfolioTableViewController.m */,
-				B5030B171A438E1900E23378 /* QualificationsTableViewController.h */,
-				B5030B181A438E1900E23378 /* QualificationsTableViewController.m */,
-				B5DED5971A46451500D22147 /* YearsTableViewController.h */,
-				B5DED5981A46451500D22147 /* YearsTableViewController.m */,
-				B5030B0E1A438DC100E23378 /* RemindersTableViewController.h */,
-				B5030B0F1A438DC100E23378 /* RemindersTableViewController.m */,
-				B5030B111A438DDF00E23378 /* SettingsTableViewController.h */,
-				B5030B121A438DDF00E23378 /* SettingsTableViewController.m */,
-				B5030B041A4386E200E23378 /* Achievement.h */,
-				B5030B051A4386E200E23378 /* Achievement.m */,
-				A368B7A51A4388BE00F8089B /* AssessmentCriteria.h */,
-				A368B7A61A4388BE00F8089B /* AssessmentCriteria.m */,
-				B5030B011A43852B00E23378 /* Portfolio.h */,
-				B5030B021A43852B00E23378 /* Portfolio.m */,
-				B5030B0B1A438A6E00E23378 /* Settings.h */,
-				B5030B0C1A438A6E00E23378 /* Settings.m */,
-				A368B79C1A4380BC00F8089B /* Qualification.h */,
-				A368B79D1A4380BC00F8089B /* Qualification.m */,
-				A368B7A21A43876500F8089B /* Subject.h */,
-				A368B7A31A43876500F8089B /* Subject.m */,
-				B5030B081A4388E500E23378 /* WorkExperience.h */,
-				B5030B091A4388E500E23378 /* WorkExperience.m */,
-				A368B79F1A43861F00F8089B /* Year.h */,
-				A368B7A01A43861F00F8089B /* Year.m */,
+				A3981DE61A472F1900334345 /* Reminders */,
+				A3981DE51A472ED800334345 /* Grades Management */,
+				A3981DE71A472F2E00334345 /* Portfolio */,
+				A3981DE81A472F3C00334345 /* Settings */,
 				B5030AE51A43788800E23378 /* Main.storyboard */,
-				B5030B1D1A43C77A00E23378 /* QualificationDetailTableViewController.h */,
-				B5030B1E1A43C77A00E23378 /* QualificationDetailTableViewController.m */,
-				B5DED59A1A46470800D22147 /* YearDetailTableViewController.h */,
-				B5DED59B1A46470800D22147 /* YearDetailTableViewController.m */,
 				B5030AE81A43788800E23378 /* Images.xcassets */,
 				B5030AEA1A43788800E23378 /* LaunchScreen.xib */,
 				B5030AD81A43788800E23378 /* Supporting Files */,
