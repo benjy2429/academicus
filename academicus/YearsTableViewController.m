@@ -1,35 +1,26 @@
 //
-//  QualificationsTableViewController.m
+//  YearsTableViewController.m
 //  academicus
 //
 //  Created by Ben on 18/12/2014.
 //  Copyright (c) 2014 sheffield. All rights reserved.
 //
 
-#import "QualificationsTableViewController.h"
+#import "YearsTableViewController.h"
 
-@interface QualificationsTableViewController ()
+@interface YearsTableViewController ()
 
 @end
 
-@implementation QualificationsTableViewController
+@implementation YearsTableViewController
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    // Initialise the data array
-    self.qualifications = [[NSMutableArray alloc] init];
-    
-    // TEST DATA
-    Qualification *q = [[Qualification alloc] init];
-    q.name = @"A-Level";
-    [self.qualifications addObject:q];
-    
-    Qualification *q2 = [[Qualification alloc] init];
-    q2.name = @"Degree";
-    [self.qualifications addObject:q2];
+    // Set the view title to the qualification name
+    self.title = self.qualification.name;
     
     // Initialise variable not in edit mode
     self.inSwipeDeleteMode = NO;
@@ -56,7 +47,7 @@
     if (self.isEditing && !self.inSwipeDeleteMode && section == 1) {
         return 1;
     } else {
-        return [self.qualifications count];
+        return [self.qualification.years count];
     }
 }
 
@@ -67,7 +58,7 @@
     BOOL isAddCell = (self.isEditing && !self.inSwipeDeleteMode && indexPath.section == 1);
     
     // Assign the correct identifier for this cell
-    NSString *myIdentifier = (isAddCell) ? @"addCell" : @"qualificationCell";
+    NSString *myIdentifier = (isAddCell) ? @"addCell" : @"yearCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:myIdentifier];
     
     if (cell == nil) {
@@ -76,10 +67,10 @@
     
     // Set the content for each type of cell
     if (isAddCell) {
-       cell.textLabel.text = @"Add new qualification";
+        cell.textLabel.text = @"Add new year";
     } else {
-        Qualification *currentQualification = (Qualification*) [self.qualifications objectAtIndex:indexPath.row];
-        cell.textLabel.text = currentQualification.name;
+        Year *currentYear = (Year*) [self.qualification.years objectAtIndex:indexPath.row];
+        cell.textLabel.text = currentYear.name;
     }
     
     return cell;
@@ -89,20 +80,17 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.isEditing && !self.inSwipeDeleteMode) {
-    
+        
         if (indexPath.section == 1 && indexPath.row == 0) {
             // If the user clicks the add button, perform a segue to the add page
-            [self performSegueWithIdentifier:@"addQualification" sender:self];
+            [self performSegueWithIdentifier:@"addYear" sender:self];
             
         } else if (indexPath.section == 0) {
             // If the user clicks an item cell in edit mode, perform a segue to the edit page
             UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-            [self performSegueWithIdentifier:@"editQualification" sender:cell];
+            [self performSegueWithIdentifier:@"editYear" sender:cell];
         }
         
-    } else {
-        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-        [self performSegueWithIdentifier:@"toYears" sender:cell];
     }
 }
 
@@ -144,7 +132,7 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source and the table view
-        [self.qualifications removeObjectAtIndex:indexPath.row];
+        [self.qualification.years removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
@@ -162,7 +150,7 @@
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
     [super setEditing:editing animated:animated];
- 
+    
     // If the user swiped, the add item button does not need to be added
     if (self.inSwipeDeleteMode) {
         return;
@@ -203,35 +191,28 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"addQualification"]) {
+    if ([segue.identifier isEqualToString:@"addYear"]) {
         UINavigationController *navController = segue.destinationViewController;
-        QualificationDetailTableViewController *controller = (QualificationDetailTableViewController*) navController.topViewController;
+        YearDetailTableViewController *controller = (YearDetailTableViewController*) navController.topViewController;
         controller.delegate = self;
-        
-    } else if ([segue.identifier isEqualToString:@"editQualification"]) {
+    } else if ([segue.identifier isEqualToString:@"editYear"]) {
         UINavigationController *navController = segue.destinationViewController;
-        QualificationDetailTableViewController *controller = (QualificationDetailTableViewController*) navController.topViewController;
+        YearDetailTableViewController *controller = (YearDetailTableViewController*) navController.topViewController;
         controller.delegate = self;
         
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        controller.itemToEdit = self.qualifications[indexPath.row];
-        
-    } else if ([segue.identifier isEqualToString:@"toYears"]) {
-        YearsTableViewController *controller = (YearsTableViewController*) segue.destinationViewController;
-        
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        controller.qualification = self.qualifications[indexPath.row];
+        controller.itemToEdit = self.qualification.years[indexPath.row];
     }
 }
 
 
-#pragma mark - AddQualificationTableViewControllerDelegate
+#pragma mark - YearDetailTableViewControllerDelegate
 
-- (void)QualificationDetailTableViewController:(id)controller didFinishAddingQualification:(Qualification *)qualification
+- (void)YearDetailTableViewController:(id)controller didFinishAddingYear:(Year *)year
 {
     // Add the new item to the data array
-    NSInteger newRowIndex = [self.qualifications count];
-    [self.qualifications addObject:qualification];
+    NSInteger newRowIndex = [self.qualification.years count];
+    [self.qualification.years addObject:year];
     
     // Insert a new cell for the item into the table
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:newRowIndex inSection:0];
@@ -243,20 +224,20 @@
 }
 
 
-- (void)QualificationDetailTableViewController:(id)controller didFinishEditingQualification:(Qualification *)qualification
+- (void)YearDetailTableViewController:(id)controller didFinishEditingYear:(Year *)year
 {
     // Find the cell for this item and update the contents
-    NSInteger index = [self.qualifications indexOfObject:qualification];
+    NSInteger index = [self.qualification.years indexOfObject:year];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    cell.textLabel.text = qualification.name;
+    cell.textLabel.text = year.name;
     
     // Dismiss the edit item view
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
-- (void)QualificationDetailTableViewControllerDidCancel:(id)controller
+- (void)YearDetailTableViewControllerDidCancel:(id)controller
 {
     // No action to take so dismiss the modal window
     [self dismissViewControllerAnimated:YES completion:nil];

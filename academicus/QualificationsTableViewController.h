@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Qualification.h"
 #import "QualificationDetailTableViewController.h"
+#import "YearsTableViewController.h"
 
 @interface QualificationsTableViewController : UITableViewController <QualificationDetailTableViewControllerDelegate>
 

@@ -26,6 +26,8 @@
 		B5030B161A438DFA00E23378 /* PortfolioTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B151A438DFA00E23378 /* PortfolioTableViewController.m */; };
 		B5030B191A438E1900E23378 /* QualificationsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B181A438E1900E23378 /* QualificationsTableViewController.m */; };
 		B5030B1F1A43C77B00E23378 /* QualificationDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B1E1A43C77A00E23378 /* QualificationDetailTableViewController.m */; };
+		B5DED5991A46451500D22147 /* YearsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DED5981A46451500D22147 /* YearsTableViewController.m */; };
+		B5DED59C1A46470800D22147 /* YearDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DED59B1A46470800D22147 /* YearDetailTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,10 @@
 		B5030B181A438E1900E23378 /* QualificationsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QualificationsTableViewController.m; sourceTree = "<group>"; };
 		B5030B1D1A43C77A00E23378 /* QualificationDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QualificationDetailTableViewController.h; sourceTree = "<group>"; };
 		B5030B1E1A43C77A00E23378 /* QualificationDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QualificationDetailTableViewController.m; sourceTree = "<group>"; };
+		B5DED5971A46451500D22147 /* YearsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YearsTableViewController.h; sourceTree = "<group>"; };
+		B5DED5981A46451500D22147 /* YearsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YearsTableViewController.m; sourceTree = "<group>"; };
+		B5DED59A1A46470800D22147 /* YearDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YearDetailTableViewController.h; sourceTree = "<group>"; };
+		B5DED59B1A46470800D22147 /* YearDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YearDetailTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +131,8 @@
 				B5030B151A438DFA00E23378 /* PortfolioTableViewController.m */,
 				B5030B171A438E1900E23378 /* QualificationsTableViewController.h */,
 				B5030B181A438E1900E23378 /* QualificationsTableViewController.m */,
+				B5DED5971A46451500D22147 /* YearsTableViewController.h */,
+				B5DED5981A46451500D22147 /* YearsTableViewController.m */,
 				B5030B0E1A438DC100E23378 /* RemindersTableViewController.h */,
 				B5030B0F1A438DC100E23378 /* RemindersTableViewController.m */,
 				B5030B111A438DDF00E23378 /* SettingsTableViewController.h */,
@@ -148,6 +156,8 @@
 				B5030AE51A43788800E23378 /* Main.storyboard */,
 				B5030B1D1A43C77A00E23378 /* QualificationDetailTableViewController.h */,
 				B5030B1E1A43C77A00E23378 /* QualificationDetailTableViewController.m */,
+				B5DED59A1A46470800D22147 /* YearDetailTableViewController.h */,
+				B5DED59B1A46470800D22147 /* YearDetailTableViewController.m */,
 				B5030AE81A43788800E23378 /* Images.xcassets */,
 				B5030AEA1A43788800E23378 /* LaunchScreen.xib */,
 				B5030AD81A43788800E23378 /* Supporting Files */,
@@ -282,6 +292,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5DED5991A46451500D22147 /* YearsTableViewController.m in Sources */,
+				B5DED59C1A46470800D22147 /* YearDetailTableViewController.m in Sources */,
 				B5030B131A438DDF00E23378 /* SettingsTableViewController.m in Sources */,
 				A368B7A71A4388BE00F8089B /* AssessmentCriteria.m in Sources */,
 				A368B79E1A4380BC00F8089B /* Qualification.m in Sources */,
