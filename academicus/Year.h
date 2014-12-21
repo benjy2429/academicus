@@ -13,6 +13,6 @@
 @property (strong) NSString *name;
 @property (strong) NSDate *startDate;
 @property (strong) NSDate *endDate;
-@property (strong) NSMutableArray *modules;
+@property (strong) NSMutableArray *subjects;
 
 @end

@@ -1,0 +1,21 @@
+//
+//  SubjectsTableViewController.h
+//  academicus
+//
+//  Created by Luke on 21/12/2014.
+//  Copyright (c) 2014 sheffield. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "Year.h"
+#import "Subject.h"
+#import "SubjectDetailTableViewController.h"
+
+@interface SubjectsTableViewController : UITableViewController <SubjectDetailTableViewControllerDelegate>
+
+@property (weak) Year *year;
+
+// This variable is used to determine whether the user clicked the edit button, or swiped a row
+@property (assign) BOOL inSwipeDeleteMode;
+
+@end

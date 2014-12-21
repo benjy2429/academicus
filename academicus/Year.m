@@ -7,7 +7,19 @@
 //
 
 #import "Year.h"
+#import "Subject.h"
 
 @implementation Year
+
+- (id) init {
+    self = [super init];
+    if (self) {
+        _subjects = [[NSMutableArray alloc] init];
+        Subject *s = [[Subject alloc] init]; //REMOVE SUBJECT IMPORT
+        s.name = @"Test Subject";
+        [_subjects addObject:s];
+    }
+    return self;
+}
 
 @end

@@ -10,4 +10,12 @@
 
 @implementation Subject
 
+- (id) init {
+    self = [super init];
+    if (self) {
+        _assessments = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
 @end

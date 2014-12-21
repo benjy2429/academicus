@@ -24,7 +24,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-459.19999999999999" y="805.13999999999999"/>
+            <point key="canvasLocation" x="-244" y="645"/>
         </scene>
         <!--Settings-->
         <scene sceneID="kCD-Xs-tPI">
@@ -51,7 +51,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xFe-uG-JwU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="697.60000000000002" y="1216.23"/>
+            <point key="canvasLocation" x="-244" y="2712"/>
         </scene>
         <!--Portfolio-->
         <scene sceneID="Hs3-aT-lvN">
@@ -78,7 +78,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EVs-ot-11e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="697.60000000000002" y="587.16999999999996"/>
+            <point key="canvasLocation" x="615" y="1989"/>
         </scene>
         <!--Years-->
         <scene sceneID="gNV-ux-8kv">
@@ -105,11 +105,12 @@
                     <connections>
                         <segue destination="hyk-7m-nmj" kind="modal" identifier="addYear" id="Oh2-rM-KWX"/>
                         <segue destination="hyk-7m-nmj" kind="modal" identifier="editYear" id="hLf-mw-eHg"/>
+                        <segue destination="LXh-dD-jiu" kind="push" identifier="toSubjects" id="3Qe-pJ-HNg"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KjN-lt-Wf2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1177" y="271"/>
+            <point key="canvasLocation" x="1026" y="-45"/>
         </scene>
         <!--Add Year-->
         <scene sceneID="Co6-vr-bBU">
@@ -199,7 +200,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZTQ-kE-q4q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2198" y="271"/>
+            <point key="canvasLocation" x="1026" y="1345"/>
         </scene>
         <!--Reminders-->
         <scene sceneID="oRt-rj-yjF">
@@ -226,7 +227,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="InB-SE-Uvv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="697.60000000000002" y="-673.78999999999996"/>
+            <point key="canvasLocation" x="615" y="-720"/>
         </scene>
         <!--Reminders-->
         <scene sceneID="FxT-Bg-JX8">
@@ -245,7 +246,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Etc-rf-adu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="208" y="-673.78999999999996"/>
+            <point key="canvasLocation" x="208" y="-720"/>
         </scene>
         <!--Grades-->
         <scene sceneID="DQu-bX-6WV">
@@ -302,7 +303,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B7M-Yc-uiF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="697.60000000000002" y="-44.729999999999997"/>
+            <point key="canvasLocation" x="615" y="-45"/>
         </scene>
         <!--Add Qualification-->
         <scene sceneID="P5d-ga-HRH">
@@ -360,7 +361,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ee-d8-wU2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1666" y="-362"/>
+            <point key="canvasLocation" x="615" y="1345"/>
         </scene>
         <!--Portfolio-->
         <scene sceneID="vVc-Xx-0oh">
@@ -379,7 +380,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7b5-Lf-Yv3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="208" y="587.16999999999996"/>
+            <point key="canvasLocation" x="208" y="1989"/>
         </scene>
         <!--Settings-->
         <scene sceneID="Evo-dg-cLT">
@@ -398,7 +399,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ybP-Wi-yMq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="208" y="1216.23"/>
+            <point key="canvasLocation" x="-244" y="1989"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9vo-gJ-q89">
@@ -417,7 +418,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FdG-dC-3rs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1177" y="-361"/>
+            <point key="canvasLocation" x="615" y="653"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bkC-Tr-1d6">
@@ -435,7 +436,110 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3LK-iK-efX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1666" y="271"/>
+            <point key="canvasLocation" x="1026" y="645"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="O6M-YM-vVY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Drw-Ij-GAb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0Wz-Ix-IMn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="12U-op-nhJ" kind="relationship" relationship="rootViewController" id="top-BO-dcq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="89Q-5r-2wO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1432" y="645"/>
+        </scene>
+        <!--Subjects-->
+        <scene sceneID="y3e-wr-SLa">
+            <objects>
+                <tableViewController id="LXh-dD-jiu" customClass="SubjectsTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="rvi-To-A7y">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="subjectCell" id="Vax-0H-TDj">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vax-0H-TDj" id="cXZ-4l-MzI">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="LXh-dD-jiu" id="u0b-7n-hPq"/>
+                            <outlet property="delegate" destination="LXh-dD-jiu" id="mqq-xt-W8W"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Subjects" id="i2H-2Q-Ebh"/>
+                    <connections>
+                        <segue destination="Drw-Ij-GAb" kind="modal" id="9ZD-bu-UiX"/>
+                        <segue destination="Drw-Ij-GAb" kind="modal" identifier="editSubject" id="EA4-An-DjK"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EbG-oO-Y7H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1432" y="-45"/>
+        </scene>
+        <!--Add Subject-->
+        <scene sceneID="9Zz-Qf-gbc">
+            <objects>
+                <tableViewController id="12U-op-nhJ" customClass="SubjectDetailTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="U6V-iy-CkH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection headerTitle="Name" id="zgF-gc-xza">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="xlb-HP-IXn">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xlb-HP-IXn" id="g9N-qM-0S5">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="e3G-5P-cuZ">
+                                                    <rect key="frame" x="15" y="7" width="290" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="12U-op-nhJ" id="vx1-PC-1xj"/>
+                            <outlet property="delegate" destination="12U-op-nhJ" id="Fdg-1t-7bi"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Add Subject" id="eyf-rE-npG">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="8Ju-DC-U5I">
+                            <connections>
+                                <action selector="cancel" destination="12U-op-nhJ" id="SRu-17-t5b"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="dQc-Dw-7Tx">
+                            <connections>
+                                <action selector="done" destination="12U-op-nhJ" id="gz4-gp-4B1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="doneBtn" destination="dQc-Dw-7Tx" id="eyU-YR-Gzc"/>
+                        <outlet property="nameField" destination="e3G-5P-cuZ" id="WZo-Qk-wbL"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gEn-32-7ci" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1432" y="1345"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -445,6 +549,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Xd4-sf-5Ck"/>
-        <segue reference="Oh2-rM-KWX"/>
+        <segue reference="hLf-mw-eHg"/>
+        <segue reference="EA4-An-DjK"/>
     </inferredMetricsTieBreakers>
 </document>
