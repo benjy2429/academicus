@@ -29,6 +29,7 @@
     } else {
         self.startDate = [NSDate date];
         self.endDate = [NSDate date];
+        self.doneBtn.enabled = NO;
     }
     
     self.startDateLabel.text = [self formatDate:self.startDate];
@@ -85,7 +86,9 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [self hideDatePicker];
+    if (self.datePickerVisible) {
+        [self hideDatePicker];
+    }
 }
 
 
