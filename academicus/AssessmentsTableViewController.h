@@ -1,5 +1,5 @@
 //
-//  SubjectsTableViewController.h
+//  AssessmentsTableViewController.h
 //  academicus
 //
 //  Created by Luke on 21/12/2014.
@@ -7,14 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Year.h"
 #import "Subject.h"
-#import "SubjectDetailTableViewController.h"
-#import "AssessmentsTableViewController.h"
+#import "AssessmentDetailTableViewController.h"
 
-@interface SubjectsTableViewController : UITableViewController <SubjectDetailTableViewControllerDelegate>
+@interface AssessmentsTableViewController : UITableViewController <AssessmentDetailTableViewControllerDelegate>
 
-@property (weak) Year *year;
+@property (weak) Subject *subject;
 
 // This variable is used to determine whether the user clicked the edit button, or swiped a row
 @property (assign) BOOL inSwipeDeleteMode;

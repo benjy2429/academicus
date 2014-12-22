@@ -1,18 +1,18 @@
 //
-//  SubjectsTableViewController.m
+//  AssessmentsTableViewController.m
 //  academicus
 //
 //  Created by Luke on 21/12/2014.
 //  Copyright (c) 2014 sheffield. All rights reserved.
 //
 
-#import "SubjectsTableViewController.h"
+#import "AssessmentsTableViewController.h"
 
-@interface SubjectsTableViewController ()
+@interface AssessmentsTableViewController ()
 
 @end
 
-@implementation SubjectsTableViewController
+@implementation AssessmentsTableViewController
 
 
 - (void)viewDidLoad
@@ -20,7 +20,7 @@
     [super viewDidLoad];
     
     // Set the view title to the qualification name
-    self.title = self.year.name;
+    self.title = self.subject.name;
     
     // Initialise variable not in edit mode
     self.inSwipeDeleteMode = NO;
@@ -51,7 +51,7 @@
     if (self.isEditing && !self.inSwipeDeleteMode && section == 1) {
         return 1;
     } else {
-        return [self.year.subjects count];
+        return [self.subject.assessments count];
     }
 }
 
@@ -61,7 +61,7 @@
     BOOL isAddCell = (self.isEditing && !self.inSwipeDeleteMode && indexPath.section == 1);
     
     // Assign the correct identifier for this cell
-    NSString *myIdentifier = (isAddCell) ? @"addCell" : @"subjectCell";
+    NSString *myIdentifier = (isAddCell) ? @"addCell" : @"assessmentCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:myIdentifier];
     
     if (cell == nil) {
@@ -70,10 +70,10 @@
     
     // Set the content for each type of cell
     if (isAddCell) {
-        cell.textLabel.text = @"Add new subejct";
+        cell.textLabel.text = @"Add new assessment";
     } else {
-        Subject *currentSubject = (Subject*) [self.year.subjects objectAtIndex:indexPath.row];
-        cell.textLabel.text = currentSubject.name;
+        AssessmentCriteria *currentAssessment = (AssessmentCriteria*) [self.subject.assessments objectAtIndex:indexPath.row];
+        cell.textLabel.text = currentAssessment.name;
     }
     
     return cell;
@@ -86,16 +86,14 @@
         
         if (indexPath.section == 1 && indexPath.row == 0) {
             // If the user clicks the add button, perform a segue to the add page
-            [self performSegueWithIdentifier:@"addSubject" sender:self];
+            [self performSegueWithIdentifier:@"addAssessment" sender:self];
             
         } else if (indexPath.section == 0) {
             // If the user clicks an item cell in edit mode, perform a segue to the edit page
             UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-            [self performSegueWithIdentifier:@"editSubject" sender:cell];
+            [self performSegueWithIdentifier:@"editAssessment" sender:cell];
         }
-    } else {
-        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-        [self performSegueWithIdentifier:@"toAssessments" sender:cell];
+        
     }
 }
 
@@ -138,7 +136,7 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source and the table view
-        [self.year.subjects removeObjectAtIndex:indexPath.row];
+        [self.subject.assessments removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
@@ -197,33 +195,28 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"addSubject"]) {
+    if ([segue.identifier isEqualToString:@"addAssessment"]) {
         UINavigationController *navController = segue.destinationViewController;
-        SubjectDetailTableViewController *controller = (SubjectDetailTableViewController*) navController.topViewController;
+        AssessmentDetailTableViewController *controller = (AssessmentDetailTableViewController*) navController.topViewController;
         controller.delegate = self;
-    } else if ([segue.identifier isEqualToString:@"editSubject"]) {
+    } else if ([segue.identifier isEqualToString:@"editAssessment"]) {
         UINavigationController *navController = segue.destinationViewController;
-        SubjectDetailTableViewController *controller = (SubjectDetailTableViewController*) navController.topViewController;
+        AssessmentDetailTableViewController *controller = (AssessmentDetailTableViewController*) navController.topViewController;
         controller.delegate = self;
         
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        controller.itemToEdit = self.year.subjects[indexPath.row];
-    }  else if ([segue.identifier isEqualToString:@"toAssessments"]) {
-        AssessmentsTableViewController *controller = (AssessmentsTableViewController*) segue.destinationViewController;
-        
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        controller.subject = self.year.subjects[indexPath.row];
+        controller.itemToEdit = self.subject.assessments[indexPath.row];
     }
 }
 
 
 #pragma mark - YearDetailTableViewControllerDelegate
 
-- (void)SubjectDetailTableViewController:(id)controller didFinishAddingSubject:(Subject *)subject
+- (void)AssessmentDetailTableViewController:(id)controller didFinishAddingAssessment:(AssessmentCriteria *)assessment
 {
     // Add the new item to the data array
-    NSInteger newRowIndex = [self.year.subjects count];
-    [self.year.subjects addObject:subject];
+    NSInteger newRowIndex = [self.subject.assessments count];
+    [self.subject.assessments addObject:assessment];
     
     // Insert a new cell for the item into the table
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:newRowIndex inSection:0];
@@ -235,20 +228,20 @@
 }
 
 
-- (void)SubjectDetailTableViewController:(id)controller didFinishEditingSubject:(Subject *)subject
+- (void)AssessmentDetailTableViewController:(id)controller didFinishEditingAssessment:(AssessmentCriteria *)assessment
 {
     // Find the cell for this item and update the contents
-    NSInteger index = [self.year.subjects indexOfObject:subject];
+    NSInteger index = [self.subject.assessments indexOfObject:assessment];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    cell.textLabel.text = subject.name;
+    cell.textLabel.text = assessment.name;
     
     // Dismiss the edit item view
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
-- (void)SubjectDetailTableViewControllerDidCancel:(id)controller
+- (void)AssessmentDetailTableViewControllerDidCancel:(id)controller
 {
     // No action to take so dismiss the modal window
     [self dismissViewControllerAnimated:YES completion:nil];
