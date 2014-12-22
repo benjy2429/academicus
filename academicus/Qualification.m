@@ -16,7 +16,9 @@
     if (self) {
         _years = [[NSMutableArray alloc] init];
         Year *s = [[Year alloc] init]; //REMOVE YEAR IMPORT
-        s.name = @"Test Year";
+        s.name = @"The Year 3000";
+        s.startDate = [NSDate date];
+        s.endDate = [NSDate date];
         [_years addObject:s];
     }
     return self;

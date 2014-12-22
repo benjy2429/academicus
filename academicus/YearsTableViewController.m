@@ -195,10 +195,13 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"addYear"]) {
+        // If going to the new item page, get the view controller and assign the delegate to this class
         UINavigationController *navController = segue.destinationViewController;
         YearDetailTableViewController *controller = (YearDetailTableViewController*) navController.topViewController;
         controller.delegate = self;
+        
     } else if ([segue.identifier isEqualToString:@"editYear"]) {
+        // If going to the edit item page, also set the item to edit from the data array
         UINavigationController *navController = segue.destinationViewController;
         YearDetailTableViewController *controller = (YearDetailTableViewController*) navController.topViewController;
         controller.delegate = self;
@@ -207,6 +210,7 @@
         controller.itemToEdit = self.qualification.years[indexPath.row];
         
     }  else if ([segue.identifier isEqualToString:@"toSubjects"]) {
+        // If going to the subjects view, get the view controller and pass the selected list of subjects
         SubjectsTableViewController *controller = (SubjectsTableViewController*) segue.destinationViewController;
         
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];

@@ -33,7 +33,9 @@
 @property (strong) NSDate* startDate;
 @property (strong) NSDate* endDate;
 
-@property (assign) BOOL datePickerVisible;
+// Use flags to determine whether the date pickers are hidden or visible
+@property (assign) BOOL startDatePickerVisible;
+@property (assign) BOOL endDatePickerVisible;
 
 
 @end

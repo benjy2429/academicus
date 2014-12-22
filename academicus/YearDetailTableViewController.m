@@ -27,15 +27,19 @@
         
         self.doneBtn.enabled = YES;
     } else {
+        // If no item was passed through, create default date values
         self.startDate = [NSDate date];
         self.endDate = [NSDate date];
         self.doneBtn.enabled = NO;
     }
     
+    // Assign the stored dates to the labels on the view
     self.startDateLabel.text = [self formatDate:self.startDate];
     self.endDateLabel.text = [self formatDate:self.endDate];
     
-    self.datePickerVisible = NO;
+    // Set the date picker visible flags to false
+    self.startDatePickerVisible = NO;
+    self.endDatePickerVisible = NO;
 }
 
 
@@ -76,7 +80,7 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    // Only enable the done button when the fields are not empty
+    // Only enable the done button when the name field is not empty
     NSString *newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
     self.doneBtn.enabled = ([newText length] > 0);
     
@@ -86,71 +90,121 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    if (self.datePickerVisible) {
-        [self hideDatePicker];
+    // When the name field is edited, hide any visible date pickers
+    if (self.startDatePickerVisible) {
+        [self hideStartDatePicker];
+    } else if (self.endDatePickerVisible) {
+        [self hideEndDatePicker];
     }
 }
 
 
 - (NSString*)formatDate:(NSDate*)date
 {
+    // Helper method to quickly format date strings to be displayed in labels
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterLongStyle];
     return [formatter stringFromDate:date];
 }
 
 
-- (void)showDatePickerAtIndexPath:(NSIndexPath*)indexPath
+- (void)showStartDatePicker
 {
-    self.datePickerVisible = YES;
-    NSIndexPath *indexPathDateRow = [NSIndexPath indexPathForRow:1 inSection:1];
-    NSIndexPath *indexPathDatePicker = [NSIndexPath indexPathForRow:2 inSection:1];
+    // Set the visible flag to true
+    self.startDatePickerVisible = YES;
+    // Find the rows of the label and the date picker
+    NSIndexPath *indexPathDateRow = [NSIndexPath indexPathForRow:0 inSection:1];
+    NSIndexPath *indexPathDatePicker = [NSIndexPath indexPathForRow:1 inSection:1];
     
+    // Insert a new row for the date picker and reload the label row
     [self.tableView beginUpdates];
     [self.tableView insertRowsAtIndexPaths:@[indexPathDatePicker] withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView reloadRowsAtIndexPaths:@[indexPathDateRow] withRowAnimation:UITableViewRowAnimationNone];
     [self.tableView endUpdates];
     
+    // Create the date picker cell and display it
+    UITableViewCell *datePickerCell = [self.tableView cellForRowAtIndexPath:indexPathDatePicker];
+    UIDatePicker *datePicker = (UIDatePicker*) [datePickerCell viewWithTag:100];
+    [datePicker setDate:self.startDate animated:YES];
+}
+
+
+- (void)showEndDatePicker
+{
+    // Set the visible flag to true
+    self.endDatePickerVisible = YES;
+    // Find the rows of the label and the date picker
+    NSIndexPath *indexPathDateRow = [NSIndexPath indexPathForRow:0 inSection:2];
+    NSIndexPath *indexPathDatePicker = [NSIndexPath indexPathForRow:1 inSection:2];
+    
+    // Insert a new row for the date picker and reload the label row
+    [self.tableView beginUpdates];
+    [self.tableView insertRowsAtIndexPaths:@[indexPathDatePicker] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView reloadRowsAtIndexPaths:@[indexPathDateRow] withRowAnimation:UITableViewRowAnimationNone];
+    [self.tableView endUpdates];
+    
+    // Create the date picker cell and display it
     UITableViewCell *datePickerCell = [self.tableView cellForRowAtIndexPath:indexPathDatePicker];
     UIDatePicker *datePicker = (UIDatePicker*) [datePickerCell viewWithTag:100];
     [datePicker setDate:self.endDate animated:YES];
 }
 
 
-- (void)hideDatePicker
+- (void)hideStartDatePicker
 {
-    self.datePickerVisible = NO;
-    NSIndexPath *indexPathDateRow = [NSIndexPath indexPathForRow:1 inSection:1];
-    NSIndexPath *indexPathDatePicker = [NSIndexPath indexPathForRow:2 inSection:1];
+    // Set the visible flag to false
+    self.startDatePickerVisible = NO;
+    // Find the rows of the label and the date picker
+    NSIndexPath *indexPathDateRow = [NSIndexPath indexPathForRow:0 inSection:1];
+    NSIndexPath *indexPathDatePicker = [NSIndexPath indexPathForRow:1 inSection:1];
     
+    // Delete the date picker row and reload the label row
     [self.tableView beginUpdates];
     [self.tableView deleteRowsAtIndexPaths:@[indexPathDatePicker] withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView reloadRowsAtIndexPaths:@[indexPathDateRow] withRowAnimation:UITableViewRowAnimationNone];
     [self.tableView endUpdates];
-    
-    UITableViewCell *datePickerCell = [self.tableView cellForRowAtIndexPath:indexPathDatePicker];
-    UIDatePicker *datePicker = (UIDatePicker*) [datePickerCell viewWithTag:100];
-    [datePicker setDate:self.endDate animated:YES];
 }
 
 
+- (void)hideEndDatePicker
+{
+    // Set the visible flag to false
+    self.endDatePickerVisible = NO;
+    // Find the rows of the label and the date picker
+    NSIndexPath *indexPathDateRow = [NSIndexPath indexPathForRow:0 inSection:2];
+    NSIndexPath *indexPathDatePicker = [NSIndexPath indexPathForRow:1 inSection:2];
+    
+    // Delete the date picker row and reload the label row
+    [self.tableView beginUpdates];
+    [self.tableView deleteRowsAtIndexPaths:@[indexPathDatePicker] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView reloadRowsAtIndexPaths:@[indexPathDateRow] withRowAnimation:UITableViewRowAnimationNone];
+    [self.tableView endUpdates];
+}
+
+
+// Override this method to enable the date picker cell to be created
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 1 && indexPath.row == 2) {
+    // If the cell should be a date picker cell
+    if ((indexPath.section == 1 && indexPath.row == 1) || (indexPath.section == 2 && indexPath.row == 1)) {
+        
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"datePickerCell"];
         
+        // Create a new cell
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"datePickerCell"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
+            // Add a date picker view to the cell
             UIDatePicker *datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
             datePicker.tag = 100;
             datePicker.datePickerMode = UIDatePickerModeDate;
             [cell.contentView addSubview:datePicker];
             
+            // Set the action depending on the cell
             if (indexPath.row == 1) {
                 [datePicker addTarget:self action:@selector(startDateChanged:) forControlEvents:UIControlEventValueChanged];
-            } else if (indexPath.row == 2) {
+            } else {
                 [datePicker addTarget:self action:@selector(endDateChanged:) forControlEvents:UIControlEventValueChanged];
             }
         }
@@ -158,6 +212,7 @@
         return cell;
         
     } else {
+        // If the cell is not a date picker cell, call the super method
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];
     }
 }
@@ -165,6 +220,7 @@
 
 - (void)startDateChanged:(UIDatePicker*)datePicker
 {
+    // Update the variable and label when the date picker value changes
     self.startDate = datePicker.date;
     self.startDateLabel.text = [self formatDate:self.startDate];
 }
@@ -172,6 +228,7 @@
 
 - (void)endDateChanged:(UIDatePicker*)datePicker
 {
+    // Update the variable and label when the date picker value changes
     self.endDate = datePicker.date;
     self.endDateLabel.text = [self formatDate:self.endDate];
 }
@@ -180,12 +237,13 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 1 && self.datePickerVisible) {
-        return 3;
+    // If the date picker is visible for this section, return 2 otherwise call the super method
+    if ((section == 1 && self.startDatePickerVisible) || (section == 2 && self.endDatePickerVisible)) {
+        return 2;
     } else {
         return [super tableView:tableView numberOfRowsInSection:section];
     }
@@ -194,21 +252,24 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.datePickerVisible) {
-        if (indexPath.section == 1 && indexPath.row == 2) {
-            return 217.0f;
-        }
+    // If this cell contains a cell picker, manually set the cell height to fit the picker
+    if ((indexPath.section == 1 && indexPath.row == 1) || (indexPath.section == 2 && indexPath.row == 1)) {
+        return 217.0f;
     }
     
+    // Otherwise call the super method
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 
 
 - (NSIndexPath*)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 1 && indexPath.row == 1) {
+    // If this cell is a date label, enable selections so the user can click to show or hide the date picker
+    if ((indexPath.section == 1 && indexPath.row == 0) || (indexPath.section == 2 && indexPath.row == 0)) {
         return indexPath;
     }
+    
+    // Otherwise return nil to prevent cell selection
     return nil;
 }
 
@@ -217,21 +278,48 @@
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    // Hide the keyboard if a cell was clicked on
     [self.nameField resignFirstResponder];
     
-    if (indexPath.section == 1 && indexPath.row == 1) {
-        if (!self.datePickerVisible) {
-            [self showDatePickerAtIndexPath:indexPath];
+    // If the cell is the start date label cell
+    if (indexPath.section == 1 && indexPath.row == 0) {
+        
+        // Toggle the visibility of the date picker cell
+        if (!self.startDatePickerVisible) {
+            [self showStartDatePicker];
+            
+            // Also hide the other date picker if visible
+            if (self.endDatePickerVisible) {
+                [self hideEndDatePicker];
+            }
+            
         } else {
-            [self hideDatePicker];
+            [self hideStartDatePicker];
+        }
+        
+    // If the cell is the end date label cell
+    } else if (indexPath.section == 2 && indexPath.row == 0) {
+        
+        // Toggle the visibility of the date picker cell
+        if (!self.endDatePickerVisible) {
+            [self showEndDatePicker];
+            
+            // Also hide the other date picker if visible
+            if (self.startDatePickerVisible) {
+                [self hideStartDatePicker];
+            }
+            
+        } else {
+            [self hideEndDatePicker];
         }
     }
 }
 
 
+// This method is required to add dynamic cells to a table view containing static cells
 - (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 1 && indexPath.row == 2) {
+    if ((indexPath.section == 1 && indexPath.row == 1) || (indexPath.section == 2 && indexPath.row == 1)) {
         NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:0 inSection:indexPath.section];
         return [super tableView:tableView indentationLevelForRowAtIndexPath:newIndexPath];
     }
