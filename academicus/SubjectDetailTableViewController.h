@@ -26,6 +26,7 @@
 @property (strong) Subject *itemToEdit;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneBtn;
+
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 
 @end

@@ -201,6 +201,7 @@
         UINavigationController *navController = segue.destinationViewController;
         SubjectDetailTableViewController *controller = (SubjectDetailTableViewController*) navController.topViewController;
         controller.delegate = self;
+        
     } else if ([segue.identifier isEqualToString:@"editSubject"]) {
         UINavigationController *navController = segue.destinationViewController;
         SubjectDetailTableViewController *controller = (SubjectDetailTableViewController*) navController.topViewController;
@@ -208,6 +209,7 @@
         
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         controller.itemToEdit = self.year.subjects[indexPath.row];
+        
     }  else if ([segue.identifier isEqualToString:@"toAssessments"]) {
         AssessmentsTableViewController *controller = (AssessmentsTableViewController*) segue.destinationViewController;
         
@@ -215,7 +217,7 @@
         controller.subject = self.year.subjects[indexPath.row];
     }
 }
-
+        
 
 #pragma mark - YearDetailTableViewControllerDelegate
 
