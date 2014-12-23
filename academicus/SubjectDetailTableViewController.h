@@ -28,5 +28,19 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneBtn;
 
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
+@property (weak, nonatomic) IBOutlet UITextField *weightingField;
+@property (weak, nonatomic) IBOutlet UITextField *targetField;
+@property (weak, nonatomic) IBOutlet UITextField *colourField;
+@property (weak, nonatomic) IBOutlet UITextField *locationField;
+@property (weak, nonatomic) IBOutlet UITextField *teacherNameField;
+@property (weak, nonatomic) IBOutlet UITextField *teacherEmailField;
+
+
+@property (assign) float weighting;
+@property (assign) int target;
+
+// Use flags to determine whether the pickers are hidden or visible
+@property (assign) BOOL weightingPickerVisible;
+@property (assign) BOOL targetPickerVisible;
 
 @end
