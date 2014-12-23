@@ -17,6 +17,9 @@
         _assessments = [[NSMutableArray alloc] init];
         AssessmentCriteria *a = [[AssessmentCriteria alloc] init]; //REMOVE ASSESSMENT IMPORT
         a.name = @"Test Assessment Criteria";
+        a.weighting = 12.5f;
+        a.deadline = [NSDate date];
+        a.reminder = [NSDate date];
         [_assessments addObject:a];
     }
     return self;

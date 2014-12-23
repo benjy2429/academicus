@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AssessmentCriteria.h"
+#import "AssessmentCriteria.h"
 
 @class AssessmentDetailTableViewController;
 
@@ -27,5 +28,15 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneBtn;
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
+@property (weak, nonatomic) IBOutlet UITextField *weightingField;
+@property (weak, nonatomic) IBOutlet UILabel *deadlineLabel;
+@property (weak, nonatomic) IBOutlet UILabel *reminderLabel;
+
+@property (strong) NSDate *deadlineDate;
+@property (strong) NSDate *reminderDate;
+@property (assign) BOOL deadlineDatePickerVisible;
+@property (assign) BOOL reminderDatePickerVisible;
+@property (weak, nonatomic) IBOutlet UISwitch *reminderSwitch;
+
 
 @end

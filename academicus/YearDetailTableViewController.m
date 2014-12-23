@@ -202,7 +202,7 @@
             [cell.contentView addSubview:datePicker];
             
             // Set the action depending on the cell
-            if (indexPath.row == 1) {
+            if (indexPath.section == 1) {
                 [datePicker addTarget:self action:@selector(startDateChanged:) forControlEvents:UIControlEventValueChanged];
             } else {
                 [datePicker addTarget:self action:@selector(endDateChanged:) forControlEvents:UIControlEventValueChanged];
