@@ -97,6 +97,8 @@
         UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
         [self performSegueWithIdentifier:@"toAssessments" sender:cell];
     }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 

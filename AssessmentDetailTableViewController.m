@@ -38,6 +38,7 @@
             [self showReminderDatePicker];
         } else {
             self.reminderDate = [NSDate date];
+            self.reminderLabel.text = @"No reminder set";
         }
     } else {
         // If no item was passed through, create default date values

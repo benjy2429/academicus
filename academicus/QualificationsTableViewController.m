@@ -104,6 +104,8 @@
         UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
         [self performSegueWithIdentifier:@"toYears" sender:cell];
     }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 
