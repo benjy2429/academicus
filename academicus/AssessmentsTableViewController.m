@@ -94,6 +94,9 @@
             [self performSegueWithIdentifier:@"editAssessment" sender:cell];
         }
         
+    } else {
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        [self performSegueWithIdentifier:@"addGrade" sender:cell];
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -204,9 +207,18 @@
         UINavigationController *navController = segue.destinationViewController;
         AssessmentDetailTableViewController *controller = (AssessmentDetailTableViewController*) navController.topViewController;
         controller.delegate = self;
+    
     } else if ([segue.identifier isEqualToString:@"editAssessment"]) {
         UINavigationController *navController = segue.destinationViewController;
         AssessmentDetailTableViewController *controller = (AssessmentDetailTableViewController*) navController.topViewController;
+        controller.delegate = self;
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        controller.itemToEdit = self.subject.assessments[indexPath.row];
+
+    } else if ([segue.identifier isEqualToString:@"addGrade"]) {
+        UINavigationController *navController = segue.destinationViewController;
+        AssessmentGradeTableViewController *controller = (AssessmentGradeTableViewController*) navController.topViewController;
         controller.delegate = self;
         
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
@@ -215,7 +227,7 @@
 }
 
 
-#pragma mark - YearDetailTableViewControllerDelegate
+#pragma mark - AssessmentDetailTableViewControllerDelegate
 
 - (void)AssessmentDetailTableViewController:(id)controller didFinishAddingAssessment:(AssessmentCriteria *)assessment
 {
@@ -252,5 +264,26 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+
+#pragma mark - AssessmentGradeTableViewControllerDelegate
+
+- (void)AssessmentGradeTableViewControllerDidCancel:(AssessmentGradeTableViewController*)controller
+{
+    // No action to take so dismiss the modal window
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+- (void)AssessmentGradeTableViewController:(AssessmentGradeTableViewController*)controller didFinishEditingAssessment:(AssessmentCriteria*)assessment
+{
+    // Find the cell for this item and update the contents
+    NSInteger index = [self.subject.assessments indexOfObject:assessment];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    cell.textLabel.text = assessment.name;
+    
+    // Dismiss the edit item view
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end

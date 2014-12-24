@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "AssessmentCriteria.h"
-#import "AssessmentCriteria.h"
 
 @class AssessmentDetailTableViewController;
 

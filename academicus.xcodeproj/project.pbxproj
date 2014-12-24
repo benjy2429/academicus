@@ -16,7 +16,6 @@
 		A3981DF81A47595000334345 /* AssessmentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3981DF71A47595000334345 /* AssessmentsTableViewController.m */; };
 		A3981DFB1A47596F00334345 /* AssessmentDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3981DFA1A47596F00334345 /* AssessmentDetailTableViewController.m */; };
 		A39AA8E51A48B2FF00A757B4 /* AssessmentGradeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39AA8E41A48B2FF00A757B4 /* AssessmentGradeTableViewController.m */; };
-		A39AA8E81A48B60700A757B4 /* AssessmentGradeDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39AA8E71A48B60700A757B4 /* AssessmentGradeDetailTableViewController.m */; };
 		B5030ADB1A43788800E23378 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030ADA1A43788800E23378 /* main.m */; };
 		B5030ADE1A43788800E23378 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030ADD1A43788800E23378 /* AppDelegate.m */; };
 		B5030AE71A43788800E23378 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5030AE51A43788800E23378 /* Main.storyboard */; };
@@ -65,8 +64,6 @@
 		A3981DFA1A47596F00334345 /* AssessmentDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AssessmentDetailTableViewController.m; path = ../AssessmentDetailTableViewController.m; sourceTree = "<group>"; };
 		A39AA8E31A48B2FF00A757B4 /* AssessmentGradeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssessmentGradeTableViewController.h; sourceTree = "<group>"; };
 		A39AA8E41A48B2FF00A757B4 /* AssessmentGradeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssessmentGradeTableViewController.m; sourceTree = "<group>"; };
-		A39AA8E61A48B60700A757B4 /* AssessmentGradeDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssessmentGradeDetailTableViewController.h; sourceTree = "<group>"; };
-		A39AA8E71A48B60700A757B4 /* AssessmentGradeDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssessmentGradeDetailTableViewController.m; sourceTree = "<group>"; };
 		B5030AD51A43788800E23378 /* academicus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = academicus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5030AD91A43788800E23378 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5030ADA1A43788800E23378 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -142,8 +139,6 @@
 				A3981DFA1A47596F00334345 /* AssessmentDetailTableViewController.m */,
 				A39AA8E31A48B2FF00A757B4 /* AssessmentGradeTableViewController.h */,
 				A39AA8E41A48B2FF00A757B4 /* AssessmentGradeTableViewController.m */,
-				A39AA8E61A48B60700A757B4 /* AssessmentGradeDetailTableViewController.h */,
-				A39AA8E71A48B60700A757B4 /* AssessmentGradeDetailTableViewController.m */,
 				A3981DEC1A472FE200334345 /* Models */,
 			);
 			name = "Grades Management";
@@ -396,7 +391,6 @@
 				B5030B191A438E1900E23378 /* QualificationsTableViewController.m in Sources */,
 				B5030B101A438DC100E23378 /* RemindersTableViewController.m in Sources */,
 				A39AA8E51A48B2FF00A757B4 /* AssessmentGradeTableViewController.m in Sources */,
-				A39AA8E81A48B60700A757B4 /* AssessmentGradeDetailTableViewController.m in Sources */,
 				B5030B031A43852B00E23378 /* Portfolio.m in Sources */,
 				B5030B161A438DFA00E23378 /* PortfolioTableViewController.m in Sources */,
 				B5030B0A1A4388E500E23378 /* WorkExperience.m in Sources */,

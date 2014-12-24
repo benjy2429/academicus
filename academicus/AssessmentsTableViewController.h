@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "Subject.h"
 #import "AssessmentDetailTableViewController.h"
+#import "AssessmentGradeTableViewController.h"
 
-@interface AssessmentsTableViewController : UITableViewController <AssessmentDetailTableViewControllerDelegate>
+@interface AssessmentsTableViewController : UITableViewController <AssessmentDetailTableViewControllerDelegate, AssessmentGradeTableViewControllerDelegate>
 
 @property (weak) Subject *subject;
 

@@ -90,6 +90,7 @@
     } else {
         // If adding, create a new item and call the delegate method to dismiss the view
         AssessmentCriteria *newAssessment = [[AssessmentCriteria alloc] init];
+        newAssessment.hasGrade = NO;
         newAssessment.name = self.nameField.text;
         newAssessment.weighting = [self.weightingField.text floatValue];
         newAssessment.deadline = self.deadlineDate;

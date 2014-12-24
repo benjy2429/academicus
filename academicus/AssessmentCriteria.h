@@ -17,8 +17,10 @@
 @property (assign) float finalGrade;
 @property (assign) int rating;
 @property (strong) NSString *positiveFeedback;
-@property (strong) NSString *negitiveFeedback;
+@property (strong) NSString *negativeFeedback;
 @property (strong) NSString *notes;
 @property (strong) UIImage *picture;
+
+@property (assign) BOOL hasGrade;
 
 @end

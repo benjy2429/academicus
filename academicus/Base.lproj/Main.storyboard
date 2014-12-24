@@ -716,73 +716,12 @@
                     <connections>
                         <segue destination="ImY-hw-5Xe" kind="modal" identifier="addAssessment" id="zvW-iK-Ohd"/>
                         <segue destination="ImY-hw-5Xe" kind="modal" identifier="editAssessment" id="NcP-Du-DyI"/>
-                        <segue destination="c58-gf-PEd" kind="push" identifier="toGrade" id="koj-C7-nwI"/>
                         <segue destination="3d8-2c-2aK" kind="modal" identifier="addGrade" id="Cud-FT-Sdr"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6zK-Cd-6IA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1838" y="-45"/>
-        </scene>
-        <!--Grade-->
-        <scene sceneID="sIm-yl-zeQ">
-            <objects>
-                <tableViewController id="c58-gf-PEd" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="XPU-cV-gTq">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="fli-qU-aeE">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fli-qU-aeE" id="BgI-LV-3Lg">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="JSe-v2-5jT">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JSe-v2-5jT" id="bqx-x7-VkK">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="8LN-FW-537">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8LN-FW-537" id="SRr-jz-0gu">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="miF-dd-x1P">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="miF-dd-x1P" id="0oh-VW-p4N">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="EQA-Ql-Toe">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EQA-Ql-Toe" id="sTJ-HE-2Co">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="sD8-mf-cot">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sD8-mf-cot" id="dtM-P4-Eft">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="c58-gf-PEd" id="zv4-Gg-Pup"/>
-                            <outlet property="delegate" destination="c58-gf-PEd" id="G00-I6-OFO"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Grade" id="Qis-nD-XVf"/>
-                    <connections>
-                        <segue destination="3d8-2c-2aK" kind="modal" identifier="editGrade" id="nkY-yB-ceL"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GfY-SM-ux0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2234" y="-45"/>
         </scene>
         <!--Add Assessment Criteria-->
         <scene sceneID="vn4-83-Zzf">
@@ -934,11 +873,21 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QK1-lG-nXY" id="c1d-I0-rTq">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="Oh6-J8-Utn">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NvW-oQ-JZZ">
+                                                    <rect key="frame" x="263" y="11" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="Oh6-J8-Utn">
                                                     <rect key="frame" x="15" y="7" width="290" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="decimalPad"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="1vS-2o-h2S" id="7qC-Il-kJJ"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -956,62 +905,72 @@
                                                     <rect key="frame" x="15" y="7" width="290" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="numberPad"/>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Positive Feedback" id="ScP-YB-1Lv">
+                            <tableViewSection headerTitle="Feedback" id="ScP-YB-1Lv">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="BaQ-la-s7V">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="88" id="BaQ-la-s7V">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BaQ-la-s7V" id="kgz-XL-bv8">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="What went well? What did you enjoy?" minimumFontSize="17" id="dsQ-ZW-vBg">
-                                                    <rect key="frame" x="15" y="7" width="290" height="30"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="201" contentMode="scaleToFill" id="XzV-4W-o4N">
+                                                    <rect key="frame" x="8" y="8" width="304" height="71"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                </textField>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="1vS-2o-h2S" id="cMM-aU-2qV"/>
+                                                    </connections>
+                                                </textView>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection headerTitle="Negative Feedback" id="pCa-BM-WC1">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="c42-HV-79n">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="88" id="Wav-Ea-A0q">
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c42-HV-79n" id="Ncl-fg-OyT">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wav-Ea-A0q" id="q1j-Rr-0Kw">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="What didn't you like?" minimumFontSize="17" id="Yyh-tj-4vc">
-                                                    <rect key="frame" x="15" y="7" width="290" height="30"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="202" contentMode="scaleToFill" id="hd6-QW-RRM">
+                                                    <rect key="frame" x="8" y="8" width="304" height="71"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                </textField>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="1vS-2o-h2S" id="Hti-Vv-bg7"/>
+                                                    </connections>
+                                                </textView>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Notes / Additional Details" id="pYv-FW-JGR">
+                            <tableViewSection headerTitle="Notes" id="pYv-FW-JGR">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="gQA-PN-OqH">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="88" id="gQA-PN-OqH">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gQA-PN-OqH" id="17T-cK-OdU">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Write a little about what you did" minimumFontSize="17" id="WdE-jq-41A">
-                                                    <rect key="frame" x="15" y="7" width="290" height="30"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="203" contentMode="scaleToFill" id="du6-5Y-bmc">
+                                                    <rect key="frame" x="8" y="8" width="304" height="71"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                </textField>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="1vS-2o-h2S" id="8ju-e2-bk1"/>
+                                                    </connections>
+                                                </textView>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1054,7 +1013,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="doneBtn" destination="5Pc-xe-5s8" id="Wh1-V6-H3c"/>
+                        <outlet property="doneBtn" destination="5Pc-xe-5s8" id="80u-8f-alU"/>
+                        <outlet property="gradeField" destination="Oh6-J8-Utn" id="kA4-74-BwP"/>
+                        <outlet property="negativeFeedbackField" destination="hd6-QW-RRM" id="7k8-Ye-zXq"/>
+                        <outlet property="notesField" destination="du6-5Y-bmc" id="tv6-gn-ZyH"/>
+                        <outlet property="pictureField" destination="yps-Qh-7DJ" id="ItX-hd-mF8"/>
+                        <outlet property="positiveFeedbackField" destination="XzV-4W-o4N" id="GEi-zh-o5y"/>
+                        <outlet property="ratingField" destination="hLE-Fu-VlU" id="aRZ-tc-B8Y"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HIP-b9-H6f" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1084,10 +1049,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="hLf-mw-eHg"/>
         <segue reference="Xd4-sf-5Ck"/>
+        <segue reference="hLf-mw-eHg"/>
         <segue reference="9ZD-bu-UiX"/>
-        <segue reference="Cud-FT-Sdr"/>
         <segue reference="zvW-iK-Ohd"/>
     </inferredMetricsTieBreakers>
 </document>
