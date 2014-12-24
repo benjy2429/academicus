@@ -190,8 +190,11 @@
 - (void) tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Disable editing mode and reset the flag variable
-    [self setEditing:NO animated:YES];
-    self.inSwipeDeleteMode = NO;
+    // Due to a bug in iOS 8.1, this method is called twice and crashes the app so check if in editing mode first
+    if (self.editing) {
+        [self setEditing:NO animated:YES];
+        self.inSwipeDeleteMode = NO;
+    }
 }
 
 

@@ -171,7 +171,7 @@
     }
     
     // Add or remove the add item section if entering or exiting edit mode
-    if (editing) {
+    if (!self.inSwipeDeleteMode && editing) {
         [self.tableView beginUpdates];
         [self.tableView insertSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationTop];
         [self.tableView endUpdates];
@@ -196,8 +196,11 @@
 - (void) tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Disable editing mode and reset the flag variable
-    [self setEditing:NO animated:YES];
-    self.inSwipeDeleteMode = NO;
+    // Due to a bug in iOS 8.1, this method is called twice and crashes the app so check if in editing mode first
+    if (self.editing) {
+        [self setEditing:NO animated:YES];
+        self.inSwipeDeleteMode = NO;
+    }
 }
 
 
