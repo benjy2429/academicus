@@ -11,11 +11,11 @@
 #import "QualificationDetailTableViewController.h"
 #import "YearsTableViewController.h"
 
-@interface QualificationsTableViewController : UITableViewController <QualificationDetailTableViewControllerDelegate>
-
-@property (strong) NSMutableArray *qualifications;
+@interface QualificationsTableViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
 // This variable is used to determine whether the user clicked the edit button, or swiped a row
 @property (assign) BOOL inSwipeDeleteMode;
+
+@property (nonatomic, weak) NSManagedObjectContext *managedObjectContext;
 
 @end

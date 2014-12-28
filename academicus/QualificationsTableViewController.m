@@ -8,34 +8,71 @@
 
 #import "QualificationsTableViewController.h"
 
-@interface QualificationsTableViewController ()
-
-@end
-
 @implementation QualificationsTableViewController
+{
+    // Local instance variable for the fetched results controller
+    NSFetchedResultsController *_fetchedResultsController;
+}
+
+
+// Custom getter for the fetched results controller
+- (NSFetchedResultsController*)fetchedResultsController
+{
+    // Initialise the fetched results controller if nil
+    if (_fetchedResultsController == nil) {
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        
+        // Get the objects from the managed object context
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Qualification" inManagedObjectContext:self.managedObjectContext];
+        [fetchRequest setEntity:entity];
+        
+        // Set the sorting preference
+        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+        [fetchRequest setSortDescriptors:@[sortDescriptor]];
+        
+        // Create the fetched results controller
+        _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Qualifications"];
+        
+        // Assign this class as the delegate
+        _fetchedResultsController.delegate = self;
+    }
+    
+    return _fetchedResultsController;
+}
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    // Initialise the data array
-    self.qualifications = [[NSMutableArray alloc] init];
-    
-    // TEST DATA
-    Qualification *q = [[Qualification alloc] init];
-    q.name = @"A-Level";
-    [self.qualifications addObject:q];
-    
-    Qualification *q2 = [[Qualification alloc] init];
-    q2.name = @"Degree";
-    [self.qualifications addObject:q2];
-    
+    // Retrieve the objects for this table view using CoreData
+    [self performFetch];
+
     // Initialise variable not in edit mode
     self.inSwipeDeleteMode = NO;
     
     // Add an edit button to the navigation bar
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+
+- (void)performFetch
+{
+    // Fetch the data for the table view using CoreData
+    NSError *error;
+    if (![self.fetchedResultsController performFetch:&error]) {
+        
+        // Throw a custom error if the fetch fails
+        COREDATA_ERROR(error);
+        return;
+    }
+}
+
+
+- (void)dealloc
+{
+    // Stop the fetched results controller from sending notifications if the view is deallocated
+    _fetchedResultsController.delegate = nil;
 }
 
 
@@ -56,7 +93,8 @@
     if (self.isEditing && !self.inSwipeDeleteMode && section == 1) {
         return 1;
     } else {
-        return [self.qualifications count];
+        id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
+        return [sectionInfo numberOfObjects];
     }
 }
 
@@ -76,13 +114,21 @@
     
     // Set the content for each type of cell
     if (isAddCell) {
-       cell.textLabel.text = @"Add new qualification";
+        cell.textLabel.text = @"Add new qualification";
     } else {
-        Qualification *currentQualification = (Qualification*) [self.qualifications objectAtIndex:indexPath.row];
-        cell.textLabel.text = currentQualification.name;
+        [self configureCell:cell atIndexPath:indexPath];
     }
     
     return cell;
+}
+
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath*)indexPath
+{
+    // Get the object for this cell and set the labels
+    Qualification *qualification = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    cell.textLabel.text = qualification.name;
 }
 
 
@@ -110,9 +156,10 @@
 
 
 # pragma mark - Reordering Cells
-
+/*
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+    
 }
 
 
@@ -138,16 +185,21 @@
     
     return proposedDestinationIndexPath;
 }
-
+*/
 
 # pragma mark - Editing Cells
-
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source and the table view
-        [self.qualifications removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        // Delete the row from the data source
+        Qualification *qualification = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        [self.managedObjectContext deleteObject:qualification];
+        
+        NSError *error;
+        if (![self.managedObjectContext save:&error]) {
+            COREDATA_ERROR(error);
+            return;
+        }
     }
 }
 
@@ -211,61 +263,60 @@
     if ([segue.identifier isEqualToString:@"addQualification"]) {
         UINavigationController *navController = segue.destinationViewController;
         QualificationDetailTableViewController *controller = (QualificationDetailTableViewController*) navController.topViewController;
-        controller.delegate = self;
+        
+        controller.managedObjectContext = self.managedObjectContext;
         
     } else if ([segue.identifier isEqualToString:@"editQualification"]) {
         UINavigationController *navController = segue.destinationViewController;
         QualificationDetailTableViewController *controller = (QualificationDetailTableViewController*) navController.topViewController;
-        controller.delegate = self;
+        
+        controller.managedObjectContext = self.managedObjectContext;
         
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        controller.itemToEdit = self.qualifications[indexPath.row];
+        controller.itemToEdit = [self.fetchedResultsController objectAtIndexPath:indexPath];
         
     } else if ([segue.identifier isEqualToString:@"toYears"]) {
         YearsTableViewController *controller = (YearsTableViewController*) segue.destinationViewController;
         
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        controller.qualification = self.qualifications[indexPath.row];
+        controller.qualification = [self.fetchedResultsController objectAtIndexPath:indexPath];
     }
 }
 
 
-#pragma mark - AddQualificationTableViewControllerDelegate
+#pragma mark - NSFetchedResultsControllerDelegate
 
-- (void)QualificationDetailTableViewController:(id)controller didFinishAddingQualification:(Qualification *)qualification
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
-    // Add the new item to the data array
-    NSInteger newRowIndex = [self.qualifications count];
-    [self.qualifications addObject:qualification];
-    
-    // Insert a new cell for the item into the table
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:newRowIndex inSection:0];
-    NSArray *indexPaths = @[indexPath];
-    [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
-    
-    // Dismiss the add item view
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.tableView beginUpdates];
 }
 
 
-- (void)QualificationDetailTableViewController:(id)controller didFinishEditingQualification:(Qualification *)qualification
+- (void)controller:(NSFetchedResultsController*)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
 {
-    // Find the cell for this item and update the contents
-    NSInteger index = [self.qualifications indexOfObject:qualification];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    cell.textLabel.text = qualification.name;
-    
-    // Dismiss the edit item view
-    [self dismissViewControllerAnimated:YES completion:nil];
+    // Modify table rows depending on the action performed
+    // (Called automatically by the NSFetchedResultsController)
+    switch (type) {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        case NSFetchedResultsChangeUpdate:
+            [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            break;
+        case NSFetchedResultsChangeMove:
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
 }
 
 
-- (void)QualificationDetailTableViewControllerDidCancel:(id)controller
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-    // No action to take so dismiss the modal window
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.tableView endUpdates];
 }
-
 
 @end

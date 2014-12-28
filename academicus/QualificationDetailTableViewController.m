@@ -7,6 +7,7 @@
 //
 
 #import "QualificationDetailTableViewController.h"
+#import "AppDelegate.h"
 
 @interface QualificationDetailTableViewController ()
 
@@ -16,7 +17,7 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    [super viewDidLoad];   
     
     // If an item was passed through, change the window title and populate the fields with existing data
     if (self.itemToEdit != nil) {
@@ -37,8 +38,8 @@
 
 - (IBAction)cancel
 {
-    // Delegate method when the cancel button is pressed
-    [self.delegate QualificationDetailTableViewControllerDidCancel:self];
+    // Dismiss the view controller
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -47,14 +48,29 @@
     if (self.itemToEdit != nil) {
         // If editing, update the item and call the delegate method to dismiss the view
         self.itemToEdit.name = self.nameField.text;
-        [self.delegate QualificationDetailTableViewController:self didFinishEditingQualification:self.itemToEdit];
+        
+        NSError *error;
+        if (![self.managedObjectContext save:&error]) {
+            COREDATA_ERROR(error);
+            return;
+        }
         
     } else {
+        
+        Qualification *newQualification = [NSEntityDescription insertNewObjectForEntityForName:@"Qualification" inManagedObjectContext:self.managedObjectContext];
+        
         // If adding, create a new item and call the delegate method to dismiss the view
-        Qualification *newQualification = [[Qualification alloc] init];
+        //Qualification *newQualification = [[Qualification alloc] init];
         newQualification.name = self.nameField.text;
-        [self.delegate QualificationDetailTableViewController:self didFinishAddingQualification:newQualification];
+        
+        NSError *error;
+        if (![self.managedObjectContext save:&error]) {
+            COREDATA_ERROR(error);
+            return;
+        }
     }
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
