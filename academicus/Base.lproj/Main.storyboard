@@ -161,6 +161,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="15" y="12" width="370" height="21"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -184,6 +187,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="15" y="12" width="370" height="21"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -505,6 +511,9 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
+                                            <variation key="widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="109" y="20" width="250" height="21"/>
+                                            </variation>
                                         </label>
                                         <view tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8jy-MU-jtg">
                                             <rect key="frame" x="0.0" y="0.0" width="295" height="60"/>
@@ -568,13 +577,10 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xlb-HP-IXn" id="g9N-qM-0S5">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e.g. Maths / Engilsh" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e3G-5P-cuZ">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e.g. Maths / Engilsh" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e3G-5P-cuZ">
                                                     <rect key="frame" x="15" y="8" width="570" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="15" y="8" width="370" height="30"/>
-                                                    </variation>
                                                     <connections>
                                                         <outlet property="delegate" destination="12U-op-nhJ" id="InC-yc-b5V"/>
                                                     </connections>
@@ -597,56 +603,50 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0kn-bo-PrI" id="p39-wK-D0w">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qwp-G2-KuE">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qwp-G2-KuE">
                                                     <rect key="frame" x="543" y="11" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="343" y="11" width="42" height="21"/>
-                                                    </variation>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yCE-6P-8gO">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yCE-6P-8gO">
                                                     <rect key="frame" x="15" y="7" width="290" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="decimalPad"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="15" y="9" width="370" height="26"/>
-                                                    </variation>
                                                     <connections>
                                                         <outlet property="delegate" destination="12U-op-nhJ" id="Sv8-6f-foF"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Qwp-G2-KuE" secondAttribute="bottom" constant="6" id="5AL-a1-JhL"/>
-                                                <constraint firstItem="yCE-6P-8gO" firstAttribute="top" secondItem="p39-wK-D0w" secondAttribute="topMargin" constant="1" id="A6I-J7-4Cm"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Qwp-G2-KuE" secondAttribute="trailing" constant="7" id="FUy-dk-oEh"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="yCE-6P-8gO" secondAttribute="bottom" constant="6" id="HLQ-vv-lhl"/>
-                                                <constraint firstItem="Qwp-G2-KuE" firstAttribute="top" secondItem="p39-wK-D0w" secondAttribute="topMargin" constant="2" id="TMi-Kq-wDq"/>
-                                                <constraint firstItem="yCE-6P-8gO" firstAttribute="leading" secondItem="p39-wK-D0w" secondAttribute="leadingMargin" constant="7" id="W35-gi-C1z"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="yCE-6P-8gO" secondAttribute="trailing" constant="20" id="yKT-vU-gXq"/>
+                                                <constraint firstItem="yCE-6P-8gO" firstAttribute="leading" secondItem="p39-wK-D0w" secondAttribute="leadingMargin" constant="7" id="4Z0-c9-Kz8"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Qwp-G2-KuE" secondAttribute="bottom" constant="-2" id="6sZ-af-O1c"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="yCE-6P-8gO" secondAttribute="bottom" constant="-3" id="JSx-3b-VH8"/>
+                                                <constraint firstItem="yCE-6P-8gO" firstAttribute="top" secondItem="p39-wK-D0w" secondAttribute="topMargin" id="hUx-Ub-zeu"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Qwp-G2-KuE" secondAttribute="trailing" constant="7" id="kTP-5W-OFH"/>
+                                                <constraint firstItem="Qwp-G2-KuE" firstAttribute="top" secondItem="p39-wK-D0w" secondAttribute="topMargin" constant="-1" id="oyJ-aa-t6M"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="yCE-6P-8gO" secondAttribute="trailing" constant="20" id="pJM-P0-qwc"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
-                                                    <exclude reference="A6I-J7-4Cm"/>
-                                                    <exclude reference="HLQ-vv-lhl"/>
-                                                    <exclude reference="W35-gi-C1z"/>
-                                                    <exclude reference="yKT-vU-gXq"/>
-                                                    <exclude reference="5AL-a1-JhL"/>
-                                                    <exclude reference="FUy-dk-oEh"/>
-                                                    <exclude reference="TMi-Kq-wDq"/>
+                                                    <exclude reference="4Z0-c9-Kz8"/>
+                                                    <exclude reference="JSx-3b-VH8"/>
+                                                    <exclude reference="hUx-Ub-zeu"/>
+                                                    <exclude reference="pJM-P0-qwc"/>
+                                                    <exclude reference="6sZ-af-O1c"/>
+                                                    <exclude reference="kTP-5W-OFH"/>
+                                                    <exclude reference="oyJ-aa-t6M"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
                                                 <mask key="constraints">
-                                                    <include reference="A6I-J7-4Cm"/>
-                                                    <include reference="HLQ-vv-lhl"/>
-                                                    <include reference="W35-gi-C1z"/>
-                                                    <include reference="yKT-vU-gXq"/>
-                                                    <include reference="5AL-a1-JhL"/>
-                                                    <include reference="FUy-dk-oEh"/>
-                                                    <include reference="TMi-Kq-wDq"/>
+                                                    <include reference="4Z0-c9-Kz8"/>
+                                                    <include reference="JSx-3b-VH8"/>
+                                                    <include reference="hUx-Ub-zeu"/>
+                                                    <include reference="pJM-P0-qwc"/>
+                                                    <include reference="6sZ-af-O1c"/>
+                                                    <include reference="kTP-5W-OFH"/>
+                                                    <include reference="oyJ-aa-t6M"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -660,38 +660,35 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jdZ-D8-bVU" id="XQa-Fu-XiK">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="60" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o9V-84-vUP">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="60" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o9V-84-vUP">
                                                     <rect key="frame" x="15" y="7" width="570" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="numberPad"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="15" y="8" width="370" height="30"/>
-                                                    </variation>
                                                     <connections>
                                                         <outlet property="delegate" destination="12U-op-nhJ" id="rcF-NC-YO2"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="o9V-84-vUP" secondAttribute="bottom" constant="6" id="4Ak-2G-7Ah"/>
-                                                <constraint firstItem="o9V-84-vUP" firstAttribute="top" secondItem="XQa-Fu-XiK" secondAttribute="topMargin" constant="1" id="7wk-PU-cgM"/>
-                                                <constraint firstItem="o9V-84-vUP" firstAttribute="leading" secondItem="XQa-Fu-XiK" secondAttribute="leadingMargin" constant="7" id="eKv-hP-Noy"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="o9V-84-vUP" secondAttribute="trailing" constant="7" id="ePw-I2-wcb"/>
+                                                <constraint firstItem="o9V-84-vUP" firstAttribute="top" secondItem="XQa-Fu-XiK" secondAttribute="topMargin" constant="1" id="HUR-VP-mEx"/>
+                                                <constraint firstItem="o9V-84-vUP" firstAttribute="centerX" secondItem="XQa-Fu-XiK" secondAttribute="centerX" id="REd-V6-PXK"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="o9V-84-vUP" secondAttribute="bottom" constant="-1" id="kfP-fX-KKQ"/>
+                                                <constraint firstItem="o9V-84-vUP" firstAttribute="leading" secondItem="XQa-Fu-XiK" secondAttribute="leadingMargin" constant="7" id="njY-iE-acz"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
-                                                    <exclude reference="4Ak-2G-7Ah"/>
-                                                    <exclude reference="7wk-PU-cgM"/>
-                                                    <exclude reference="eKv-hP-Noy"/>
-                                                    <exclude reference="ePw-I2-wcb"/>
+                                                    <exclude reference="HUR-VP-mEx"/>
+                                                    <exclude reference="REd-V6-PXK"/>
+                                                    <exclude reference="kfP-fX-KKQ"/>
+                                                    <exclude reference="njY-iE-acz"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
                                                 <mask key="constraints">
-                                                    <include reference="4Ak-2G-7Ah"/>
-                                                    <include reference="7wk-PU-cgM"/>
-                                                    <include reference="eKv-hP-Noy"/>
-                                                    <include reference="ePw-I2-wcb"/>
+                                                    <include reference="HUR-VP-mEx"/>
+                                                    <include reference="REd-V6-PXK"/>
+                                                    <include reference="kfP-fX-KKQ"/>
+                                                    <include reference="njY-iE-acz"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -705,12 +702,9 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vH9-JS-82u" id="e8e-Lo-hte">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zSA-cF-FeJ">
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zSA-cF-FeJ">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                                     <color key="backgroundColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="0.0" y="0.0" width="400" height="44"/>
-                                                    </variation>
                                                 </view>
                                             </subviews>
                                             <constraints>
@@ -790,13 +784,10 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rhJ-cL-PDx" id="5xj-lD-Fjl">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LDc-N6-TJr">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LDc-N6-TJr">
                                                     <rect key="frame" x="15" y="8" width="570" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="15" y="8" width="370" height="30"/>
-                                                    </variation>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -816,13 +807,10 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LgG-le-rGt" id="gRy-Pz-m0G">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Who teaches you this subject?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jhC-tC-26m">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Who teaches you this subject?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jhC-tC-26m">
                                                     <rect key="frame" x="15" y="8" width="570" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="15" y="8" width="370" height="30"/>
-                                                    </variation>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -842,13 +830,10 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wFw-XL-edt" id="Pn1-Qn-ttV">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="What is their email?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SBv-Xt-WLY">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="What is their email?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SBv-Xt-WLY">
                                                     <rect key="frame" x="15" y="8" width="570" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="15" y="8" width="370" height="30"/>
-                                                    </variation>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -895,7 +880,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gEn-32-7ci" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2685" y="1420.7746478873239"/>
+            <point key="canvasLocation" x="2685" y="1417.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vT9-JI-JLk">
@@ -993,6 +978,9 @@
                                                     <rect key="frame" x="15" y="7" width="290" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="decimalPad"/>
+                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="15" y="12" width="370" height="25"/>
+                                                    </variation>
                                                     <connections>
                                                         <outlet property="delegate" destination="CKe-zT-zl9" id="pwG-R6-uqY"/>
                                                     </connections>
@@ -1005,6 +993,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="343" y="12" width="42" height="21"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -1031,6 +1022,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="15" y="12" width="370" height="21"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -1060,6 +1054,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="15" y="12" width="370" height="21"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -1128,6 +1125,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="343" y="12" width="42" height="21"/>
+                                                    </variation>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Oh6-J8-Utn">
                                                     <rect key="frame" x="15" y="7" width="570" height="30"/>

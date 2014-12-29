@@ -8,6 +8,8 @@
 
 #import "SubjectDetailTableViewController.h"
 
+#define ARC4_RAND_MAX 0x100000000
+
 @implementation SubjectDetailTableViewController
 
 - (void)viewDidLoad
@@ -44,8 +46,19 @@
         self.teacherEmailField.text = self.itemToEdit.teacherEmail;
         
         self.doneBtn.enabled = YES;
+        
     } else {
-        self.colour = [UIColor grayColor];
+        // Assign a random colour to new items
+        float red = arc4random() / (double)ARC4_RAND_MAX;
+        float green = arc4random() / (double)ARC4_RAND_MAX;
+        float blue = arc4random() / (double)ARC4_RAND_MAX;
+        self.colour = [UIColor colorWithRed:red green:green blue:blue alpha:1.0f];
+        
+        self.redSlider.value = red;
+        self.greenSlider.value = green;
+        self.blueSlider.value = blue;
+        self.colourView.backgroundColor = self.colour;
+        
         self.doneBtn.enabled = NO;
       
         //TODO: Complete
