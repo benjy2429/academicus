@@ -27,7 +27,7 @@
         self.title = @"Edit Subject";
         
         self.nameField.text = self.itemToEdit.name;
-        self.weightingField.text = [NSString stringWithFormat: @"%.1f", self.itemToEdit.yearWeighting];
+        self.weightingField.text = [NSString stringWithFormat: @"%.2f", self.itemToEdit.yearWeighting];
         self.weighting = self.itemToEdit.yearWeighting;
         self.targetField.text = [NSString stringWithFormat: @"%i", self.itemToEdit.targetGrade];
         self.target = self.itemToEdit.targetGrade;
@@ -71,8 +71,8 @@
     if (self.itemToEdit != nil) {
         // If editing, update the item and call the delegate method to dismiss the view
         self.itemToEdit.name = self.nameField.text;
-        self.itemToEdit.yearWeighting = self.weighting;
-        self.itemToEdit.targetGrade = self.target;
+        self.itemToEdit.yearWeighting = [self.weightingField.text floatValue];
+        self.itemToEdit.targetGrade = self.target = [self.targetField.text intValue];
         //self.itemToEdit.colour //TODO: Set colour value
         //self.itemToEdit.location //TODO: Set locaiton value
         self.itemToEdit.teacherName = self.teacherNameField.text;
@@ -84,8 +84,8 @@
         // If adding, create a new item and call the delegate method to dismiss the view
         Subject *newSubject = [[Subject alloc] init];
         newSubject.name = self.nameField.text;
-        newSubject.yearWeighting = self.weighting;
-        newSubject.targetGrade = self.target;
+        newSubject.yearWeighting = [self.weightingField.text floatValue];
+        newSubject.targetGrade = self.target = [self.targetField.text intValue];
         //newSubject.colour //TODO: Set colour value
         //newSubject.location //TODO: Set locaiton value
         newSubject.teacherName = self.teacherNameField.text;
@@ -108,12 +108,10 @@
     switch (textField.tag) {
         //If weighting field
         case 1:
-            //[textField setText:[NSString stringWithFormat:@"%@%%", string]];
-            return ([newText length] < 3 || [newText isEqual: @"100"] || ([newText characterAtIndex:2] == '.' && [newText length] < 6));
+            return ([newText length] < 3 || [newText isEqual: @"100"] || ([newText characterAtIndex:2] == '.' && [newText length] < 6) || ([newText characterAtIndex:1] == '.' && [newText length] < 5));
             break;
         //If target field
         case 2:
-            //[textField setText:[NSString stringWithFormat:@"%@%%", string]];
             return ([newText length] < 3 || [newText isEqual: @"100"]);
             break;
         //Otherwise
@@ -123,14 +121,7 @@
     // Only enable the done button when the required fields are not empty
     self.doneBtn.enabled = (textField.tag == 0 && [newText length] > 0);
 }
-//TODO: tidy this up
 
-- (void) textFieldDidEndEditing:(UITextField *)textField
-{
-    if (textField.tag == 1 || textField.tag == 2) {
-        //[textField setText:[NSString stringWithFormat:@"%@%%", textField.text]];
-    }
-}
 
 #pragma mark - Table view data source
 
