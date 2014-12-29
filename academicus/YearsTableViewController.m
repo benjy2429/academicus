@@ -285,7 +285,7 @@
         controller.managedObjectContext = self.managedObjectContext;
         
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        controller.itemToEdit = self.qualification.years[indexPath.row];
+        controller.itemToEdit = [self.fetchedResultsController objectAtIndexPath:indexPath];
         
     }  else if ([segue.identifier isEqualToString:@"toSubjects"]) {
         // If going to the subjects view, get the view controller and pass the selected list of subjects

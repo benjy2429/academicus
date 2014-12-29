@@ -11,7 +11,7 @@
 #import "QualificationDetailTableViewController.h"
 #import "YearsTableViewController.h"
 
-@interface QualificationsTableViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface QualificationsTableViewController : UITableViewController <QualificationDetailTableViewControllerDelegate, NSFetchedResultsControllerDelegate>
 
 // This variable is used to determine whether the user clicked the edit button, or swiped a row
 @property (assign) BOOL inSwipeDeleteMode;

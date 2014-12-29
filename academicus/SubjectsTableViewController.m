@@ -123,7 +123,7 @@
     
     // Set the content for each type of cell
     if (isAddCell) {
-        cell.textLabel.text = @"Add new subejct";
+        cell.textLabel.text = @"Add new subject";
     } else {
         [self configureCell:cell atIndexPath:indexPath];
 
@@ -282,7 +282,7 @@
         controller.managedObjectContext = self.managedObjectContext;
         
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        controller.itemToEdit = self.year.subjects[indexPath.row];
+        controller.itemToEdit = [self.fetchedResultsController objectAtIndexPath:indexPath];
         
     }  else if ([segue.identifier isEqualToString:@"toAssessments"]) {
         AssessmentsTableViewController *controller = (AssessmentsTableViewController*) segue.destinationViewController;
@@ -290,7 +290,7 @@
         controller.managedObjectContext = self.managedObjectContext;
         
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        controller.subject = self.year.subjects[indexPath.row];
+        controller.subject = [self.fetchedResultsController objectAtIndexPath:indexPath];
     }
 }
 

@@ -9,6 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "Qualification.h"
 
+@class QualificationDetailTableViewController;
+
+@protocol QualificationDetailTableViewControllerDelegate <NSObject>
+
+- (void)QualificationDetailTableViewControllerDidCancel:(QualificationDetailTableViewController*)controller;
+- (void)QualificationDetailTableViewController:(QualificationDetailTableViewController*)controller didFinishAddingQualification:(Qualification*)qualification;
+- (void)QualificationDetailTableViewController:(QualificationDetailTableViewController*)controller didFinishEditingQualification:(Qualification*)qualification;
+
+@end
+
 @interface QualificationDetailTableViewController : UITableViewController <UITextFieldDelegate>
 
 @property (strong) Qualification *itemToEdit;

@@ -7,7 +7,7 @@
 //
 
 #import "SubjectOld.h"
-#import "AssessmentCriteria.h"
+#import "AssessmentCriteriaOld.h"
 
 @implementation SubjectOld
 
@@ -15,7 +15,7 @@
     self = [super init];
     if (self) {
         _assessments = [[NSMutableArray alloc] init];
-        AssessmentCriteria *a = [[AssessmentCriteria alloc] init]; //REMOVE ASSESSMENT IMPORT
+        AssessmentCriteriaOld *a = [[AssessmentCriteriaOld alloc] init]; //REMOVE ASSESSMENT IMPORT
         a.name = @"Test Assessment Criteria";
         a.weighting = 12.5f;
         a.deadline = [NSDate date];

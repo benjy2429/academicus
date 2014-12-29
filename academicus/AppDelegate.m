@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "QualificationsTableViewController.h"
 
-NSString* const ManagedObjectContextSaveDidFailNoification;
+NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectContextSaveDidFailNotification";
 
 @interface AppDelegate ()
 
@@ -21,12 +21,12 @@ NSString* const ManagedObjectContextSaveDidFailNoification;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coreDataError:) name:ManagedObjectContextSaveDidFailNotification object:nil];
+    
     UITabBarController *tabController = (UITabBarController*) self.window.rootViewController;
     UINavigationController *navigationController = tabController.viewControllers[1];
     QualificationsTableViewController *qualificationController = (QualificationsTableViewController*) navigationController.topViewController;
     qualificationController.managedObjectContext = self.managedObjectContext;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coreDataError:) name:ManagedObjectContextSaveDidFailNoification object:nil];
     
     return YES;
 }
@@ -86,6 +86,7 @@ NSString* const ManagedObjectContextSaveDidFailNoification;
         NSError *error;
         if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
             NSLog(@"Error adding persistent store %@, %@", error, [error userInfo]);
+            COREDATA_ERROR(error);
         }
     }
     return _persistentStoreCoordinator;
@@ -108,12 +109,12 @@ NSString* const ManagedObjectContextSaveDidFailNoification;
 
 - (void)coreDataError:(NSNotification*)notification
 {
-    //UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"We're sorry, there was an error accessing or saving your data. Please report this to the developers." delegate:self cancelButtonTitle:@"Quit" otherButtonTitles:nil];
-    //[alertView performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"We're sorry, there was an error accessing or saving your data. Please report this to the developers." delegate:self cancelButtonTitle:@"Quit" otherButtonTitles:nil];
+    [alertView performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
 }
 
 
-- (void)alertViewCancel:(UIAlertView *)alertView
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     abort();
 }

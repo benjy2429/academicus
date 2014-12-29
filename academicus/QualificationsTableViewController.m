@@ -324,4 +324,43 @@
     [self.tableView endUpdates];
 }
 
+
+
+#pragma mark - QualificationDetailTableViewControllerDelegate
+
+- (void)QualificationDetailTableViewController:(id)controller didFinishAddingQualification:(Qualification *)qualification
+{
+    // Save the item to the datastore
+    NSError *error;
+    if (![self.managedObjectContext save:&error]) {
+        COREDATA_ERROR(error);
+        return;
+    }
+    
+    // Dismiss the add item view
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+- (void)QualificationDetailTableViewController:(id)controller didFinishEditingQualification:(Qualification *)qualification
+{
+    // Save the item to the datastore
+    NSError *error;
+    if (![self.managedObjectContext save:&error]) {
+        COREDATA_ERROR(error);
+        return;
+    }
+    
+    // Dismiss the edit item view
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+- (void)QualificationDetailTableViewControllerDidCancel:(id)controller
+{
+    // No action to take so dismiss the modal window
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 @end

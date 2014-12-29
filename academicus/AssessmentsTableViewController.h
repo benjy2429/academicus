@@ -11,7 +11,7 @@
 #import "AssessmentDetailTableViewController.h"
 #import "AssessmentGradeTableViewController.h"
 
-@interface AssessmentsTableViewController : UITableViewController <AssessmentDetailTableViewControllerDelegate, AssessmentGradeTableViewControllerDelegate>
+@interface AssessmentsTableViewController : UITableViewController <AssessmentDetailTableViewControllerDelegate, AssessmentGradeTableViewControllerDelegate, NSFetchedResultsControllerDelegate>
 
 @property (weak) Subject *subject;
 

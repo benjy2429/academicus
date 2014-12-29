@@ -17,13 +17,13 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-extern NSString* const ManagedObjectContextSaveDidFailNoification;
+extern NSString* const ManagedObjectContextSaveDidFailNotification;
 
 #define COREDATA_ERROR(__error__)\
-NSLog(@"Error in CoreData: %s:%d\n%@\n%@",\
+NSLog(@"*** ERROR IN COREDATA: %s:%d\n%@\n%@",\
 __FILE__, __LINE__, error, [error userInfo]);\
 [[NSNotificationCenter defaultCenter] postNotificationName:\
-ManagedObjectContextSaveDidFailNoification object:error];
+ManagedObjectContextSaveDidFailNotification object:error];
 
 #endif
 

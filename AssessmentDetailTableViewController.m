@@ -8,10 +8,6 @@
 
 #import "AssessmentDetailTableViewController.h"
 
-@interface AssessmentDetailTableViewController ()
-
-@end
-
 @implementation AssessmentDetailTableViewController
 
 - (void)viewDidLoad
@@ -22,7 +18,7 @@
     if (self.itemToEdit != nil) {
         self.title = @"Edit Assessment";
         self.nameField.text = self.itemToEdit.name;
-        self.weightingField.text = [NSString stringWithFormat:@"%.2f", self.itemToEdit.weighting];
+        self.weightingField.text = [NSString stringWithFormat:@"%.2f", [self.itemToEdit.weighting floatValue]];
         self.deadlineDate = self.itemToEdit.deadline;
         self.deadlineLabel.text = [self formatDate:self.deadlineDate];
 
@@ -82,19 +78,21 @@
     if (self.itemToEdit != nil) {
         // If editing, update the item and call the delegate method to dismiss the view
         self.itemToEdit.name = self.nameField.text;
-        self.itemToEdit.weighting = [self.weightingField.text floatValue];
+        self.itemToEdit.weighting = [NSNumber numberWithFloat:[self.weightingField.text floatValue]];
         self.itemToEdit.deadline = self.deadlineDate;
         self.itemToEdit.reminder = (self.reminderSwitch.on) ? self.reminderDate : nil;
+        
         [self.delegate AssessmentDetailTableViewController:self didFinishEditingAssessment:self.itemToEdit];
         
     } else {
         // If adding, create a new item and call the delegate method to dismiss the view
-        AssessmentCriteria *newAssessment = [[AssessmentCriteria alloc] init];
-        newAssessment.hasGrade = NO;
+        AssessmentCriteria *newAssessment = [NSEntityDescription insertNewObjectForEntityForName:@"AssessmentCriteria" inManagedObjectContext:self.managedObjectContext];
+        newAssessment.hasGrade = [NSNumber numberWithBool:NO];
         newAssessment.name = self.nameField.text;
-        newAssessment.weighting = [self.weightingField.text floatValue];
+        newAssessment.weighting = [NSNumber numberWithFloat:[self.weightingField.text floatValue]];
         newAssessment.deadline = self.deadlineDate;
         newAssessment.reminder = (self.reminderSwitch.on) ? self.reminderDate : nil;
+        
         [self.delegate AssessmentDetailTableViewController:self didFinishAddingAssessment:newAssessment];
     }
 }
