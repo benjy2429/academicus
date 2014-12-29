@@ -12,7 +12,7 @@
 #import "SubjectDetailTableViewController.h"
 #import "AssessmentsTableViewController.h"
 
-@interface SubjectsTableViewController : UITableViewController <SubjectDetailTableViewControllerDelegate>
+@interface SubjectsTableViewController : UITableViewController <NSFetchedResultsControllerDelegate, SubjectDetailTableViewControllerDelegate>
 
 @property (weak) Year *year;
 

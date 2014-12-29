@@ -16,14 +16,14 @@
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="years" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Year" inverseName="qualification" inverseEntity="Year" syncable="YES"/>
     </entity>
-    <entity name="Subject" syncable="YES">
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="targetGrade" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    <entity name="Subject" representedClassName="Subject" syncable="YES">
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="targetGrade" attributeType="Integer 32" minValueString="0" maxValueString="100" syncable="YES"/>
         <attribute name="teacherEmail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="teacherName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="yearWeighting" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="yearWeighting" attributeType="Float" minValueString="0" maxValueString="100" syncable="YES"/>
         <relationship name="assessments" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="AssessmentCriteria" inverseName="subject" inverseEntity="AssessmentCriteria" syncable="YES"/>
-        <relationship name="year" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Year" inverseName="subjects" inverseEntity="Year" syncable="YES"/>
+        <relationship name="year" maxCount="1" deletionRule="Nullify" destinationEntity="Year" inverseName="subjects" inverseEntity="Year" syncable="YES"/>
     </entity>
     <entity name="Year" representedClassName="Year" syncable="YES">
         <attribute name="endDate" attributeType="Date" syncable="YES"/>
@@ -35,7 +35,7 @@
     <elements>
         <element name="AssessmentCriteria" positionX="378" positionY="-162" width="128" height="28"/>
         <element name="Qualification" positionX="-207" positionY="-126" width="128" height="28"/>
-        <element name="Subject" positionX="196" positionY="-153" width="128" height="28"/>
+        <element name="Subject" positionX="196" positionY="-153" width="128" height="148"/>
         <element name="Year" positionX="-2" positionY="-153" width="128" height="118"/>
     </elements>
 </model>

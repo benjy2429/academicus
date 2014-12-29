@@ -294,7 +294,7 @@
         controller.managedObjectContext = self.managedObjectContext;
         
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-//        controller.year = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        controller.year = [self.fetchedResultsController objectAtIndexPath:indexPath];
     }
 }
 
