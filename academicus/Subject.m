@@ -21,5 +21,6 @@
 @dynamic colour;
 @dynamic assessments;
 @dynamic year;
+@dynamic displayOrder;
 
 @end

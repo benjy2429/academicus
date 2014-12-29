@@ -21,6 +21,7 @@
 @property (nonatomic, retain) UIColor * colour;
 @property (nonatomic, retain) NSOrderedSet *assessments;
 @property (nonatomic, retain) Year *year;
+@property (nonatomic, retain) NSNumber * displayOrder;
 @end
 
 @interface Subject (CoreDataGeneratedAccessors)

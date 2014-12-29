@@ -27,7 +27,7 @@
         [fetchRequest setEntity:entity];
         
         // Set the sorting preference
-        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"displayOrder" ascending:NO];
         [fetchRequest setSortDescriptors:@[sortDescriptor]];
         
         // Set the predicate
@@ -167,10 +167,40 @@
 
 
 # pragma mark - Reordering Cells
-/*
+
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
     
+    // Set to nil to perform reordering manually
+    self.fetchedResultsController.delegate = nil;
+    
+    // Copy the results into a mutable array
+    NSMutableArray *orderedItems = [[self.fetchedResultsController fetchedObjects] mutableCopy];
+    
+    // Move the reordered item in the array
+    Subject *subject = [self.fetchedResultsController objectAtIndexPath:fromIndexPath];
+    [orderedItems removeObject:subject];
+    [orderedItems insertObject:subject atIndex:toIndexPath.row];
+    
+    // Iterate through the objects and update the display order to match the array order
+    NSInteger i = [orderedItems count] - 1;
+    for (NSManagedObject *item in orderedItems) {
+        [item setValue:[NSNumber numberWithInteger:i] forKey:@"displayOrder"];
+        i--;
+    }
+    
+    // Save the objects back
+    NSError *error;
+    if (![self.managedObjectContext save:&error]) {
+        COREDATA_ERROR(error);
+        return;
+    }
+    
+    // Reassign the fetched results controller delegate
+    self.fetchedResultsController.delegate = self;
+    
+    // Perform another fetch to ensure the cache is up to date
+    [self performFetch];
 }
 
 
@@ -196,7 +226,7 @@
     
     return proposedDestinationIndexPath;
 }
-*/
+
 
 # pragma mark - Editing Cells
 
@@ -321,8 +351,8 @@
             [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
         case NSFetchedResultsChangeMove:
-            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationNone];
             break;
     }
 }
@@ -339,6 +369,7 @@
 - (void)SubjectDetailTableViewController:(id)controller didFinishAddingSubject:(Subject *)subject
 {
     subject.year = self.year;
+    subject.displayOrder = [NSNumber numberWithInteger:[[self.fetchedResultsController fetchedObjects] count]];
     
     // Save the item to the datastore
     NSError *error;

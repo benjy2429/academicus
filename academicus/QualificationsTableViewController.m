@@ -27,7 +27,7 @@
         [fetchRequest setEntity:entity];
         
         // Set the sorting preference
-        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"displayOrder" ascending:YES];
+        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"displayOrder" ascending:NO];
         [fetchRequest setSortDescriptors:@[sortDescriptor]];
         
         // Create the fetched results controller
@@ -46,7 +46,7 @@
     [super viewDidLoad];
     
     // Delete the cache to prevent inconsistencies in iOS7
-    [NSFetchedResultsController deleteCacheWithName:@"Years"];
+    [NSFetchedResultsController deleteCacheWithName:@"Qualifications"];
     
     // Retrieve the objects for this table view using CoreData
     [self performFetch];
@@ -175,10 +175,10 @@
     [orderedItems insertObject:qualification atIndex:toIndexPath.row];
     
     // Iterate through the objects and update the display order to match the array order
-    int i = 0;
+    NSInteger i = [orderedItems count] - 1;
     for (NSManagedObject *item in orderedItems) {
-        [item setValue:[NSNumber numberWithInt:i] forKey:@"displayOrder"];
-        i++;
+        [item setValue:[NSNumber numberWithInteger:i] forKey:@"displayOrder"];
+        i--;
     }
     
     // Save the objects back

@@ -24,5 +24,6 @@
 @property (nonatomic, retain) NSNumber * weighting;
 @property (nonatomic, retain) NSNumber * hasGrade;
 @property (nonatomic, retain) Subject *subject;
+@property (nonatomic, retain) NSNumber * displayOrder;
 
 @end

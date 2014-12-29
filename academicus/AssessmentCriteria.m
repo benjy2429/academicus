@@ -23,5 +23,6 @@
 @dynamic weighting;
 @dynamic hasGrade;
 @dynamic subject;
+@dynamic displayOrder;
 
 @end

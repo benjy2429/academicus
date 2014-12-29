@@ -27,7 +27,7 @@
         [fetchRequest setEntity:entity];
         
         // Set the sorting preference
-        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"startDate" ascending:NO];
         [fetchRequest setSortDescriptors:@[sortDescriptor]];
         
         // Set the predicate
