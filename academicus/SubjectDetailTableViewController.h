@@ -30,13 +30,18 @@
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *weightingField;
 @property (weak, nonatomic) IBOutlet UITextField *targetField;
-@property (weak, nonatomic) IBOutlet UITextField *colourField;
 @property (weak, nonatomic) IBOutlet UITextField *locationField;
 @property (weak, nonatomic) IBOutlet UITextField *teacherNameField;
 @property (weak, nonatomic) IBOutlet UITextField *teacherEmailField;
 
 @property (assign) float weighting;
 @property (assign) int target;
+
+@property (strong) UIColor *colour;
+@property (weak, nonatomic) IBOutlet UIView *colourView;
+@property (weak, nonatomic) IBOutlet UISlider *redSlider;
+@property (weak, nonatomic) IBOutlet UISlider *greenSlider;
+@property (weak, nonatomic) IBOutlet UISlider *blueSlider;
 
 // Use flags to determine whether the pickers are hidden or visible
 @property (assign) BOOL weightingPickerVisible;

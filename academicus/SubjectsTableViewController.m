@@ -137,7 +137,10 @@
 {
     // Get the object for this cell and set the labels
     Subject *currentSubject = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = currentSubject.name;
+    UILabel *nameLabel = (UILabel *)[cell viewWithTag:100];
+    nameLabel.text = currentSubject.name;
+    UIView *colourBar = (UIView *)[cell viewWithTag:101];
+    colourBar.backgroundColor = currentSubject.colour;
 }
 
 
@@ -331,7 +334,7 @@
 }
 
 
-#pragma mark - YearDetailTableViewControllerDelegate
+#pragma mark - SubjectDetailTableViewControllerDelegate
 
 - (void)SubjectDetailTableViewController:(id)controller didFinishAddingSubject:(Subject *)subject
 {

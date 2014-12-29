@@ -27,20 +27,25 @@
         self.weighting = [self.itemToEdit.yearWeighting floatValue];
         self.targetField.text = [NSString stringWithFormat: @"%i", [self.itemToEdit.targetGrade intValue]];
         self.target = [self.itemToEdit.targetGrade intValue];
-       
-        /*
+        
+        self.colour = self.itemToEdit.colour;
+        self.colourView.backgroundColor = self.itemToEdit.colour;
+        
         if (CGColorGetNumberOfComponents(self.itemToEdit.colour.CGColor) >= 3) {
             const CGFloat *colourComponents = CGColorGetComponents(self.itemToEdit.colour.CGColor);
-            self.colourField.text = [NSString stringWithFormat: @"R: %f, G: %f, B:%f", colourComponents[0],colourComponents[1],colourComponents[2]];
+            self.redSlider.value = colourComponents[0];
+            self.greenSlider.value = colourComponents[1];
+            self.blueSlider.value = colourComponents[2];
         }
-         */
+         
         //self.locationField.text = self.itemToEdit.location; //TODO: Get locaiton value
         
         self.teacherNameField.text = self.itemToEdit.teacherName;
         self.teacherEmailField.text = self.itemToEdit.teacherEmail;
         
         self.doneBtn.enabled = YES;
-    } else {     
+    } else {
+        self.colour = [UIColor grayColor];
         self.doneBtn.enabled = NO;
       
         //TODO: Complete
@@ -71,7 +76,7 @@
         self.itemToEdit.name = self.nameField.text;
         self.itemToEdit.yearWeighting = [NSNumber numberWithFloat:self.weighting];
         self.itemToEdit.targetGrade = [NSNumber numberWithInt:self.target];
-        //self.itemToEdit.colour //TODO: Set colour value
+        self.itemToEdit.colour = self.colour;
         //self.itemToEdit.location //TODO: Set locaiton value
         self.itemToEdit.teacherName = self.teacherNameField.text;
         self.itemToEdit.teacherEmail = self.teacherEmailField.text;
@@ -84,7 +89,7 @@
         newSubject.name = self.nameField.text;
         newSubject.yearWeighting = [NSNumber numberWithFloat:self.weighting];
         newSubject.targetGrade = [NSNumber numberWithInt:self.target];
-        //newSubject.colour //TODO: Set colour value
+        newSubject.colour = self.colour;
         //newSubject.location //TODO: Set locaiton value
         newSubject.teacherName = self.teacherNameField.text;
         newSubject.teacherEmail = self.teacherEmailField.text;
@@ -133,14 +138,11 @@
     }
 }
 
-#pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 7;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+- (IBAction)colourSliderChanged
+{
+    self.colour = [UIColor colorWithRed:self.redSlider.value green:self.greenSlider.value blue:self.blueSlider.value alpha:1.0f];
+    self.colourView.backgroundColor = self.colour;
 }
 
 @end

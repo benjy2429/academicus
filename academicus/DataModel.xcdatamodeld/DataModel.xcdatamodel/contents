@@ -18,6 +18,7 @@
         <relationship name="years" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Year" inverseName="qualification" inverseEntity="Year" syncable="YES"/>
     </entity>
     <entity name="Subject" representedClassName="Subject" syncable="YES">
+        <attribute name="colour" attributeType="Transformable" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="targetGrade" attributeType="Integer 32" minValueString="0" maxValueString="100" syncable="YES"/>
         <attribute name="teacherEmail" optional="YES" attributeType="String" syncable="YES"/>
@@ -34,9 +35,9 @@
         <relationship name="subjects" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Subject" inverseName="year" inverseEntity="Subject" syncable="YES"/>
     </entity>
     <elements>
-        <element name="AssessmentCriteria" positionX="378" positionY="-162" width="128" height="208"/>
-        <element name="Qualification" positionX="-207" positionY="-126" width="128" height="28"/>
-        <element name="Subject" positionX="196" positionY="-153" width="128" height="148"/>
-        <element name="Year" positionX="-2" positionY="-153" width="128" height="118"/>
+        <element name="AssessmentCriteria" positionX="0" positionY="0" width="128" height="210"/>
+        <element name="Qualification" positionX="0" positionY="0" width="128" height="75"/>
+        <element name="Subject" positionX="0" positionY="0" width="128" height="165"/>
+        <element name="Year" positionX="0" positionY="0" width="128" height="120"/>
     </elements>
 </model>

@@ -7,6 +7,7 @@
 //
 
 #import "Subject.h"
+#import "AssessmentCriteria.h"
 #import "Year.h"
 
 
@@ -17,6 +18,7 @@
 @dynamic teacherEmail;
 @dynamic teacherName;
 @dynamic yearWeighting;
+@dynamic colour;
 @dynamic assessments;
 @dynamic year;
 
