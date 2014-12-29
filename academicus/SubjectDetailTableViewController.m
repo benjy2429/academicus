@@ -23,7 +23,7 @@
         self.title = @"Edit Subject";
         
         self.nameField.text = self.itemToEdit.name;
-        self.weightingField.text = [NSString stringWithFormat: @"%.1f", [self.itemToEdit.yearWeighting floatValue]];
+        self.weightingField.text = [NSString stringWithFormat: @"%.2f", [self.itemToEdit.yearWeighting floatValue]];
         self.weighting = [self.itemToEdit.yearWeighting floatValue];
         self.targetField.text = [NSString stringWithFormat: @"%i", [self.itemToEdit.targetGrade intValue]];
         self.target = [self.itemToEdit.targetGrade intValue];
@@ -74,8 +74,8 @@
     if (self.itemToEdit != nil) {
         // If editing, update the item and call the delegate method to dismiss the view
         self.itemToEdit.name = self.nameField.text;
-        self.itemToEdit.yearWeighting = [NSNumber numberWithFloat:self.weighting];
-        self.itemToEdit.targetGrade = [NSNumber numberWithInt:self.target];
+        self.itemToEdit.yearWeighting = [NSNumber numberWithFloat:[self.weightingField.text floatValue]];
+        self.itemToEdit.targetGrade = [NSNumber numberWithInt:[self.targetField.text intValue]];
         self.itemToEdit.colour = self.colour;
         //self.itemToEdit.location //TODO: Set locaiton value
         self.itemToEdit.teacherName = self.teacherNameField.text;
@@ -87,14 +87,12 @@
         // If adding, create a new item and call the delegate method to dismiss the view
         Subject *newSubject = [NSEntityDescription insertNewObjectForEntityForName:@"Subject" inManagedObjectContext:self.managedObjectContext];
         newSubject.name = self.nameField.text;
-        newSubject.yearWeighting = [NSNumber numberWithFloat:self.weighting];
-        newSubject.targetGrade = [NSNumber numberWithInt:self.target];
+        newSubject.yearWeighting = [NSNumber numberWithFloat:[self.weightingField.text floatValue]];
+        newSubject.targetGrade = [NSNumber numberWithInt: [self.targetField.text intValue]];
         newSubject.colour = self.colour;
-        //newSubject.location //TODO: Set locaiton value
-        newSubject.teacherName = self.teacherNameField.text;
-        newSubject.teacherEmail = self.teacherEmailField.text;
-        
-        [self.delegate SubjectDetailTableViewController:self didFinishAddingSubject:newSubject];
+        //self.itemToEdit.location //TODO: Set locaiton value
+        self.itemToEdit.teacherName = self.teacherNameField.text;
+        self.itemToEdit.teacherEmail = self.teacherEmailField.text;
     }
 }
 
@@ -116,12 +114,10 @@
     switch (textField.tag) {
         //If weighting field
         case 1:
-            //[textField setText:[NSString stringWithFormat:@"%@%%", string]];
-            return ([newText length] < 3 || [newText isEqual: @"100"] || ([newText characterAtIndex:2] == '.' && [newText length] < 6));
+            return ([newText length] < 3 || [newText isEqual: @"100"] || ([newText characterAtIndex:2] == '.' && [newText length] < 6) || ([newText characterAtIndex:1] == '.' && [newText length] < 5));
             break;
         //If target field
         case 2:
-            //[textField setText:[NSString stringWithFormat:@"%@%%", string]];
             return ([newText length] < 3 || [newText isEqual: @"100"]);
             break;
         //Otherwise
@@ -129,14 +125,7 @@
             return YES;
     }
 }
-//TODO: tidy this up
 
-- (void) textFieldDidEndEditing:(UITextField *)textField
-{
-    if (textField.tag == 1 || textField.tag == 2) {
-        //[textField setText:[NSString stringWithFormat:@"%@%%", textField.text]];
-    }
-}
 
 
 - (IBAction)colourSliderChanged
