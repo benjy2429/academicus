@@ -27,7 +27,7 @@
         [fetchRequest setEntity:entity];
         
         // Set the sorting preference
-        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"displayOrder" ascending:YES];
         [fetchRequest setSortDescriptors:@[sortDescriptor]];
         
         // Create the fetched results controller
@@ -159,10 +159,40 @@
 
 
 # pragma mark - Reordering Cells
-/*
+
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+
+    // Set to nil to perform reordering manually
+    self.fetchedResultsController.delegate = nil;
     
+    // Copy the results into a mutable array
+    NSMutableArray *orderedItems = [[self.fetchedResultsController fetchedObjects] mutableCopy];
+    
+    // Move the reordered item in the array
+    Qualification *qualification = [self.fetchedResultsController objectAtIndexPath:fromIndexPath];
+    [orderedItems removeObject:qualification];
+    [orderedItems insertObject:qualification atIndex:toIndexPath.row];
+    
+    // Iterate through the objects and update the display order to match the array order
+    int i = 0;
+    for (NSManagedObject *item in orderedItems) {
+        [item setValue:[NSNumber numberWithInt:i] forKey:@"displayOrder"];
+        i++;
+    }
+    
+    // Save the objects back
+    NSError *error;
+    if (![self.managedObjectContext save:&error]) {
+        COREDATA_ERROR(error);
+        return;
+    }
+    
+    // Reassign the fetched results controller delegate
+    self.fetchedResultsController.delegate = self;
+    
+    // Perform another fetch to ensure the cache is up to date
+    [self performFetch];
 }
 
 
@@ -188,9 +218,10 @@
     
     return proposedDestinationIndexPath;
 }
-*/
+
 
 # pragma mark - Editing Cells
+
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
@@ -267,12 +298,14 @@
         UINavigationController *navController = segue.destinationViewController;
         QualificationDetailTableViewController *controller = (QualificationDetailTableViewController*) navController.topViewController;
         
+        controller.delegate = self;
         controller.managedObjectContext = self.managedObjectContext;
         
     } else if ([segue.identifier isEqualToString:@"editQualification"]) {
         UINavigationController *navController = segue.destinationViewController;
         QualificationDetailTableViewController *controller = (QualificationDetailTableViewController*) navController.topViewController;
-        
+
+        controller.delegate = self;
         controller.managedObjectContext = self.managedObjectContext;
         
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
@@ -312,8 +345,8 @@
             [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
         case NSFetchedResultsChangeMove:
-            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationNone];
             break;
     }
 }
@@ -330,6 +363,8 @@
 
 - (void)QualificationDetailTableViewController:(id)controller didFinishAddingQualification:(Qualification *)qualification
 {
+    qualification.displayOrder = [NSNumber numberWithInteger:[[self.fetchedResultsController fetchedObjects] count]];
+    
     // Save the item to the datastore
     NSError *error;
     if (![self.managedObjectContext save:&error]) {

@@ -21,6 +21,8 @@
 
 @interface QualificationDetailTableViewController : UITableViewController <UITextFieldDelegate>
 
+@property (weak) id <QualificationDetailTableViewControllerDelegate> delegate;
+
 @property (strong) Qualification *itemToEdit;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneBtn;

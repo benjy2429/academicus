@@ -14,6 +14,7 @@
         <relationship name="subject" maxCount="1" deletionRule="Nullify" destinationEntity="Subject" inverseName="assessments" inverseEntity="Subject" syncable="YES"/>
     </entity>
     <entity name="Qualification" representedClassName="Qualification" syncable="YES">
+        <attribute name="displayOrder" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="years" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Year" inverseName="qualification" inverseEntity="Year" syncable="YES"/>
     </entity>
@@ -36,7 +37,7 @@
     </entity>
     <elements>
         <element name="AssessmentCriteria" positionX="0" positionY="0" width="128" height="210"/>
-        <element name="Qualification" positionX="0" positionY="0" width="128" height="75"/>
+        <element name="Qualification" positionX="0" positionY="0" width="128" height="90"/>
         <element name="Subject" positionX="0" positionY="0" width="128" height="165"/>
         <element name="Year" positionX="0" positionY="0" width="128" height="120"/>
     </elements>

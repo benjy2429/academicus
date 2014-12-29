@@ -34,7 +34,7 @@
 - (IBAction)cancel
 {
     // Dismiss the view controller
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.delegate QualificationDetailTableViewControllerDidCancel:self];
 }
 
 
@@ -44,21 +44,16 @@
         // If editing, update the item
         self.itemToEdit.name = self.nameField.text;
         
+        [self.delegate QualificationDetailTableViewController:self didFinishEditingQualification:self.itemToEdit];
+        
     } else {
         // Else if the item is new, create a new entity
         Qualification *newQualification = [NSEntityDescription insertNewObjectForEntityForName:@"Qualification" inManagedObjectContext:self.managedObjectContext];
         
         newQualification.name = self.nameField.text;
+        
+        [self.delegate QualificationDetailTableViewController:self didFinishAddingQualification:newQualification];
     }
-    
-    // Save the item to the datastore
-    NSError *error;
-    if (![self.managedObjectContext save:&error]) {
-        COREDATA_ERROR(error);
-        return;
-    }
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

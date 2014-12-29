@@ -14,6 +14,7 @@
 
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSOrderedSet *years;
+@property (nonatomic, retain) NSNumber * displayOrder;
 @end
 
 @interface Qualification (CoreDataGeneratedAccessors)
