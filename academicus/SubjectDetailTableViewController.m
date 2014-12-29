@@ -8,10 +8,6 @@
 
 #import "SubjectDetailTableViewController.h"
 
-@interface SubjectDetailTableViewController ()
-
-@end
-
 @implementation SubjectDetailTableViewController
 
 - (void)viewDidLoad
@@ -34,15 +30,19 @@
         
         if (CGColorGetNumberOfComponents(self.itemToEdit.colour.CGColor) >= 3) {
             const CGFloat *colourComponents = CGColorGetComponents(self.itemToEdit.colour.CGColor);
-            self.colourField.text = [NSString stringWithFormat: @"R: %f, G: %f, B:%f", colourComponents[0],colourComponents[1],colourComponents[2]];
+            self.redSlider.value = colourComponents[0];
+            self.greenSlider.value = colourComponents[1];
+            self.blueSlider.value = colourComponents[2];
         }
+         
         //self.locationField.text = self.itemToEdit.location; //TODO: Get locaiton value
         
         self.teacherNameField.text = self.itemToEdit.teacherName;
         self.teacherEmailField.text = self.itemToEdit.teacherEmail;
         
         self.doneBtn.enabled = YES;
-    } else {     
+    } else {
+        self.colour = [UIColor grayColor];
         self.doneBtn.enabled = NO;
       
         //TODO: Complete
@@ -82,7 +82,7 @@
         
     } else {
         // If adding, create a new item and call the delegate method to dismiss the view
-        Subject *newSubject = [[Subject alloc] init];
+        Subject *newSubject = [NSEntityDescription insertNewObjectForEntityForName:@"Subject" inManagedObjectContext:self.managedObjectContext];
         newSubject.name = self.nameField.text;
         newSubject.yearWeighting = [self.weightingField.text floatValue];
         newSubject.targetGrade = self.target = [self.targetField.text intValue];
@@ -90,6 +90,7 @@
         //newSubject.location //TODO: Set locaiton value
         newSubject.teacherName = self.teacherNameField.text;
         newSubject.teacherEmail = self.teacherEmailField.text;
+        
         [self.delegate SubjectDetailTableViewController:self didFinishAddingSubject:newSubject];
     }
 }
@@ -105,6 +106,10 @@
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     NSString *newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    
+    // Only enable the done button when the required fields are not empty
+    self.doneBtn.enabled = (textField.tag == 0 && [newText length] > 0);
+    
     switch (textField.tag) {
         //If weighting field
         case 1:
@@ -118,19 +123,14 @@
         default:
             return YES;
     }
-    // Only enable the done button when the required fields are not empty
-    self.doneBtn.enabled = (textField.tag == 0 && [newText length] > 0);
 }
 
 
-#pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 7;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+- (IBAction)colourSliderChanged
+{
+    self.colour = [UIColor colorWithRed:self.redSlider.value green:self.greenSlider.value blue:self.blueSlider.value alpha:1.0f];
+    self.colourView.backgroundColor = self.colour;
 }
 
 @end

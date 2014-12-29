@@ -2,22 +2,37 @@
 //  Subject.h
 //  academicus
 //
-//  Created by Luke on 18/12/2014.
+//  Created by Ben on 29/12/2014.
 //  Copyright (c) 2014 sheffield. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreLocation/CoreLocation.h>
+#import <CoreData/CoreData.h>
 
-@interface Subject : NSObject
+@class AssessmentCriteria, Year;
 
-@property (strong) NSString *name;
-@property (assign) float yearWeighting;
-@property (assign) int targetGrade;
-@property (strong) UIColor *colour;
-@property (strong) CLLocation *location;
-@property (strong) NSString *teacherName;
-@property (strong) NSString *teacherEmail;
-@property (strong) NSMutableArray *assessments;
+@interface Subject : NSManagedObject
 
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSNumber * targetGrade;
+@property (nonatomic, retain) NSString * teacherEmail;
+@property (nonatomic, retain) NSString * teacherName;
+@property (nonatomic, retain) NSNumber * yearWeighting;
+@property (nonatomic, retain) UIColor * colour;
+@property (nonatomic, retain) NSOrderedSet *assessments;
+@property (nonatomic, retain) Year *year;
+@end
+
+@interface Subject (CoreDataGeneratedAccessors)
+
+- (void)insertObject:(AssessmentCriteria *)value inAssessmentsAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromAssessmentsAtIndex:(NSUInteger)idx;
+- (void)insertAssessments:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removeAssessmentsAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInAssessmentsAtIndex:(NSUInteger)idx withObject:(AssessmentCriteria *)value;
+- (void)replaceAssessmentsAtIndexes:(NSIndexSet *)indexes withAssessments:(NSArray *)values;
+- (void)addAssessmentsObject:(AssessmentCriteria *)value;
+- (void)removeAssessmentsObject:(AssessmentCriteria *)value;
+- (void)addAssessments:(NSOrderedSet *)values;
+- (void)removeAssessments:(NSOrderedSet *)values;
 @end

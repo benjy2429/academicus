@@ -8,16 +8,52 @@
 
 #import "SubjectsTableViewController.h"
 
-@interface SubjectsTableViewController ()
-
-@end
-
 @implementation SubjectsTableViewController
+{
+    // Local instance variable for the fetched results controller
+    NSFetchedResultsController *_fetchedResultsController;
+}
+
+
+// Custom getter for the fetched results controller
+- (NSFetchedResultsController*)fetchedResultsController
+{
+    // Initialise the fetched results controller if nil
+    if (_fetchedResultsController == nil) {
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        
+        // Get the objects from the managed object context
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Subject" inManagedObjectContext:self.managedObjectContext];
+        [fetchRequest setEntity:entity];
+        
+        // Set the sorting preference
+        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+        [fetchRequest setSortDescriptors:@[sortDescriptor]];
+        
+        // Set the predicate
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"year == %@", self.year];
+        [fetchRequest setPredicate:predicate];
+        
+        // Create the fetched results controller
+        _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Subjects"];
+        
+        // Assign this class as the delegate
+        _fetchedResultsController.delegate = self;
+    }
+    
+    return _fetchedResultsController;
+}
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Delete the cache to prevent inconsistencies in iOS7
+    [NSFetchedResultsController deleteCacheWithName:@"Subjects"];
+    
+    // Retrieve the objects for this table view using CoreData
+    [self performFetch];
     
     // Set the view title to the qualification name
     self.title = self.year.name;
@@ -29,10 +65,26 @@
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+- (void)performFetch
+{
+    // Fetch the data for the table view using CoreData
+    NSError *error;
+    if (![self.fetchedResultsController performFetch:&error]) {
+        
+        // Throw a custom error if the fetch fails
+        COREDATA_ERROR(error);
+        return;
+    }
 }
+
+
+- (void)dealloc
+{
+    // Stop the fetched results controller from sending notifications if the view is deallocated
+    _fetchedResultsController.delegate = nil;
+}
+
 
 #pragma mark - Table view data source
 
@@ -51,7 +103,8 @@
     if (self.isEditing && !self.inSwipeDeleteMode && section == 1) {
         return 1;
     } else {
-        return [self.year.subjects count];
+        id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
+        return [sectionInfo numberOfObjects];
     }
 }
 
@@ -70,13 +123,24 @@
     
     // Set the content for each type of cell
     if (isAddCell) {
-        cell.textLabel.text = @"Add new subejct";
+        cell.textLabel.text = @"Add new subject";
     } else {
-        Subject *currentSubject = (Subject*) [self.year.subjects objectAtIndex:indexPath.row];
-        cell.textLabel.text = currentSubject.name;
+        [self configureCell:cell atIndexPath:indexPath];
+
     }
     
     return cell;
+}
+
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath*)indexPath
+{
+    // Get the object for this cell and set the labels
+    Subject *currentSubject = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    UILabel *nameLabel = (UILabel *)[cell viewWithTag:100];
+    nameLabel.text = currentSubject.name;
+    UIView *colourBar = (UIView *)[cell viewWithTag:101];
+    colourBar.backgroundColor = currentSubject.colour;
 }
 
 
@@ -103,7 +167,7 @@
 
 
 # pragma mark - Reordering Cells
-
+/*
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
     
@@ -132,16 +196,22 @@
     
     return proposedDestinationIndexPath;
 }
-
+*/
 
 # pragma mark - Editing Cells
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source and the table view
-        [self.year.subjects removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        // Delete the row from the data source
+        Subject *subject = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        [self.managedObjectContext deleteObject:subject];
+        
+        NSError *error;
+        if (![self.managedObjectContext save:&error]) {
+            COREDATA_ERROR(error);
+            return;
+        }
     }
 }
 
@@ -167,11 +237,11 @@
     // Add or remove the add item section if entering or exiting edit mode
     if (editing) {
         [self.tableView beginUpdates];
-        [self.tableView insertSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationTop];
+        [self.tableView insertSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
         [self.tableView endUpdates];
     } else {
         [self.tableView beginUpdates];
-        [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationTop];
+        [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
         [self.tableView endUpdates];
     }
 }
@@ -206,36 +276,76 @@
         UINavigationController *navController = segue.destinationViewController;
         SubjectDetailTableViewController *controller = (SubjectDetailTableViewController*) navController.topViewController;
         controller.delegate = self;
+        controller.managedObjectContext = self.managedObjectContext;
         
     } else if ([segue.identifier isEqualToString:@"editSubject"]) {
         UINavigationController *navController = segue.destinationViewController;
         SubjectDetailTableViewController *controller = (SubjectDetailTableViewController*) navController.topViewController;
         controller.delegate = self;
+        controller.managedObjectContext = self.managedObjectContext;
         
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        controller.itemToEdit = self.year.subjects[indexPath.row];
+        controller.itemToEdit = [self.fetchedResultsController objectAtIndexPath:indexPath];
         
     }  else if ([segue.identifier isEqualToString:@"toAssessments"]) {
         AssessmentsTableViewController *controller = (AssessmentsTableViewController*) segue.destinationViewController;
         
+        controller.managedObjectContext = self.managedObjectContext;
+        
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        controller.subject = self.year.subjects[indexPath.row];
+        controller.subject = [self.fetchedResultsController objectAtIndexPath:indexPath];
     }
 }
-        
 
-#pragma mark - YearDetailTableViewControllerDelegate
+
+#pragma mark - NSFetchedResultsControllerDelegate
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView beginUpdates];
+}
+
+
+- (void)controller:(NSFetchedResultsController*)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
+{
+    // Modify table rows depending on the action performed
+    // (Called automatically by the NSFetchedResultsController)
+    switch (type) {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        case NSFetchedResultsChangeUpdate:
+            [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            break;
+        case NSFetchedResultsChangeMove:
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView endUpdates];
+}
+
+
+#pragma mark - SubjectDetailTableViewControllerDelegate
 
 - (void)SubjectDetailTableViewController:(id)controller didFinishAddingSubject:(Subject *)subject
 {
-    // Add the new item to the data array
-    NSInteger newRowIndex = [self.year.subjects count];
-    [self.year.subjects addObject:subject];
+    subject.year = self.year;
     
-    // Insert a new cell for the item into the table
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:newRowIndex inSection:0];
-    NSArray *indexPaths = @[indexPath];
-    [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+    // Save the item to the datastore
+    NSError *error;
+    if (![self.managedObjectContext save:&error]) {
+        COREDATA_ERROR(error);
+        return;
+    }
     
     // Dismiss the add item view
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -244,11 +354,12 @@
 
 - (void)SubjectDetailTableViewController:(id)controller didFinishEditingSubject:(Subject *)subject
 {
-    // Find the cell for this item and update the contents
-    NSInteger index = [self.year.subjects indexOfObject:subject];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    cell.textLabel.text = subject.name;
+    // Save the item to the datastore
+    NSError *error;
+    if (![self.managedObjectContext save:&error]) {
+        COREDATA_ERROR(error);
+        return;
+    }
     
     // Dismiss the edit item view
     [self dismissViewControllerAnimated:YES completion:nil];

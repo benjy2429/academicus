@@ -8,10 +8,6 @@
 
 #import "AssessmentGradeTableViewController.h"
 
-@interface AssessmentGradeTableViewController ()
-
-@end
-
 @implementation AssessmentGradeTableViewController
 
 - (void)viewDidLoad
@@ -22,8 +18,8 @@
     self.negativeFeedbackField.text = NEGATIVE_FEEDBACK_PLACEHOLDER;
     
     if (self.itemToEdit.hasGrade) {
-        self.gradeField.text = [NSString stringWithFormat:@"%.2f", self.itemToEdit.finalGrade];
-        self.ratingField.text = (self.itemToEdit.rating != 0) ? [NSString stringWithFormat:@"%d", self.itemToEdit.rating] : @"";
+        self.gradeField.text = [NSString stringWithFormat:@"%.2f", [self.itemToEdit.finalGrade floatValue]];
+        self.ratingField.text = (self.itemToEdit.rating != 0) ? [NSString stringWithFormat:@"%d", [self.itemToEdit.rating intValue]] : @"";
         
         if (![self.itemToEdit.positiveFeedback isEqualToString:@""]) {
             self.positiveFeedbackField.text = self.itemToEdit.positiveFeedback;
@@ -73,9 +69,9 @@
     }
     
     // If editing, update the item and call the delegate method to dismiss the view
-    self.itemToEdit.hasGrade = YES;
-    self.itemToEdit.finalGrade = [self.gradeField.text floatValue];
-    self.itemToEdit.rating = (![self.ratingField.text isEqualToString:@""]) ? [self.ratingField.text intValue] : 0;
+    self.itemToEdit.hasGrade = [NSNumber numberWithBool:YES];
+    self.itemToEdit.finalGrade = [NSNumber numberWithFloat:[self.gradeField.text floatValue]];
+    self.itemToEdit.rating = (![self.ratingField.text isEqualToString:@""]) ? [NSNumber numberWithInt:[self.ratingField.text intValue]] : 0;
     self.itemToEdit.positiveFeedback = (![self.positiveFeedbackField.text isEqualToString:POSITIVE_FEEDBACK_PLACEHOLDER]) ? self.positiveFeedbackField.text : @"";
     self.itemToEdit.negativeFeedback = (![self.negativeFeedbackField.text isEqualToString:NEGATIVE_FEEDBACK_PLACEHOLDER]) ? self.negativeFeedbackField.text : @"";
     self.itemToEdit.notes = self.notesField.text;

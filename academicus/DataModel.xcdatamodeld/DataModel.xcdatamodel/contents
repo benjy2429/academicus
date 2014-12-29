@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="13F34" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="AssessmentCriteria" representedClassName="AssessmentCriteria" syncable="YES">
+        <attribute name="deadline" attributeType="Date" syncable="YES"/>
+        <attribute name="finalGrade" optional="YES" attributeType="Float" minValueString="0" maxValueString="100" syncable="YES"/>
+        <attribute name="hasGrade" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="negativeFeedback" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="positiveFeedback" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rating" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="reminder" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="weighting" attributeType="Float" minValueString="0" maxValueString="100" syncable="YES"/>
+        <relationship name="subject" maxCount="1" deletionRule="Nullify" destinationEntity="Subject" inverseName="assessments" inverseEntity="Subject" syncable="YES"/>
+    </entity>
+    <entity name="Qualification" representedClassName="Qualification" syncable="YES">
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="years" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Year" inverseName="qualification" inverseEntity="Year" syncable="YES"/>
+    </entity>
+    <entity name="Subject" representedClassName="Subject" syncable="YES">
+        <attribute name="colour" attributeType="Transformable" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="targetGrade" attributeType="Integer 32" minValueString="0" maxValueString="100" syncable="YES"/>
+        <attribute name="teacherEmail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="teacherName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="yearWeighting" attributeType="Float" minValueString="0" maxValueString="100" syncable="YES"/>
+        <relationship name="assessments" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="AssessmentCriteria" inverseName="subject" inverseEntity="AssessmentCriteria" syncable="YES"/>
+        <relationship name="year" maxCount="1" deletionRule="Nullify" destinationEntity="Year" inverseName="subjects" inverseEntity="Year" syncable="YES"/>
+    </entity>
+    <entity name="Year" representedClassName="Year" syncable="YES">
+        <attribute name="endDate" attributeType="Date" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="startDate" attributeType="Date" syncable="YES"/>
+        <relationship name="qualification" maxCount="1" deletionRule="Nullify" destinationEntity="Qualification" inverseName="years" inverseEntity="Qualification" syncable="YES"/>
+        <relationship name="subjects" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Subject" inverseName="year" inverseEntity="Subject" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="AssessmentCriteria" positionX="0" positionY="0" width="128" height="210"/>
+        <element name="Qualification" positionX="0" positionY="0" width="128" height="75"/>
+        <element name="Subject" positionX="0" positionY="0" width="128" height="165"/>
+        <element name="Year" positionX="0" positionY="0" width="128" height="120"/>
+    </elements>
+</model>

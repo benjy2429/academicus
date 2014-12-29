@@ -37,5 +37,6 @@
 @property (assign) BOOL reminderDatePickerVisible;
 @property (weak, nonatomic) IBOutlet UISwitch *reminderSwitch;
 
+@property (nonatomic, weak) NSManagedObjectContext *managedObjectContext;
 
 @end

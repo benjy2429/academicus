@@ -12,9 +12,11 @@
 #import "SubjectDetailTableViewController.h"
 #import "AssessmentsTableViewController.h"
 
-@interface SubjectsTableViewController : UITableViewController <SubjectDetailTableViewControllerDelegate>
+@interface SubjectsTableViewController : UITableViewController <NSFetchedResultsControllerDelegate, SubjectDetailTableViewControllerDelegate>
 
 @property (weak) Year *year;
+
+@property (nonatomic, weak) NSManagedObjectContext *managedObjectContext;
 
 // This variable is used to determine whether the user clicked the edit button, or swiped a row
 @property (assign) BOOL inSwipeDeleteMode;

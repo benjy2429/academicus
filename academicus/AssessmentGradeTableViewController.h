@@ -35,4 +35,6 @@
 @property (weak, nonatomic) IBOutlet UITextView *notesField;
 @property (weak, nonatomic) IBOutlet UITextField *pictureField;
 
+@property (nonatomic, weak) NSManagedObjectContext *managedObjectContext;
+
 @end

@@ -15,6 +15,16 @@
 #ifdef __OBJC__
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
+
+extern NSString* const ManagedObjectContextSaveDidFailNotification;
+
+#define COREDATA_ERROR(__error__)\
+NSLog(@"*** ERROR IN COREDATA: %s:%d\n%@\n%@",\
+__FILE__, __LINE__, error, [error userInfo]);\
+[[NSNotificationCenter defaultCenter] postNotificationName:\
+ManagedObjectContextSaveDidFailNotification object:error];
+
 #endif
 
 #endif

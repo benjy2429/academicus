@@ -8,16 +8,52 @@
 
 #import "AssessmentsTableViewController.h"
 
-@interface AssessmentsTableViewController ()
-
-@end
-
 @implementation AssessmentsTableViewController
+{
+    // Local instance variable for the fetched results controller
+    NSFetchedResultsController *_fetchedResultsController;
+}
+
+
+// Custom getter for the fetched results controller
+- (NSFetchedResultsController*)fetchedResultsController
+{
+    // Initialise the fetched results controller if nil
+    if (_fetchedResultsController == nil) {
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        
+        // Get the objects from the managed object context
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"AssessmentCriteria" inManagedObjectContext:self.managedObjectContext];
+        [fetchRequest setEntity:entity];
+        
+        // Set the sorting preference
+        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+        [fetchRequest setSortDescriptors:@[sortDescriptor]];
+        
+        // Set the predicate
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"subject == %@", self.subject];
+        [fetchRequest setPredicate:predicate];
+        
+        // Create the fetched results controller
+        _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Assessments"];
+        
+        // Assign this class as the delegate
+        _fetchedResultsController.delegate = self;
+    }
+    
+    return _fetchedResultsController;
+}
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Delete the cache to prevent inconsistencies in iOS7
+    [NSFetchedResultsController deleteCacheWithName:@"Assessments"];
+    
+    // Retrieve the objects for this table view using CoreData
+    [self performFetch];
     
     // Set the view title to the qualification name
     self.title = self.subject.name;
@@ -29,10 +65,26 @@
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+- (void)performFetch
+{
+    // Fetch the data for the table view using CoreData
+    NSError *error;
+    if (![self.fetchedResultsController performFetch:&error]) {
+        
+        // Throw a custom error if the fetch fails
+        COREDATA_ERROR(error);
+        return;
+    }
 }
+
+
+- (void)dealloc
+{
+    // Stop the fetched results controller from sending notifications if the view is deallocated
+    _fetchedResultsController.delegate = nil;
+}
+
 
 #pragma mark - Table view data source
 
@@ -72,11 +124,18 @@
     if (isAddCell) {
         cell.textLabel.text = @"Add new assessment";
     } else {
-        AssessmentCriteria *currentAssessment = (AssessmentCriteria*) [self.subject.assessments objectAtIndex:indexPath.row];
-        cell.textLabel.text = currentAssessment.name;
+        [self configureCell:cell atIndexPath:indexPath];
     }
     
     return cell;
+}
+
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath*)indexPath
+{
+    // Get the object for this cell and set the labels
+    AssessmentCriteria *currentAssessment = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text = currentAssessment.name;
 }
 
 
@@ -104,7 +163,7 @@
 
 
 # pragma mark - Reordering Cells
-
+/*
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
     
@@ -133,16 +192,22 @@
     
     return proposedDestinationIndexPath;
 }
-
+*/
 
 # pragma mark - Editing Cells
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source and the table view
-        [self.subject.assessments removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        // Delete the row from the data source
+        AssessmentCriteria *assessment = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        [self.managedObjectContext deleteObject:assessment];
+        
+        NSError *error;
+        if (![self.managedObjectContext save:&error]) {
+            COREDATA_ERROR(error);
+            return;
+        }
     }
 }
 
@@ -168,11 +233,11 @@
     // Add or remove the add item section if entering or exiting edit mode
     if (editing) {
         [self.tableView beginUpdates];
-        [self.tableView insertSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationTop];
+        [self.tableView insertSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
         [self.tableView endUpdates];
     } else {
         [self.tableView beginUpdates];
-        [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationTop];
+        [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
         [self.tableView endUpdates];
     }
 }
@@ -207,23 +272,62 @@
         UINavigationController *navController = segue.destinationViewController;
         AssessmentDetailTableViewController *controller = (AssessmentDetailTableViewController*) navController.topViewController;
         controller.delegate = self;
+        controller.managedObjectContext = self.managedObjectContext;
     
     } else if ([segue.identifier isEqualToString:@"editAssessment"]) {
         UINavigationController *navController = segue.destinationViewController;
         AssessmentDetailTableViewController *controller = (AssessmentDetailTableViewController*) navController.topViewController;
         controller.delegate = self;
+        controller.managedObjectContext = self.managedObjectContext;
         
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        controller.itemToEdit = self.subject.assessments[indexPath.row];
+        controller.itemToEdit = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
     } else if ([segue.identifier isEqualToString:@"addGrade"]) {
         UINavigationController *navController = segue.destinationViewController;
         AssessmentGradeTableViewController *controller = (AssessmentGradeTableViewController*) navController.topViewController;
         controller.delegate = self;
+        controller.managedObjectContext = self.managedObjectContext;
         
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        controller.itemToEdit = self.subject.assessments[indexPath.row];
+        controller.itemToEdit = [self.fetchedResultsController objectAtIndexPath:indexPath];
     }
+}
+
+
+#pragma mark - NSFetchedResultsControllerDelegate
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView beginUpdates];
+}
+
+
+- (void)controller:(NSFetchedResultsController*)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
+{
+    // Modify table rows depending on the action performed
+    // (Called automatically by the NSFetchedResultsController)
+    switch (type) {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        case NSFetchedResultsChangeUpdate:
+            [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            break;
+        case NSFetchedResultsChangeMove:
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView endUpdates];
 }
 
 
@@ -231,14 +335,14 @@
 
 - (void)AssessmentDetailTableViewController:(id)controller didFinishAddingAssessment:(AssessmentCriteria *)assessment
 {
-    // Add the new item to the data array
-    NSInteger newRowIndex = [self.subject.assessments count];
-    [self.subject.assessments addObject:assessment];
+    assessment.subject = self.subject;
     
-    // Insert a new cell for the item into the table
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:newRowIndex inSection:0];
-    NSArray *indexPaths = @[indexPath];
-    [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+    // Save the item to the datastore
+    NSError *error;
+    if (![self.managedObjectContext save:&error]) {
+        COREDATA_ERROR(error);
+        return;
+    }
     
     // Dismiss the add item view
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -247,11 +351,12 @@
 
 - (void)AssessmentDetailTableViewController:(id)controller didFinishEditingAssessment:(AssessmentCriteria *)assessment
 {
-    // Find the cell for this item and update the contents
-    NSInteger index = [self.subject.assessments indexOfObject:assessment];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    cell.textLabel.text = assessment.name;
+    // Save the item to the datastore
+    NSError *error;
+    if (![self.managedObjectContext save:&error]) {
+        COREDATA_ERROR(error);
+        return;
+    }
     
     // Dismiss the edit item view
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -276,11 +381,12 @@
 
 - (void)AssessmentGradeTableViewController:(AssessmentGradeTableViewController*)controller didFinishEditingAssessment:(AssessmentCriteria*)assessment
 {
-    // Find the cell for this item and update the contents
-    NSInteger index = [self.subject.assessments indexOfObject:assessment];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    cell.textLabel.text = assessment.name;
+    // Save the item to the datastore
+    NSError *error;
+    if (![self.managedObjectContext save:&error]) {
+        COREDATA_ERROR(error);
+        return;
+    }
     
     // Dismiss the edit item view
     [self dismissViewControllerAnimated:YES completion:nil];

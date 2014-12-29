@@ -21,12 +21,13 @@
 
 @interface QualificationDetailTableViewController : UITableViewController <UITextFieldDelegate>
 
-@property (weak) id <QualificationDetailTableViewControllerDelegate> delegate;
-
 @property (strong) Qualification *itemToEdit;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneBtn;
 
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
+
+@property (nonatomic, weak) NSManagedObjectContext *managedObjectContext;
+
 
 @end

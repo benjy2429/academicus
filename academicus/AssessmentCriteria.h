@@ -2,25 +2,27 @@
 //  AssessmentCriteria.h
 //  academicus
 //
-//  Created by Luke on 18/12/2014.
+//  Created by Ben on 29/12/2014.
 //  Copyright (c) 2014 sheffield. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@interface AssessmentCriteria : NSObject
+@class Subject;
 
-@property (strong) NSString *name;
-@property (assign) float weighting;
-@property (strong) NSDate *deadline;
-@property (strong) NSDate *reminder;
-@property (assign) float finalGrade;
-@property (assign) int rating;
-@property (strong) NSString *positiveFeedback;
-@property (strong) NSString *negativeFeedback;
-@property (strong) NSString *notes;
-@property (strong) UIImage *picture;
+@interface AssessmentCriteria : NSManagedObject
 
-@property (assign) BOOL hasGrade;
+@property (nonatomic, retain) NSDate * deadline;
+@property (nonatomic, retain) NSNumber * finalGrade;
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * negativeFeedback;
+@property (nonatomic, retain) NSString * notes;
+@property (nonatomic, retain) NSString * positiveFeedback;
+@property (nonatomic, retain) NSNumber * rating;
+@property (nonatomic, retain) NSDate * reminder;
+@property (nonatomic, retain) NSNumber * weighting;
+@property (nonatomic, retain) NSNumber * hasGrade;
+@property (nonatomic, retain) Subject *subject;
 
 @end
