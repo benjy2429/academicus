@@ -23,10 +23,13 @@
         self.title = @"Edit Subject";
         
         self.nameField.text = self.itemToEdit.name;
-        self.weightingField.text = [NSString stringWithFormat: @"%.2f", self.itemToEdit.yearWeighting];
-        self.weighting = self.itemToEdit.yearWeighting;
-        self.targetField.text = [NSString stringWithFormat: @"%i", self.itemToEdit.targetGrade];
-        self.target = self.itemToEdit.targetGrade;
+        self.weightingField.text = [NSString stringWithFormat: @"%.2f", [self.itemToEdit.yearWeighting floatValue]];
+        self.weighting = [self.itemToEdit.yearWeighting floatValue];
+        self.targetField.text = [NSString stringWithFormat: @"%i", [self.itemToEdit.targetGrade intValue]];
+        self.target = [self.itemToEdit.targetGrade intValue];
+        
+        self.colour = self.itemToEdit.colour;
+        self.colourView.backgroundColor = self.itemToEdit.colour;
         
         if (CGColorGetNumberOfComponents(self.itemToEdit.colour.CGColor) >= 3) {
             const CGFloat *colourComponents = CGColorGetComponents(self.itemToEdit.colour.CGColor);
@@ -71,9 +74,9 @@
     if (self.itemToEdit != nil) {
         // If editing, update the item and call the delegate method to dismiss the view
         self.itemToEdit.name = self.nameField.text;
-        self.itemToEdit.yearWeighting = [self.weightingField.text floatValue];
-        self.itemToEdit.targetGrade = self.target = [self.targetField.text intValue];
-        //self.itemToEdit.colour //TODO: Set colour value
+        self.itemToEdit.yearWeighting = [NSNumber numberWithFloat:[self.weightingField.text floatValue]];
+        self.itemToEdit.targetGrade = [NSNumber numberWithInt:[self.targetField.text intValue]];
+        self.itemToEdit.colour = self.colour;
         //self.itemToEdit.location //TODO: Set locaiton value
         self.itemToEdit.teacherName = self.teacherNameField.text;
         self.itemToEdit.teacherEmail = self.teacherEmailField.text;
@@ -84,14 +87,12 @@
         // If adding, create a new item and call the delegate method to dismiss the view
         Subject *newSubject = [NSEntityDescription insertNewObjectForEntityForName:@"Subject" inManagedObjectContext:self.managedObjectContext];
         newSubject.name = self.nameField.text;
-        newSubject.yearWeighting = [self.weightingField.text floatValue];
-        newSubject.targetGrade = self.target = [self.targetField.text intValue];
-        //newSubject.colour //TODO: Set colour value
-        //newSubject.location //TODO: Set locaiton value
-        newSubject.teacherName = self.teacherNameField.text;
-        newSubject.teacherEmail = self.teacherEmailField.text;
-        
-        [self.delegate SubjectDetailTableViewController:self didFinishAddingSubject:newSubject];
+        newSubject.yearWeighting = [NSNumber numberWithFloat:[self.weightingField.text floatValue]];
+        newSubject.targetGrade = [NSNumber numberWithInt: [self.targetField.text intValue]];
+        newSubject.colour = self.colour;
+        //self.itemToEdit.location //TODO: Set locaiton value
+        self.itemToEdit.teacherName = self.teacherNameField.text;
+        self.itemToEdit.teacherEmail = self.teacherEmailField.text;
     }
 }
 
