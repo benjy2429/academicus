@@ -25,17 +25,17 @@
         <relationship name="assessments" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="AssessmentCriteria" inverseName="subject" inverseEntity="AssessmentCriteria" syncable="YES"/>
         <relationship name="year" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Year" inverseName="subjects" inverseEntity="Year" syncable="YES"/>
     </entity>
-    <entity name="Year" syncable="YES">
-        <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <relationship name="qualification" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Qualification" inverseName="years" inverseEntity="Qualification" syncable="YES"/>
+    <entity name="Year" representedClassName="Year" syncable="YES">
+        <attribute name="endDate" attributeType="Date" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="startDate" attributeType="Date" syncable="YES"/>
+        <relationship name="qualification" maxCount="1" deletionRule="Nullify" destinationEntity="Qualification" inverseName="years" inverseEntity="Qualification" syncable="YES"/>
         <relationship name="subjects" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Subject" inverseName="year" inverseEntity="Subject" syncable="YES"/>
     </entity>
     <elements>
         <element name="AssessmentCriteria" positionX="378" positionY="-162" width="128" height="28"/>
         <element name="Qualification" positionX="-207" positionY="-126" width="128" height="28"/>
         <element name="Subject" positionX="196" positionY="-153" width="128" height="28"/>
-        <element name="Year" positionX="-2" positionY="-153" width="128" height="28"/>
+        <element name="Year" positionX="-2" positionY="-153" width="128" height="118"/>
     </elements>
 </model>

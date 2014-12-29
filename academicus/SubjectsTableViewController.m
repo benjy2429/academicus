@@ -140,7 +140,7 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source and the table view
-        [self.year.subjects removeObjectAtIndex:indexPath.row];
+//        [self.year.subjects removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
@@ -230,7 +230,7 @@
 {
     // Add the new item to the data array
     NSInteger newRowIndex = [self.year.subjects count];
-    [self.year.subjects addObject:subject];
+//    [self.year.subjects addObject:subject];
     
     // Insert a new cell for the item into the table
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:newRowIndex inSection:0];

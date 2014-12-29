@@ -7,11 +7,6 @@
 //
 
 #import "QualificationDetailTableViewController.h"
-#import "AppDelegate.h"
-
-@interface QualificationDetailTableViewController ()
-
-@end
 
 @implementation QualificationDetailTableViewController
 
@@ -46,28 +41,21 @@
 - (IBAction)done
 {
     if (self.itemToEdit != nil) {
-        // If editing, update the item and call the delegate method to dismiss the view
+        // If editing, update the item
         self.itemToEdit.name = self.nameField.text;
         
-        NSError *error;
-        if (![self.managedObjectContext save:&error]) {
-            COREDATA_ERROR(error);
-            return;
-        }
-        
     } else {
-        
+        // Else if the item is new, create a new entity
         Qualification *newQualification = [NSEntityDescription insertNewObjectForEntityForName:@"Qualification" inManagedObjectContext:self.managedObjectContext];
         
-        // If adding, create a new item and call the delegate method to dismiss the view
-        //Qualification *newQualification = [[Qualification alloc] init];
         newQualification.name = self.nameField.text;
-        
-        NSError *error;
-        if (![self.managedObjectContext save:&error]) {
-            COREDATA_ERROR(error);
-            return;
-        }
+    }
+    
+    // Save the item to the datastore
+    NSError *error;
+    if (![self.managedObjectContext save:&error]) {
+        COREDATA_ERROR(error);
+        return;
     }
     
     [self dismissViewControllerAnimated:YES completion:nil];

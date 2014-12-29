@@ -2,24 +2,20 @@
 //  Year.m
 //  academicus
 //
-//  Created by Luke on 18/12/2014.
+//  Created by Ben on 28/12/2014.
 //  Copyright (c) 2014 sheffield. All rights reserved.
 //
 
 #import "Year.h"
-#import "Subject.h"
+#import "Qualification.h"
+
 
 @implementation Year
 
-- (id) init {
-    self = [super init];
-    if (self) {
-        _subjects = [[NSMutableArray alloc] init];
-        Subject *s = [[Subject alloc] init]; //REMOVE SUBJECT IMPORT
-        s.name = @"Test Subject";
-        [_subjects addObject:s];
-    }
-    return self;
-}
+@dynamic endDate;
+@dynamic name;
+@dynamic startDate;
+@dynamic qualification;
+@dynamic subjects;
 
 @end

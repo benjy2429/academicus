@@ -11,7 +11,7 @@
 
 NSString* const ManagedObjectContextSaveDidFailNoification;
 
-@interface AppDelegate () <UIAlertViewDelegate>
+@interface AppDelegate ()
 
 @end
 
@@ -86,7 +86,6 @@ NSString* const ManagedObjectContextSaveDidFailNoification;
         NSError *error;
         if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
             NSLog(@"Error adding persistent store %@, %@", error, [error userInfo]);
-            abort();
         }
     }
     return _persistentStoreCoordinator;
@@ -110,11 +109,11 @@ NSString* const ManagedObjectContextSaveDidFailNoification;
 - (void)coreDataError:(NSNotification*)notification
 {
     //UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"We're sorry, there was an error accessing or saving your data. Please report this to the developers." delegate:self cancelButtonTitle:@"Quit" otherButtonTitles:nil];
-    //[alertView show];
+    //[alertView performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
 }
 
 
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+- (void)alertViewCancel:(UIAlertView *)alertView
 {
     abort();
 }

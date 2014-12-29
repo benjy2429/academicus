@@ -37,5 +37,6 @@
 @property (assign) BOOL startDatePickerVisible;
 @property (assign) BOOL endDatePickerVisible;
 
+@property (nonatomic, weak) NSManagedObjectContext *managedObjectContext;
 
 @end

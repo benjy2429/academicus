@@ -8,10 +8,6 @@
 
 #import "YearDetailTableViewController.h"
 
-@interface YearDetailTableViewController ()
-
-@end
-
 @implementation YearDetailTableViewController
 
 - (void)viewDidLoad
@@ -61,18 +57,20 @@
 - (IBAction)done
 {
     if (self.itemToEdit != nil) {
-        // If editing, update the item and call the delegate method to dismiss the view
+        // If editing, update the item
         self.itemToEdit.name = self.nameField.text;
         self.itemToEdit.startDate = self.startDate;
         self.itemToEdit.endDate = self.endDate;
+
         [self.delegate YearDetailTableViewController:self didFinishEditingYear:self.itemToEdit];
         
     } else {
-        // If adding, create a new item and call the delegate method to dismiss the view
-        Year *newYear = [[Year alloc] init];
+        // If adding, create a new item
+        Year *newYear = [NSEntityDescription insertNewObjectForEntityForName:@"Year" inManagedObjectContext:self.managedObjectContext];
         newYear.name = self.nameField.text;
         newYear.startDate = self.startDate;
         newYear.endDate = self.endDate;
+        
         [self.delegate YearDetailTableViewController:self didFinishAddingYear:newYear];
     }
 }

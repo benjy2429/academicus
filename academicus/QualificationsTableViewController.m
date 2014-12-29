@@ -45,6 +45,9 @@
 {
     [super viewDidLoad];
     
+    // Delete the cache to prevent inconsistencies in iOS7
+    [NSFetchedResultsController deleteCacheWithName:@"Years"];
+    
     // Retrieve the objects for this table view using CoreData
     [self performFetch];
 
@@ -277,6 +280,8 @@
         
     } else if ([segue.identifier isEqualToString:@"toYears"]) {
         YearsTableViewController *controller = (YearsTableViewController*) segue.destinationViewController;
+        
+        controller.managedObjectContext = self.managedObjectContext;
         
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         controller.qualification = [self.fetchedResultsController objectAtIndexPath:indexPath];
