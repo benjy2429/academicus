@@ -46,7 +46,16 @@
         self.teacherEmailField.text = self.itemToEdit.teacherEmail;
         
     } else {
-        self.colour = [UIColor grayColor];
+        // Assign a random colour to new items
+        float red = arc4random() / (double)ARC4_RAND_MAX;
+        float green = arc4random() / (double)ARC4_RAND_MAX;
+        float blue = arc4random() / (double)ARC4_RAND_MAX;
+        self.colour = [UIColor colorWithRed:red green:green blue:blue alpha:1.0f];
+        
+        self.redSlider.value = red;
+        self.greenSlider.value = green;
+        self.blueSlider.value = blue;
+        self.colourView.backgroundColor = self.colour;
       
         //TODO: Complete
         //TODO: This has not been added for all files so check other classes!!
@@ -83,13 +92,13 @@
         [alert show];
         return false;
     }
-    //Check for at weighting value
+    //Check for weighting value
     if ([self.weightingField.text floatValue] < 0 || [self.weightingField.text floatValue] > 100) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message: @"The year weighting must be 0-100%" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
         [alert show];
         return false;
     }
-    //Check for at target value
+    //Check for target value
     if ([self.targetField.text intValue] < 0 || [self.targetField.text intValue] > 100) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message: @"The target grade must be 0-100%" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
         [alert show];
@@ -144,7 +153,7 @@
         newSubject.teacherName = self.teacherNameField.text;
         newSubject.teacherEmail = self.teacherEmailField.text;
         
-        [self.delegate SubjectDetailTableViewController:self didFinishEditingSubject: newSubject];
+        [self.delegate SubjectDetailTableViewController:self didFinishAddingSubject: newSubject];
 
     }
 }
@@ -160,12 +169,10 @@
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     NSString *newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    
     switch (textField.tag) {
         //If weighting field
-        case 1: {
+        case 1:
             return ([newText length] < 3 || [newText isEqual: @"100"] || ([newText characterAtIndex:2] == '.' && [newText length] < 6) || ([newText characterAtIndex:1] == '.' && [newText length] < 5));
-        }
             break;
         //If target field
         case 2:
@@ -177,6 +184,23 @@
     }
 }
 
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    switch (textField.tag) {
+            //If grade field
+        case 1:
+            textField.text = [NSString stringWithFormat:@"%.2f", [textField.text floatValue]];
+            break;
+            //If rating field
+        case 2:
+            textField.text = [NSString stringWithFormat:@"%i", [textField.text intValue]];
+            break;
+            //Otherwise
+        default:
+            return;
+    }
+}
 
 
 - (IBAction)colourSliderChanged
