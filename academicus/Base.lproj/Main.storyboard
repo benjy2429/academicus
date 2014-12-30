@@ -1408,6 +1408,9 @@
                                                     <rect key="frame" x="15" y="7" width="570" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="numberPad"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="1vS-2o-h2S" id="f0D-AD-Q20"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>

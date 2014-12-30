@@ -17,8 +17,8 @@
     self.positiveFeedbackField.text = POSITIVE_FEEDBACK_PLACEHOLDER;
     self.negativeFeedbackField.text = NEGATIVE_FEEDBACK_PLACEHOLDER;
     self.notesField.text = NOTES_PLACEHOLDER;
-    
-    if (self.itemToEdit.hasGrade) {
+
+    if ([self.itemToEdit.hasGrade boolValue]) {
         self.gradeField.text = [NSString stringWithFormat:@"%.2f", [self.itemToEdit.finalGrade floatValue]];
         self.ratingField.text = (self.itemToEdit.rating != 0) ? [NSString stringWithFormat:@"%d", [self.itemToEdit.rating intValue]] : @"";
         
@@ -102,7 +102,7 @@
     self.itemToEdit.rating = (![self.ratingField.text isEqualToString:@""]) ? [NSNumber numberWithInt:[self.ratingField.text intValue]] : 0;
     self.itemToEdit.positiveFeedback = (![self.positiveFeedbackField.text isEqualToString:POSITIVE_FEEDBACK_PLACEHOLDER]) ? self.positiveFeedbackField.text : @"";
     self.itemToEdit.negativeFeedback = (![self.negativeFeedbackField.text isEqualToString:NEGATIVE_FEEDBACK_PLACEHOLDER]) ? self.negativeFeedbackField.text : @"";
-    self.itemToEdit.notes = self.notesField.text;
+    self.itemToEdit.notes = (![self.notesField.text isEqualToString:NOTES_PLACEHOLDER]) ? self.notesField.text : @"";
     //self.itemToEdit.picture =
     
     [self.delegate AssessmentGradeTableViewController:self didFinishEditingAssessment:self.itemToEdit];
@@ -126,7 +126,7 @@
             break;
         //If rating field
         case 101:
-            return ([self.ratingField.text intValue] > 0 && [self.ratingField.text intValue] < 6);
+            return ([newText length] < 1 || ([newText intValue] > 0 && [newText intValue] < 6));
             break;
         //Otherwise
         default:
@@ -144,7 +144,7 @@
             textField.text = [NSString stringWithFormat:@"%.2f", [textField.text floatValue]];
             break;
             //If rating field
-        case 201:
+        case 101:
             textField.text = [NSString stringWithFormat:@"%i", [textField.text intValue]];
             break;
         //Otherwise

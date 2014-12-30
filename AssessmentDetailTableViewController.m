@@ -136,6 +136,12 @@
     }
 }
 
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if (textField.tag == 1) {
+        textField.text = [NSString stringWithFormat:@"%.2f", [textField.text floatValue]];
+    }
+}
 
 - (NSString*)formatDate:(NSDate*)date
 {
