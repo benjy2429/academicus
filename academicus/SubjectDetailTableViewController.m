@@ -8,6 +8,8 @@
 
 #import "SubjectDetailTableViewController.h"
 
+#define ARC4_RAND_MAX 0x100000000
+
 @implementation SubjectDetailTableViewController
 
 - (void)viewDidLoad

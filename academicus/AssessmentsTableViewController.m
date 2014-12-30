@@ -135,7 +135,41 @@
 {
     // Get the object for this cell and set the labels
     AssessmentCriteria *currentAssessment = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = currentAssessment.name;
+    
+    if ([currentAssessment.hasGrade boolValue]) {
+        cell.backgroundColor = [UIColor colorWithRed:0.9f green:1.0f blue:0.9f alpha:1.0f];
+    } else if ([[NSDate date] compare:currentAssessment.deadline] == NSOrderedDescending) {
+        cell.backgroundColor = [UIColor colorWithRed:1.0f green:0.9f blue:0.9f alpha:1.0f];
+    }
+    
+    UILabel *dueDateLabel = (UILabel *) [cell viewWithTag:100];
+    UILabel *dueMonthLabel = (UILabel *) [cell viewWithTag:101];
+    UILabel *nameLabel = (UILabel *) [cell viewWithTag:102];
+    UILabel *countdownLabel = (UILabel *) [cell viewWithTag:103];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"d"];
+    dueDateLabel.text = [formatter stringFromDate:currentAssessment.deadline];
+    
+    [formatter setDateFormat:@"MMM"];
+    dueMonthLabel.text = [formatter stringFromDate:currentAssessment.deadline];
+    
+    nameLabel.text = currentAssessment.name;
+    
+    // Calculate the number of days between today and the assignment deadline
+    NSDate *currentDate = [NSDate date];
+    NSDate *deadlineDate = currentAssessment.deadline;
+    
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&currentDate interval:nil forDate:currentDate];
+    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&deadlineDate interval:nil forDate:deadlineDate];
+    NSDateComponents *difference = [calendar components:NSDayCalendarUnit fromDate:currentDate toDate:deadlineDate options:0];
+    
+    if ([difference day] < 0) {
+        countdownLabel.text = [NSString stringWithFormat:@"Deadline passed"];
+    } else {
+        countdownLabel.text = [NSString stringWithFormat:@"%ld days remaining", [difference day]];
+    }
 }
 
 
