@@ -20,13 +20,10 @@
         self.nameField.text = self.itemToEdit.name;
         self.startDate = self.itemToEdit.startDate;
         self.endDate = self.itemToEdit.endDate;
-        
-        self.doneBtn.enabled = YES;
     } else {
         // If no item was passed through, create default date values
         self.startDate = [NSDate date];
-        self.endDate = [NSDate date];
-        self.doneBtn.enabled = NO;
+        self.endDate = self.startDate;
     }
     
     // Assign the stored dates to the labels on the view
@@ -54,8 +51,34 @@
 }
 
 
+- (BOOL) isEnteredDataValid
+{
+    //Check for the presence of a name
+    if ([self.nameField.text length] < 1) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message: @"You must provide a name" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return false;
+    }
+    //Check that the name length is less than 15
+    if ([self.nameField.text length] > 15) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message: @"The name must be less than 15 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return false;
+    }
+    //Check that start date is before end date
+    if ([self.startDate timeIntervalSince1970] >= [self.endDate timeIntervalSince1970]) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message: @"The start date must be before the end date" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return false;
+    }
+    return true;
+}
+
+
 - (IBAction)done
 {
+    if (![self isEnteredDataValid]) {return;}
+    
     if (self.itemToEdit != nil) {
         // If editing, update the item
         self.itemToEdit.name = self.nameField.text;
@@ -73,16 +96,6 @@
         
         [self.delegate YearDetailTableViewController:self didFinishAddingYear:newYear];
     }
-}
-
-
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-    // Only enable the done button when the name field is not empty
-    NSString *newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    self.doneBtn.enabled = ([newText length] > 0);
-    
-    return YES;
 }
 
 

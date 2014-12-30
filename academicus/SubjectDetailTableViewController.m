@@ -43,10 +43,8 @@
         self.teacherNameField.text = self.itemToEdit.teacherName;
         self.teacherEmailField.text = self.itemToEdit.teacherEmail;
         
-        self.doneBtn.enabled = YES;
     } else {
         self.colour = [UIColor grayColor];
-        self.doneBtn.enabled = NO;
       
         //TODO: Complete
         //TODO: This has not been added for all files so check other classes!!
@@ -69,8 +67,58 @@
 }
 
 
+- (BOOL) isEnteredDataValid
+{
+    //Check for the presence of a name
+    if ([self.nameField.text length] < 1) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message: @"You must provide a name" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return false;
+    }
+    //Check that the name length is less than 30
+    if ([self.nameField.text length] > 30) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message: @"The name must be less than 30 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return false;
+    }
+    //Check for at weighting value
+    if ([self.weightingField.text floatValue] < 0 || [self.weightingField.text floatValue] > 100) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message: @"The year weighting must be 0-100%" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return false;
+    }
+    //Check for at target value
+    if ([self.targetField.text intValue] < 0 || [self.targetField.text intValue] > 100) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message: @"The target grade must be 0-100%" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return false;
+    }
+    //Check that the teacher name length is less than 20
+    if ([self.teacherNameField.text length] > 20) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message: @"The teacher name must be less than 20 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return false;
+    }
+    //Check that the name length is less than 30
+    if ([self.teacherEmailField.text length] > 30) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message: @"The teacher email must be less than 30 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return false;
+    }
+    //Check that the location length is less than 50
+    if ([self.nameField.text length] > 50) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message: @"The location must be less than 50 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return false;
+    }
+    return true;
+}
+
+
 - (IBAction)done
 {
+    if (![self isEnteredDataValid]) {return;}
+    
     if (self.itemToEdit != nil) {
         // If editing, update the item and call the delegate method to dismiss the view
         self.itemToEdit.name = self.nameField.text;
@@ -90,9 +138,12 @@
         newSubject.yearWeighting = [NSNumber numberWithFloat:[self.weightingField.text floatValue]];
         newSubject.targetGrade = [NSNumber numberWithInt: [self.targetField.text intValue]];
         newSubject.colour = self.colour;
-        //self.itemToEdit.location //TODO: Set locaiton value
-        self.itemToEdit.teacherName = self.teacherNameField.text;
-        self.itemToEdit.teacherEmail = self.teacherEmailField.text;
+        //newSubject.location = self.locationField.text; //TODO: Set locaiton value
+        newSubject.teacherName = self.teacherNameField.text;
+        newSubject.teacherEmail = self.teacherEmailField.text;
+        
+        [self.delegate SubjectDetailTableViewController:self didFinishEditingSubject: newSubject];
+
     }
 }
 
@@ -108,13 +159,11 @@
 {
     NSString *newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
     
-    // Only enable the done button when the required fields are not empty
-    self.doneBtn.enabled = (textField.tag == 0 && [newText length] > 0);
-    
     switch (textField.tag) {
         //If weighting field
-        case 1:
+        case 1: {
             return ([newText length] < 3 || [newText isEqual: @"100"] || ([newText characterAtIndex:2] == '.' && [newText length] < 6) || ([newText characterAtIndex:1] == '.' && [newText length] < 5));
+        }
             break;
         //If target field
         case 2:
