@@ -19,6 +19,8 @@
     self.notesField.text = NOTES_PLACEHOLDER;
 
     if ([self.itemToEdit.hasGrade boolValue]) {
+        self.title = @"Edit Grade";
+        
         self.gradeField.text = [NSString stringWithFormat:@"%.2f", [self.itemToEdit.finalGrade floatValue]];
         self.ratingField.text = (self.itemToEdit.rating != 0) ? [NSString stringWithFormat:@"%d", [self.itemToEdit.rating intValue]] : @"";
         
@@ -65,7 +67,7 @@
         return false;
     }
     // Validate that the rating is between 1 and 5
-    if (![self.ratingField.text isEqualToString:@""] && ([self.ratingField.text intValue] < 1 || [self.ratingField.text intValue] > 5)) {
+    if ([self.ratingField.text intValue] < 1 || [self.ratingField.text intValue] > 5) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message: @"The assessment raitng must be between 1-5" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
         [alert show];
         return false;

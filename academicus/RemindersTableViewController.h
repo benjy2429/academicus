@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AssessmentCriteria.h"
+#import "AssessmentGradeTableViewController.h"
+#define UPCOMING_PREDICATE @"deadline > %@"
+#define PAST_PREDICATE @"deadline <= %@"
 
-@interface RemindersTableViewController : UITableViewController
+@interface RemindersTableViewController : UITableViewController <AssessmentGradeTableViewControllerDelegate,NSFetchedResultsControllerDelegate>
+
+@property (strong) NSString* predicateString;
+@property (nonatomic, weak) NSManagedObjectContext *managedObjectContext;
+
+- (IBAction)segmentSwitch:(id)sender;
 
 @end
