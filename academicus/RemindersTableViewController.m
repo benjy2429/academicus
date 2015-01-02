@@ -31,11 +31,11 @@
         [fetchRequest setEntity:entity];
         
         // Set the sorting preference
-        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"deadline" ascending:[self.predicateString isEqualToString:UPCOMING_PREDICATE]];
+        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"deadline" ascending:!self.isPast];
         [fetchRequest setSortDescriptors:@[sortDescriptor]];
         
         // Set the predicate
-        NSPredicate *predicate = [NSPredicate predicateWithFormat: self.predicateString, [NSDate date]];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat: (self.isPast ? PAST_PREDICATE : UPCOMING_PREDICATE), [NSDate date]];
         [fetchRequest setPredicate:predicate];
         
         // Create the fetched results controller
@@ -52,8 +52,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.predicateString = UPCOMING_PREDICATE;
+
+    self.isPast = false;
     
     // Delete the cache to prevent inconsistencies in iOS7
     [NSFetchedResultsController deleteCacheWithName:@"Reminders"];
@@ -90,9 +90,9 @@
     UISegmentedControl* segmentControl = (UISegmentedControl*) sender;
     NSInteger selectedSegment = segmentControl.selectedSegmentIndex;
     if (selectedSegment == 0) {
-        self.predicateString = UPCOMING_PREDICATE;
+        self.isPast = false;
     } else {
-        self.predicateString = PAST_PREDICATE;
+        self.isPast = true;
     }
     
     // Delete the cache
@@ -122,7 +122,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Assign the correct identifier for this cell
-    NSString *myIdentifier = @"reminderCell";
+    NSString *myIdentifier;
+    if (self.isPast) {
+        myIdentifier = @"pastCell";
+    } else {
+        myIdentifier = @"upcomingCell";
+    }
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:myIdentifier];
     
     if (cell == nil) {
@@ -139,8 +145,10 @@
 {
     // Get the object for this cell and set the labels
     AssessmentCriteria *assessment = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    
-    cell.textLabel.text = assessment.name;
+     UILabel *nameLabel = (UILabel *)[cell viewWithTag:100];
+     nameLabel.text = assessment.name;
+     UIView *colourBar = (UIView *)[cell viewWithTag:101];
+     colourBar.backgroundColor = assessment.subject.colour;
 }
 
 
