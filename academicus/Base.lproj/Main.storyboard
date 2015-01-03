@@ -240,7 +240,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="bX4-3W-pcN">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <rect key="frame" x="0.0" y="64" width="600" height="568"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bza-Hq-i7w">
@@ -284,7 +284,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dAT-jz-5qO" id="xfH-6t-j89">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view tag="101" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5HQ-dW-404">
+                                        <view tag="100" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5HQ-dW-404">
                                             <rect key="frame" x="0.0" y="0.0" width="295" height="60"/>
                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -301,13 +301,19 @@
                                                 </mask>
                                             </variation>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Dec" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fe9-1a-chm">
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVF-Un-oXc">
+                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dec" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fe9-1a-chm">
                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GZX-Gh-xTQ">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GZX-Gh-xTQ">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -324,7 +330,7 @@
                                                 </mask>
                                             </variation>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Wiggly Wormhole" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SUO-I2-QCS">
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="200" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Wiggly Wormhole" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SUO-I2-QCS">
                                             <rect key="frame" x="309" y="19" width="250" height="21"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -333,25 +339,25 @@
                                                 <rect key="frame" x="109" y="20" width="250" height="21"/>
                                             </variation>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="COM4510 Mobile Devices" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uzx-NG-BZj">
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="201" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COM4510 Mobile Devices" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uzx-NG-BZj">
                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="★★★★☆" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9s1-kk-tL1">
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="202" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="★★★★☆" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9s1-kk-tL1">
                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="italicSystem" pointSize="13"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="99%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TT7-TS-cXc">
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="300" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TT7-TS-cXc">
                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E9T-AO-lhj">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E9T-AO-lhj">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -368,12 +374,6 @@
                                                 </mask>
                                             </variation>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVF-Un-oXc">
-                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottomMargin" secondItem="5HQ-dW-404" secondAttribute="bottom" constant="-8" id="01h-0w-0GO">
@@ -409,84 +409,84 @@
                                     </constraints>
                                     <variation key="default">
                                         <mask key="subviews">
+                                            <exclude reference="CVF-Un-oXc"/>
                                             <exclude reference="fe9-1a-chm"/>
                                             <exclude reference="GZX-Gh-xTQ"/>
                                             <exclude reference="uzx-NG-BZj"/>
                                             <exclude reference="9s1-kk-tL1"/>
                                             <exclude reference="TT7-TS-cXc"/>
                                             <exclude reference="E9T-AO-lhj"/>
-                                            <exclude reference="CVF-Un-oXc"/>
                                         </mask>
                                         <mask key="constraints">
                                             <exclude reference="01h-0w-0GO"/>
                                             <exclude reference="jGu-8C-Li1"/>
                                             <exclude reference="lwT-aI-LFQ"/>
+                                            <exclude reference="MQX-Ne-vfO"/>
+                                            <exclude reference="NBU-Zz-SuS"/>
                                             <exclude reference="vG7-3E-lbj"/>
                                             <exclude reference="wNk-35-GQA"/>
+                                            <exclude reference="PaW-ar-H2e"/>
+                                            <exclude reference="VMj-6I-Dym"/>
+                                            <exclude reference="Zts-gd-93o"/>
+                                            <exclude reference="czr-SB-9wF"/>
                                             <exclude reference="5ub-aa-Tym"/>
                                             <exclude reference="Vpe-YV-BCA"/>
-                                            <exclude reference="BFG-cJ-mhD"/>
-                                            <exclude reference="JK5-As-KI2"/>
-                                            <exclude reference="OQN-Av-7vZ"/>
-                                            <exclude reference="fwG-vO-pZF"/>
-                                            <exclude reference="sEB-4D-8u2"/>
+                                            <exclude reference="hwt-Lo-CL4"/>
+                                            <exclude reference="j9T-5B-ZWf"/>
                                             <exclude reference="6Xi-jg-dk3"/>
                                             <exclude reference="8Wb-Uc-EzR"/>
                                             <exclude reference="9Yx-Dp-QKL"/>
-                                            <exclude reference="hwt-Lo-CL4"/>
-                                            <exclude reference="j9T-5B-ZWf"/>
-                                            <exclude reference="MQX-Ne-vfO"/>
-                                            <exclude reference="NBU-Zz-SuS"/>
                                             <exclude reference="igJ-MZ-Iqb"/>
                                             <exclude reference="mS1-N6-0Tu"/>
                                             <exclude reference="oZX-AP-Wis"/>
                                             <exclude reference="vWJ-LK-q9U"/>
                                             <exclude reference="wDs-hh-myd"/>
-                                            <exclude reference="PaW-ar-H2e"/>
-                                            <exclude reference="VMj-6I-Dym"/>
-                                            <exclude reference="Zts-gd-93o"/>
-                                            <exclude reference="czr-SB-9wF"/>
+                                            <exclude reference="BFG-cJ-mhD"/>
+                                            <exclude reference="JK5-As-KI2"/>
+                                            <exclude reference="OQN-Av-7vZ"/>
+                                            <exclude reference="fwG-vO-pZF"/>
+                                            <exclude reference="sEB-4D-8u2"/>
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact">
                                         <mask key="subviews">
+                                            <include reference="CVF-Un-oXc"/>
                                             <include reference="fe9-1a-chm"/>
                                             <include reference="GZX-Gh-xTQ"/>
                                             <include reference="uzx-NG-BZj"/>
                                             <include reference="9s1-kk-tL1"/>
                                             <include reference="TT7-TS-cXc"/>
                                             <include reference="E9T-AO-lhj"/>
-                                            <include reference="CVF-Un-oXc"/>
                                         </mask>
                                         <mask key="constraints">
                                             <include reference="01h-0w-0GO"/>
                                             <include reference="jGu-8C-Li1"/>
                                             <include reference="lwT-aI-LFQ"/>
+                                            <include reference="MQX-Ne-vfO"/>
+                                            <include reference="NBU-Zz-SuS"/>
                                             <include reference="vG7-3E-lbj"/>
                                             <include reference="wNk-35-GQA"/>
+                                            <include reference="PaW-ar-H2e"/>
+                                            <include reference="VMj-6I-Dym"/>
+                                            <include reference="Zts-gd-93o"/>
+                                            <include reference="czr-SB-9wF"/>
                                             <include reference="5ub-aa-Tym"/>
                                             <include reference="Vpe-YV-BCA"/>
-                                            <include reference="BFG-cJ-mhD"/>
-                                            <include reference="JK5-As-KI2"/>
-                                            <include reference="OQN-Av-7vZ"/>
-                                            <include reference="fwG-vO-pZF"/>
-                                            <include reference="sEB-4D-8u2"/>
+                                            <include reference="hwt-Lo-CL4"/>
+                                            <include reference="j9T-5B-ZWf"/>
                                             <include reference="6Xi-jg-dk3"/>
                                             <include reference="8Wb-Uc-EzR"/>
                                             <include reference="9Yx-Dp-QKL"/>
-                                            <include reference="hwt-Lo-CL4"/>
-                                            <include reference="j9T-5B-ZWf"/>
-                                            <include reference="MQX-Ne-vfO"/>
-                                            <include reference="NBU-Zz-SuS"/>
                                             <include reference="igJ-MZ-Iqb"/>
                                             <include reference="mS1-N6-0Tu"/>
                                             <include reference="oZX-AP-Wis"/>
                                             <include reference="vWJ-LK-q9U"/>
                                             <include reference="wDs-hh-myd"/>
-                                            <include reference="PaW-ar-H2e"/>
-                                            <include reference="VMj-6I-Dym"/>
-                                            <include reference="Zts-gd-93o"/>
-                                            <include reference="czr-SB-9wF"/>
+                                            <include reference="BFG-cJ-mhD"/>
+                                            <include reference="JK5-As-KI2"/>
+                                            <include reference="OQN-Av-7vZ"/>
+                                            <include reference="fwG-vO-pZF"/>
+                                            <include reference="sEB-4D-8u2"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
@@ -496,7 +496,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SJY-gY-sWd" id="I7o-Ud-HLj">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view tag="101" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EcY-cM-5Ld">
+                                        <view tag="100" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EcY-cM-5Ld">
                                             <rect key="frame" x="0.0" y="0.0" width="295" height="60"/>
                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -513,19 +513,19 @@
                                                 </mask>
                                             </variation>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uj1-n0-Ovx">
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uj1-n0-Ovx">
                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Dec" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4IU-64-pEM">
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dec" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4IU-64-pEM">
                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ElB-S7-efp">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ElB-S7-efp">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -542,7 +542,7 @@
                                                 </mask>
                                             </variation>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Wiggly Wormhole" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rVV-Yg-sex">
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="200" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Wiggly Wormhole" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rVV-Yg-sex">
                                             <rect key="frame" x="309" y="19" width="250" height="21"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -551,19 +551,19 @@
                                                 <rect key="frame" x="109" y="20" width="250" height="21"/>
                                             </variation>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="COM4510 Mobile Devices" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJw-aB-B6m">
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="201" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COM4510 Mobile Devices" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJw-aB-B6m">
                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="5 Days Remaining" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J0B-eO-QzD">
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="202" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 Days Remaining" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J0B-eO-QzD">
                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="italicSystem" pointSize="13"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="⏰" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EXW-Z8-IAC">
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="300" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⏰" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EXW-Z8-IAC">
                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -588,6 +588,7 @@
                                         <constraint firstItem="EcY-cM-5Ld" firstAttribute="leading" secondItem="I7o-Ud-HLj" secondAttribute="leadingMargin" constant="-8" id="k4S-6M-1pN"/>
                                         <constraint firstItem="rVV-Yg-sex" firstAttribute="leading" secondItem="EcY-cM-5Ld" secondAttribute="trailing" constant="74" id="krR-fP-sYs"/>
                                         <constraint firstItem="EcY-cM-5Ld" firstAttribute="top" secondItem="I7o-Ud-HLj" secondAttribute="topMargin" constant="-8" id="lwU-xN-R1k"/>
+                                        <constraint firstAttribute="centerY" secondItem="EXW-Z8-IAC" secondAttribute="centerY" id="nW7-v4-Zq0"/>
                                         <constraint firstAttribute="trailing" secondItem="gJw-aB-B6m" secondAttribute="trailing" id="ppc-oz-uWv"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="ElB-S7-efp" secondAttribute="bottom" constant="-8" id="srt-F3-BFZ"/>
                                         <constraint firstItem="gJw-aB-B6m" firstAttribute="leading" secondItem="EcY-cM-5Ld" secondAttribute="trailing" constant="74" id="tHM-16-sk8"/>
@@ -605,27 +606,28 @@
                                             <exclude reference="EXW-Z8-IAC"/>
                                         </mask>
                                         <mask key="constraints">
+                                            <exclude reference="DHF-pG-FVb"/>
+                                            <exclude reference="EwZ-xL-wqq"/>
+                                            <exclude reference="8IM-PP-2iP"/>
+                                            <exclude reference="nW7-v4-Zq0"/>
                                             <exclude reference="k4S-6M-1pN"/>
                                             <exclude reference="lwU-xN-R1k"/>
                                             <exclude reference="vXv-m5-eUQ"/>
+                                            <exclude reference="Lzh-no-Adk"/>
+                                            <exclude reference="iKG-1O-65a"/>
+                                            <exclude reference="Taz-6c-pnb"/>
+                                            <exclude reference="ppc-oz-uWv"/>
+                                            <exclude reference="tHM-16-sk8"/>
                                             <exclude reference="N5a-6M-Zmx"/>
                                             <exclude reference="grD-Qw-T4g"/>
-                                            <exclude reference="DHF-pG-FVb"/>
-                                            <exclude reference="EwZ-xL-wqq"/>
+                                            <exclude reference="OHm-ec-vQX"/>
+                                            <exclude reference="W7T-dM-V9c"/>
+                                            <exclude reference="krR-fP-sYs"/>
                                             <exclude reference="1jg-Ql-LdN"/>
                                             <exclude reference="5JZ-0V-goZ"/>
                                             <exclude reference="Kuo-t9-WGs"/>
                                             <exclude reference="R7b-wV-Uue"/>
                                             <exclude reference="srt-F3-BFZ"/>
-                                            <exclude reference="OHm-ec-vQX"/>
-                                            <exclude reference="W7T-dM-V9c"/>
-                                            <exclude reference="krR-fP-sYs"/>
-                                            <exclude reference="Taz-6c-pnb"/>
-                                            <exclude reference="ppc-oz-uWv"/>
-                                            <exclude reference="tHM-16-sk8"/>
-                                            <exclude reference="Lzh-no-Adk"/>
-                                            <exclude reference="iKG-1O-65a"/>
-                                            <exclude reference="8IM-PP-2iP"/>
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact">
@@ -638,27 +640,28 @@
                                             <include reference="EXW-Z8-IAC"/>
                                         </mask>
                                         <mask key="constraints">
+                                            <include reference="DHF-pG-FVb"/>
+                                            <include reference="EwZ-xL-wqq"/>
+                                            <include reference="8IM-PP-2iP"/>
+                                            <include reference="nW7-v4-Zq0"/>
                                             <include reference="k4S-6M-1pN"/>
                                             <include reference="lwU-xN-R1k"/>
                                             <include reference="vXv-m5-eUQ"/>
+                                            <include reference="Lzh-no-Adk"/>
+                                            <include reference="iKG-1O-65a"/>
+                                            <include reference="Taz-6c-pnb"/>
+                                            <include reference="ppc-oz-uWv"/>
+                                            <include reference="tHM-16-sk8"/>
                                             <include reference="N5a-6M-Zmx"/>
                                             <include reference="grD-Qw-T4g"/>
-                                            <include reference="DHF-pG-FVb"/>
-                                            <include reference="EwZ-xL-wqq"/>
+                                            <include reference="OHm-ec-vQX"/>
+                                            <include reference="W7T-dM-V9c"/>
+                                            <include reference="krR-fP-sYs"/>
                                             <include reference="1jg-Ql-LdN"/>
                                             <include reference="5JZ-0V-goZ"/>
                                             <include reference="Kuo-t9-WGs"/>
                                             <include reference="R7b-wV-Uue"/>
                                             <include reference="srt-F3-BFZ"/>
-                                            <include reference="OHm-ec-vQX"/>
-                                            <include reference="W7T-dM-V9c"/>
-                                            <include reference="krR-fP-sYs"/>
-                                            <include reference="Taz-6c-pnb"/>
-                                            <include reference="ppc-oz-uWv"/>
-                                            <include reference="tHM-16-sk8"/>
-                                            <include reference="Lzh-no-Adk"/>
-                                            <include reference="iKG-1O-65a"/>
-                                            <include reference="8IM-PP-2iP"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>

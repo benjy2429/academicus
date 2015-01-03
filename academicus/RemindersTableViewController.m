@@ -145,10 +145,59 @@
 {
     // Get the object for this cell and set the labels
     AssessmentCriteria *assessment = [self.fetchedResultsController objectAtIndexPath:indexPath];
-     UILabel *nameLabel = (UILabel *)[cell viewWithTag:100];
-     nameLabel.text = assessment.name;
-     UIView *colourBar = (UIView *)[cell viewWithTag:101];
-     colourBar.backgroundColor = assessment.subject.colour;
+
+    //Subject Colour
+    UIView *colourBar = (UIView *)[cell viewWithTag:100];
+    colourBar.backgroundColor = assessment.subject.colour;
+    
+    //Date labels
+    UILabel *dateDayLabel = (UILabel *)[cell viewWithTag:101];
+    NSCalendar* calender = [NSCalendar currentCalendar];
+    NSDateComponents* dateComponents = [calender components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:assessment.deadline];
+    NSInteger day = [dateComponents day];
+    NSString* dayS = @(day).stringValue;
+    dateDayLabel.text = dayS;
+    UILabel *dateMonthLabel = (UILabel *)[cell viewWithTag:102];
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    dateMonthLabel.text = [[dateFormatter shortMonthSymbols] objectAtIndex:([dateComponents month]-1)];
+ 
+    //Assessment Information
+    UILabel *assessmentNameLabel = (UILabel *)[cell viewWithTag:200];
+    assessmentNameLabel.text = assessment.name;
+    UILabel *subjectNameLabel = (UILabel *)[cell viewWithTag:201];
+    subjectNameLabel.text = assessment.subject.name;
+
+    if (self.isPast) {
+        UILabel *ratingLabel = (UILabel *)[cell viewWithTag:202];
+        switch ([assessment.rating intValue]) {
+            case 1: ratingLabel.text = @"★☆☆☆☆"; break;
+            case 2: ratingLabel.text = @"★★☆☆☆"; break;
+            case 3: ratingLabel.text = @"★★★☆☆"; break;
+            case 4: ratingLabel.text = @"★★★★☆"; break;
+            case 5: ratingLabel.text = @"★★★★★"; break;
+            default: ratingLabel.text = @"No rating"; break;
+        }
+        UILabel *gradeLabel = (UILabel *)[cell viewWithTag:300];
+        gradeLabel.text = (assessment.finalGrade) ? [NSString stringWithFormat: @"%d%%",[assessment.finalGrade intValue]] : @"?";
+    } else {
+        UILabel *daysRemainingLabel = (UILabel *)[cell viewWithTag:202];
+        NSTimeInterval secondsBetween = [assessment.deadline timeIntervalSinceDate:[NSDate date]];
+
+        int daysBetween = secondsBetween/86400;
+        switch (daysBetween) {
+            case 0: daysRemainingLabel.text = @"Due today"; break;
+            case 1: daysRemainingLabel.text = @"Due tomorrow"; break;
+            default: {
+                if (daysBetween < 366) {
+                    daysRemainingLabel.text = [NSString stringWithFormat: @"You have %i days remaining", daysBetween];
+                } else {
+                    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+                    [dateFormatter setDateFormat:@"dd-MM-yyyy"];
+                    daysRemainingLabel.text = [NSString stringWithFormat: @"Due on %@", [dateFormatter stringFromDate:assessment.deadline]];  break;
+                }
+            }
+        }
+    }
 }
 
 
