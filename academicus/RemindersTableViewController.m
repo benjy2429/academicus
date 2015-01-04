@@ -13,88 +13,237 @@
 @end
 
 @implementation RemindersTableViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+{
+    // Local instance variable for the fetched results controller
+    NSFetchedResultsController *_fetchedResultsController;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+// Custom getter for the fetched results controller
+- (NSFetchedResultsController*)fetchedResultsController
+{
+    // Initialise the fetched results controller if nil
+    if (_fetchedResultsController == nil) {
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        
+        // Get the objects from the managed object context
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"AssessmentCriteria" inManagedObjectContext:self.managedObjectContext];
+        [fetchRequest setEntity:entity];
+        
+        // Set the sorting preference
+        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"deadline" ascending:!self.isPast];
+        [fetchRequest setSortDescriptors:@[sortDescriptor]];
+        
+        // Set the predicate
+        NSPredicate *predicate = [NSPredicate predicateWithFormat: (self.isPast ? PAST_PREDICATE : UPCOMING_PREDICATE), [NSDate date]];
+        [fetchRequest setPredicate:predicate];
+        
+        // Create the fetched results controller
+        _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Reminders"];
+        
+        // Assign this class as the delegate
+        _fetchedResultsController.delegate = self;
+    }
+    
+    return _fetchedResultsController;
+}
+
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+    self.isPast = false;
+    
+    // Delete the cache to prevent inconsistencies in iOS7
+    [NSFetchedResultsController deleteCacheWithName:@"Reminders"];
+    
+    // Retrieve the objects for this table view using CoreData
+    [self performFetch];
+    
+    // Add an edit button to the navigation bar
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+
+- (void)performFetch
+{
+    // Fetch the data for the table view using CoreData
+    NSError *error;
+    if (![self.fetchedResultsController performFetch:&error]) {
+        
+        // Throw a custom error if the fetch fails
+        COREDATA_ERROR(error);
+        return;
+    }
+}
+
+
+- (void)dealloc
+{
+    // Stop the fetched results controller from sending notifications if the view is deallocated
+    _fetchedResultsController.delegate = nil;
+}
+
+
+- (IBAction)segmentSwitch:(id)sender {
+    UISegmentedControl* segmentControl = (UISegmentedControl*) sender;
+    NSInteger selectedSegment = segmentControl.selectedSegmentIndex;
+    if (selectedSegment == 0) {
+        self.isPast = false;
+    } else {
+        self.isPast = true;
+    }
+    
+    // Delete the cache
+    [NSFetchedResultsController deleteCacheWithName:@"Reminders"];
+    _fetchedResultsController = nil;
+    [self performFetch];
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections
+    return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    // Return the number of rows in each section
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
+    return [sectionInfo numberOfObjects];
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Assign the correct identifier for this cell
+    NSString *myIdentifier;
+    if (self.isPast) {
+        myIdentifier = @"pastCell";
+    } else {
+        myIdentifier = @"upcomingCell";
+    }
     
-    // Configure the cell...
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:myIdentifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:myIdentifier];
+    }
+    
+    [self configureCell:cell atIndexPath:indexPath];
     
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath*)indexPath
+{
+    // Get the object for this cell and set the labels
+    AssessmentCriteria *assessment = [self.fetchedResultsController objectAtIndexPath:indexPath];
+
+    //Subject Colour
+    UIView *colourBar = (UIView *)[cell viewWithTag:100];
+    colourBar.backgroundColor = assessment.subject.colour;
+    
+    //Date labels
+    UILabel *dateDayLabel = (UILabel *)[cell viewWithTag:101];
+    NSCalendar* calender = [NSCalendar currentCalendar];
+    NSDateComponents* dateComponents = [calender components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:assessment.deadline];
+    NSInteger day = [dateComponents day];
+    NSString* dayS = @(day).stringValue;
+    dateDayLabel.text = dayS;
+    UILabel *dateMonthLabel = (UILabel *)[cell viewWithTag:102];
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    dateMonthLabel.text = [[dateFormatter shortMonthSymbols] objectAtIndex:([dateComponents month]-1)];
+ 
+    //Assessment Information
+    UILabel *assessmentNameLabel = (UILabel *)[cell viewWithTag:200];
+    assessmentNameLabel.text = assessment.name;
+    UILabel *subjectNameLabel = (UILabel *)[cell viewWithTag:201];
+    subjectNameLabel.text = assessment.subject.name;
+
+    if (self.isPast) {
+        UILabel *ratingLabel = (UILabel *)[cell viewWithTag:202];
+        switch ([assessment.rating intValue]) {
+            case 1: ratingLabel.text = @"★☆☆☆☆"; break;
+            case 2: ratingLabel.text = @"★★☆☆☆"; break;
+            case 3: ratingLabel.text = @"★★★☆☆"; break;
+            case 4: ratingLabel.text = @"★★★★☆"; break;
+            case 5: ratingLabel.text = @"★★★★★"; break;
+            default: ratingLabel.text = @"No rating"; break;
+        }
+        UILabel *gradeLabel = (UILabel *)[cell viewWithTag:300];
+        gradeLabel.text = (assessment.finalGrade) ? [NSString stringWithFormat: @"%d%%",[assessment.finalGrade intValue]] : @"?";
+    } else {
+        UILabel *daysRemainingLabel = (UILabel *)[cell viewWithTag:202];
+        NSTimeInterval secondsBetween = [assessment.deadline timeIntervalSinceDate:[NSDate date]];
+
+        int daysBetween = secondsBetween/86400;
+        switch (daysBetween) {
+            case 0: daysRemainingLabel.text = @"Due today"; break;
+            case 1: daysRemainingLabel.text = @"Due tomorrow"; break;
+            default: {
+                if (daysBetween < 366) {
+                    daysRemainingLabel.text = [NSString stringWithFormat: @"You have %i days remaining", daysBetween];
+                } else {
+                    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+                    [dateFormatter setDateFormat:@"dd-MM-yyyy"];
+                    daysRemainingLabel.text = [NSString stringWithFormat: @"Due on %@", [dateFormatter stringFromDate:assessment.deadline]];  break;
+                }
+            }
+        }
+    }
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    [self performSegueWithIdentifier:@"visitGrade" sender:cell];
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"visitGrade"]) {
+        UINavigationController *navController = segue.destinationViewController;
+        AssessmentGradeTableViewController *controller = (AssessmentGradeTableViewController*) navController.topViewController;
+        controller.delegate = self;
+        controller.managedObjectContext = self.managedObjectContext;
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        controller.itemToEdit = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    }
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+
+#pragma mark - AssessmentGradeTableViewControllerDelegate
+
+- (void)AssessmentGradeTableViewControllerDidCancel:(AssessmentGradeTableViewController*)controller
+{
+    // No action to take so dismiss the modal window
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
-*/
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)AssessmentGradeTableViewController:(AssessmentGradeTableViewController*)controller didFinishEditingAssessment:(AssessmentCriteria*)assessment
+{
+    // Save the item to the datastore
+    NSError *error;
+    if (![self.managedObjectContext save:&error]) {
+        COREDATA_ERROR(error);
+        return;
+    }
+    
+    // Dismiss the edit item view
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
-*/
+
 
 @end

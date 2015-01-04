@@ -11,6 +11,7 @@
 
 #define POSITIVE_FEEDBACK_PLACEHOLDER @"What did you enjoy? What skills did you learn?"
 #define NEGATIVE_FEEDBACK_PLACEHOLDER @"What didn't you enjoy?"
+#define NOTES_PLACEHOLDER @"Write additional comments and information here."
 
 @class AssessmentGradeTableViewController;
 

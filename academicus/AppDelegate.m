@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "QualificationsTableViewController.h"
+#import "RemindersTableViewController.h"
 
 NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectContextSaveDidFailNotification";
 
@@ -24,7 +25,12 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coreDataError:) name:ManagedObjectContextSaveDidFailNotification object:nil];
     
     UITabBarController *tabController = (UITabBarController*) self.window.rootViewController;
-    UINavigationController *navigationController = tabController.viewControllers[1];
+    
+    UINavigationController *navigationController = tabController.viewControllers[0];
+    RemindersTableViewController *remindersController = (RemindersTableViewController*) navigationController.topViewController;
+    remindersController.managedObjectContext = self.managedObjectContext;
+    
+    navigationController = tabController.viewControllers[1];
     QualificationsTableViewController *qualificationController = (QualificationsTableViewController*) navigationController.topViewController;
     qualificationController.managedObjectContext = self.managedObjectContext;
     

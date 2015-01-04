@@ -14,6 +14,8 @@
 {
     [super viewDidLoad];
     
+    self.weightingField.tag = 1;
+    
     // If an item was passed through, change the window title and populate the fields with existing data
     if (self.itemToEdit != nil) {
         self.title = @"Edit Assessment";
@@ -22,7 +24,6 @@
         self.deadlineDate = self.itemToEdit.deadline;
         self.deadlineLabel.text = [self formatDate:self.deadlineDate];
 
-        self.doneBtn.enabled = YES;
         self.reminderDatePickerVisible = NO;
         self.deadlineDatePickerVisible = NO;
 
@@ -41,7 +42,6 @@
         self.deadlineDate = [NSDate date];
         self.reminderDate = [NSDate date];
         
-        self.doneBtn.enabled = NO;
         self.reminderDatePickerVisible = NO;
         self.deadlineDatePickerVisible = NO;
         
@@ -67,13 +67,33 @@
 }
 
 
+- (BOOL) isEnteredDataValid
+{
+    //Check for the presence of a name
+    if ([self.nameField.text length] < 1) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message: @"You must provide a name" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return false;
+    }
+    //Check that the name length is less than 30
+    if ([self.nameField.text length] > 30) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message: @"The name must be less than 30 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return false;
+    }
+    //Check for weighting value
+    if ([self.weightingField.text floatValue] < 0 || [self.weightingField.text floatValue] > 100) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message: @"The subject weighting must be 0-100%" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return false;
+    }
+    return true;
+}
+
+
 - (IBAction)done
 {
-    // Validate that the weighting is between 0% and 100%
-    if ([self.weightingField.text floatValue] < 0 || [self.weightingField.text floatValue] > 100) {
-        [self.weightingField setTextColor:[UIColor redColor]];
-        return;
-    }
+    if (![self isEnteredDataValid]) {return;}
     
     if (self.itemToEdit != nil) {
         // If editing, update the item and call the delegate method to dismiss the view
@@ -101,12 +121,9 @@
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     NSString *newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    // Only enable the done button when the name and weighting fields are not empty
-    if ((textField.tag == 101 && self.weightingField.text.length > 0) ||
-        (textField.tag == 102 && self.nameField.text.length > 0)) {
-        self.doneBtn.enabled = ([newText length] > 0);
+    if (textField.tag == 1) {
+        return ([newText length] < 3 || [newText isEqual: @"100"] || ([newText characterAtIndex:2] == '.' && [newText length] < 6) || ([newText characterAtIndex:1] == '.' && [newText length] < 5));
     }
-    
     return YES;
 }
 
@@ -119,6 +136,12 @@
     }
 }
 
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if (textField.tag == 1) {
+        textField.text = [NSString stringWithFormat:@"%.2f", [textField.text floatValue]];
+    }
+}
 
 - (NSString*)formatDate:(NSDate*)date
 {

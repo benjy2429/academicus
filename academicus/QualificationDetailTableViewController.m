@@ -13,12 +13,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];   
-    
+
     // If an item was passed through, change the window title and populate the fields with existing data
     if (self.itemToEdit != nil) {
         self.title = @"Edit Qualification";
         self.nameField.text = self.itemToEdit.name;
-        self.doneBtn.enabled = YES;
     }
 }
 
@@ -38,12 +37,31 @@
 }
 
 
+- (BOOL) isEnteredDataValid
+{
+    //Check for the presence of a name
+    if ([self.nameField.text length] < 1) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message: @"You must provide a name" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return false;
+    }
+    //Check that the name length is less than 30
+    if ([self.nameField.text length] > 30) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message: @"The name must be less than 30 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return false;
+    }
+    return true;
+}
+
+
 - (IBAction)done
 {
+    if (![self isEnteredDataValid]) {return;}
+    
     if (self.itemToEdit != nil) {
         // If editing, update the item
         self.itemToEdit.name = self.nameField.text;
-        
         [self.delegate QualificationDetailTableViewController:self didFinishEditingQualification:self.itemToEdit];
         
     } else {
@@ -61,16 +79,6 @@
 {
     // Disable the ability to select table rows
     return nil;
-}
-
-
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-    // Only enable the done button when the fields are not empty
-    NSString *newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    self.doneBtn.enabled = ([newText length] > 0);
-    
-    return YES;
 }
 
 
