@@ -43,6 +43,13 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
+    // iOS 8 local notification registration
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
+    }
+#endif
+    
     return YES;
 }
 
@@ -58,15 +65,24 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    application.applicationIconBadgeNumber = 0;
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    application.applicationIconBadgeNumber = 0;
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Reminder" message:notification.alertBody delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alertView show];
+}
+
 
 - (NSManagedObjectModel*)managedObjectModel
 {
@@ -125,13 +141,16 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
 - (void)coreDataError:(NSNotification*)notification
 {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"We're sorry, there was an error accessing or saving your data. Please report this to the developers." delegate:self cancelButtonTitle:@"Quit" otherButtonTitles:nil];
+    alertView.tag = 666;
     [alertView performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
 }
 
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    abort();
+    if (alertView.tag == 666) {
+        abort();
+    }
 }
 
 @end

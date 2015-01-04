@@ -100,6 +100,32 @@
         self.itemToEdit.name = self.nameField.text;
         self.itemToEdit.weighting = [NSNumber numberWithFloat:[self.weightingField.text floatValue]];
         self.itemToEdit.deadline = self.deadlineDate;
+        
+        // Check if a reminder has been added so a new notification can be scheduled
+        if (self.reminderSwitch.on && self.itemToEdit.reminder == nil) {
+            UILocalNotification *notification = [[UILocalNotification alloc] init];
+            notification.fireDate = self.reminderDate;
+            notification.alertBody = [NSString stringWithFormat:@"%@ is due soon!", self.itemToEdit.name];
+            notification.timeZone = [NSTimeZone defaultTimeZone];
+            notification.userInfo = @{@"reminder": self.reminderDate};
+            notification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+            
+            [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+            
+            // Also check whether a reminder has been disabled
+        } else if (!self.reminderSwitch.on && self.itemToEdit.reminder != nil) {
+            NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+
+            for (UILocalNotification *notification in notifications) {
+                NSDictionary *userInfo = notification.userInfo;
+                
+                if ([userInfo valueForKey:@"reminder"] == self.itemToEdit.reminder) {
+                    [[UIApplication sharedApplication] cancelLocalNotification:notification];
+                    break;
+                }
+            }
+        }
+        
         self.itemToEdit.reminder = (self.reminderSwitch.on) ? self.reminderDate : nil;
         
         [self.delegate AssessmentDetailTableViewController:self didFinishEditingAssessment:self.itemToEdit];
@@ -112,6 +138,18 @@
         newAssessment.weighting = [NSNumber numberWithFloat:[self.weightingField.text floatValue]];
         newAssessment.deadline = self.deadlineDate;
         newAssessment.reminder = (self.reminderSwitch.on) ? self.reminderDate : nil;
+        
+        // Check if a reminder has been added so a new notification can be scheduled
+        if (self.reminderSwitch.on) {
+            UILocalNotification *notification = [[UILocalNotification alloc] init];
+            notification.fireDate = self.reminderDate;
+            notification.alertBody = [NSString stringWithFormat:@"%@ is due soon!", newAssessment.name];
+            notification.timeZone = [NSTimeZone defaultTimeZone];
+            notification.userInfo = @{@"reminder": newAssessment.reminder};
+            notification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+            
+            [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+        }
         
         [self.delegate AssessmentDetailTableViewController:self didFinishAddingAssessment:newAssessment];
     }
