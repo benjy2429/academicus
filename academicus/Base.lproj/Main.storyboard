@@ -666,7 +666,11 @@
         <scene sceneID="FxT-Bg-JX8">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DHT-Ho-qNq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Reminders" id="9Un-JQ-KHR"/>
+                    <tabBarItem key="tabBarItem" title="Reminders" image="TabBarAlarm" id="9Un-JQ-KHR">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="TabBarAlarmSelected"/>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DRp-lw-rfn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -685,7 +689,11 @@
         <scene sceneID="DQu-bX-6WV">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nQb-1f-ylV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Grades" id="52X-GW-7b6"/>
+                    <tabBarItem key="tabBarItem" title="Grades" image="TabBarCap" id="52X-GW-7b6">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="TabBarCapSelected"/>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9Dz-lb-fxp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -805,7 +813,11 @@
         <scene sceneID="vVc-Xx-0oh">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Y72-4N-Rag" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Portfolio" id="EVn-Um-v48"/>
+                    <tabBarItem key="tabBarItem" title="Portfolio" image="TabBarUser" id="EVn-Um-v48">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="TabBarUserSelected"/>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ewD-a8-J2Q">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -824,7 +836,11 @@
         <scene sceneID="Evo-dg-cLT">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2fM-B8-yXn" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" id="29U-v4-Akg"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="TabBarCog" id="29U-v4-Akg">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="TabBarCogSelected"/>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="icn-za-IeG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -2434,6 +2450,16 @@
             <point key="canvasLocation" x="4188.75" y="681.33802816901402"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="TabBarAlarm" width="25" height="25"/>
+        <image name="TabBarAlarmSelected" width="25" height="25"/>
+        <image name="TabBarCap" width="25" height="25"/>
+        <image name="TabBarCapSelected" width="25" height="25"/>
+        <image name="TabBarCog" width="25" height="25"/>
+        <image name="TabBarCogSelected" width="25" height="25"/>
+        <image name="TabBarUser" width="25" height="25"/>
+        <image name="TabBarUserSelected" width="25" height="25"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="zvW-iK-Ohd"/>
         <segue reference="tRH-EP-YoQ"/>

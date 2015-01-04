@@ -101,8 +101,22 @@
         self.itemToEdit.weighting = [NSNumber numberWithFloat:[self.weightingField.text floatValue]];
         self.itemToEdit.deadline = self.deadlineDate;
         
-        // Check if a reminder has been added so a new notification can be scheduled
-        if (self.reminderSwitch.on && self.itemToEdit.reminder == nil) {
+        // If a reminder exists, cancel the notification
+        if (self.itemToEdit.reminder != nil) {
+            NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+            
+            for (UILocalNotification *notification in notifications) {
+                NSDictionary *userInfo = notification.userInfo;
+                
+                if ([userInfo valueForKey:@"reminder"] == self.itemToEdit.reminder) {
+                    [[UIApplication sharedApplication] cancelLocalNotification:notification];
+                    break;
+                }
+            }
+        }
+        
+        // If the reminder has been enabled, schedule a new notification
+        if (self.reminderSwitch.on) {
             UILocalNotification *notification = [[UILocalNotification alloc] init];
             notification.fireDate = self.reminderDate;
             notification.alertBody = [NSString stringWithFormat:@"%@ is due soon!", self.itemToEdit.name];
@@ -113,18 +127,7 @@
             [[UIApplication sharedApplication] scheduleLocalNotification:notification];
             
             // Also check whether a reminder has been disabled
-        } else if (!self.reminderSwitch.on && self.itemToEdit.reminder != nil) {
-            NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
-
-            for (UILocalNotification *notification in notifications) {
-                NSDictionary *userInfo = notification.userInfo;
-                
-                if ([userInfo valueForKey:@"reminder"] == self.itemToEdit.reminder) {
-                    [[UIApplication sharedApplication] cancelLocalNotification:notification];
-                    break;
-                }
-            }
-        }
+        } else
         
         self.itemToEdit.reminder = (self.reminderSwitch.on) ? self.reminderDate : nil;
         
