@@ -199,11 +199,12 @@
     // If the cell should be a date picker cell
     if ((indexPath.section == 1 && indexPath.row == 1) || (indexPath.section == 2 && indexPath.row == 1)) {
         
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"datePickerCell"];
+        NSString *identifier = (indexPath.section == 1) ? @"datePickerStartCell" : @"datePickerEndCell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         
         // Create a new cell
         if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"datePickerCell"];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             // Add a date picker view to the cell

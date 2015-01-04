@@ -103,6 +103,8 @@
     currentWrapper.layer.cornerRadius = 30;
     targetWrapper.layer.borderWidth = 3;
     currentWrapper.layer.borderWidth = 3;
+    targetWrapper.clipsToBounds = YES;
+    currentWrapper.clipsToBounds = YES;
     targetWrapper.layer.borderColor = [self.subject.colour CGColor];
     currentWrapper.layer.borderColor = [self.subject.colour CGColor];
     
