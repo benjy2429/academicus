@@ -63,6 +63,10 @@
     
     // Add an edit button to the navigation bar
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    // Override the height of the table view header
+    self.headerView.frame = CGRectMake(0, 0, 0, 110);
+    [self configureHeader];
 }
 
 
@@ -83,6 +87,39 @@
 {
     // Stop the fetched results controller from sending notifications if the view is deallocated
     _fetchedResultsController.delegate = nil;
+}
+
+
+- (void)configureHeader
+{
+    // Get the views and labels from the header
+    UILabel *targetLabel = (UILabel *)[self.headerView viewWithTag:201];
+    UIView *targetWrapper = (UIView *)[self.headerView viewWithTag:202];
+    UILabel *currentLabel = (UILabel *)[self.headerView viewWithTag:203];
+    UIView *currentWrapper = (UIView *)[self.headerView viewWithTag:204];
+    
+    // Set the views to display as circles with coloured borders
+    targetWrapper.layer.cornerRadius = 30;
+    currentWrapper.layer.cornerRadius = 30;
+    targetWrapper.layer.borderWidth = 3;
+    currentWrapper.layer.borderWidth = 3;
+    targetWrapper.layer.borderColor = [self.subject.colour CGColor];
+    currentWrapper.layer.borderColor = [self.subject.colour CGColor];
+    
+    // Set the target grade
+    targetLabel.text = [NSString stringWithFormat:@"%@%%", self.subject.targetGrade];
+    
+    // Calculate the current grade from the marked assessments
+    float currentGrade = 0.0f;
+    NSArray *assessments = [self.fetchedResultsController.fetchedObjects mutableCopy];
+    for (NSManagedObject *object in assessments) {
+        AssessmentCriteria *assessment = (AssessmentCriteria *) object;
+        if ([assessment.hasGrade boolValue]) {
+            currentGrade += (([assessment.finalGrade floatValue] * [assessment.weighting floatValue]) / 100);
+        }
+    }
+    currentLabel.text = [NSString stringWithFormat:@"%.0f%%", currentGrade];
+    
 }
 
 
@@ -113,7 +150,14 @@
     BOOL isAddCell = (self.isEditing && !self.inSwipeDeleteMode && indexPath.section == 1);
     
     // Assign the correct identifier for this cell
-    NSString *myIdentifier = (isAddCell) ? @"addCell" : @"assessmentCell";
+    NSString *myIdentifier;
+    if (isAddCell) {
+        myIdentifier = @"addCell";
+    } else {
+        AssessmentCriteria *currentAssessment = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        myIdentifier = ([currentAssessment.hasGrade boolValue]) ? @"gradedAssessmentCell" : @"assessmentCell";
+    }
+
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:myIdentifier];
     
     if (cell == nil) {
@@ -136,17 +180,18 @@
     // Get the object for this cell and set the labels
     AssessmentCriteria *currentAssessment = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    if ([currentAssessment.hasGrade boolValue]) {
-        cell.backgroundColor = [UIColor colorWithRed:0.9f green:1.0f blue:0.9f alpha:1.0f];
-    } else if ([[NSDate date] compare:currentAssessment.deadline] == NSOrderedDescending) {
-        cell.backgroundColor = [UIColor colorWithRed:1.0f green:0.9f blue:0.9f alpha:1.0f];
-    }
-    
+    // Get the labels from the cell
     UILabel *dueDateLabel = (UILabel *) [cell viewWithTag:100];
     UILabel *dueMonthLabel = (UILabel *) [cell viewWithTag:101];
     UILabel *nameLabel = (UILabel *) [cell viewWithTag:102];
     UILabel *countdownLabel = (UILabel *) [cell viewWithTag:103];
     
+    // Colour red if the deadline has passed
+    if ([[NSDate date] compare:currentAssessment.deadline] == NSOrderedDescending) {
+        dueDateLabel.textColor = [UIColor colorWithRed:0.8f green:0.0f blue:0.0f alpha:1.0f];
+        dueMonthLabel.textColor = [UIColor colorWithRed:0.8f green:0.0f blue:0.0f alpha:1.0f];
+    }
+
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"d"];
     dueDateLabel.text = [formatter stringFromDate:currentAssessment.deadline];
@@ -156,20 +201,29 @@
     
     nameLabel.text = currentAssessment.name;
     
-    // Calculate the number of days between today and the assignment deadline
-    NSDate *currentDate = [NSDate date];
-    NSDate *deadlineDate = currentAssessment.deadline;
     
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&currentDate interval:nil forDate:currentDate];
-    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&deadlineDate interval:nil forDate:deadlineDate];
-    NSDateComponents *difference = [calendar components:NSDayCalendarUnit fromDate:currentDate toDate:deadlineDate options:0];
-    
-    if ([difference day] < 0) {
-        countdownLabel.text = [NSString stringWithFormat:@"Deadline passed"];
+    if (![currentAssessment.hasGrade boolValue]) {
+        // Calculate the number of days between today and the assignment deadline
+        NSDate *currentDate = [NSDate date];
+        NSDate *deadlineDate = currentAssessment.deadline;
+        
+        NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        [calendar rangeOfUnit:NSDayCalendarUnit startDate:&currentDate interval:nil forDate:currentDate];
+        [calendar rangeOfUnit:NSDayCalendarUnit startDate:&deadlineDate interval:nil forDate:deadlineDate];
+        NSDateComponents *difference = [calendar components:NSDayCalendarUnit fromDate:currentDate toDate:deadlineDate options:0];
+        
+        if ([difference day] < 0) {
+            countdownLabel.text = [NSString stringWithFormat:@"Deadline passed"];
+        } else {
+            countdownLabel.text = [NSString stringWithFormat:@"%ld days remaining", [difference day]];
+        }
+        
     } else {
-        countdownLabel.text = [NSString stringWithFormat:@"%ld days remaining", [difference day]];
+        // Display the final grade
+        UILabel *gradeLabel = (UILabel *) [cell viewWithTag:105];
+        gradeLabel.text = [NSString stringWithFormat:@"%i%%", [currentAssessment.finalGrade intValue]];
     }
+    
 }
 
 

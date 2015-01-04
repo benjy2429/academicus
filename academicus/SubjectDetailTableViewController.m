@@ -94,7 +94,7 @@
         self.itemToEdit.teacherName = self.teacherNameField.text;
         self.itemToEdit.teacherEmail = self.teacherEmailField.text;
         
-        [self.delegate SubjectDetailTableViewController:self didFinishEditingSubject: self.itemToEdit];
+        [self.delegate SubjectDetailTableViewController:self didFinishEditingSubject:self.itemToEdit];
         
     } else {
         // If adding, create a new item and call the delegate method to dismiss the view
@@ -106,6 +106,8 @@
         //self.itemToEdit.location //TODO: Set locaiton value
         self.itemToEdit.teacherName = self.teacherNameField.text;
         self.itemToEdit.teacherEmail = self.teacherEmailField.text;
+        
+        [self.delegate SubjectDetailTableViewController:self didFinishAddingSubject:newSubject];
     }
 }
 
