@@ -149,11 +149,12 @@
         newSubject.yearWeighting = [NSNumber numberWithFloat:[self.weightingField.text floatValue]];
         newSubject.targetGrade = [NSNumber numberWithInt: [self.targetField.text intValue]];
         newSubject.colour = self.colour;
-        //self.itemToEdit.location //TODO: Set locaiton value
-        self.itemToEdit.teacherName = self.teacherNameField.text;
-        self.itemToEdit.teacherEmail = self.teacherEmailField.text;
+        //newSubject.location = self.locationField.text; //TODO: Set locaiton value
+        newSubject.teacherName = self.teacherNameField.text;
+        newSubject.teacherEmail = self.teacherEmailField.text;
         
-        [self.delegate SubjectDetailTableViewController:self didFinishAddingSubject:newSubject];
+        [self.delegate SubjectDetailTableViewController:self didFinishAddingSubject: newSubject];
+
     }
 }
 

@@ -61,8 +61,15 @@
     // Retrieve the objects for this table view using CoreData
     [self performFetch];
     
-    // Add an edit button to the navigation bar
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // Override the height of the table view header
+    self.tableView.tableHeaderView.frame = CGRectMake(0, 0, 0, 44);
+}
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
 
@@ -182,6 +189,9 @@
     } else {
         UILabel *daysRemainingLabel = (UILabel *)[cell viewWithTag:202];
         NSTimeInterval secondsBetween = [assessment.deadline timeIntervalSinceDate:[NSDate date]];
+        
+        UILabel *alarmIcon = (UILabel *)[cell viewWithTag:300];
+        alarmIcon.hidden = (assessment.reminder != nil) ? NO : YES;
 
         int daysBetween = secondsBetween/86400;
         switch (daysBetween) {

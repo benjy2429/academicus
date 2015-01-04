@@ -187,7 +187,7 @@
     UILabel *countdownLabel = (UILabel *) [cell viewWithTag:103];
     
     // Colour red if the deadline has passed
-    if ([[NSDate date] compare:currentAssessment.deadline] == NSOrderedDescending) {
+    if (![currentAssessment.hasGrade boolValue] && [[NSDate date] compare:currentAssessment.deadline] == NSOrderedDescending) {
         dueDateLabel.textColor = [UIColor colorWithRed:0.8f green:0.0f blue:0.0f alpha:1.0f];
         dueMonthLabel.textColor = [UIColor colorWithRed:0.8f green:0.0f blue:0.0f alpha:1.0f];
     }
