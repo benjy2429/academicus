@@ -13,16 +13,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    [self.ratingStar1 setTitleColor: APP_TINT_COLOUR forState: UIControlStateNormal];
+    [self.ratingStar2 setTitleColor: APP_TINT_COLOUR forState: UIControlStateNormal];
+    [self.ratingStar3 setTitleColor: APP_TINT_COLOUR forState: UIControlStateNormal];
+    [self.ratingStar4 setTitleColor: APP_TINT_COLOUR forState: UIControlStateNormal];
+    [self.ratingStar5 setTitleColor: APP_TINT_COLOUR forState: UIControlStateNormal];
     
     self.positiveFeedbackField.text = POSITIVE_FEEDBACK_PLACEHOLDER;
     self.negativeFeedbackField.text = NEGATIVE_FEEDBACK_PLACEHOLDER;
     self.notesField.text = NOTES_PLACEHOLDER;
+    self.currentRating = 0;
 
     if ([self.itemToEdit.hasGrade boolValue]) {
         self.title = @"Edit Grade";
         
         self.gradeField.text = [NSString stringWithFormat:@"%.2f", [self.itemToEdit.finalGrade floatValue]];
-        self.ratingField.text = (self.itemToEdit.rating != 0) ? [NSString stringWithFormat:@"%d", [self.itemToEdit.rating intValue]] : @"";
+        [self setRating: ((self.itemToEdit.rating != 0) ? [self.itemToEdit.rating intValue] : 0)];
+        self.currentRating = ((self.itemToEdit.rating != 0) ? [self.itemToEdit.rating intValue] : 0);
         
         if (![self.itemToEdit.positiveFeedback isEqualToString:@""]) {
             self.positiveFeedbackField.text = self.itemToEdit.positiveFeedback;
@@ -51,6 +59,30 @@
 }
 
 
+- (IBAction)starPressed:(UIButton*)starButton {
+    switch (starButton.tag) {
+        case 101 : [self setRating:1]; break;
+        case 102 : [self setRating:2]; break;
+        case 103 : [self setRating:3]; break;
+        case 104 : [self setRating:4]; break;
+        case 105 : [self setRating:5]; break;
+        default : [self setRating:0];
+    }
+}
+
+- (void) setRating: (int)rating {
+    [self.ratingStar1 setTitle:((rating > 0) ? @"★" : @"☆") forState: UIControlStateNormal];
+    [self.ratingStar2 setTitle:((rating > 1) ? @"★" : @"☆") forState: UIControlStateNormal];
+    [self.ratingStar3 setTitle:((rating > 2) ? @"★" : @"☆") forState: UIControlStateNormal];
+    [self.ratingStar4 setTitle:((rating > 3) ? @"★" : @"☆") forState: UIControlStateNormal];
+    [self.ratingStar5 setTitle:((rating > 4) ? @"★" : @"☆") forState: UIControlStateNormal];
+//    self.ratingStar2.titleLabel.text = (rating > 1) ? @"★" : @"☆";
+//    self.ratingStar3.titleLabel.text = (rating > 2) ? @"★" : @"☆";
+//    self.ratingStar4.titleLabel.text = (rating > 3) ? @"★" : @"☆";
+//    self.ratingStar5.titleLabel.text = (rating > 4) ? @"★" : @"☆";
+    self.currentRating = rating;
+}
+
 - (IBAction)cancel
 {
     // Delegate method when the cancel button is pressed
@@ -66,9 +98,9 @@
         [alert show];
         return false;
     }
-    // Validate that the rating is between 1 and 5
-    if ([self.ratingField.text intValue] < 1 || [self.ratingField.text intValue] > 5) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message: @"The assessment raitng must be between 1-5" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+    // Validate that the final grade is between 0% and 100%
+    if (self.currentRating < 1 || self.currentRating > 5) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message: @"You must provide a rating" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
         [alert show];
         return false;
     }
@@ -101,7 +133,7 @@
     // If editing, update the item and call the delegate method to dismiss the view
     self.itemToEdit.hasGrade = [NSNumber numberWithBool:YES];
     self.itemToEdit.finalGrade = [NSNumber numberWithFloat:[self.gradeField.text floatValue]];
-    self.itemToEdit.rating = (![self.ratingField.text isEqualToString:@""]) ? [NSNumber numberWithInt:[self.ratingField.text intValue]] : 0;
+    self.itemToEdit.rating = [NSNumber numberWithInt: self.currentRating];
     self.itemToEdit.positiveFeedback = (![self.positiveFeedbackField.text isEqualToString:POSITIVE_FEEDBACK_PLACEHOLDER]) ? self.positiveFeedbackField.text : @"";
     self.itemToEdit.negativeFeedback = (![self.negativeFeedbackField.text isEqualToString:NEGATIVE_FEEDBACK_PLACEHOLDER]) ? self.negativeFeedbackField.text : @"";
     self.itemToEdit.notes = (![self.notesField.text isEqualToString:NOTES_PLACEHOLDER]) ? self.notesField.text : @"";
@@ -121,18 +153,9 @@
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     NSString *newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    switch (textField.tag) {
-        //If grade field
-        case 001:
-            return ([newText length] < 3 || [newText isEqual: @"100"] || ([newText characterAtIndex:2] == '.' && [newText length] < 6) || ([newText characterAtIndex:1] == '.' && [newText length] < 5));
-            break;
-        //If rating field
-        case 101:
-            return ([newText length] < 1 || ([newText intValue] > 0 && [newText intValue] < 6));
-            break;
-        //Otherwise
-        default:
-            return YES;
+    //If grade field
+    if (textField.tag == 001) {
+        return ([newText length] < 3 || [newText isEqual: @"100"] || ([newText characterAtIndex:2] == '.' && [newText length] < 6) || ([newText characterAtIndex:1] == '.' && [newText length] < 5));
     }
     return YES;
 }
@@ -140,18 +163,9 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    switch (textField.tag) {
-        //If grade field
-        case 001:
-            textField.text = [NSString stringWithFormat:@"%.2f", [textField.text floatValue]];
-            break;
-            //If rating field
-        case 101:
-            textField.text = [NSString stringWithFormat:@"%i", [textField.text intValue]];
-            break;
-        //Otherwise
-        default:
-            return;
+    //If grade field
+    if (textField.tag == 001) {
+        textField.text = [NSString stringWithFormat:@"%.2f", [textField.text floatValue]];
     }
 }
 

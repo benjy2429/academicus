@@ -30,11 +30,17 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneBtn;
 @property (weak, nonatomic) IBOutlet UITextField *gradeField;
-@property (weak, nonatomic) IBOutlet UITextField *ratingField;
 @property (weak, nonatomic) IBOutlet UITextView *positiveFeedbackField;
 @property (weak, nonatomic) IBOutlet UITextView *negativeFeedbackField;
 @property (weak, nonatomic) IBOutlet UITextView *notesField;
 @property (weak, nonatomic) IBOutlet UITextField *pictureField;
+
+@property (assign) int currentRating;
+@property (weak, nonatomic) IBOutlet UIButton *ratingStar1;
+@property (weak, nonatomic) IBOutlet UIButton *ratingStar2;
+@property (weak, nonatomic) IBOutlet UIButton *ratingStar3;
+@property (weak, nonatomic) IBOutlet UIButton *ratingStar4;
+@property (weak, nonatomic) IBOutlet UIButton *ratingStar5;
 
 @property (nonatomic, weak) NSManagedObjectContext *managedObjectContext;
 
