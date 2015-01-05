@@ -2279,60 +2279,45 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4tf-6d-LtA" id="4yA-vq-OKS">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZuQ-ci-eeO">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m7x-fg-cxf">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                     <state key="normal" title="☆">
                                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="starPressed:" destination="1vS-2o-h2S" eventType="touchUpInside" id="m8h-9T-h4b"/>
-                                                    </connections>
                                                 </button>
-                                                <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m7x-fg-cxf">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZw-4n-LQ1">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                     <state key="normal" title="☆">
                                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="starPressed:" destination="1vS-2o-h2S" eventType="touchUpInside" id="F07-Qe-DHL"/>
-                                                    </connections>
                                                 </button>
-                                                <button opaque="NO" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O3A-s1-Zzh">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O3A-s1-Zzh">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                     <state key="normal" title="☆">
                                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="starPressed:" destination="1vS-2o-h2S" eventType="touchUpInside" id="Iad-vN-zR0"/>
-                                                    </connections>
                                                 </button>
-                                                <button opaque="NO" tag="105" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EIt-3B-I8y">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EIt-3B-I8y">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                     <state key="normal" title="☆">
                                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="starPressed:" destination="1vS-2o-h2S" eventType="touchUpInside" id="Qct-ar-G74"/>
-                                                    </connections>
                                                 </button>
-                                                <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZw-4n-LQ1">
+                                                <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZuQ-ci-eeO">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                     <state key="normal" title="☆">
                                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="starPressed:" destination="1vS-2o-h2S" eventType="touchUpInside" id="r9W-Ad-9Jo"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -2349,11 +2334,11 @@
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="subviews">
-                                                    <exclude reference="ZuQ-ci-eeO"/>
                                                     <exclude reference="m7x-fg-cxf"/>
+                                                    <exclude reference="cZw-4n-LQ1"/>
                                                     <exclude reference="O3A-s1-Zzh"/>
                                                     <exclude reference="EIt-3B-I8y"/>
-                                                    <exclude reference="cZw-4n-LQ1"/>
+                                                    <exclude reference="ZuQ-ci-eeO"/>
                                                 </mask>
                                                 <mask key="constraints">
                                                     <exclude reference="UtJ-gp-2tI"/>
@@ -2370,11 +2355,11 @@
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
                                                 <mask key="subviews">
-                                                    <include reference="ZuQ-ci-eeO"/>
                                                     <include reference="m7x-fg-cxf"/>
+                                                    <include reference="cZw-4n-LQ1"/>
                                                     <include reference="O3A-s1-Zzh"/>
                                                     <include reference="EIt-3B-I8y"/>
-                                                    <include reference="cZw-4n-LQ1"/>
+                                                    <include reference="ZuQ-ci-eeO"/>
                                                 </mask>
                                                 <mask key="constraints">
                                                     <include reference="UtJ-gp-2tI"/>
@@ -2521,11 +2506,6 @@
                         <outlet property="notesField" destination="du6-5Y-bmc" id="tv6-gn-ZyH"/>
                         <outlet property="pictureField" destination="yps-Qh-7DJ" id="ItX-hd-mF8"/>
                         <outlet property="positiveFeedbackField" destination="XzV-4W-o4N" id="GEi-zh-o5y"/>
-                        <outlet property="ratingStar1" destination="ZuQ-ci-eeO" id="xd2-ZW-ONM"/>
-                        <outlet property="ratingStar2" destination="m7x-fg-cxf" id="fQo-FW-Zjz"/>
-                        <outlet property="ratingStar3" destination="cZw-4n-LQ1" id="izi-M9-l0s"/>
-                        <outlet property="ratingStar4" destination="O3A-s1-Zzh" id="Sln-49-dhc"/>
-                        <outlet property="ratingStar5" destination="EIt-3B-I8y" id="UFM-hF-Zos"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HIP-b9-H6f" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2560,10 +2540,10 @@
         <image name="TabBarUserSelected" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="tRH-EP-YoQ"/>
         <segue reference="gyc-NN-0V3"/>
         <segue reference="hLf-mw-eHg"/>
         <segue reference="EA4-An-DjK"/>
         <segue reference="zvW-iK-Ohd"/>
+        <segue reference="Cud-FT-Sdr"/>
     </inferredMetricsTieBreakers>
 </document>

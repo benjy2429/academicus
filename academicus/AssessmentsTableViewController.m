@@ -122,6 +122,8 @@
     }
     currentLabel.text = [NSString stringWithFormat:@"%.0f%%", currentGrade];
     
+    [self doMaskAnimation:targetWrapper percentageFill:[self.subject.targetGrade floatValue]];
+    [self doMaskAnimation:currentWrapper percentageFill:currentGrade];
 }
 
 
@@ -512,6 +514,73 @@
     
     // Dismiss the edit item view
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+/*
+ This method illustrates how to use a mask layer to hide/how part of the contents of a view, and how to
+ create an animation that reveals/hides the contents of a layer.
+ It creates a circular sweep animatinon that reveals an image in an arc, like the sweep of a radar display
+ */
+- (void) doMaskAnimation:(UIView*) sender percentageFill:(float)fillAmount;
+{
+    
+    //Create a shape layer that we will use as a mask for the waretoLogoLarge image view
+    CAShapeLayer *maskLayer = [CAShapeLayer layer];
+    
+    //CGFloat maskHeight = sender.layer.bounds.size.height;
+    //CGFloat maskWidth = sender.layer.bounds.size.width;
+    CGFloat maskHeight = 60;
+    CGFloat maskWidth = 60;
+    
+    //Make the radius of our arc large enough to reach into the corners of the image view.
+    CGFloat outerRadius = 25;
+    CGFloat innerRadius = 20;
+    
+    //Make the line thick enough to completely fill the circle we're drawing
+    maskLayer.lineWidth = 10; 
+
+    //Create the center point
+    CGPoint centerPoint = CGPointMake( maskWidth/2, maskHeight/2);
+
+    CGMutablePathRef arcPath = CGPathCreateMutable();
+    
+    //Move to the starting point of the arc so there is no initial line connecting to the arc
+    CGPathMoveToPoint(arcPath, nil, centerPoint.x, centerPoint.y-outerRadius);
+    //Create animaiton arc
+    float endAngle = (fillAmount != 0) ? (((2*M_PI)/100)*fillAmount)-M_PI_2 : 0.0001-M_PI_2;
+    CGPathAddArc(arcPath, nil, centerPoint.x, centerPoint.y, outerRadius, -M_PI_2, endAngle, NO);
+    
+    CGPathMoveToPoint(arcPath, nil, centerPoint.x, centerPoint.y-innerRadius);
+    CGPathAddArc(arcPath, nil, centerPoint.x, centerPoint.y, innerRadius, -M_PI_2, 2*M_PI, NO);
+    
+    // Set the path to the mask layer.
+    maskLayer.path = arcPath;
+    
+    //Maket the fill and stroke transparent (black)
+    maskLayer.fillColor = [[UIColor blackColor] CGColor];
+    maskLayer.strokeColor = [[UIColor blackColor] CGColor];
+    
+    //Start with an empty mask path (draw 0% of the arc, number between 0-1)
+    maskLayer.strokeEnd = 0.0;
+    
+    // Release the path since it's not covered by ARC.
+    CGPathRelease(arcPath);
+    
+    // Set the mask of the view.
+    sender.layer.mask = maskLayer;
+    
+    //Create an animation that increases the stroke length to 1, then reverses it back to zero.
+    CABasicAnimation *swipe = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+    swipe.duration = 2;
+    swipe.delegate = self;
+    swipe.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    swipe.fillMode = kCAFillModeForwards;
+    swipe.removedOnCompletion = NO;
+    swipe.autoreverses = NO;
+    
+    swipe.toValue = [NSNumber numberWithFloat: 1.0];
+    
+    [maskLayer addAnimation: swipe forKey: @"strokeEnd"];
 }
 
 @end
