@@ -31,6 +31,45 @@
 		B5030B161A438DFA00E23378 /* PortfolioTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B151A438DFA00E23378 /* PortfolioTableViewController.m */; };
 		B5030B191A438E1900E23378 /* QualificationsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B181A438E1900E23378 /* QualificationsTableViewController.m */; };
 		B5030B1F1A43C77B00E23378 /* QualificationDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B1E1A43C77A00E23378 /* QualificationDetailTableViewController.m */; };
+		B546EAC81A5B38E40014820C /* YearsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DED5981A46451500D22147 /* YearsTableViewController.m */; };
+		B546EAC91A5B38E40014820C /* YearDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DED59B1A46470800D22147 /* YearDetailTableViewController.m */; };
+		B546EACA1A5B38E40014820C /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B121A438DDF00E23378 /* SettingsTableViewController.m */; };
+		B546EACB1A5B38E40014820C /* AssessmentCriteriaOld.m in Sources */ = {isa = PBXBuildFile; fileRef = A368B7A61A4388BE00F8089B /* AssessmentCriteriaOld.m */; };
+		B546EACC1A5B38E40014820C /* QualificationOld.m in Sources */ = {isa = PBXBuildFile; fileRef = A368B79D1A4380BC00F8089B /* QualificationOld.m */; };
+		B546EACD1A5B38E40014820C /* Year.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A846571A50CCEF001D2E47 /* Year.m */; };
+		B546EACE1A5B38E40014820C /* Achievement.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B051A4386E200E23378 /* Achievement.m */; };
+		B546EACF1A5B38E40014820C /* AssessmentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3981DF71A47595000334345 /* AssessmentsTableViewController.m */; };
+		B546EAD01A5B38E40014820C /* Subject.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FD432A1A51029D00AC583E /* Subject.m */; };
+		B546EAD11A5B38E40014820C /* AssessmentDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3981DFA1A47596F00334345 /* AssessmentDetailTableViewController.m */; };
+		B546EAD21A5B38E40014820C /* SubjectsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3981DEE1A473E4200334345 /* SubjectsTableViewController.m */; };
+		B546EAD31A5B38E40014820C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5F232AD1A4F5D5D00EAFF93 /* DataModel.xcdatamodeld */; };
+		B546EAD41A5B38E40014820C /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B0C1A438A6E00E23378 /* Settings.m */; };
+		B546EAD51A5B38E40014820C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030ADD1A43788800E23378 /* AppDelegate.m */; };
+		B546EAD61A5B38E40014820C /* QualificationDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B1E1A43C77A00E23378 /* QualificationDetailTableViewController.m */; };
+		B546EAD71A5B38E40014820C /* SubjectOld.m in Sources */ = {isa = PBXBuildFile; fileRef = A368B7A31A43876500F8089B /* SubjectOld.m */; };
+		B546EAD81A5B38E40014820C /* YearOld.m in Sources */ = {isa = PBXBuildFile; fileRef = A368B7A01A43861F00F8089B /* YearOld.m */; };
+		B546EAD91A5B38E40014820C /* SubjectDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3981DF11A473E6000334345 /* SubjectDetailTableViewController.m */; };
+		B546EADA1A5B38E40014820C /* QualificationsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B181A438E1900E23378 /* QualificationsTableViewController.m */; };
+		B546EADB1A5B38E40014820C /* RemindersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B0F1A438DC100E23378 /* RemindersTableViewController.m */; };
+		B546EADC1A5B38E40014820C /* AssessmentCriteria.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A8465D1A50E2F2001D2E47 /* AssessmentCriteria.m */; };
+		B546EADD1A5B38E40014820C /* AssessmentGradeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39AA8E41A48B2FF00A757B4 /* AssessmentGradeTableViewController.m */; };
+		B546EADE1A5B38E40014820C /* Portfolio.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B021A43852B00E23378 /* Portfolio.m */; };
+		B546EADF1A5B38E40014820C /* PortfolioTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B151A438DFA00E23378 /* PortfolioTableViewController.m */; };
+		B546EAE01A5B38E40014820C /* WorkExperience.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B091A4388E500E23378 /* WorkExperience.m */; };
+		B546EAE11A5B38E40014820C /* Qualification.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B7EE5D1A51D8C500966CEE /* Qualification.m */; };
+		B546EAE21A5B38E40014820C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030ADA1A43788800E23378 /* main.m */; };
+		B546EAE41A5B38E40014820C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F232A81A4F5CCC00EAFF93 /* CoreData.framework */; };
+		B546EAE61A5B38E40014820C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5030AE51A43788800E23378 /* Main.storyboard */; };
+		B546EAE71A5B38E40014820C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5030AEA1A43788800E23378 /* LaunchScreen.xib */; };
+		B546EAE81A5B38E40014820C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5030AE81A43788800E23378 /* Images.xcassets */; };
+		B546EAEF1A5B39440014820C /* calabash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B546EAEE1A5B39440014820C /* calabash.framework */; };
+		B546EAF11A5B397D0014820C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B546EAF01A5B397D0014820C /* CFNetwork.framework */; };
+		B585D5651A5B490200AC36D1 /* grades_management.feature in Resources */ = {isa = PBXBuildFile; fileRef = B585D55D1A5B490200AC36D1 /* grades_management.feature */; };
+		B585D5661A5B490200AC36D1 /* calabash_steps.rb in Resources */ = {isa = PBXBuildFile; fileRef = B585D55F1A5B490200AC36D1 /* calabash_steps.rb */; };
+		B585D5671A5B490200AC36D1 /* grades_management_steps.rb in Resources */ = {isa = PBXBuildFile; fileRef = B585D5601A5B490200AC36D1 /* grades_management_steps.rb */; };
+		B585D5681A5B490200AC36D1 /* 01_launch.rb in Resources */ = {isa = PBXBuildFile; fileRef = B585D5621A5B490200AC36D1 /* 01_launch.rb */; };
+		B585D5691A5B490200AC36D1 /* 02_pre_stop_hooks.rb in Resources */ = {isa = PBXBuildFile; fileRef = B585D5631A5B490200AC36D1 /* 02_pre_stop_hooks.rb */; };
+		B585D56A1A5B490200AC36D1 /* env.rb in Resources */ = {isa = PBXBuildFile; fileRef = B585D5641A5B490200AC36D1 /* env.rb */; };
 		B5A846581A50CCEF001D2E47 /* Year.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A846571A50CCEF001D2E47 /* Year.m */; };
 		B5A8465E1A50E2F2001D2E47 /* AssessmentCriteria.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A8465D1A50E2F2001D2E47 /* AssessmentCriteria.m */; };
 		B5B7EE5E1A51D8C500966CEE /* Qualification.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B7EE5D1A51D8C500966CEE /* Qualification.m */; };
@@ -100,6 +139,16 @@
 		B5030B181A438E1900E23378 /* QualificationsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QualificationsTableViewController.m; sourceTree = "<group>"; };
 		B5030B1D1A43C77A00E23378 /* QualificationDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QualificationDetailTableViewController.h; sourceTree = "<group>"; };
 		B5030B1E1A43C77A00E23378 /* QualificationDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QualificationDetailTableViewController.m; sourceTree = "<group>"; };
+		B546EAEC1A5B38E40014820C /* academicus-cal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "academicus-cal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B546EAED1A5B38E50014820C /* academicus copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "academicus copy-Info.plist"; path = "/Users/ben/Desktop/academicus/academicus copy-Info.plist"; sourceTree = "<absolute>"; };
+		B546EAEE1A5B39440014820C /* calabash.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = calabash.framework; sourceTree = "<group>"; };
+		B546EAF01A5B397D0014820C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		B585D55D1A5B490200AC36D1 /* grades_management.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grades_management.feature; sourceTree = "<group>"; };
+		B585D55F1A5B490200AC36D1 /* calabash_steps.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = calabash_steps.rb; sourceTree = "<group>"; };
+		B585D5601A5B490200AC36D1 /* grades_management_steps.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = grades_management_steps.rb; sourceTree = "<group>"; };
+		B585D5621A5B490200AC36D1 /* 01_launch.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = 01_launch.rb; sourceTree = "<group>"; };
+		B585D5631A5B490200AC36D1 /* 02_pre_stop_hooks.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = 02_pre_stop_hooks.rb; sourceTree = "<group>"; };
+		B585D5641A5B490200AC36D1 /* env.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = env.rb; sourceTree = "<group>"; };
 		B5A846561A50CCEF001D2E47 /* Year.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Year.h; sourceTree = "<group>"; };
 		B5A846571A50CCEF001D2E47 /* Year.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Year.m; sourceTree = "<group>"; };
 		B5A8465C1A50E2F2001D2E47 /* AssessmentCriteria.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssessmentCriteria.h; sourceTree = "<group>"; };
@@ -129,6 +178,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B546EAE31A5B38E40014820C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B546EAF11A5B397D0014820C /* CFNetwork.framework in Frameworks */,
+				B546EAE41A5B38E40014820C /* CoreData.framework in Frameworks */,
+				B546EAEF1A5B39440014820C /* calabash.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,10 +297,14 @@
 		B5030ACC1A43788800E23378 = {
 			isa = PBXGroup;
 			children = (
-				B5F232A81A4F5CCC00EAFF93 /* CoreData.framework */,
 				B5030AD71A43788800E23378 /* academicus */,
+				B585D55C1A5B490200AC36D1 /* features */,
+				B546EAF01A5B397D0014820C /* CFNetwork.framework */,
+				B546EAEE1A5B39440014820C /* calabash.framework */,
+				B5F232A81A4F5CCC00EAFF93 /* CoreData.framework */,
 				B5030AF41A43788800E23378 /* academicusTests */,
 				B5030AD61A43788800E23378 /* Products */,
+				B546EAED1A5B38E50014820C /* academicus copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -250,6 +313,7 @@
 			children = (
 				B5030AD51A43788800E23378 /* academicus.app */,
 				B5030AF11A43788800E23378 /* academicusTests.xctest */,
+				B546EAEC1A5B38E40014820C /* academicus-cal.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -299,6 +363,35 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		B585D55C1A5B490200AC36D1 /* features */ = {
+			isa = PBXGroup;
+			children = (
+				B585D55D1A5B490200AC36D1 /* grades_management.feature */,
+				B585D55E1A5B490200AC36D1 /* step_definitions */,
+				B585D5611A5B490200AC36D1 /* support */,
+			);
+			path = features;
+			sourceTree = "<group>";
+		};
+		B585D55E1A5B490200AC36D1 /* step_definitions */ = {
+			isa = PBXGroup;
+			children = (
+				B585D55F1A5B490200AC36D1 /* calabash_steps.rb */,
+				B585D5601A5B490200AC36D1 /* grades_management_steps.rb */,
+			);
+			path = step_definitions;
+			sourceTree = "<group>";
+		};
+		B585D5611A5B490200AC36D1 /* support */ = {
+			isa = PBXGroup;
+			children = (
+				B585D5621A5B490200AC36D1 /* 01_launch.rb */,
+				B585D5631A5B490200AC36D1 /* 02_pre_stop_hooks.rb */,
+				B585D5641A5B490200AC36D1 /* env.rb */,
+			);
+			path = support;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -337,6 +430,23 @@
 			productReference = B5030AF11A43788800E23378 /* academicusTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		B546EAC61A5B38E40014820C /* academicus-cal */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B546EAE91A5B38E40014820C /* Build configuration list for PBXNativeTarget "academicus-cal" */;
+			buildPhases = (
+				B546EAC71A5B38E40014820C /* Sources */,
+				B546EAE31A5B38E40014820C /* Frameworks */,
+				B546EAE51A5B38E40014820C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "academicus-cal";
+			productName = academicus;
+			productReference = B546EAEC1A5B38E40014820C /* academicus-cal.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -371,6 +481,7 @@
 			targets = (
 				B5030AD41A43788800E23378 /* academicus */,
 				B5030AF01A43788800E23378 /* academicusTests */,
+				B546EAC61A5B38E40014820C /* academicus-cal */,
 			);
 		};
 /* End PBXProject section */
@@ -390,6 +501,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B546EAE51A5B38E40014820C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B546EAE61A5B38E40014820C /* Main.storyboard in Resources */,
+				B546EAE71A5B38E40014820C /* LaunchScreen.xib in Resources */,
+				B546EAE81A5B38E40014820C /* Images.xcassets in Resources */,
+				B585D5651A5B490200AC36D1 /* grades_management.feature in Resources */,
+				B585D56A1A5B490200AC36D1 /* env.rb in Resources */,
+				B585D5681A5B490200AC36D1 /* 01_launch.rb in Resources */,
+				B585D5671A5B490200AC36D1 /* grades_management_steps.rb in Resources */,
+				B585D5691A5B490200AC36D1 /* 02_pre_stop_hooks.rb in Resources */,
+				B585D5661A5B490200AC36D1 /* calabash_steps.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +562,40 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5030AF81A43788800E23378 /* academicusTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B546EAC71A5B38E40014820C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B546EAC81A5B38E40014820C /* YearsTableViewController.m in Sources */,
+				B546EAC91A5B38E40014820C /* YearDetailTableViewController.m in Sources */,
+				B546EACA1A5B38E40014820C /* SettingsTableViewController.m in Sources */,
+				B546EACB1A5B38E40014820C /* AssessmentCriteriaOld.m in Sources */,
+				B546EACC1A5B38E40014820C /* QualificationOld.m in Sources */,
+				B546EACD1A5B38E40014820C /* Year.m in Sources */,
+				B546EACE1A5B38E40014820C /* Achievement.m in Sources */,
+				B546EACF1A5B38E40014820C /* AssessmentsTableViewController.m in Sources */,
+				B546EAD01A5B38E40014820C /* Subject.m in Sources */,
+				B546EAD11A5B38E40014820C /* AssessmentDetailTableViewController.m in Sources */,
+				B546EAD21A5B38E40014820C /* SubjectsTableViewController.m in Sources */,
+				B546EAD31A5B38E40014820C /* DataModel.xcdatamodeld in Sources */,
+				B546EAD41A5B38E40014820C /* Settings.m in Sources */,
+				B546EAD51A5B38E40014820C /* AppDelegate.m in Sources */,
+				B546EAD61A5B38E40014820C /* QualificationDetailTableViewController.m in Sources */,
+				B546EAD71A5B38E40014820C /* SubjectOld.m in Sources */,
+				B546EAD81A5B38E40014820C /* YearOld.m in Sources */,
+				B546EAD91A5B38E40014820C /* SubjectDetailTableViewController.m in Sources */,
+				B546EADA1A5B38E40014820C /* QualificationsTableViewController.m in Sources */,
+				B546EADB1A5B38E40014820C /* RemindersTableViewController.m in Sources */,
+				B546EADC1A5B38E40014820C /* AssessmentCriteria.m in Sources */,
+				B546EADD1A5B38E40014820C /* AssessmentGradeTableViewController.m in Sources */,
+				B546EADE1A5B38E40014820C /* Portfolio.m in Sources */,
+				B546EADF1A5B38E40014820C /* PortfolioTableViewController.m in Sources */,
+				B546EAE01A5B38E40014820C /* WorkExperience.m in Sources */,
+				B546EAE11A5B38E40014820C /* Qualification.m in Sources */,
+				B546EAE21A5B38E40014820C /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -610,6 +771,56 @@
 			};
 			name = Release;
 		};
+		B546EAEA1A5B38E40014820C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "academicus/academicus-prefix.pch";
+				INFOPLIST_FILE = "academicus copy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-force_load",
+					"\"$(SRCROOT)/calabash.framework/calabash\"",
+					"-lstdc++",
+				);
+				PRODUCT_NAME = "academicus-cal";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Debug;
+		};
+		B546EAEB1A5B38E40014820C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "academicus/academicus-prefix.pch";
+				INFOPLIST_FILE = "academicus copy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-force_load",
+					"\"$(SRCROOT)/calabash.framework/calabash\"",
+					"-lstdc++",
+				);
+				PRODUCT_NAME = "academicus-cal";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -636,6 +847,15 @@
 			buildConfigurations = (
 				B5030AFF1A43788800E23378 /* Debug */,
 				B5030B001A43788800E23378 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B546EAE91A5B38E40014820C /* Build configuration list for PBXNativeTarget "academicus-cal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B546EAEA1A5B38E40014820C /* Debug */,
+				B546EAEB1A5B38E40014820C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

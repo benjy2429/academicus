@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>academicus-cal.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>academicus.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -18,6 +23,11 @@
 			<true/>
 		</dict>
 		<key>B5030AF01A43788800E23378</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B546EAC61A5B38E40014820C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
