@@ -55,19 +55,19 @@
 {
     //Check for the presence of a name
     if ([self.nameField.text length] < 1) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message: @"You must provide a name" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"You must provide a name" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
         [alert show];
         return false;
     }
     //Check that the name length is less than 15
     if ([self.nameField.text length] > 15) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message: @"The name must be less than 15 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The name must be less than 15 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
         [alert show];
         return false;
     }
     //Check that start date is before end date
     if ([self.startDate timeIntervalSince1970] >= [self.endDate timeIntervalSince1970]) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message: @"The start date must be before the end date" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The start date must be before the end date" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
         [alert show];
         return false;
     }

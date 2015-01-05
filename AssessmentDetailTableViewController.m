@@ -71,19 +71,19 @@
 {
     //Check for the presence of a name
     if ([self.nameField.text length] < 1) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message: @"You must provide a name" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"You must provide a name" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
         [alert show];
         return false;
     }
     //Check that the name length is less than 30
     if ([self.nameField.text length] > 30) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message: @"The name must be less than 30 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The name must be less than 30 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
         [alert show];
         return false;
     }
     //Check for weighting value
     if ([self.weightingField.text floatValue] < 0 || [self.weightingField.text floatValue] > 100) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message: @"The subject weighting must be 0-100%" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The subject weighting must be 0-100%" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
         [alert show];
         return false;
     }
