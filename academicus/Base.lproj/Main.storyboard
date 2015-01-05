@@ -2272,28 +2272,108 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Rating" id="PN2-he-eWd">
+                            <tableViewSection headerTitle="Rating" footerTitle="What did you think of this project?" id="PN2-he-eWd">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="4tf-6d-LtA">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4tf-6d-LtA" id="4yA-vq-OKS">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="101" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="What did you think of this project? (1-5)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hLE-Fu-VlU">
-                                                    <rect key="frame" x="15" y="7" width="570" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="numberPad"/>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="1vS-2o-h2S" id="f0D-AD-Q20"/>
-                                                    </connections>
-                                                </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m7x-fg-cxf">
+                                                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                    <state key="normal" title="☆">
+                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZw-4n-LQ1">
+                                                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                    <state key="normal" title="☆">
+                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O3A-s1-Zzh">
+                                                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                    <state key="normal" title="☆">
+                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EIt-3B-I8y">
+                                                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                    <state key="normal" title="☆">
+                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                                <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZuQ-ci-eeO">
+                                                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                    <state key="normal" title="☆">
+                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="hLE-Fu-VlU" secondAttribute="bottom" constant="-2" id="JNh-8s-bjl"/>
-                                                <constraint firstItem="hLE-Fu-VlU" firstAttribute="top" secondItem="4yA-vq-OKS" secondAttribute="topMargin" constant="-1" id="OYC-8b-MPM"/>
-                                                <constraint firstItem="hLE-Fu-VlU" firstAttribute="leading" secondItem="4yA-vq-OKS" secondAttribute="leadingMargin" constant="7" id="dZH-hR-Gyk"/>
-                                                <constraint firstItem="hLE-Fu-VlU" firstAttribute="centerX" secondItem="4yA-vq-OKS" secondAttribute="centerX" id="yn2-uL-NL0"/>
+                                                <constraint firstItem="EIt-3B-I8y" firstAttribute="leading" secondItem="O3A-s1-Zzh" secondAttribute="trailing" constant="5" id="1Lh-GS-Yf3"/>
+                                                <constraint firstItem="O3A-s1-Zzh" firstAttribute="leading" secondItem="cZw-4n-LQ1" secondAttribute="trailing" constant="5" id="ENz-B5-Reo"/>
+                                                <constraint firstAttribute="centerY" secondItem="EIt-3B-I8y" secondAttribute="centerY" id="Kws-nh-Rzi"/>
+                                                <constraint firstItem="m7x-fg-cxf" firstAttribute="leading" secondItem="ZuQ-ci-eeO" secondAttribute="trailing" constant="5" id="UjM-DJ-NYC"/>
+                                                <constraint firstAttribute="centerY" secondItem="ZuQ-ci-eeO" secondAttribute="centerY" id="UtJ-gp-2tI"/>
+                                                <constraint firstItem="cZw-4n-LQ1" firstAttribute="leading" secondItem="m7x-fg-cxf" secondAttribute="trailing" constant="5" id="hOE-Tr-Df9"/>
+                                                <constraint firstAttribute="centerY" secondItem="m7x-fg-cxf" secondAttribute="centerY" id="iWn-s4-Ssq"/>
+                                                <constraint firstAttribute="centerY" secondItem="O3A-s1-Zzh" secondAttribute="centerY" id="nE6-4W-aO7"/>
+                                                <constraint firstAttribute="centerX" secondItem="cZw-4n-LQ1" secondAttribute="centerX" id="oSF-Gu-uld"/>
+                                                <constraint firstAttribute="centerY" secondItem="cZw-4n-LQ1" secondAttribute="centerY" id="tOW-l8-iyj"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="subviews">
+                                                    <exclude reference="m7x-fg-cxf"/>
+                                                    <exclude reference="cZw-4n-LQ1"/>
+                                                    <exclude reference="O3A-s1-Zzh"/>
+                                                    <exclude reference="EIt-3B-I8y"/>
+                                                    <exclude reference="ZuQ-ci-eeO"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <exclude reference="UtJ-gp-2tI"/>
+                                                    <exclude reference="UjM-DJ-NYC"/>
+                                                    <exclude reference="iWn-s4-Ssq"/>
+                                                    <exclude reference="hOE-Tr-Df9"/>
+                                                    <exclude reference="oSF-Gu-uld"/>
+                                                    <exclude reference="tOW-l8-iyj"/>
+                                                    <exclude reference="ENz-B5-Reo"/>
+                                                    <exclude reference="nE6-4W-aO7"/>
+                                                    <exclude reference="1Lh-GS-Yf3"/>
+                                                    <exclude reference="Kws-nh-Rzi"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="subviews">
+                                                    <include reference="m7x-fg-cxf"/>
+                                                    <include reference="cZw-4n-LQ1"/>
+                                                    <include reference="O3A-s1-Zzh"/>
+                                                    <include reference="EIt-3B-I8y"/>
+                                                    <include reference="ZuQ-ci-eeO"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <include reference="UtJ-gp-2tI"/>
+                                                    <include reference="UjM-DJ-NYC"/>
+                                                    <include reference="iWn-s4-Ssq"/>
+                                                    <include reference="hOE-Tr-Df9"/>
+                                                    <include reference="oSF-Gu-uld"/>
+                                                    <include reference="tOW-l8-iyj"/>
+                                                    <include reference="ENz-B5-Reo"/>
+                                                    <include reference="nE6-4W-aO7"/>
+                                                    <include reference="1Lh-GS-Yf3"/>
+                                                    <include reference="Kws-nh-Rzi"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -2426,12 +2506,11 @@
                         <outlet property="notesField" destination="du6-5Y-bmc" id="tv6-gn-ZyH"/>
                         <outlet property="pictureField" destination="yps-Qh-7DJ" id="ItX-hd-mF8"/>
                         <outlet property="positiveFeedbackField" destination="XzV-4W-o4N" id="GEi-zh-o5y"/>
-                        <outlet property="ratingField" destination="hLE-Fu-VlU" id="aRZ-tc-B8Y"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HIP-b9-H6f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4188" y="1418.25"/>
+            <point key="canvasLocation" x="4188" y="1416.75"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GR1-8a-ga1">
@@ -2461,10 +2540,10 @@
         <image name="TabBarUserSelected" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zvW-iK-Ohd"/>
-        <segue reference="tRH-EP-YoQ"/>
         <segue reference="gyc-NN-0V3"/>
         <segue reference="hLf-mw-eHg"/>
         <segue reference="EA4-An-DjK"/>
+        <segue reference="zvW-iK-Ohd"/>
+        <segue reference="Cud-FT-Sdr"/>
     </inferredMetricsTieBreakers>
 </document>

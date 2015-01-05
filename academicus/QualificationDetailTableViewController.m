@@ -41,13 +41,13 @@
 {
     //Check for the presence of a name
     if ([self.nameField.text length] < 1) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message: @"You must provide a name" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"You must provide a name" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
         [alert show];
         return false;
     }
     //Check that the name length is less than 30
     if ([self.nameField.text length] > 30) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message: @"The name must be less than 30 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The name must be less than 30 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
         [alert show];
         return false;
     }

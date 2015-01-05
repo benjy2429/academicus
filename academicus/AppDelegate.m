@@ -21,7 +21,6 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coreDataError:) name:ManagedObjectContextSaveDidFailNotification object:nil];
     
     UITabBarController *tabController = (UITabBarController*) self.window.rootViewController;
