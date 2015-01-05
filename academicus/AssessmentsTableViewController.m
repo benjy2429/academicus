@@ -52,11 +52,11 @@
     // Delete the cache to prevent inconsistencies in iOS7
     [NSFetchedResultsController deleteCacheWithName:@"Assessments"];
     
-    // Retrieve the objects for this table view using CoreData
-    [self performFetch];
-    
     // Set the view title to the qualification name
     self.title = self.subject.name;
+    
+    // Retrieve the objects for this table view using CoreData
+    [self performFetch];
     
     // Initialise variable not in edit mode
     self.inSwipeDeleteMode = NO;
@@ -67,6 +67,17 @@
     // Override the height of the table view header
     self.headerView.frame = CGRectMake(0, 0, 0, 110);
     [self configureHeader];
+
+}
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    // Reload the table view to ensure data is up to date
+    // Do this everytime the view appears incase the content is changed on another tab
+    [self.tableView reloadData];
 }
 
 
@@ -192,6 +203,9 @@
     if (![currentAssessment.hasGrade boolValue] && [[NSDate date] compare:currentAssessment.deadline] == NSOrderedDescending) {
         dueDateLabel.textColor = [UIColor colorWithRed:0.8f green:0.0f blue:0.0f alpha:1.0f];
         dueMonthLabel.textColor = [UIColor colorWithRed:0.8f green:0.0f blue:0.0f alpha:1.0f];
+    } else {
+        dueDateLabel.textColor = [UIColor blackColor];
+        dueMonthLabel.textColor = [UIColor blackColor];
     }
 
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];

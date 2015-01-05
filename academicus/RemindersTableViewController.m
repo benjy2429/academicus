@@ -57,19 +57,13 @@
     
     // Delete the cache to prevent inconsistencies in iOS7
     [NSFetchedResultsController deleteCacheWithName:@"Reminders"];
-    
+
     // Retrieve the objects for this table view using CoreData
     [self performFetch];
     
     // Override the height of the table view header
     self.tableView.tableHeaderView.frame = CGRectMake(0, 0, 0, 44);
-}
-
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.tableView reloadData];
+    
 }
 
 
@@ -188,18 +182,24 @@
         gradeLabel.text = (assessment.finalGrade) ? [NSString stringWithFormat: @"%d%%",[assessment.finalGrade intValue]] : @"?";
     } else {
         UILabel *daysRemainingLabel = (UILabel *)[cell viewWithTag:202];
-        NSTimeInterval secondsBetween = [assessment.deadline timeIntervalSinceDate:[NSDate date]];
+        
+        NSDate *currentDate = [NSDate date];
+        NSDate *deadlineDate = assessment.deadline;
+        
+        NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        [calendar rangeOfUnit:NSDayCalendarUnit startDate:&currentDate interval:nil forDate:currentDate];
+        [calendar rangeOfUnit:NSDayCalendarUnit startDate:&deadlineDate interval:nil forDate:deadlineDate];
+        NSDateComponents *difference = [calendar components:NSDayCalendarUnit fromDate:currentDate toDate:deadlineDate options:0];
         
         UILabel *alarmIcon = (UILabel *)[cell viewWithTag:300];
         alarmIcon.hidden = (assessment.reminder != nil) ? NO : YES;
 
-        int daysBetween = secondsBetween/86400;
-        switch (daysBetween) {
+        switch ([difference day]) {
             case 0: daysRemainingLabel.text = @"Due today"; break;
             case 1: daysRemainingLabel.text = @"Due tomorrow"; break;
             default: {
-                if (daysBetween < 366) {
-                    daysRemainingLabel.text = [NSString stringWithFormat: @"You have %i days remaining", daysBetween];
+                if ([difference day] < 366) {
+                    daysRemainingLabel.text = [NSString stringWithFormat: @"You have %i days remaining", (int)[difference day]];
                 } else {
                     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
                     [dateFormatter setDateFormat:@"dd-MM-yyyy"];
@@ -230,6 +230,42 @@
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         controller.itemToEdit = [self.fetchedResultsController objectAtIndexPath:indexPath];
     }
+}
+
+
+#pragma mark - NSFetchedResultsControllerDelegate
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView beginUpdates];
+}
+
+
+- (void)controller:(NSFetchedResultsController*)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
+{
+    // Modify table rows depending on the action performed
+    // (Called automatically by the NSFetchedResultsController)
+    switch (type) {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        case NSFetchedResultsChangeUpdate:
+            [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            break;
+        case NSFetchedResultsChangeMove:
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+            break;
+    }
+}
+
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView endUpdates];
 }
 
 

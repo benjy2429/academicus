@@ -11,10 +11,10 @@
 #import "AssessmentCriteria.h"
 #import "AssessmentGradeTableViewController.h"
 
-#define UPCOMING_PREDICATE @"deadline > %@"
-#define PAST_PREDICATE @"deadline <= %@"
+#define UPCOMING_PREDICATE @"deadline > %@ AND hasGrade == false"
+#define PAST_PREDICATE @"deadline <= %@ OR hasGrade == true"
 
-@interface RemindersTableViewController : UITableViewController <AssessmentGradeTableViewControllerDelegate,NSFetchedResultsControllerDelegate>
+@interface RemindersTableViewController : UITableViewController <AssessmentGradeTableViewControllerDelegate, NSFetchedResultsControllerDelegate>
 
 @property (assign) BOOL isPast;
 @property (nonatomic, weak) NSManagedObjectContext *managedObjectContext;
