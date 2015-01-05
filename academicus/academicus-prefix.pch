@@ -19,7 +19,7 @@
 
 extern NSString* const ManagedObjectContextSaveDidFailNotification;
 
-#define APP_TINT_COLOUR [UIColor colorWithRed:0.48f green:0.38f blue:0.57f alpha:0.5f]
+#define APP_TINT_COLOUR [UIColor colorWithRed:0.48f green:0.38f blue:0.57f alpha:1.0f]
 
 #define COREDATA_ERROR(__error__)\
 NSLog(@"*** ERROR IN COREDATA: %s:%d\n%@\n%@",\
