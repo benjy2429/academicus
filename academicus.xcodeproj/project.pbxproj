@@ -64,9 +64,8 @@
 		B546EAE81A5B38E40014820C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5030AE81A43788800E23378 /* Images.xcassets */; };
 		B546EAEF1A5B39440014820C /* calabash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B546EAEE1A5B39440014820C /* calabash.framework */; };
 		B546EAF11A5B397D0014820C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B546EAF01A5B397D0014820C /* CFNetwork.framework */; };
-		B585D5651A5B490200AC36D1 /* grades_management.feature in Resources */ = {isa = PBXBuildFile; fileRef = B585D55D1A5B490200AC36D1 /* grades_management.feature */; };
+		B585D5651A5B490200AC36D1 /* grades_management_qualifications.feature in Resources */ = {isa = PBXBuildFile; fileRef = B585D55D1A5B490200AC36D1 /* grades_management_qualifications.feature */; };
 		B585D5661A5B490200AC36D1 /* calabash_steps.rb in Resources */ = {isa = PBXBuildFile; fileRef = B585D55F1A5B490200AC36D1 /* calabash_steps.rb */; };
-		B585D5671A5B490200AC36D1 /* grades_management_steps.rb in Resources */ = {isa = PBXBuildFile; fileRef = B585D5601A5B490200AC36D1 /* grades_management_steps.rb */; };
 		B585D5681A5B490200AC36D1 /* 01_launch.rb in Resources */ = {isa = PBXBuildFile; fileRef = B585D5621A5B490200AC36D1 /* 01_launch.rb */; };
 		B585D5691A5B490200AC36D1 /* 02_pre_stop_hooks.rb in Resources */ = {isa = PBXBuildFile; fileRef = B585D5631A5B490200AC36D1 /* 02_pre_stop_hooks.rb */; };
 		B585D56A1A5B490200AC36D1 /* env.rb in Resources */ = {isa = PBXBuildFile; fileRef = B585D5641A5B490200AC36D1 /* env.rb */; };
@@ -76,6 +75,7 @@
 		B5B7EE5E1A51D8C500966CEE /* Qualification.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B7EE5D1A51D8C500966CEE /* Qualification.m */; };
 		B5DED5991A46451500D22147 /* YearsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DED5981A46451500D22147 /* YearsTableViewController.m */; };
 		B5DED59C1A46470800D22147 /* YearDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DED59B1A46470800D22147 /* YearDetailTableViewController.m */; };
+		B5EDAD2D1A5B7E0100AD147A /* grades_management_years.feature in Resources */ = {isa = PBXBuildFile; fileRef = B5EDAD2C1A5B7E0100AD147A /* grades_management_years.feature */; };
 		B5F232A91A4F5CCC00EAFF93 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F232A81A4F5CCC00EAFF93 /* CoreData.framework */; };
 		B5F232AF1A4F5D5D00EAFF93 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5F232AD1A4F5D5D00EAFF93 /* DataModel.xcdatamodeld */; };
 		B5FD432B1A51029D00AC583E /* Subject.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FD432A1A51029D00AC583E /* Subject.m */; };
@@ -144,9 +144,8 @@
 		B546EAED1A5B38E50014820C /* academicus copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "academicus copy-Info.plist"; path = "/Users/ben/Desktop/academicus/academicus copy-Info.plist"; sourceTree = "<absolute>"; };
 		B546EAEE1A5B39440014820C /* calabash.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = calabash.framework; sourceTree = "<group>"; };
 		B546EAF01A5B397D0014820C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		B585D55D1A5B490200AC36D1 /* grades_management.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grades_management.feature; sourceTree = "<group>"; };
+		B585D55D1A5B490200AC36D1 /* grades_management_qualifications.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grades_management_qualifications.feature; sourceTree = "<group>"; };
 		B585D55F1A5B490200AC36D1 /* calabash_steps.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = calabash_steps.rb; sourceTree = "<group>"; };
-		B585D5601A5B490200AC36D1 /* grades_management_steps.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = grades_management_steps.rb; sourceTree = "<group>"; };
 		B585D5621A5B490200AC36D1 /* 01_launch.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = 01_launch.rb; sourceTree = "<group>"; };
 		B585D5631A5B490200AC36D1 /* 02_pre_stop_hooks.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = 02_pre_stop_hooks.rb; sourceTree = "<group>"; };
 		B585D5641A5B490200AC36D1 /* env.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = env.rb; sourceTree = "<group>"; };
@@ -161,6 +160,7 @@
 		B5DED5981A46451500D22147 /* YearsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YearsTableViewController.m; sourceTree = "<group>"; };
 		B5DED59A1A46470800D22147 /* YearDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YearDetailTableViewController.h; sourceTree = "<group>"; };
 		B5DED59B1A46470800D22147 /* YearDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = YearDetailTableViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B5EDAD2C1A5B7E0100AD147A /* grades_management_years.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grades_management_years.feature; sourceTree = "<group>"; };
 		B5F232A81A4F5CCC00EAFF93 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B5F232AE1A4F5D5D00EAFF93 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		B5FD43291A51029D00AC583E /* Subject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Subject.h; sourceTree = "<group>"; };
@@ -368,7 +368,8 @@
 		B585D55C1A5B490200AC36D1 /* features */ = {
 			isa = PBXGroup;
 			children = (
-				B585D55D1A5B490200AC36D1 /* grades_management.feature */,
+				B585D55D1A5B490200AC36D1 /* grades_management_qualifications.feature */,
+				B5EDAD2C1A5B7E0100AD147A /* grades_management_years.feature */,
 				B585D55E1A5B490200AC36D1 /* step_definitions */,
 				B585D5611A5B490200AC36D1 /* support */,
 			);
@@ -379,7 +380,6 @@
 			isa = PBXGroup;
 			children = (
 				B585D55F1A5B490200AC36D1 /* calabash_steps.rb */,
-				B585D5601A5B490200AC36D1 /* grades_management_steps.rb */,
 				B5A6CA241A5B574C0041CEE9 /* navbar_steps.rb */,
 			);
 			path = step_definitions;
@@ -495,6 +495,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5030AE71A43788800E23378 /* Main.storyboard in Resources */,
+				B5EDAD2D1A5B7E0100AD147A /* grades_management_years.feature in Resources */,
 				B5A6CA251A5B574C0041CEE9 /* navbar_steps.rb in Resources */,
 				B5030AEC1A43788800E23378 /* LaunchScreen.xib in Resources */,
 				B5030AE91A43788800E23378 /* Images.xcassets in Resources */,
@@ -515,10 +516,9 @@
 				B546EAE61A5B38E40014820C /* Main.storyboard in Resources */,
 				B546EAE71A5B38E40014820C /* LaunchScreen.xib in Resources */,
 				B546EAE81A5B38E40014820C /* Images.xcassets in Resources */,
-				B585D5651A5B490200AC36D1 /* grades_management.feature in Resources */,
+				B585D5651A5B490200AC36D1 /* grades_management_qualifications.feature in Resources */,
 				B585D56A1A5B490200AC36D1 /* env.rb in Resources */,
 				B585D5681A5B490200AC36D1 /* 01_launch.rb in Resources */,
-				B585D5671A5B490200AC36D1 /* grades_management_steps.rb in Resources */,
 				B585D5691A5B490200AC36D1 /* 02_pre_stop_hooks.rb in Resources */,
 				B585D5661A5B490200AC36D1 /* calabash_steps.rb in Resources */,
 			);
