@@ -16,6 +16,15 @@
 		A3981DF81A47595000334345 /* AssessmentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3981DF71A47595000334345 /* AssessmentsTableViewController.m */; };
 		A3981DFB1A47596F00334345 /* AssessmentDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3981DFA1A47596F00334345 /* AssessmentDetailTableViewController.m */; };
 		A39AA8E51A48B2FF00A757B4 /* AssessmentGradeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39AA8E41A48B2FF00A757B4 /* AssessmentGradeTableViewController.m */; };
+		A39B88F81A5C7E8B00F883EC /* PersonalTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39B88F71A5C7E8B00F883EC /* PersonalTableViewController.m */; };
+		A39B88FB1A5C7EAB00F883EC /* HobbiesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39B88FA1A5C7EAB00F883EC /* HobbiesTableViewController.m */; };
+		A39B88FE1A5C7EBA00F883EC /* AchievementsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39B88FD1A5C7EBA00F883EC /* AchievementsTableViewController.m */; };
+		A39B89011A5C7ED000F883EC /* WorkTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39B89001A5C7ED000F883EC /* WorkTableViewController.m */; };
+		A39B89041A5C7EDC00F883EC /* ProgressTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39B89031A5C7EDC00F883EC /* ProgressTableViewController.m */; };
+		A39B89071A5C8ADE00F883EC /* MyPortfolioTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39B89061A5C8ADE00F883EC /* MyPortfolioTableViewController.m */; };
+		A39B890A1A5C9B2400F883EC /* AboutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39B89091A5C9B2400F883EC /* AboutTableViewController.m */; };
+		A39B890D1A5C9B4A00F883EC /* AchievementDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39B890C1A5C9B4A00F883EC /* AchievementDetailTableViewController.m */; };
+		A39B89101A5C9B6900F883EC /* WorkDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39B890F1A5C9B6900F883EC /* WorkDetailTableViewController.m */; };
 		B5030ADB1A43788800E23378 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030ADA1A43788800E23378 /* main.m */; };
 		B5030ADE1A43788800E23378 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030ADD1A43788800E23378 /* AppDelegate.m */; };
 		B5030AE71A43788800E23378 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5030AE51A43788800E23378 /* Main.storyboard */; };
@@ -110,6 +119,24 @@
 		A3981DFA1A47596F00334345 /* AssessmentDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = AssessmentDetailTableViewController.m; path = ../AssessmentDetailTableViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		A39AA8E31A48B2FF00A757B4 /* AssessmentGradeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssessmentGradeTableViewController.h; sourceTree = "<group>"; };
 		A39AA8E41A48B2FF00A757B4 /* AssessmentGradeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AssessmentGradeTableViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		A39B88F61A5C7E8B00F883EC /* PersonalTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalTableViewController.h; sourceTree = "<group>"; };
+		A39B88F71A5C7E8B00F883EC /* PersonalTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalTableViewController.m; sourceTree = "<group>"; };
+		A39B88F91A5C7EAB00F883EC /* HobbiesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HobbiesTableViewController.h; sourceTree = "<group>"; };
+		A39B88FA1A5C7EAB00F883EC /* HobbiesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HobbiesTableViewController.m; sourceTree = "<group>"; };
+		A39B88FC1A5C7EBA00F883EC /* AchievementsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AchievementsTableViewController.h; sourceTree = "<group>"; };
+		A39B88FD1A5C7EBA00F883EC /* AchievementsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AchievementsTableViewController.m; sourceTree = "<group>"; };
+		A39B88FF1A5C7ED000F883EC /* WorkTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkTableViewController.h; sourceTree = "<group>"; };
+		A39B89001A5C7ED000F883EC /* WorkTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkTableViewController.m; sourceTree = "<group>"; };
+		A39B89021A5C7EDC00F883EC /* ProgressTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressTableViewController.h; sourceTree = "<group>"; };
+		A39B89031A5C7EDC00F883EC /* ProgressTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressTableViewController.m; sourceTree = "<group>"; };
+		A39B89051A5C8ADE00F883EC /* MyPortfolioTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPortfolioTableViewController.h; sourceTree = "<group>"; };
+		A39B89061A5C8ADE00F883EC /* MyPortfolioTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPortfolioTableViewController.m; sourceTree = "<group>"; };
+		A39B89081A5C9B2400F883EC /* AboutTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutTableViewController.h; sourceTree = "<group>"; };
+		A39B89091A5C9B2400F883EC /* AboutTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutTableViewController.m; sourceTree = "<group>"; };
+		A39B890B1A5C9B4A00F883EC /* AchievementDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AchievementDetailTableViewController.h; sourceTree = "<group>"; };
+		A39B890C1A5C9B4A00F883EC /* AchievementDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AchievementDetailTableViewController.m; sourceTree = "<group>"; };
+		A39B890E1A5C9B6900F883EC /* WorkDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkDetailTableViewController.h; sourceTree = "<group>"; };
+		A39B890F1A5C9B6900F883EC /* WorkDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkDetailTableViewController.m; sourceTree = "<group>"; };
 		B5030AD51A43788800E23378 /* academicus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = academicus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5030AD91A43788800E23378 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5030ADA1A43788800E23378 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -236,6 +263,22 @@
 			children = (
 				B5030B141A438DFA00E23378 /* PortfolioTableViewController.h */,
 				B5030B151A438DFA00E23378 /* PortfolioTableViewController.m */,
+				A39B88F61A5C7E8B00F883EC /* PersonalTableViewController.h */,
+				A39B88F71A5C7E8B00F883EC /* PersonalTableViewController.m */,
+				A39B88F91A5C7EAB00F883EC /* HobbiesTableViewController.h */,
+				A39B88FA1A5C7EAB00F883EC /* HobbiesTableViewController.m */,
+				A39B88FC1A5C7EBA00F883EC /* AchievementsTableViewController.h */,
+				A39B88FD1A5C7EBA00F883EC /* AchievementsTableViewController.m */,
+				A39B890B1A5C9B4A00F883EC /* AchievementDetailTableViewController.h */,
+				A39B890C1A5C9B4A00F883EC /* AchievementDetailTableViewController.m */,
+				A39B88FF1A5C7ED000F883EC /* WorkTableViewController.h */,
+				A39B89001A5C7ED000F883EC /* WorkTableViewController.m */,
+				A39B890E1A5C9B6900F883EC /* WorkDetailTableViewController.h */,
+				A39B890F1A5C9B6900F883EC /* WorkDetailTableViewController.m */,
+				A39B89051A5C8ADE00F883EC /* MyPortfolioTableViewController.h */,
+				A39B89061A5C8ADE00F883EC /* MyPortfolioTableViewController.m */,
+				A39B89021A5C7EDC00F883EC /* ProgressTableViewController.h */,
+				A39B89031A5C7EDC00F883EC /* ProgressTableViewController.m */,
 				A3981DEB1A472FA500334345 /* Models */,
 			);
 			name = Portfolio;
@@ -246,6 +289,8 @@
 			children = (
 				B5030B111A438DDF00E23378 /* SettingsTableViewController.h */,
 				B5030B121A438DDF00E23378 /* SettingsTableViewController.m */,
+				A39B89081A5C9B2400F883EC /* AboutTableViewController.h */,
+				A39B89091A5C9B2400F883EC /* AboutTableViewController.m */,
 				A3981DEA1A472F9300334345 /* Models */,
 			);
 			name = Settings;
@@ -532,11 +577,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5DED5991A46451500D22147 /* YearsTableViewController.m in Sources */,
+				A39B88FB1A5C7EAB00F883EC /* HobbiesTableViewController.m in Sources */,
+				A39B890D1A5C9B4A00F883EC /* AchievementDetailTableViewController.m in Sources */,
 				B5DED59C1A46470800D22147 /* YearDetailTableViewController.m in Sources */,
 				B5030B131A438DDF00E23378 /* SettingsTableViewController.m in Sources */,
+				A39B89011A5C7ED000F883EC /* WorkTableViewController.m in Sources */,
 				A368B7A71A4388BE00F8089B /* AssessmentCriteriaOld.m in Sources */,
+				A39B89101A5C9B6900F883EC /* WorkDetailTableViewController.m in Sources */,
 				A368B79E1A4380BC00F8089B /* QualificationOld.m in Sources */,
 				B5A846581A50CCEF001D2E47 /* Year.m in Sources */,
+				A39B88FE1A5C7EBA00F883EC /* AchievementsTableViewController.m in Sources */,
 				B5030B061A4386E200E23378 /* Achievement.m in Sources */,
 				A3981DF81A47595000334345 /* AssessmentsTableViewController.m in Sources */,
 				B5FD432B1A51029D00AC583E /* Subject.m in Sources */,
@@ -548,14 +598,18 @@
 				B5030B1F1A43C77B00E23378 /* QualificationDetailTableViewController.m in Sources */,
 				A368B7A41A43876500F8089B /* SubjectOld.m in Sources */,
 				A368B7A11A43861F00F8089B /* YearOld.m in Sources */,
+				A39B89041A5C7EDC00F883EC /* ProgressTableViewController.m in Sources */,
+				A39B89071A5C8ADE00F883EC /* MyPortfolioTableViewController.m in Sources */,
 				A3981DF21A473E6000334345 /* SubjectDetailTableViewController.m in Sources */,
 				B5030B191A438E1900E23378 /* QualificationsTableViewController.m in Sources */,
 				B5030B101A438DC100E23378 /* RemindersTableViewController.m in Sources */,
 				B5A8465E1A50E2F2001D2E47 /* AssessmentCriteria.m in Sources */,
 				A39AA8E51A48B2FF00A757B4 /* AssessmentGradeTableViewController.m in Sources */,
 				B5030B031A43852B00E23378 /* Portfolio.m in Sources */,
+				A39B88F81A5C7E8B00F883EC /* PersonalTableViewController.m in Sources */,
 				B5030B161A438DFA00E23378 /* PortfolioTableViewController.m in Sources */,
 				B5030B0A1A4388E500E23378 /* WorkExperience.m in Sources */,
+				A39B890A1A5C9B2400F883EC /* AboutTableViewController.m in Sources */,
 				B5B7EE5E1A51D8C500966CEE /* Qualification.m in Sources */,
 				B5030ADB1A43788800E23378 /* main.m in Sources */,
 			);

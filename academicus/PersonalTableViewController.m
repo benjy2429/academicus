@@ -1,18 +1,18 @@
 //
-//  PortfolioTableViewController.m
+//  PersonalTableViewController.m
 //  academicus
 //
-//  Created by Ben on 18/12/2014.
-//  Copyright (c) 2014 sheffield. All rights reserved.
+//  Created by Luke on 06/01/2015.
+//  Copyright (c) 2015 sheffield. All rights reserved.
 //
 
-#import "PortfolioTableViewController.h"
+#import "PersonalTableViewController.h"
 
-@interface PortfolioTableViewController ()
+@interface PersonalTableViewController ()
 
 @end
 
-@implementation PortfolioTableViewController
+@implementation PersonalTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
