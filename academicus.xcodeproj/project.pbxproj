@@ -70,6 +70,7 @@
 		B585D5681A5B490200AC36D1 /* 01_launch.rb in Resources */ = {isa = PBXBuildFile; fileRef = B585D5621A5B490200AC36D1 /* 01_launch.rb */; };
 		B585D5691A5B490200AC36D1 /* 02_pre_stop_hooks.rb in Resources */ = {isa = PBXBuildFile; fileRef = B585D5631A5B490200AC36D1 /* 02_pre_stop_hooks.rb */; };
 		B585D56A1A5B490200AC36D1 /* env.rb in Resources */ = {isa = PBXBuildFile; fileRef = B585D5641A5B490200AC36D1 /* env.rb */; };
+		B5A6CA251A5B574C0041CEE9 /* navbar_steps.rb in Resources */ = {isa = PBXBuildFile; fileRef = B5A6CA241A5B574C0041CEE9 /* navbar_steps.rb */; };
 		B5A846581A50CCEF001D2E47 /* Year.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A846571A50CCEF001D2E47 /* Year.m */; };
 		B5A8465E1A50E2F2001D2E47 /* AssessmentCriteria.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A8465D1A50E2F2001D2E47 /* AssessmentCriteria.m */; };
 		B5B7EE5E1A51D8C500966CEE /* Qualification.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B7EE5D1A51D8C500966CEE /* Qualification.m */; };
@@ -139,7 +140,7 @@
 		B5030B181A438E1900E23378 /* QualificationsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QualificationsTableViewController.m; sourceTree = "<group>"; };
 		B5030B1D1A43C77A00E23378 /* QualificationDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QualificationDetailTableViewController.h; sourceTree = "<group>"; };
 		B5030B1E1A43C77A00E23378 /* QualificationDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QualificationDetailTableViewController.m; sourceTree = "<group>"; };
-		B546EAEC1A5B38E40014820C /* academicus-cal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "academicus-cal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B546EAEC1A5B38E40014820C /* academicus copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "academicus copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B546EAED1A5B38E50014820C /* academicus copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "academicus copy-Info.plist"; path = "/Users/ben/Desktop/academicus/academicus copy-Info.plist"; sourceTree = "<absolute>"; };
 		B546EAEE1A5B39440014820C /* calabash.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = calabash.framework; sourceTree = "<group>"; };
 		B546EAF01A5B397D0014820C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -149,6 +150,7 @@
 		B585D5621A5B490200AC36D1 /* 01_launch.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = 01_launch.rb; sourceTree = "<group>"; };
 		B585D5631A5B490200AC36D1 /* 02_pre_stop_hooks.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = 02_pre_stop_hooks.rb; sourceTree = "<group>"; };
 		B585D5641A5B490200AC36D1 /* env.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = env.rb; sourceTree = "<group>"; };
+		B5A6CA241A5B574C0041CEE9 /* navbar_steps.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = navbar_steps.rb; sourceTree = "<group>"; };
 		B5A846561A50CCEF001D2E47 /* Year.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Year.h; sourceTree = "<group>"; };
 		B5A846571A50CCEF001D2E47 /* Year.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Year.m; sourceTree = "<group>"; };
 		B5A8465C1A50E2F2001D2E47 /* AssessmentCriteria.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssessmentCriteria.h; sourceTree = "<group>"; };
@@ -313,7 +315,7 @@
 			children = (
 				B5030AD51A43788800E23378 /* academicus.app */,
 				B5030AF11A43788800E23378 /* academicusTests.xctest */,
-				B546EAEC1A5B38E40014820C /* academicus-cal.app */,
+				B546EAEC1A5B38E40014820C /* academicus copy.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -378,6 +380,7 @@
 			children = (
 				B585D55F1A5B490200AC36D1 /* calabash_steps.rb */,
 				B585D5601A5B490200AC36D1 /* grades_management_steps.rb */,
+				B5A6CA241A5B574C0041CEE9 /* navbar_steps.rb */,
 			);
 			path = step_definitions;
 			sourceTree = "<group>";
@@ -444,7 +447,7 @@
 			);
 			name = "academicus-cal";
 			productName = academicus;
-			productReference = B546EAEC1A5B38E40014820C /* academicus-cal.app */;
+			productReference = B546EAEC1A5B38E40014820C /* academicus copy.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -492,6 +495,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5030AE71A43788800E23378 /* Main.storyboard in Resources */,
+				B5A6CA251A5B574C0041CEE9 /* navbar_steps.rb in Resources */,
 				B5030AEC1A43788800E23378 /* LaunchScreen.xib in Resources */,
 				B5030AE91A43788800E23378 /* Images.xcassets in Resources */,
 			);
@@ -791,7 +795,7 @@
 					"\"$(SRCROOT)/calabash.framework/calabash\"",
 					"-lstdc++",
 				);
-				PRODUCT_NAME = "academicus-cal";
+				PRODUCT_NAME = "academicus copy";
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
@@ -816,7 +820,7 @@
 					"\"$(SRCROOT)/calabash.framework/calabash\"",
 					"-lstdc++",
 				);
-				PRODUCT_NAME = "academicus-cal";
+				PRODUCT_NAME = "academicus copy";
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
