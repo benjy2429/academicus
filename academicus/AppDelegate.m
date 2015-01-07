@@ -72,8 +72,8 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     bool securityEnabled = true;
-    if (securityEnabled) {
-        [self authenticateUser];
+    if (securityEnabled && !self.isAuthenticated) {
+        //[self authenticateUser];
     }
     //TODO: Check for passcode and/or touchID setting
     application.applicationIconBadgeNumber = 0;
