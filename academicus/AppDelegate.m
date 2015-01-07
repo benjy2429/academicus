@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "QualificationsTableViewController.h"
 #import "RemindersTableViewController.h"
+#import <LocalAuthentication/LocalAuthentication.h>
 
 NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectContextSaveDidFailNotification";
 
@@ -70,6 +71,11 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    bool securityEnabled = true;
+    if (securityEnabled) {
+        [self authenticateUser];
+    }
+    //TODO: Check for passcode and/or touchID setting
     application.applicationIconBadgeNumber = 0;
 }
 
@@ -150,6 +156,57 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
 {
     if (alertView.tag == 666) {
         abort();
+    }
+}
+
+
+- (void) authenticateUser
+{
+    LAContext *context = [[LAContext alloc] init];
+    
+    NSError *error = nil;
+    if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&error]) {
+        [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics localizedReason:@"Are you the device owner?"
+                          reply:^(BOOL success, NSError *error) {
+                              
+                              if (error) {
+                                  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                                  message:@"There was a problem verifying your identity."
+                                                                                 delegate:nil
+                                                                        cancelButtonTitle:@"Ok"
+                                                                        otherButtonTitles:nil];
+                                  [alert show];
+                                  return;
+                              }
+                              
+                              if (success) {
+                                  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
+                                                                                  message:@"You are the device owner!"
+                                                                                 delegate:nil
+                                                                        cancelButtonTitle:@"Ok"
+                                                                        otherButtonTitles:nil];
+                                  [alert show];
+                                  
+                              } else {
+                                  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                                  message:@"You are not the device owner."
+                                                                                 delegate:nil
+                                                                        cancelButtonTitle:@"Ok"
+                                                                        otherButtonTitles:nil];
+                                  [alert show];
+                              }
+                              
+                          }];
+        
+    } else {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:@"Your device cannot authenticate using TouchID."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil];
+        [alert show];
+        
     }
 }
 

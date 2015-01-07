@@ -87,6 +87,16 @@
         [alert show];
         return false;
     }
+   /* //Check that the weighting for this assessment is permissible given weightings for other assessment criteria
+    NSArray *assessments = [self.fetchedResultsController.fetchedObjects mutableCopy];
+    for (NSManagedObject *object in assessments) {
+        AssessmentCriteria *assessment = (AssessmentCriteria *) object;
+        if ([assessment.hasGrade boolValue]) {
+            currentGrade += (([assessment.finalGrade floatValue] * [assessment.weighting floatValue]) / 100);
+        }
+    }*/
+    //TODO: do this check!
+
     return true;
 }
 
