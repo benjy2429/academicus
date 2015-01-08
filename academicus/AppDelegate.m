@@ -52,7 +52,7 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
     }
 #endif
     
-    bool securityEnabled = true; //TODO: Check for passcode and/or touchID setting
+    bool securityEnabled = false; //TODO: Check for passcode and/or touchID setting
     if (securityEnabled) {
         [self.window makeKeyAndVisible];
         [self showAuthenticaiton];

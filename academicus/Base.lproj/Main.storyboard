@@ -2055,6 +2055,7 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e.g. Maths / Engilsh" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e3G-5P-cuZ">
                                                     <rect key="frame" x="15" y="8" width="570" height="30"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Name"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <connections>
@@ -2082,6 +2083,7 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yCE-6P-8gO">
                                                     <rect key="frame" x="15" y="7" width="290" height="30"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Weighting"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="decimalPad"/>
                                                     <connections>
@@ -2145,6 +2147,7 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="What grade are you aiming to achieve?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o9V-84-vUP">
                                                     <rect key="frame" x="15" y="7" width="570" height="30"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Target"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="numberPad"/>
                                                     <connections>
@@ -2284,6 +2287,7 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LDc-N6-TJr">
                                                     <rect key="frame" x="15" y="8" width="570" height="30"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Location"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textField>
@@ -2307,6 +2311,7 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Who teaches you this subject?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jhC-tC-26m">
                                                     <rect key="frame" x="15" y="8" width="570" height="30"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Teacher Name"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textField>
@@ -2330,6 +2335,7 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="What is their email?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SBv-Xt-WLY">
                                                     <rect key="frame" x="15" y="8" width="570" height="30"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Teacher Email"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textField>

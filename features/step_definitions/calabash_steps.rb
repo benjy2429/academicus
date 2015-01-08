@@ -5,10 +5,15 @@ def visitQualificationPage
     touch("tabBarButton marked:'Grades'") #Touch twice to go to first view on navigation stack
 end
 
+def visitYearPage(qual)
+    visitQualificationPage
+    touch("label marked: '#{qual}'")
+end
+
 def createQualification(name)
     macro 'I touch navbar button "Edit"'
     macro 'I touch "Add new qualification"'
-    macro 'I enter "' + name + '"into the "Name" input field'
+    macro 'I enter "' + name + '" into the "Name" input field'
     macro 'I touch navbar button "Done"'
     macro 'I touch navbar button "Done"'
 end
@@ -17,10 +22,18 @@ def createYear(name)
     macro 'I touch navbar button "Edit"'
     macro 'I touch "Add new year"'
     macro 'I enter "' + name + '" into the "Name" input field'
-    macro 'And I touch "Start Date"'
-    macro 'And I change the date picker date to "01-01-2014"'
-    macro 'And I touch "End Date"'
-    macro 'And I change the date picker date to "01-01-2015"'
+    macro 'I touch "Start Date"'
+    macro 'I change the date picker date to "01-01-2014"'
+    macro 'I touch "End Date"'
+    macro 'I change the date picker date to "01-01-2015"'
+    macro 'I touch navbar button "Done"'
+    macro 'I touch navbar button "Done"'
+end
+
+def createSubject(name)
+    macro 'I touch navbar button "Edit"'
+    macro 'I touch "Add new subject"'
+    macro 'I enter "' + name + '" into the "Name" input field'
     macro 'I touch navbar button "Done"'
     macro 'I touch navbar button "Done"'
 end
@@ -42,8 +55,15 @@ Given(/^I have a qualification called "(.*?)"$/) do |name|
 end
 
 Given(/^I have a year called "(.*?)"$/) do |name|
+    visitYearPage "Degree"
     if query("label marked: '#{name}'").empty?
         createYear name
+    end
+end
+
+Given(/^I have a subject called "(.*?)"$/) do |arg1|
+    if query("label marked: '#{name}'").empty?
+        createSubject name
     end
 end
 
@@ -52,12 +72,26 @@ Given(/^I am on the Years page for "(.*?)"$/) do |qual|
     touch("label marked: '#{qual}'")
 end
 
+Given(/^"(.*?)" has a year called "(.*?)"$/) do |qual, year|
+    visitYearPage qual
+    if query("label marked: '#{year}'").empty?
+        createYear year
+    end
+end
+
+Given(/^"(.*?)" has a subject called "(.*?)"$/) do |year, subject|
+    touch("label marked: '#{year}'")
+    if query("label marked: '#{subject}'").empty?
+        createSubject subject
+    end
+end
+
 When /^I touch the Grades tab$/ do
     touch("tabBarButton marked:'Grades'")
 end
 
 Then(/^I should be on the Qualifications page$/) do
-    element_exists("label marked: 'Qualifications'")
+    macro 'I should see navbar with title "Qualifications"'
 end
 
 Then(/^I should be on the New Qualification page$/) do
@@ -65,6 +99,9 @@ Then(/^I should be on the New Qualification page$/) do
 end
 
 Then(/^I should be on the Years page for "(.*?)"$/) do |qual|
-    element_exists("label marked: '#{qual}'")
+    macro 'I should see navbar with title "' + qual + '"'
 end
 
+Then(/^I should be on the Subjects page for "(.*?)"$/) do |year|
+    macro 'I should see navbar with title "' + year + '"'
+end

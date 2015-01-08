@@ -110,7 +110,7 @@
         [alert show];
         return false;
     }
-    //Check that the name length is less than 30
+    //Check that the teacher email length is less than 30
     if ([self.teacherEmailField.text length] > 30) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The teacher email must be less than 30 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
         [alert show];
