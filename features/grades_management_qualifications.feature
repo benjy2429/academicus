@@ -31,7 +31,6 @@ Scenario: Add qualification
   Then I should be on the Qualifications page
   And I should see "Degree"
 
-
 Scenario: Edit qualification
   Given I am on the Qualifications page
   And I have a qualification called "Degree"
