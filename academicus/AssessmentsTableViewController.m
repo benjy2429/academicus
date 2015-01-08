@@ -65,9 +65,74 @@
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     // Override the height of the table view header
-    self.headerView.frame = CGRectMake(0, 0, 0, 110);
+    self.headerView.frame = CGRectMake(0, 0, 0, 120);
     [self configureHeader];
+    
+    [self configureExpandableInfo];
+}
 
+
+- (void) configureExpandableInfo{
+    [self.expandBtn addTarget:self action: @selector(toggleSubjectInformation) forControlEvents:UIControlEventTouchUpInside];
+    self.isSubjectExpanded = false;
+    self.expandSize = 0;
+    float sizePerField = 37.5;
+    
+    self.moduleProgressLabel.text = @"Module Progress: -1%"; //TODO implement the percentage of course completed
+    self.expandSize += sizePerField;
+
+    if (![self.subject.teacherName isEqualToString:@""]) {
+        self.teacherNameLabel.text = [NSString stringWithFormat: @"Teacher Name: %@", self.subject.teacherName];
+        self.expandSize += sizePerField;
+    } else {
+        [self.teacherNameLabel performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+    }
+    
+    if (![self.subject.teacherEmail isEqualToString:@""]) {
+        self.teacherEmailLabel.text = [NSString stringWithFormat: @"Teacher Email: %@", self.subject.teacherEmail];
+        self.expandSize += sizePerField;
+    } else {
+        [self.teacherEmailLabel performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+    }
+    
+    //TODO implement locaiton
+    /*
+     if (![self.subject.location isEqualToString:@""]) {
+     self.locationLabel.text = [NSString stringWithFormat: @"Location: %@", self.subject.location];
+     } else {
+     [self.locationLabel performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+     }*/
+     self.expandSize += sizePerField;
+}
+
+
+- (void)toggleSubjectInformation {
+    int adjustmentSize = self.expandSize + 5;
+    if (self.isSubjectExpanded) {
+        [UIView animateWithDuration:0.1 animations:^{
+            CGRect frame = self.headerView.frame;
+            [self.headerView setFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height-adjustmentSize)];
+            frame = self.expandBtn.frame;
+            [self.expandBtn setFrame:CGRectMake(frame.origin.x, frame.origin.y-adjustmentSize, frame.size.width, frame.size.height)];
+        } completion: ^(BOOL finished) {
+            [self.expandBtn setTitle:@"Show subject details" forState:UIControlStateNormal];            
+        }];
+    } else {
+        [UIView animateWithDuration:0.1 animations:^{
+            CGRect frame = self.headerView.frame;
+            [self.headerView setFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height+adjustmentSize)];
+            frame = self.expandBtn.frame;
+            [self.expandBtn setFrame:CGRectMake(frame.origin.x, frame.origin.y+adjustmentSize, frame.size.width, frame.size.height)];
+
+        } completion: ^(BOOL finished) {
+            CGRect frame = self.moduleProgressLabel.superview.frame;
+            [self.moduleProgressLabel.superview setFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, self.expandSize)];
+            [self.expandBtn setTitle:@"Hide subject details" forState:UIControlStateNormal];
+
+        }];
+
+    }
+    self.isSubjectExpanded = !self.isSubjectExpanded;
 }
 
 
@@ -360,6 +425,8 @@
 
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+    if (self.isSubjectExpanded) {[self toggleSubjectInformation];}
+    
     [super setEditing:editing animated:animated];
     
     // If the user swiped, the add item button does not need to be added

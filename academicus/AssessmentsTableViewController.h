@@ -19,7 +19,14 @@
 
 // This variable is used to determine whether the user clicked the edit button, or swiped a row
 @property (assign) BOOL inSwipeDeleteMode;
+@property (assign) BOOL isSubjectExpanded;
+@property (assign) float expandSize;
 
 @property (weak, nonatomic) IBOutlet UIView *headerView;
+@property (weak, nonatomic) IBOutlet UIButton *expandBtn;
+@property (weak, nonatomic) IBOutlet UILabel *moduleProgressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *teacherNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *teacherEmailLabel;
+@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 
 @end
