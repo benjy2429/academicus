@@ -1,18 +1,18 @@
 //
-//  PortfolioTableViewController.m
+//  AchievementDetailTableViewController.m
 //  academicus
 //
-//  Created by Ben on 18/12/2014.
-//  Copyright (c) 2014 sheffield. All rights reserved.
+//  Created by Luke on 06/01/2015.
+//  Copyright (c) 2015 sheffield. All rights reserved.
 //
 
-#import "PortfolioTableViewController.h"
+#import "AchievementDetailTableViewController.h"
 
-@interface PortfolioTableViewController ()
+@interface AchievementDetailTableViewController ()
 
 @end
 
-@implementation PortfolioTableViewController
+@implementation AchievementDetailTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

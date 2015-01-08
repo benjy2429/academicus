@@ -10,6 +10,8 @@
 #import "QualificationsTableViewController.h"
 #import "RemindersTableViewController.h"
 
+#import <LocalAuthentication/LocalAuthentication.h>
+
 NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectContextSaveDidFailNotification";
 
 @interface AppDelegate ()
@@ -50,6 +52,13 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
     }
 #endif
     
+    bool securityEnabled = true; //TODO: Check for passcode and/or touchID setting
+    if (securityEnabled) {
+        [self.window makeKeyAndVisible];
+        [self showAuthenticaiton];
+        [self authenticateUser];
+    }
+    
     return YES;
 }
 
@@ -61,10 +70,14 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    bool securityEnabled = true; //TODO: Check for passcode and/or touchID setting
+    if (securityEnabled) {[self showAuthenticaiton];}
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    bool securityEnabled = true; //TODO: Check for passcode and/or touchID setting
+    if (securityEnabled) {[self authenticateUser];}
     application.applicationIconBadgeNumber = 0;
 }
 
@@ -150,6 +163,47 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
 {
     if (alertView.tag == 666) {
         abort();
+    }
+}
+
+
+- (void) showAuthenticaiton
+{
+    UIWindow* window = [[UIApplication sharedApplication] keyWindow];
+    UIViewController* topController = window.rootViewController;
+    self.loginScreen = [[LoginViewController alloc] init];
+    [topController presentViewController: self.loginScreen animated: NO completion:nil];
+}
+
+
+- (void) authenticateUser
+{
+    bool touchIdEnabled = true; //TODO: check settings to see if it is
+    if (!touchIdEnabled) {
+        dispatch_async(dispatch_get_main_queue(), ^ {[self.loginScreen displayPasscode:true];});
+        return;
+    }
+    
+    LAContext *context = [[LAContext alloc] init];
+    NSError *error = nil;
+    if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&error]) {
+        [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
+                 localizedReason:@"Authenticate to unlock Academicus"
+                 reply:^(BOOL success, NSError *error) {
+                     if (success) {
+                         dispatch_async(dispatch_get_main_queue(), ^ {
+                             [self.loginScreen displayPasscode:false];
+                         });
+                     } else {
+                         dispatch_async(dispatch_get_main_queue(), ^ {
+                            [self.loginScreen displayPasscode:true];
+                         });
+                     }
+            }];
+    } else {
+        dispatch_async(dispatch_get_main_queue(), ^ {
+            [self.loginScreen displayPasscode:true];
+        });
     }
 }
 

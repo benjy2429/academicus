@@ -76,10 +76,6 @@
     [self.ratingStar3 setTitle:((rating > 2) ? @"★" : @"☆") forState: UIControlStateNormal];
     [self.ratingStar4 setTitle:((rating > 3) ? @"★" : @"☆") forState: UIControlStateNormal];
     [self.ratingStar5 setTitle:((rating > 4) ? @"★" : @"☆") forState: UIControlStateNormal];
-//    self.ratingStar2.titleLabel.text = (rating > 1) ? @"★" : @"☆";
-//    self.ratingStar3.titleLabel.text = (rating > 2) ? @"★" : @"☆";
-//    self.ratingStar4.titleLabel.text = (rating > 3) ? @"★" : @"☆";
-//    self.ratingStar5.titleLabel.text = (rating > 4) ? @"★" : @"☆";
     self.currentRating = rating;
 }
 
