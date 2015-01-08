@@ -38,6 +38,35 @@ def createSubject(name)
     macro 'I touch navbar button "Done"'
 end
 
+def createSubjectWithTarget(name, target)
+    macro 'I touch navbar button "Edit"'
+    macro 'I touch "Add new subject"'
+    macro 'I enter "' + name + '" into the "Name" input field'
+    macro 'I scroll down'
+    macro 'I wait'
+    macro 'I enter "' + target + '" into the "Target" input field'
+    macro 'I touch navbar button "Done"'
+    macro 'I touch navbar button "Done"'
+end
+
+def createAssessment(name)
+    macro 'I touch navbar button "Edit"'
+    macro 'I touch "Add new assessment"'
+    macro 'I enter "' + name + '" into the "Name" input field'
+    macro 'I touch navbar button "Done"'
+    macro 'I touch navbar button "Done"'
+end
+
+def createAssessmentWithWeighting(name, weighting)
+    macro 'I touch navbar button "Edit"'
+    macro 'I touch "Add new assessment"'
+    macro 'I enter "' + name + '" into the "Name" input field'
+    macro 'I clear "Weighting"'
+    macro 'I enter "' + weighting + '" into the "Weighting" input field'
+    macro 'I touch navbar button "Done"'
+    macro 'I touch navbar button "Done"'
+end
+
 Given /^I am on the Reminders page$/ do
     element_exists("label marked: 'Reminders'")
 end
@@ -86,6 +115,23 @@ Given(/^"(.*?)" has a subject called "(.*?)"$/) do |year, subject|
     end
 end
 
+Given(/^"(.*?)" has a subject called "(.*?)" with a target of "(.*?)"%$/) do |year, subject, target|
+    touch("label marked: '#{year}'")
+    if query("label marked: '#{subject}'").empty?
+        createSubjectWithTarget(subject, target)
+    end
+end
+
+Given(/^"(.*?)" has an assessment called "(.*?)"$/) do |subject, assessment|
+    touch("label marked: '#{subject}'")
+    createAssessment assessment
+end
+
+Given(/^"(.*?)" has an assessment called "(.*?)" with a weighting of "(.*?)"%$/) do |subject, assessment, weighting|
+    touch("label marked: '#{subject}'")
+    createAssessmentWithWeighting(assessment, weighting)
+end
+
 When /^I touch the Grades tab$/ do
     touch("tabBarButton marked:'Grades'")
 end
@@ -104,4 +150,18 @@ end
 
 Then(/^I should be on the Subjects page for "(.*?)"$/) do |year|
     macro 'I should see navbar with title "' + year + '"'
+end
+
+Then(/^I should be on the Assessments page for "(.*?)"$/) do |assessment|
+    macro 'I should see navbar with title "' + assessment + '"'
+end
+
+When(/^I touch the assessment cell "(.*?)"$/) do |assessment|
+    now = Date.today
+    macro 'I touch "' + now.day.to_s + ', ' + now.strftime("%b") + ', 0 days remaining, ' + assessment + '"'
+end
+
+When(/^I touch the delete assessment button for "(.*?)"$/) do |assessment|
+    now = Date.today
+    macro 'I touch "Delete ' + now.day.to_s + ', ' + now.strftime("%b") + ', 0 days remaining, ' + assessment + '"'
 end

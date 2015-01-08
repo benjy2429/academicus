@@ -94,12 +94,12 @@
         [alert show];
         return false;
     }
-    // Validate that the final grade is between 0% and 100%
+    /* Validate that the final grade is between 0% and 100%
     if (self.currentRating < 1 || self.currentRating > 5) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"You must provide a rating" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
         [alert show];
         return false;
-    }
+    }*/
     //Check that the positive feedback length is less than 300
     if ([self.positiveFeedbackField.text length] > 300) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The positive feedback must be less than 300 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];

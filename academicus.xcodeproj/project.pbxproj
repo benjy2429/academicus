@@ -81,6 +81,7 @@
 		B585D5691A5B490200AC36D1 /* 02_pre_stop_hooks.rb in Resources */ = {isa = PBXBuildFile; fileRef = B585D5631A5B490200AC36D1 /* 02_pre_stop_hooks.rb */; };
 		B585D56A1A5B490200AC36D1 /* env.rb in Resources */ = {isa = PBXBuildFile; fileRef = B585D5641A5B490200AC36D1 /* env.rb */; };
 		B5A47B7B1A5EE7E700136BAF /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3A3B6171A5DFFBA008D17E9 /* LoginView.xib */; };
+		B5A47B7D1A5F13AB00136BAF /* grades_management_assessments.feature in Resources */ = {isa = PBXBuildFile; fileRef = B5A47B7C1A5F13AB00136BAF /* grades_management_assessments.feature */; };
 		B5A6CA251A5B574C0041CEE9 /* navbar_steps.rb in Resources */ = {isa = PBXBuildFile; fileRef = B5A6CA241A5B574C0041CEE9 /* navbar_steps.rb */; };
 		B5A846581A50CCEF001D2E47 /* Year.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A846571A50CCEF001D2E47 /* Year.m */; };
 		B5A8465E1A50E2F2001D2E47 /* AssessmentCriteria.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A8465D1A50E2F2001D2E47 /* AssessmentCriteria.m */; };
@@ -193,6 +194,7 @@
 		B585D5621A5B490200AC36D1 /* 01_launch.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = 01_launch.rb; sourceTree = "<group>"; };
 		B585D5631A5B490200AC36D1 /* 02_pre_stop_hooks.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = 02_pre_stop_hooks.rb; sourceTree = "<group>"; };
 		B585D5641A5B490200AC36D1 /* env.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = env.rb; sourceTree = "<group>"; };
+		B5A47B7C1A5F13AB00136BAF /* grades_management_assessments.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = grades_management_assessments.feature; path = features/grades_management_assessments.feature; sourceTree = SOURCE_ROOT; };
 		B5A6CA241A5B574C0041CEE9 /* navbar_steps.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = navbar_steps.rb; sourceTree = "<group>"; };
 		B5A846561A50CCEF001D2E47 /* Year.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Year.h; sourceTree = "<group>"; };
 		B5A846571A50CCEF001D2E47 /* Year.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Year.m; sourceTree = "<group>"; };
@@ -437,6 +439,7 @@
 				B585D55D1A5B490200AC36D1 /* grades_management_qualifications.feature */,
 				B5EDAD2C1A5B7E0100AD147A /* grades_management_years.feature */,
 				B5C99C371A5E22530074C5B3 /* grades_management_subjects.feature */,
+				B5A47B7C1A5F13AB00136BAF /* grades_management_assessments.feature */,
 				B585D55E1A5B490200AC36D1 /* step_definitions */,
 				B585D5611A5B490200AC36D1 /* support */,
 			);
@@ -568,6 +571,7 @@
 				B5030AEC1A43788800E23378 /* LaunchScreen.xib in Resources */,
 				B5030AE91A43788800E23378 /* Images.xcassets in Resources */,
 				B5C99C381A5E22530074C5B3 /* grades_management_subjects.feature in Resources */,
+				B5A47B7D1A5F13AB00136BAF /* grades_management_assessments.feature in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
