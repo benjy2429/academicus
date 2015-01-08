@@ -80,10 +80,23 @@
 		B585D5681A5B490200AC36D1 /* 01_launch.rb in Resources */ = {isa = PBXBuildFile; fileRef = B585D5621A5B490200AC36D1 /* 01_launch.rb */; };
 		B585D5691A5B490200AC36D1 /* 02_pre_stop_hooks.rb in Resources */ = {isa = PBXBuildFile; fileRef = B585D5631A5B490200AC36D1 /* 02_pre_stop_hooks.rb */; };
 		B585D56A1A5B490200AC36D1 /* env.rb in Resources */ = {isa = PBXBuildFile; fileRef = B585D5641A5B490200AC36D1 /* env.rb */; };
+		B5A47B7B1A5EE7E700136BAF /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3A3B6171A5DFFBA008D17E9 /* LoginView.xib */; };
+		B5A47B7D1A5F13AB00136BAF /* grades_management_assessments.feature in Resources */ = {isa = PBXBuildFile; fileRef = B5A47B7C1A5F13AB00136BAF /* grades_management_assessments.feature */; };
 		B5A6CA251A5B574C0041CEE9 /* navbar_steps.rb in Resources */ = {isa = PBXBuildFile; fileRef = B5A6CA241A5B574C0041CEE9 /* navbar_steps.rb */; };
 		B5A846581A50CCEF001D2E47 /* Year.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A846571A50CCEF001D2E47 /* Year.m */; };
 		B5A8465E1A50E2F2001D2E47 /* AssessmentCriteria.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A8465D1A50E2F2001D2E47 /* AssessmentCriteria.m */; };
 		B5B7EE5E1A51D8C500966CEE /* Qualification.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B7EE5D1A51D8C500966CEE /* Qualification.m */; };
+		B5C99C381A5E22530074C5B3 /* grades_management_subjects.feature in Resources */ = {isa = PBXBuildFile; fileRef = B5C99C371A5E22530074C5B3 /* grades_management_subjects.feature */; };
+		B5C99C3B1A5E27950074C5B3 /* PersonalTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39B88F71A5C7E8B00F883EC /* PersonalTableViewController.m */; };
+		B5C99C3C1A5E27950074C5B3 /* HobbiesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39B88FA1A5C7EAB00F883EC /* HobbiesTableViewController.m */; };
+		B5C99C3D1A5E27950074C5B3 /* AchievementsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39B88FD1A5C7EBA00F883EC /* AchievementsTableViewController.m */; };
+		B5C99C3E1A5E27950074C5B3 /* AchievementDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39B890C1A5C9B4A00F883EC /* AchievementDetailTableViewController.m */; };
+		B5C99C3F1A5E27950074C5B3 /* WorkTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39B89001A5C7ED000F883EC /* WorkTableViewController.m */; };
+		B5C99C401A5E27950074C5B3 /* WorkDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39B890F1A5C9B6900F883EC /* WorkDetailTableViewController.m */; };
+		B5C99C411A5E27950074C5B3 /* MyPortfolioTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39B89061A5C8ADE00F883EC /* MyPortfolioTableViewController.m */; };
+		B5C99C421A5E27950074C5B3 /* ProgressTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39B89031A5C7EDC00F883EC /* ProgressTableViewController.m */; };
+		B5C99C431A5E27950074C5B3 /* AboutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39B89091A5C9B2400F883EC /* AboutTableViewController.m */; };
+		B5C99C441A5E27950074C5B3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A3B6121A5DE3EA008D17E9 /* LoginViewController.m */; };
 		B5DED5991A46451500D22147 /* YearsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DED5981A46451500D22147 /* YearsTableViewController.m */; };
 		B5DED59C1A46470800D22147 /* YearDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DED59B1A46470800D22147 /* YearDetailTableViewController.m */; };
 		B5EDAD2D1A5B7E0100AD147A /* grades_management_years.feature in Resources */ = {isa = PBXBuildFile; fileRef = B5EDAD2C1A5B7E0100AD147A /* grades_management_years.feature */; };
@@ -181,6 +194,7 @@
 		B585D5621A5B490200AC36D1 /* 01_launch.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = 01_launch.rb; sourceTree = "<group>"; };
 		B585D5631A5B490200AC36D1 /* 02_pre_stop_hooks.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = 02_pre_stop_hooks.rb; sourceTree = "<group>"; };
 		B585D5641A5B490200AC36D1 /* env.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = env.rb; sourceTree = "<group>"; };
+		B5A47B7C1A5F13AB00136BAF /* grades_management_assessments.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = grades_management_assessments.feature; path = features/grades_management_assessments.feature; sourceTree = SOURCE_ROOT; };
 		B5A6CA241A5B574C0041CEE9 /* navbar_steps.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = navbar_steps.rb; sourceTree = "<group>"; };
 		B5A846561A50CCEF001D2E47 /* Year.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Year.h; sourceTree = "<group>"; };
 		B5A846571A50CCEF001D2E47 /* Year.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Year.m; sourceTree = "<group>"; };
@@ -188,6 +202,7 @@
 		B5A8465D1A50E2F2001D2E47 /* AssessmentCriteria.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssessmentCriteria.m; sourceTree = "<group>"; };
 		B5B7EE5C1A51D8C500966CEE /* Qualification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Qualification.h; sourceTree = "<group>"; };
 		B5B7EE5D1A51D8C500966CEE /* Qualification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Qualification.m; sourceTree = "<group>"; };
+		B5C99C371A5E22530074C5B3 /* grades_management_subjects.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grades_management_subjects.feature; sourceTree = "<group>"; };
 		B5DED5971A46451500D22147 /* YearsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YearsTableViewController.h; sourceTree = "<group>"; };
 		B5DED5981A46451500D22147 /* YearsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YearsTableViewController.m; sourceTree = "<group>"; };
 		B5DED59A1A46470800D22147 /* YearDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YearDetailTableViewController.h; sourceTree = "<group>"; };
@@ -423,6 +438,8 @@
 			children = (
 				B585D55D1A5B490200AC36D1 /* grades_management_qualifications.feature */,
 				B5EDAD2C1A5B7E0100AD147A /* grades_management_years.feature */,
+				B5C99C371A5E22530074C5B3 /* grades_management_subjects.feature */,
+				B5A47B7C1A5F13AB00136BAF /* grades_management_assessments.feature */,
 				B585D55E1A5B490200AC36D1 /* step_definitions */,
 				B585D5611A5B490200AC36D1 /* support */,
 			);
@@ -553,6 +570,8 @@
 				B5A6CA251A5B574C0041CEE9 /* navbar_steps.rb in Resources */,
 				B5030AEC1A43788800E23378 /* LaunchScreen.xib in Resources */,
 				B5030AE91A43788800E23378 /* Images.xcassets in Resources */,
+				B5C99C381A5E22530074C5B3 /* grades_management_subjects.feature in Resources */,
+				B5A47B7D1A5F13AB00136BAF /* grades_management_assessments.feature in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -567,6 +586,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5A47B7B1A5EE7E700136BAF /* LoginView.xib in Resources */,
 				B546EAE61A5B38E40014820C /* Main.storyboard in Resources */,
 				B546EAE71A5B38E40014820C /* LaunchScreen.xib in Resources */,
 				B546EAE81A5B38E40014820C /* Images.xcassets in Resources */,
@@ -637,6 +657,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5C99C3B1A5E27950074C5B3 /* PersonalTableViewController.m in Sources */,
+				B5C99C3C1A5E27950074C5B3 /* HobbiesTableViewController.m in Sources */,
+				B5C99C3D1A5E27950074C5B3 /* AchievementsTableViewController.m in Sources */,
+				B5C99C3E1A5E27950074C5B3 /* AchievementDetailTableViewController.m in Sources */,
+				B5C99C3F1A5E27950074C5B3 /* WorkTableViewController.m in Sources */,
+				B5C99C401A5E27950074C5B3 /* WorkDetailTableViewController.m in Sources */,
+				B5C99C411A5E27950074C5B3 /* MyPortfolioTableViewController.m in Sources */,
+				B5C99C421A5E27950074C5B3 /* ProgressTableViewController.m in Sources */,
+				B5C99C431A5E27950074C5B3 /* AboutTableViewController.m in Sources */,
+				B5C99C441A5E27950074C5B3 /* LoginViewController.m in Sources */,
 				B546EAC81A5B38E40014820C /* YearsTableViewController.m in Sources */,
 				B546EAC91A5B38E40014820C /* YearDetailTableViewController.m in Sources */,
 				B546EACA1A5B38E40014820C /* SettingsTableViewController.m in Sources */,
@@ -781,6 +811,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "academicus/academicus-prefix.pch";
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				INFOPLIST_FILE = academicus/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -797,6 +828,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "academicus/academicus-prefix.pch";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = academicus/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -843,6 +875,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BUNDLE_LOADER = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -862,6 +895,7 @@
 				);
 				PRODUCT_NAME = "academicus-cal";
 				PROVISIONING_PROFILE = "";
+				TEST_HOST = "";
 			};
 			name = Debug;
 		};
@@ -869,6 +903,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BUNDLE_LOADER = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -888,6 +923,7 @@
 				);
 				PRODUCT_NAME = "academicus-cal";
 				PROVISIONING_PROFILE = "";
+				TEST_HOST = "";
 			};
 			name = Release;
 		};
