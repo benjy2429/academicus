@@ -383,9 +383,9 @@
 				A3981DE71A472F2E00334345 /* Portfolio */,
 				A3981DE81A472F3C00334345 /* Settings */,
 				B5030AE51A43788800E23378 /* Main.storyboard */,
-				A3A3B6171A5DFFBA008D17E9 /* LoginView.xib */,
 				B5030AE81A43788800E23378 /* Images.xcassets */,
 				B5030AEA1A43788800E23378 /* LaunchScreen.xib */,
+				A3A3B6171A5DFFBA008D17E9 /* LoginView.xib */,
 				B5030AD81A43788800E23378 /* Supporting Files */,
 				B5F232AD1A4F5D5D00EAFF93 /* DataModel.xcdatamodeld */,
 			);

@@ -3579,12 +3579,12 @@
         <image name="TabBarUserSelected" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gyc-NN-0V3"/>
         <segue reference="hLf-mw-eHg"/>
-        <segue reference="EA4-An-DjK"/>
-        <segue reference="zvW-iK-Ohd"/>
-        <segue reference="Cud-FT-Sdr"/>
+        <segue reference="tRH-EP-YoQ"/>
         <segue reference="R26-EY-otb"/>
         <segue reference="w3R-es-5GT"/>
+        <segue reference="gyc-NN-0V3"/>
+        <segue reference="EA4-An-DjK"/>
+        <segue reference="zvW-iK-Ohd"/>
     </inferredMetricsTieBreakers>
 </document>

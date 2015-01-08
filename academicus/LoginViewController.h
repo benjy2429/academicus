@@ -26,6 +26,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *numKey0;
 @property (weak, nonatomic) IBOutlet UIButton *numKeyDelete;
 
-- (void) displayPasscode: (bool)passwordNeeded;
+@property (assign) int numDigitsEntered;
+@property (strong) NSMutableString* digitsEntered;
+
+- (void) closePasscodeScreen;
 
 @end
