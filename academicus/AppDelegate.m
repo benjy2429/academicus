@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "QualificationsTableViewController.h"
 #import "RemindersTableViewController.h"
+
 #import <LocalAuthentication/LocalAuthentication.h>
 
 NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectContextSaveDidFailNotification";
@@ -51,6 +52,13 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
     }
 #endif
     
+    bool securityEnabled = true; //TODO: Check for passcode and/or touchID setting
+    if (securityEnabled) {
+        [self.window makeKeyAndVisible];
+        [self showAuthenticaiton];
+        [self authenticateUser];
+    }
+    
     return YES;
 }
 
@@ -62,20 +70,19 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    bool securityEnabled = true; //TODO: Check for passcode and/or touchID setting
+    if (securityEnabled) {[self showAuthenticaiton];}
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    bool securityEnabled = true; //TODO: Check for passcode and/or touchID setting
+    if (securityEnabled) {[self authenticateUser];}
     application.applicationIconBadgeNumber = 0;
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    bool securityEnabled = true;
-    if (securityEnabled && !self.isAuthenticated) {
-        //[self authenticateUser];
-    }
-    //TODO: Check for passcode and/or touchID setting
     application.applicationIconBadgeNumber = 0;
 }
 
@@ -160,53 +167,43 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
 }
 
 
+- (void) showAuthenticaiton
+{
+    UIWindow* window = [[UIApplication sharedApplication] keyWindow];
+    UIViewController* topController = window.rootViewController;
+    self.loginScreen = [[LoginViewController alloc] init];
+    [topController presentViewController: self.loginScreen animated: NO completion:nil];
+}
+
+
 - (void) authenticateUser
 {
-    LAContext *context = [[LAContext alloc] init];
+    bool touchIdEnabled = true; //TODO: check settings to see if it is
+    if (!touchIdEnabled) {
+        dispatch_async(dispatch_get_main_queue(), ^ {[self.loginScreen displayPasscode:true];});
+        return;
+    }
     
+    LAContext *context = [[LAContext alloc] init];
     NSError *error = nil;
     if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&error]) {
-        [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics localizedReason:@"Are you the device owner?"
-                          reply:^(BOOL success, NSError *error) {
-                              
-                              if (error) {
-                                  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                                                  message:@"There was a problem verifying your identity."
-                                                                                 delegate:nil
-                                                                        cancelButtonTitle:@"Ok"
-                                                                        otherButtonTitles:nil];
-                                  [alert show];
-                                  return;
-                              }
-                              
-                              if (success) {
-                                  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
-                                                                                  message:@"You are the device owner!"
-                                                                                 delegate:nil
-                                                                        cancelButtonTitle:@"Ok"
-                                                                        otherButtonTitles:nil];
-                                  [alert show];
-                                  
-                              } else {
-                                  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                                                  message:@"You are not the device owner."
-                                                                                 delegate:nil
-                                                                        cancelButtonTitle:@"Ok"
-                                                                        otherButtonTitles:nil];
-                                  [alert show];
-                              }
-                              
-                          }];
-        
+        [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
+                 localizedReason:@"Authenticate to unlock Academicus"
+                 reply:^(BOOL success, NSError *error) {
+                     if (success) {
+                         dispatch_async(dispatch_get_main_queue(), ^ {
+                             [self.loginScreen displayPasscode:false];
+                         });
+                     } else {
+                         dispatch_async(dispatch_get_main_queue(), ^ {
+                            [self.loginScreen displayPasscode:true];
+                         });
+                     }
+            }];
     } else {
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                        message:@"Your device cannot authenticate using TouchID."
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Ok"
-                                              otherButtonTitles:nil];
-        [alert show];
-        
+        dispatch_async(dispatch_get_main_queue(), ^ {
+            [self.loginScreen displayPasscode:true];
+        });
     }
 }
 

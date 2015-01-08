@@ -25,6 +25,8 @@
 		A39B890A1A5C9B2400F883EC /* AboutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39B89091A5C9B2400F883EC /* AboutTableViewController.m */; };
 		A39B890D1A5C9B4A00F883EC /* AchievementDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39B890C1A5C9B4A00F883EC /* AchievementDetailTableViewController.m */; };
 		A39B89101A5C9B6900F883EC /* WorkDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39B890F1A5C9B6900F883EC /* WorkDetailTableViewController.m */; };
+		A3A3B6131A5DE3EA008D17E9 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A3B6121A5DE3EA008D17E9 /* LoginViewController.m */; };
+		A3A3B6181A5DFFBA008D17E9 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3A3B6171A5DFFBA008D17E9 /* LoginView.xib */; };
 		B5030ADB1A43788800E23378 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030ADA1A43788800E23378 /* main.m */; };
 		B5030ADE1A43788800E23378 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030ADD1A43788800E23378 /* AppDelegate.m */; };
 		B5030AE71A43788800E23378 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5030AE51A43788800E23378 /* Main.storyboard */; };
@@ -137,6 +139,9 @@
 		A39B890C1A5C9B4A00F883EC /* AchievementDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AchievementDetailTableViewController.m; sourceTree = "<group>"; };
 		A39B890E1A5C9B6900F883EC /* WorkDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkDetailTableViewController.h; sourceTree = "<group>"; };
 		A39B890F1A5C9B6900F883EC /* WorkDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkDetailTableViewController.m; sourceTree = "<group>"; };
+		A3A3B6111A5DE3EA008D17E9 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		A3A3B6121A5DE3EA008D17E9 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		A3A3B6171A5DFFBA008D17E9 /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
 		B5030AD51A43788800E23378 /* academicus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = academicus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5030AD91A43788800E23378 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5030ADA1A43788800E23378 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -291,6 +296,8 @@
 				B5030B121A438DDF00E23378 /* SettingsTableViewController.m */,
 				A39B89081A5C9B2400F883EC /* AboutTableViewController.h */,
 				A39B89091A5C9B2400F883EC /* AboutTableViewController.m */,
+				A3A3B6111A5DE3EA008D17E9 /* LoginViewController.h */,
+				A3A3B6121A5DE3EA008D17E9 /* LoginViewController.m */,
 				A3981DEA1A472F9300334345 /* Models */,
 			);
 			name = Settings;
@@ -376,6 +383,7 @@
 				A3981DE71A472F2E00334345 /* Portfolio */,
 				A3981DE81A472F3C00334345 /* Settings */,
 				B5030AE51A43788800E23378 /* Main.storyboard */,
+				A3A3B6171A5DFFBA008D17E9 /* LoginView.xib */,
 				B5030AE81A43788800E23378 /* Images.xcassets */,
 				B5030AEA1A43788800E23378 /* LaunchScreen.xib */,
 				B5030AD81A43788800E23378 /* Supporting Files */,
@@ -541,6 +549,7 @@
 			files = (
 				B5030AE71A43788800E23378 /* Main.storyboard in Resources */,
 				B5EDAD2D1A5B7E0100AD147A /* grades_management_years.feature in Resources */,
+				A3A3B6181A5DFFBA008D17E9 /* LoginView.xib in Resources */,
 				B5A6CA251A5B574C0041CEE9 /* navbar_steps.rb in Resources */,
 				B5030AEC1A43788800E23378 /* LaunchScreen.xib in Resources */,
 				B5030AE91A43788800E23378 /* Images.xcassets in Resources */,
@@ -576,6 +585,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3A3B6131A5DE3EA008D17E9 /* LoginViewController.m in Sources */,
 				B5DED5991A46451500D22147 /* YearsTableViewController.m in Sources */,
 				A39B88FB1A5C7EAB00F883EC /* HobbiesTableViewController.m in Sources */,
 				A39B890D1A5C9B4A00F883EC /* AchievementDetailTableViewController.m in Sources */,
