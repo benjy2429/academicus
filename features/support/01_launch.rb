@@ -24,7 +24,8 @@ require 'calabash-cucumber/launcher'
 Before do |scenario|
   @calabash_launcher = Calabash::Cucumber::Launcher.new
   unless @calabash_launcher.calabash_no_launch?
-    @calabash_launcher.relaunch
+    launch_options = { :uia_strategy => :host }
+    @calabash_launcher.relaunch(launch_options)
     @calabash_launcher.calabash_notify(self)
   end
 end

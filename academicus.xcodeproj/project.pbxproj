@@ -140,7 +140,7 @@
 		B5030B181A438E1900E23378 /* QualificationsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QualificationsTableViewController.m; sourceTree = "<group>"; };
 		B5030B1D1A43C77A00E23378 /* QualificationDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QualificationDetailTableViewController.h; sourceTree = "<group>"; };
 		B5030B1E1A43C77A00E23378 /* QualificationDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QualificationDetailTableViewController.m; sourceTree = "<group>"; };
-		B546EAEC1A5B38E40014820C /* academicus copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "academicus copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B546EAEC1A5B38E40014820C /* academicus-cal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "academicus-cal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B546EAED1A5B38E50014820C /* academicus copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "academicus copy-Info.plist"; path = "/Users/ben/Desktop/academicus/academicus copy-Info.plist"; sourceTree = "<absolute>"; };
 		B546EAEE1A5B39440014820C /* calabash.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = calabash.framework; sourceTree = "<group>"; };
 		B546EAF01A5B397D0014820C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -315,7 +315,7 @@
 			children = (
 				B5030AD51A43788800E23378 /* academicus.app */,
 				B5030AF11A43788800E23378 /* academicusTests.xctest */,
-				B546EAEC1A5B38E40014820C /* academicus copy.app */,
+				B546EAEC1A5B38E40014820C /* academicus-cal.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -447,7 +447,7 @@
 			);
 			name = "academicus-cal";
 			productName = academicus;
-			productReference = B546EAEC1A5B38E40014820C /* academicus copy.app */;
+			productReference = B546EAEC1A5B38E40014820C /* academicus-cal.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -790,12 +790,13 @@
 				INFOPLIST_FILE = "academicus copy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-force_load",
 					"\"$(SRCROOT)/calabash.framework/calabash\"",
 					"-lstdc++",
 				);
-				PRODUCT_NAME = "academicus copy";
+				PRODUCT_NAME = "academicus-cal";
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
@@ -815,12 +816,13 @@
 				INFOPLIST_FILE = "academicus copy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-force_load",
 					"\"$(SRCROOT)/calabash.framework/calabash\"",
 					"-lstdc++",
 				);
-				PRODUCT_NAME = "academicus copy";
+				PRODUCT_NAME = "academicus-cal";
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;

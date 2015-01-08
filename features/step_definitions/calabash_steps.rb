@@ -8,7 +8,19 @@ end
 def createQualification(name)
     macro 'I touch navbar button "Edit"'
     macro 'I touch "Add new qualification"'
-    macro 'I enter "Degree" into the "Name" input field'
+    macro 'I enter "' + name + '"into the "Name" input field'
+    macro 'I touch navbar button "Done"'
+    macro 'I touch navbar button "Done"'
+end
+
+def createYear(name)
+    macro 'I touch navbar button "Edit"'
+    macro 'I touch "Add new year"'
+    macro 'I enter "' + name + '" into the "Name" input field'
+    macro 'And I touch "Start Date"'
+    macro 'And I change the date picker date to "01-01-2014"'
+    macro 'And I touch "End Date"'
+    macro 'And I change the date picker date to "01-01-2015"'
     macro 'I touch navbar button "Done"'
     macro 'I touch navbar button "Done"'
 end
@@ -26,6 +38,12 @@ Given(/^I have a qualification called "(.*?)"$/) do |name|
     visitQualificationPage
     if query("label marked: '#{name}'").empty?
       createQualification name
+    end
+end
+
+Given(/^I have a year called "(.*?)"$/) do |name|
+    if query("label marked: '#{name}'").empty?
+        createYear name
     end
 end
 
