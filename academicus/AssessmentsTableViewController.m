@@ -66,9 +66,12 @@
     
     // Override the height of the table view header
     self.headerView.frame = CGRectMake(0, 0, 0, 120);
+
+    [self configureExpandableInfo];
+    
     [self configureHeader];
     
-    [self configureExpandableInfo];
+
 }
 
 
@@ -78,7 +81,17 @@
     self.expandSize = 0;
     float sizePerField = 37.5;
     
-    self.moduleProgressLabel.text = @"Module Progress: -1%"; //TODO implement the percentage of course completed
+    //Calculate amount of module allocated and amount of module completed
+    self.moduleAllocated = 0.0f;
+    self.moduleCompleted = 0.0f;
+    NSArray *assessments = [self.fetchedResultsController.fetchedObjects mutableCopy];
+    for (NSManagedObject *object in assessments) {
+        AssessmentCriteria *assessment = (AssessmentCriteria *) object;
+        self.moduleAllocated += [assessment.weighting floatValue];
+        if ([assessment.hasGrade boolValue]) {self.moduleCompleted += [assessment.weighting floatValue];}
+    }
+
+    self.moduleProgressLabel.text = [NSString stringWithFormat: @"Module Completed: %2.f%%", self.moduleCompleted]; //TODO implement the percentage of course completed
     self.expandSize += sizePerField;
 
     if (![self.subject.teacherName isEqualToString:@""]) {
@@ -103,6 +116,13 @@
      [self.locationLabel performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
      }*/
      self.expandSize += sizePerField;
+    
+    if (self.moduleAllocated == 100) {
+        [self.warningLabel performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+        [self.exclamationLabel performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+    } else {
+        self.expandSize += 50;
+    }
 }
 
 
@@ -114,6 +134,8 @@
             [self.headerView setFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height-adjustmentSize)];
             frame = self.expandBtn.frame;
             [self.expandBtn setFrame:CGRectMake(frame.origin.x, frame.origin.y-adjustmentSize, frame.size.width, frame.size.height)];
+            frame = self.exclamationLabel.frame;
+            [self.exclamationLabel setFrame:CGRectMake(frame.origin.x, frame.origin.y-adjustmentSize, frame.size.width, frame.size.height)];
         } completion: ^(BOOL finished) {
             [self.expandBtn setTitle:@"Show subject details" forState:UIControlStateNormal];            
         }];
@@ -123,7 +145,8 @@
             [self.headerView setFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height+adjustmentSize)];
             frame = self.expandBtn.frame;
             [self.expandBtn setFrame:CGRectMake(frame.origin.x, frame.origin.y+adjustmentSize, frame.size.width, frame.size.height)];
-
+            frame = self.exclamationLabel.frame;
+            [self.exclamationLabel setFrame:CGRectMake(frame.origin.x, frame.origin.y+adjustmentSize, frame.size.width, frame.size.height)];
         } completion: ^(BOOL finished) {
             CGRect frame = self.moduleProgressLabel.superview.frame;
             [self.moduleProgressLabel.superview setFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, self.expandSize)];
@@ -188,18 +211,21 @@
     targetLabel.text = [NSString stringWithFormat:@"%@%%", self.subject.targetGrade];
     
     // Calculate the current grade from the marked assessments
-    float currentGrade = 0.0f;
+    self.currentGrade = 0.0f;
     NSArray *assessments = [self.fetchedResultsController.fetchedObjects mutableCopy];
     for (NSManagedObject *object in assessments) {
         AssessmentCriteria *assessment = (AssessmentCriteria *) object;
         if ([assessment.hasGrade boolValue]) {
-            currentGrade += (([assessment.finalGrade floatValue] * [assessment.weighting floatValue]) / 100);
+            self.currentGrade += (([assessment.finalGrade floatValue] * [assessment.weighting floatValue]) / 100);
         }
     }
-    currentLabel.text = [NSString stringWithFormat:@"%.0f%%", currentGrade];
+    currentLabel.text = [NSString stringWithFormat:@"%.0f%%", self.currentGrade];
     
     [self doMaskAnimation:targetWrapper percentageFill:[self.subject.targetGrade floatValue]];
-    [self doMaskAnimation:currentWrapper percentageFill:currentGrade];
+    [self doMaskAnimation:currentWrapper percentageFill:self.currentGrade];
+    
+    UILabel *currentGradeTitleLabel = (UILabel *)[self.headerView viewWithTag:50];
+    currentGradeTitleLabel.text = (self.moduleCompleted == 100) ? @"Final Grade" : @"Current Grade";
 }
 
 
@@ -477,6 +503,7 @@
         AssessmentDetailTableViewController *controller = (AssessmentDetailTableViewController*) navController.topViewController;
         controller.delegate = self;
         controller.managedObjectContext = self.managedObjectContext;
+        controller.moduleAllocated = self.moduleAllocated;
     
     } else if ([segue.identifier isEqualToString:@"editAssessment"]) {
         UINavigationController *navController = segue.destinationViewController;
@@ -486,6 +513,7 @@
         
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         controller.itemToEdit = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        controller.moduleAllocated = self.moduleAllocated - [controller.itemToEdit.weighting floatValue];
 
     } else if ([segue.identifier isEqualToString:@"addGrade"]) {
         UINavigationController *navController = segue.destinationViewController;
@@ -551,6 +579,7 @@
     
     // Dismiss the add item view
     [self dismissViewControllerAnimated:YES completion:nil];
+    [self viewDidLoad];
 }
 
 
@@ -565,6 +594,7 @@
     
     // Dismiss the edit item view
     [self dismissViewControllerAnimated:YES completion:nil];
+    [self viewDidLoad];
 }
 
 
@@ -592,9 +622,35 @@
         COREDATA_ERROR(error);
         return;
     }
+
+    [self viewDidLoad];
+    
+    NSString* feedbackTitle;
+    NSString* feedbackMessage;
+    if (self.moduleCompleted == 100) {
+        if (self.currentGrade < [self.subject.targetGrade floatValue]) {
+            feedbackTitle = @"Awww man!";
+            feedbackMessage = @"It looks like your final grade for this subject is a little short of your target. Keep positive and use this as a learning experience. Focus on meeting your other targets with greater determinaiton!";
+        } else {
+            feedbackTitle = @"Woo hoo!";
+            feedbackMessage = @"Way to go, you've finished the subject and met your goal! Treat yourself, you deserve it.";
+        }
+    } else {
+        if ([assessment.finalGrade floatValue] < [self.subject.targetGrade floatValue]) {
+            feedbackTitle = @"Oh no!";
+            feedbackMessage = @"It looks like you fell short of your target this time. Keep trying though, there is still time to increase your mark!";
+        } else {
+            feedbackTitle = @"Nice work!";
+            feedbackMessage = @"You met your target for this assessment. You've just proved you can attain the marks your want if you have the right mindset. Keep up the good work!";
+        }
+    }
+    
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle: feedbackTitle message: feedbackMessage delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+    [alert show];
     
     // Dismiss the edit item view
     [self dismissViewControllerAnimated:YES completion:nil];
+
 }
 
 /*

@@ -21,12 +21,16 @@
 @property (assign) BOOL inSwipeDeleteMode;
 @property (assign) BOOL isSubjectExpanded;
 @property (assign) float expandSize;
-
+@property (assign) float moduleAllocated;
+@property (assign) float moduleCompleted;
+@property (assign) float currentGrade;
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIButton *expandBtn;
 @property (weak, nonatomic) IBOutlet UILabel *moduleProgressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *teacherNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *teacherEmailLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *warningLabel;
+@property (weak, nonatomic) IBOutlet UILabel *exclamationLabel;
 
 @end

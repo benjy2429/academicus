@@ -87,15 +87,12 @@
         [alert show];
         return false;
     }
-   /* //Check that the weighting for this assessment is permissible given weightings for other assessment criteria
-    NSArray *assessments = [self.fetchedResultsController.fetchedObjects mutableCopy];
-    for (NSManagedObject *object in assessments) {
-        AssessmentCriteria *assessment = (AssessmentCriteria *) object;
-        if ([assessment.hasGrade boolValue]) {
-            currentGrade += (([assessment.finalGrade floatValue] * [assessment.weighting floatValue]) / 100);
-        }
-    }*/
-    //TODO: do this check!
+    //Check that the weighting for this assessment is permissible given weightings for other assessment criteria
+    if ([self.weightingField.text floatValue] + self.moduleAllocated > 100) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The subject weighting is too high. The weighting for all assessments in a subject should total 100%" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return false;
+    }
 
     return true;
 }
