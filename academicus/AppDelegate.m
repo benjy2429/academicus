@@ -54,8 +54,7 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
     }
 #endif
     
-    bool securityEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"passcodeLockEnabled"];
-    if (securityEnabled) {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"passcodeLockEnabled"]) {
         [self.window makeKeyAndVisible];
         [self showAuthenticaiton];
         [self authenticateUser];
@@ -76,8 +75,7 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    bool securityEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"passcodeLockEnabled"];
-    if (securityEnabled) {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"passcodeLockEnabled"]) {
         [self.window makeKeyAndVisible];
         [self showAuthenticaiton];
         [self authenticateUser];
@@ -173,8 +171,10 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
 
 - (void) showAuthenticaiton
 {
-    UIWindow* window = [[UIApplication sharedApplication] keyWindow];
-    UIViewController* topController = window.rootViewController;
+    UIViewController* topController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    while (topController.presentedViewController){
+        topController = topController.presentedViewController;
+    }
     self.loginScreen = [[LoginViewController alloc] init];
     [topController presentViewController: self.loginScreen animated: NO completion:nil];
 }
