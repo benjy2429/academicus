@@ -31,15 +31,16 @@
         [fetchRequest setEntity:entity];
         
         // Set the sorting preference
-        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"deadline" ascending:!self.isPast];
-        [fetchRequest setSortDescriptors:@[sortDescriptor]];
+        NSSortDescriptor *gradedSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"hasGrade" ascending:YES];
+        NSSortDescriptor *dateSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"deadline" ascending:!self.isPast];
+        [fetchRequest setSortDescriptors:@[gradedSortDescriptor, dateSortDescriptor]];
         
         // Set the predicate
         NSPredicate *predicate = [NSPredicate predicateWithFormat: (self.isPast ? PAST_PREDICATE : UPCOMING_PREDICATE), [NSDate date]];
         [fetchRequest setPredicate:predicate];
         
         // Create the fetched results controller
-        _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Reminders"];
+        _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"hasGrade" cacheName:@"Reminders"];
         
         // Assign this class as the delegate
         _fetchedResultsController.delegate = self;
@@ -108,7 +109,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections
-    return 1;
+    return [[self.fetchedResultsController sections] count];
 }
 
 
@@ -125,7 +126,12 @@
     // Assign the correct identifier for this cell
     NSString *myIdentifier;
     if (self.isPast) {
-        myIdentifier = @"pastCell";
+        AssessmentCriteria *assessment = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        if ([assessment.hasGrade boolValue]) {
+            myIdentifier = @"pastCellGraded";
+        } else {
+            myIdentifier = @"pastCell";
+        }
     } else {
         myIdentifier = @"upcomingCell";
     }
@@ -178,8 +184,10 @@
             case 5: ratingLabel.text = @"★★★★★"; break;
             default: ratingLabel.text = @"No rating"; break;
         }
-        UILabel *gradeLabel = (UILabel *)[cell viewWithTag:300];
-        gradeLabel.text = (assessment.finalGrade) ? [NSString stringWithFormat: @"%d%%",[assessment.finalGrade intValue]] : @"?";
+        if ([assessment.hasGrade boolValue]) {
+            UILabel *gradeLabel = (UILabel *)[cell viewWithTag:300];
+            gradeLabel.text = [NSString stringWithFormat: @"%d%%",[assessment.finalGrade intValue]];
+        }
     } else {
         UILabel *daysRemainingLabel = (UILabel *)[cell viewWithTag:202];
         
@@ -191,7 +199,7 @@
         [calendar rangeOfUnit:NSDayCalendarUnit startDate:&deadlineDate interval:nil forDate:deadlineDate];
         NSDateComponents *difference = [calendar components:NSDayCalendarUnit fromDate:currentDate toDate:deadlineDate options:0];
         
-        UILabel *alarmIcon = (UILabel *)[cell viewWithTag:300];
+        UIImageView *alarmIcon = (UIImageView *)[cell viewWithTag:300];
         alarmIcon.hidden = (assessment.reminder != nil) ? NO : YES;
 
         switch ([difference day]) {
@@ -207,6 +215,17 @@
                 }
             }
         }
+    }
+}
+
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (self.isPast) {
+        BOOL hasGrade = [[[[self.fetchedResultsController sections] objectAtIndex:section] name] boolValue];
+        return (hasGrade) ? @"Graded" : @"Awaiting Grade";
+    } else {
+        return nil;
     }
 }
 
