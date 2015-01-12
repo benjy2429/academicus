@@ -35,6 +35,8 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
     QualificationsTableViewController *qualificationController = (QualificationsTableViewController*) navigationController.topViewController;
     qualificationController.managedObjectContext = self.managedObjectContext;
     
+    [self setDefaultSettings];
+    
     // UI customisation methods
     [[UINavigationBar appearance] setBarTintColor: APP_TINT_COLOUR];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
@@ -52,7 +54,7 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
     }
 #endif
     
-    bool securityEnabled = false; //TODO: Check for passcode and/or touchID setting
+    bool securityEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"passcodeLockEnabled"];
     if (securityEnabled) {
         [self.window makeKeyAndVisible];
         [self showAuthenticaiton];
@@ -70,14 +72,16 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    bool securityEnabled = false; //TODO: Check for passcode and/or touchID setting
-    if (securityEnabled) {[self showAuthenticaiton];}
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    bool securityEnabled = false; //TODO: Check for passcode and/or touchID setting
-    if (securityEnabled) {[self authenticateUser];}
+    bool securityEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"passcodeLockEnabled"];
+    if (securityEnabled) {
+        [self.window makeKeyAndVisible];
+        [self showAuthenticaiton];
+        [self authenticateUser];
+    }
     application.applicationIconBadgeNumber = 0;
 }
 
@@ -194,6 +198,12 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
             }];
         }
     }
+}
+
+-(void)setDefaultSettings
+{
+    NSDictionary *defaults = @{ @"passcodeLockEnabled" : @NO };
+    [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
 }
 
 @end
