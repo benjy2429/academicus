@@ -2786,7 +2786,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableHeaderView" autoresizesSubviews="NO" contentMode="scaleToFill" id="mKQ-9h-g2O">
+                        <view key="tableHeaderView" autoresizesSubviews="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="mKQ-9h-g2O">
                             <rect key="frame" x="0.0" y="64" width="600" height="568"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
@@ -2922,7 +2922,7 @@
                                             </variation>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="h3g-DI-dbR" secondAttribute="bottom" constant="8" id="27s-pv-2zM"/>
                                         <constraint firstAttribute="height" constant="100" id="4l2-kN-oA2"/>
@@ -2998,7 +2998,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="4zQ-Sp-v7h" firstAttribute="top" secondItem="nbI-wN-L7B" secondAttribute="bottom" constant="15" id="3ND-zc-Y0h"/>
                                         <constraint firstItem="zSj-Us-wLf" firstAttribute="top" secondItem="nbI-wN-L7B" secondAttribute="bottom" priority="700" constant="15" id="6V5-v8-oKM"/>
@@ -3424,7 +3424,7 @@
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="39" id="vbP-7F-chZ"/>
                                                 <constraint firstAttribute="height" constant="39" id="y22-wC-Pqx"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="default">
                                                 <mask key="constraints">
@@ -4172,12 +4172,12 @@
         <image name="TabBarUserSelected" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="w3R-es-5GT"/>
         <segue reference="R26-EY-otb"/>
+        <segue reference="w3R-es-5GT"/>
         <segue reference="gyc-NN-0V3"/>
         <segue reference="hLf-mw-eHg"/>
         <segue reference="EA4-An-DjK"/>
-        <segue reference="zvW-iK-Ohd"/>
         <segue reference="Cud-FT-Sdr"/>
+        <segue reference="zvW-iK-Ohd"/>
     </inferredMetricsTieBreakers>
 </document>

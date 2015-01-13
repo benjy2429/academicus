@@ -211,8 +211,9 @@
                 } else {
                     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
                     [dateFormatter setDateFormat:@"dd-MM-yyyy"];
-                    daysRemainingLabel.text = [NSString stringWithFormat: @"Due on %@", [dateFormatter stringFromDate:assessment.deadline]];  break;
+                    daysRemainingLabel.text = [NSString stringWithFormat: @"Due on %@", [dateFormatter stringFromDate:assessment.deadline]];
                 }
+                break;
             }
         }
     }
