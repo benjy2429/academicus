@@ -7,7 +7,6 @@
 //
 
 #import "LoginViewController.h"
-#import <QuartzCore/QuartzCore.h>
 
 @interface LoginViewController ()
 
@@ -15,14 +14,21 @@
 
 @implementation LoginViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
+    
+    self.keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier: @"academicusPasscode" accessGroup:nil];
     
     self.view.backgroundColor = APP_TINT_COLOUR;
     [self.titleLabel setTextColor:[UIColor whiteColor]];
     
     [self.codeLabel setTextColor:[UIColor whiteColor]];
     
+    [self.cancelButton setTitleColor:[UIColor whiteColor] forState: UIControlStateNormal];
+    self.cancelButton.hidden = true;
+    
+    self.currentState = ConfirmingExistingCodeToLogIn;
     
     NSArray* arrayOfButtons = [NSArray arrayWithObjects: self.numKey0, self.numKey1, self.numKey2, self.numKey3, self.numKey4, self.numKey5, self.numKey6, self.numKey7, self.numKey8, self.numKey9, self.numKeyBlank, self.numKeyDelete, nil];
 
@@ -38,18 +44,46 @@
     self.numDigitsEntered = 0;
 }
 
-- (void) closePasscodeScreen {
-    [self dismissViewControllerAnimated:YES completion:nil];
+
+//Called when the user wants the change their passcode
+- (void) enterNewPasscode
+{
+    [self resetEnteredDigits];
+    self.cancelButton.hidden = false;
+    self.titleLabel.text = @"Enter New Passcode";
+    self.currentState = EnteringNewCode;
 }
 
-- (void) changePassword {
-    //TODO confirm previous password
-    self.titleLabel.text = @"Enter new passcode";
-    //TODO get new password
-    self.titleLabel.text = @"Confirm passcode";
-    //TODO save password
+- (void) confirmNewPasscode
+{
+    [self resetEnteredDigits];
+    self.cancelButton.hidden = false;
+    self.titleLabel.text = @"Confirm New Passcode";
+    self.currentState = ConfirmingNewCode;
 }
 
+- (void) confirmExistingToDisable
+{
+    [self resetEnteredDigits];
+    self.cancelButton.hidden = false;
+    self.titleLabel.text = @"Confirm Existing Passcode";
+    self.currentState = ConfirmingExistingCodeToDisable;
+}
+
+- (void) confirmExistingToChange
+{
+    [self resetEnteredDigits];
+    self.cancelButton.hidden = false;
+    self.titleLabel.text = @"Confirm Existing Passcode";
+    self.currentState = ConfirmingExistingCodeToChange;
+}
+
+- (void) resetEnteredDigits
+{
+    [self.digitsEntered setString: @""];
+    self.numDigitsEntered = 0;
+    [self updateCodeLabel];
+}
 
 - (IBAction)numKeyPressed:(UIButton*)sender {
     switch (sender.tag) {
@@ -80,7 +114,7 @@
         [self.digitsEntered appendString: [NSString stringWithFormat:@"%i" , digitReceived]];
         [self updateCodeLabel];
         if (self.numDigitsEntered == 4) {
-            [self checkPassword];
+            [self checkPasscode];
         }
     }
     
@@ -89,28 +123,76 @@
 
 - (void) updateCodeLabel {
     switch (self.numDigitsEntered) {
-        case 1: [self.codeLabel setText:@"•  ◦  ◦  ◦"]; break;
-        case 2: [self.codeLabel setText:@"•  •  ◦  ◦"]; break;
-        case 3: [self.codeLabel setText:@"•  •  •  ◦"]; break;
-        case 4: [self.codeLabel setText:@"•  •  •  •"]; break;
-        default: [self.codeLabel setText:@"◦  ◦  ◦  ◦"];
+        case 1: [self.codeLabel setText:@"● ○ ○ ○"]; break;
+        case 2: [self.codeLabel setText:@"● ● ○ ○"]; break;
+        case 3: [self.codeLabel setText:@"● ● ● ○"]; break;
+        case 4: [self.codeLabel setText:@"● ● ● ●"]; break;
+        default: [self.codeLabel setText:@"○ ○ ○ ○"];
     }
 }
 
 
-- (void) checkPassword {
-    bool isValid = ([self.digitsEntered isEqualToString: @"1234"]);
-    //TODO: check input against a stored password
-    if (isValid) {
-        [self closePasscodeScreen];
-    } else {
-        [self shakeAnimation];
-        [self.digitsEntered setString: @""];
-        self.numDigitsEntered = 0;
-        [self updateCodeLabel];
+- (void) checkPasscode {
+    switch (self.currentState) {
+        case ConfirmingExistingCodeToLogIn: {
+            //TODO: keychain passcode
+            NSData* existingCodeData = [self.keychainItem objectForKey:(__bridge id)(kSecValueData)];
+            NSString* existingCode = [[NSString alloc] initWithData:existingCodeData encoding:NSUTF8StringEncoding];
+            if ([self.digitsEntered isEqualToString: existingCode]) {
+                [self dismissViewControllerAnimated:YES completion:nil];
+            } else {
+                [self failedAttempt];
+            }
+        } break;
+        case EnteringNewCode: {
+            self.potentialNewPasscode = [NSString stringWithString: self.digitsEntered];
+            [self confirmNewPasscode];
+        } break;
+        case ConfirmingNewCode: {
+            if ([self.digitsEntered isEqualToString: self.potentialNewPasscode]) {
+                [self.keychainItem setObject:self.digitsEntered forKey:(__bridge id)(kSecValueData)];
+                [self.keychainItem setObject:@"loginCode" forKey:(__bridge id)(kSecAttrAccount)];
+                [self.delegate LoginViewControllerDidChangePasscode:self];
+            } else {
+                [self failedAttempt];
+            }
+        } break;
+        case ConfirmingExistingCodeToDisable: {
+            //TODO: keychain passcode
+            NSData* existingCodeData = [self.keychainItem objectForKey:(__bridge id)(kSecValueData)];
+            NSString* existingCode = [[NSString alloc] initWithData:existingCodeData encoding:NSUTF8StringEncoding];
+            if ([self.digitsEntered isEqualToString: existingCode]) {
+                [self.keychainItem resetKeychainItem];
+                [self.delegate LoginViewControllerDidAuthenticate:self];
+            } else {
+                [self failedAttempt];
+            }
+        } break;
+        case ConfirmingExistingCodeToChange: {
+            //TODO: keychain passcode
+            NSData* existingCodeData = [self.keychainItem objectForKey:(__bridge id)(kSecValueData)];
+            NSString* existingCode = [[NSString alloc] initWithData:existingCodeData encoding:NSUTF8StringEncoding];
+            if ([self.digitsEntered isEqualToString: existingCode]) {
+                [self enterNewPasscode];
+            } else {
+                [self failedAttempt];
+            }
+        } break;
     }
+
 }
 
+- (IBAction)cancelPressed:(id)sender {
+    [self.delegate LoginViewControllerDidNotAuthenticate:self];
+}
+
+ - (void) failedAttempt {
+     AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+     [self shakeAnimation];
+     [self.digitsEntered setString: @""];
+     self.numDigitsEntered = 0;
+     [self updateCodeLabel];
+ }
 
 - (void) shakeAnimation {
     CABasicAnimation* shake = [CABasicAnimation animationWithKeyPath:@"position"];
