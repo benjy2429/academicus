@@ -22,7 +22,7 @@
 
 @end
 
-@interface AssessmentGradeTableViewController : UITableViewController <UITextFieldDelegate, UITextViewDelegate>
+@interface AssessmentGradeTableViewController : UITableViewController <UITableViewDelegate, UITextFieldDelegate, UITextViewDelegate>
 
 @property (weak) id <AssessmentGradeTableViewControllerDelegate> delegate;
 

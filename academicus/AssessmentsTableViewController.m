@@ -71,7 +71,11 @@
     
     [self configureHeader];
     
-
+    // Set the header shadow
+    self.headerView.layer.masksToBounds = NO;
+    self.headerView.layer.shadowOffset = CGSizeMake(0, 3);
+    self.headerView.layer.shadowRadius = 2;
+    self.headerView.layer.shadowOpacity = 0.3;
 }
 
 
@@ -321,16 +325,28 @@
         [calendar rangeOfUnit:NSDayCalendarUnit startDate:&deadlineDate interval:nil forDate:deadlineDate];
         NSDateComponents *difference = [calendar components:NSDayCalendarUnit fromDate:currentDate toDate:deadlineDate options:0];
         
-        if ([difference day] < 0) {
-            countdownLabel.text = [NSString stringWithFormat:@"Deadline passed"];
-        } else {
-            countdownLabel.text = [NSString stringWithFormat:@"%ld days remaining", [difference day]];
+        switch ([difference day]) {
+            case 0: countdownLabel.text = @"Due today"; break;
+            case 1: countdownLabel.text = @"Due tomorrow"; break;
+            default: {
+                if ([difference day] < 0) {
+                    countdownLabel.text = @"Deadline passed";
+                } else if ([difference day] < 366) {
+                    countdownLabel.text = [NSString stringWithFormat: @"You have %i days remaining", (int)[difference day]];
+                } else {
+                    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+                    [dateFormatter setDateFormat:@"dd-MM-yyyy"];
+                    countdownLabel.text = [NSString stringWithFormat: @"Due on %@", [dateFormatter stringFromDate:currentAssessment.deadline]];
+                }
+                break;
+            }
         }
         
     } else {
         // Display the final grade
         UILabel *gradeLabel = (UILabel *) [cell viewWithTag:105];
         gradeLabel.text = [NSString stringWithFormat:@"%i%%", [currentAssessment.finalGrade intValue]];
+        countdownLabel.text = @"Completed";
     }
     
 }

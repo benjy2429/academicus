@@ -94,12 +94,6 @@
         [alert show];
         return false;
     }
-    // Validate that a rating has been given
-    if (self.currentRating < 1 || self.currentRating > 5) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"You must provide a rating" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
-        [alert show];
-        return false;
-    }
     //Check that the positive feedback length is less than 300
     if ([self.positiveFeedbackField.text length] > 300) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The positive feedback must be less than 300 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
@@ -142,7 +136,7 @@
 - (NSIndexPath*)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Disable the ability to select table rows
-    return nil;
+    return (indexPath.section == 1 || indexPath.section == 4) ? indexPath : nil;
 }
 
 
@@ -199,6 +193,36 @@
     }
     
     [textView resignFirstResponder];
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Check if the remove grade button was pressed
+    if (indexPath.section == 4) {
+        // Remove all the grade information
+        self.itemToEdit.hasGrade = [NSNumber numberWithBool:NO];
+        self.itemToEdit.finalGrade = nil;
+        self.itemToEdit.rating = nil;
+        self.itemToEdit.positiveFeedback = nil;
+        self.itemToEdit.negativeFeedback = nil;
+        self.itemToEdit.notes = nil;
+        //self.itemToEdit.picture =
+        
+        [self.delegate AssessmentGradeTableViewController:self didFinishEditingAssessment:self.itemToEdit];
+        
+    // Check if the rating field was pressed
+    } else if (indexPath.section == 1) {
+        [self setRating:0];
+    }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return ([self.itemToEdit.hasGrade boolValue]) ? [super numberOfSectionsInTableView:tableView] : [super numberOfSectionsInTableView:tableView] - 1;
 }
 
 
