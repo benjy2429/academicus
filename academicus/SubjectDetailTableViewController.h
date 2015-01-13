@@ -22,6 +22,7 @@
 @interface SubjectDetailTableViewController : UITableViewController <UITextFieldDelegate>
 
 @property (weak) id <SubjectDetailTableViewControllerDelegate> delegate;
+@property (assign) float weightingAllocated;
 
 @property (strong) Subject *itemToEdit;
 
