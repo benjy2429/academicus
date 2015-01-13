@@ -14,7 +14,7 @@
 #define UPCOMING_PREDICATE @"deadline > %@ AND hasGrade == false"
 #define PAST_PREDICATE @"deadline <= %@ OR hasGrade == true"
 
-@interface RemindersTableViewController : UITableViewController <AssessmentGradeTableViewControllerDelegate, NSFetchedResultsControllerDelegate>
+@interface RemindersTableViewController : UITableViewController <AssessmentGradeTableViewControllerDelegate, NSFetchedResultsControllerDelegate, UIScrollViewDelegate>
 
 @property (assign) BOOL isPast;
 @property (nonatomic, weak) NSManagedObjectContext *managedObjectContext;

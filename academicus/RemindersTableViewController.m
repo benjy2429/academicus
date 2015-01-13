@@ -63,8 +63,7 @@
     [self performFetch];
     
     // Override the height of the table view header
-    self.tableView.tableHeaderView.frame = CGRectMake(0, 0, 0, 44);
-    
+    self.tableView.tableHeaderView.frame = CGRectMake(0, 0, 0, 44);    
 }
 
 
@@ -325,5 +324,16 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    // When the user scrolls down, keep the segmented control at the top of the screen under the navigation bar using a transform
+    // Otherwise, scroll up as normal
+    CGFloat offsetY = scrollView.contentOffset.y + 64.0f;
+    UIView *headerView = [self.tableView viewWithTag:500];
+    headerView.transform = CGAffineTransformMakeTranslation(0, MIN(offsetY,0));
+}
 
 @end
