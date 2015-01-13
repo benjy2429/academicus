@@ -122,6 +122,12 @@
         [alert show];
         return false;
     }
+    //Check that the weighting for this subject is permissible given weightings for other subjects
+    if ([self.weightingField.text floatValue] + self.weightingAllocated > 100) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The year weighting is too high. The weighting for all subjects in a year should total 100%" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return false;
+    }
     return true;
 }
 
@@ -172,7 +178,7 @@
     switch (textField.tag) {
         //If weighting field
         case 1:
-            return ([newText length] < 3 || [newText isEqual: @"100"] || ([newText characterAtIndex:2] == '.' && [newText length] < 6) || ([newText characterAtIndex:1] == '.' && [newText length] < 5));
+            return ([newText length] < 3 || [newText isEqual: @"100"] || [newText isEqual: @"100."] || [newText isEqual: @"100.0"] || [newText isEqual: @"100.00"] || ([newText characterAtIndex:2] == '.' && [newText length] < 6) || ([newText characterAtIndex:1] == '.' && [newText length] < 5));
             break;
         //If target field
         case 2:
