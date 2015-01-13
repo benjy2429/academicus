@@ -24,7 +24,6 @@
         self.deadlineDate = self.itemToEdit.deadline;
         self.deadlineLabel.text = [self formatDate:self.deadlineDate];
 
-        self.reminderDatePickerVisible = NO;
         self.deadlineDatePickerVisible = NO;
 
         // If the assessment has a reminder, display its datepicker
@@ -34,6 +33,7 @@
             self.reminderLabel.text = [self formatDate:self.reminderDate];
             [self showReminderDatePicker];
         } else {
+            self.reminderDatePickerVisible = NO;
             self.reminderDate = [NSDate date];
             self.reminderLabel.text = @"No reminder set";
         }
@@ -132,9 +132,7 @@
             notification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
             
             [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-            
-            // Also check whether a reminder has been disabled
-        } else
+        }
         
         self.itemToEdit.reminder = (self.reminderSwitch.on) ? self.reminderDate : nil;
         
@@ -214,10 +212,8 @@
     [self.tableView reloadRowsAtIndexPaths:@[indexPathDateRow] withRowAnimation:UITableViewRowAnimationNone];
     [self.tableView endUpdates];
     
-    // Create the date picker cell and display it
-    UITableViewCell *datePickerCell = [self.tableView cellForRowAtIndexPath:indexPathDatePicker];
-    UIDatePicker *datePicker = (UIDatePicker*) [datePickerCell viewWithTag:100];
-    [datePicker setDate:self.deadlineDate animated:YES];
+    // Set the label to the date shown
+    self.deadlineLabel.text = [self formatDate:self.deadlineDate];
 }
 
 
@@ -235,10 +231,8 @@
     [self.tableView reloadRowsAtIndexPaths:@[indexPathDateRow] withRowAnimation:UITableViewRowAnimationNone];
     [self.tableView endUpdates];
     
-    // Create the date picker cell and display it
-    UITableViewCell *datePickerCell = [self.tableView cellForRowAtIndexPath:indexPathDatePicker];
-    UIDatePicker *datePicker = (UIDatePicker*) [datePickerCell viewWithTag:100];
-    [datePicker setDate:self.reminderDate animated:YES];
+    // Set the label to the date shown
+    self.reminderLabel.text = [self formatDate:self.reminderDate];
 }
 
 
@@ -297,8 +291,15 @@
             // Set the action depending on the cell
             if (indexPath.section == 2) {
                 [datePicker addTarget:self action:@selector(deadlineDateChanged:) forControlEvents:UIControlEventValueChanged];
+                [datePicker setDate:self.deadlineDate animated:YES];
             } else {
                 [datePicker addTarget:self action:@selector(reminderDateChanged:) forControlEvents:UIControlEventValueChanged];
+                [datePicker setMinimumDate:[NSDate date]];
+                // Only set a maximum date if the deadline is in the future
+                if ([self.deadlineDate compare:[NSDate date]] == NSOrderedDescending) {
+                    [datePicker setMaximumDate:self.itemToEdit.deadline];
+                }
+                [datePicker setDate:self.reminderDate animated:YES];
             }
         }
         
