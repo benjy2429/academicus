@@ -161,8 +161,8 @@
 		A3A3B6111A5DE3EA008D17E9 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		A3A3B6121A5DE3EA008D17E9 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		A3A3B6171A5DFFBA008D17E9 /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
-		A3AC58491A64B06F001B2151 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeychainItemWrapper.h; path = "../../../Downloads/gist1170641-521eec26e5ab95870af6a810665861deec14c5e9/KeychainItemWrapper.h"; sourceTree = "<group>"; };
-		A3AC584A1A64B06F001B2151 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeychainItemWrapper.m; path = "../../../Downloads/gist1170641-521eec26e5ab95870af6a810665861deec14c5e9/KeychainItemWrapper.m"; sourceTree = "<group>"; };
+		A3AC58491A64B06F001B2151 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		A3AC584A1A64B06F001B2151 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		B5030AD51A43788800E23378 /* academicus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = academicus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5030AD91A43788800E23378 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5030ADA1A43788800E23378 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
