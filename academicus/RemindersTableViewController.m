@@ -63,7 +63,16 @@
     [self performFetch];
     
     // Override the height of the table view header
-    self.tableView.tableHeaderView.frame = CGRectMake(0, 0, 0, 44);    
+    self.tableView.tableHeaderView.frame = CGRectMake(0, 0, 0, 44);
+    
+    UISwipeGestureRecognizer *leftGestureRecogniser = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swiped:)];
+    [leftGestureRecogniser setDirection:UISwipeGestureRecognizerDirectionLeft];
+    [self.tableView addGestureRecognizer:leftGestureRecogniser];
+    
+    UISwipeGestureRecognizer *rightGestureRecogniser = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swiped:)];
+    [rightGestureRecogniser setDirection:UISwipeGestureRecognizerDirectionRight];
+    [self.tableView addGestureRecognizer:rightGestureRecogniser];
+    
 }
 
 
@@ -101,6 +110,20 @@
     _fetchedResultsController = nil;
     [self performFetch];
     [self.tableView reloadData];
+}
+
+
+- (void)swiped:(UISwipeGestureRecognizer *)gestureRecogniser
+{
+    UISegmentedControl *segmentedControl = (UISegmentedControl *)[self.tableView viewWithTag:700];
+    if (gestureRecogniser.direction == UISwipeGestureRecognizerDirectionRight) {
+        segmentedControl.selectedSegmentIndex = 0;
+        [self segmentSwitch:segmentedControl];
+        
+    } else if (gestureRecogniser.direction == UISwipeGestureRecognizerDirectionLeft) {
+        segmentedControl.selectedSegmentIndex = 1;
+        [self segmentSwitch:segmentedControl];
+    }
 }
 
 #pragma mark - Table view data source

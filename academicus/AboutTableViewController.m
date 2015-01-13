@@ -8,80 +8,77 @@
 
 #import "AboutTableViewController.h"
 
-@interface AboutTableViewController ()
-
-@end
-
 @implementation AboutTableViewController
+
+
+- (NSArray*)recipients
+{
+    if (_recipients == nil) {
+        // Set the email recipiens
+        _recipients = @[@"lheavens1@sheffield.ac.uk", @"bmcarr1@sheffield.ac.uk"];
+    }
+    return _recipients;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    // Override the height of the table view header
+    self.tableView.tableHeaderView.frame = CGRectMake(0, 0, 0, 100);
 }
 
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.row) {
+        case 0:
+            [self sendEmailWithSubject:@"Academicus Query" body:@"We're always happy to answer any questions or queries you may have about our app. Please write your query below."];
+            break;
+        case 1:
+            [self sendEmailWithSubject:@"Academicus Bug Report" body:@"We're sorry you experienced a bug. Please explain the problem in as much detail as possible so we can try and fix it. Also let us know which phone and version of iOS you are using."];
+            break;
+        case 2:
+            [self sendEmailWithSubject:@"Academicus Suggestion" body:@"We're always looking for feedback from our users. If you have a suggestion for our app, please let us know in the space below."];
+            break;
+        case 3:
+            [NSURL URLWithString:[NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/idcom.sheffield.academicus"]];
+            break;
+        default:
+            break;
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
+- (void)sendEmailWithSubject:(NSString *)subject body:(NSString *)body
+{
+    MFMailComposeViewController *mailComposer = [[MFMailComposeViewController alloc] init];
+    mailComposer.mailComposeDelegate = self;
+    [mailComposer setSubject:subject];
+    [mailComposer setMessageBody:body isHTML:NO];
+    [mailComposer setToRecipients:self.recipients];
     
-    // Configure the cell...
+    [self presentViewController:mailComposer animated:YES completion:nil];
+}
+
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result) {
+        case MFMailComposeResultFailed: {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message:@"Unfortunately your email could not be sent. Please check your internet connection or try again later." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+            break;
+        }
+        default:
+            break;
+    }
     
-    return cell;
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

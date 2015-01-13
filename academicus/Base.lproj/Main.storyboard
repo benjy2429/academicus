@@ -617,6 +617,57 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="905-8x-fke">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppIcon60x60" translatesAutoresizingMaskIntoConstraints="NO" id="m84-tR-CHa">
+                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="100" id="acz-z0-xTp">
+                                            <variation key="heightClass=regular-widthClass=compact" constant="60"/>
+                                        </constraint>
+                                        <constraint firstAttribute="width" constant="100" id="bvV-ht-E4y">
+                                            <variation key="heightClass=regular-widthClass=compact" constant="60"/>
+                                        </constraint>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="acz-z0-xTp"/>
+                                            <exclude reference="bvV-ht-E4y"/>
+                                        </mask>
+                                    </variation>
+                                    <variation key="heightClass=regular-widthClass=compact">
+                                        <mask key="constraints">
+                                            <include reference="acz-z0-xTp"/>
+                                            <include reference="bvV-ht-E4y"/>
+                                        </mask>
+                                    </variation>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="centerY" secondItem="m84-tR-CHa" secondAttribute="centerY" id="3mW-6C-d5d"/>
+                                <constraint firstAttribute="centerX" secondItem="m84-tR-CHa" secondAttribute="centerX" id="JNM-F0-rhK"/>
+                                <constraint firstItem="m84-tR-CHa" firstAttribute="top" secondItem="905-8x-fke" secondAttribute="top" constant="42" id="Xvc-1o-2Lu">
+                                    <variation key="heightClass=regular-widthClass=compact" constant="32"/>
+                                </constraint>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="3mW-6C-d5d"/>
+                                    <exclude reference="JNM-F0-rhK"/>
+                                    <exclude reference="Xvc-1o-2Lu"/>
+                                </mask>
+                            </variation>
+                            <variation key="heightClass=regular-widthClass=compact">
+                                <mask key="constraints">
+                                    <exclude reference="3mW-6C-d5d"/>
+                                    <include reference="JNM-F0-rhK"/>
+                                    <include reference="Xvc-1o-2Lu"/>
+                                </mask>
+                            </variation>
+                        </view>
                         <sections>
                             <tableViewSection headerTitle="Help &amp; Feedback" footerTitle="Developed by Luke Heavens &amp; Ben Carr" id="qg7-Pf-RmY">
                                 <cells>
@@ -1448,7 +1499,7 @@
                             <rect key="frame" x="0.0" y="64" width="600" height="568"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <view tag="500" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cnu-QQ-3jG">
+                                <view tag="500" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cnu-QQ-3jG">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                     <subviews>
                                         <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9bP-Aj-DoS">
@@ -1459,7 +1510,7 @@
                                             <items>
                                                 <navigationItem id="Z36-VY-zGe">
                                                     <nil key="title"/>
-                                                    <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" id="bza-Hq-i7w">
+                                                    <segmentedControl key="titleView" opaque="NO" tag="700" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" id="bza-Hq-i7w">
                                                         <rect key="frame" x="0.0" y="64" width="600" height="29"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <segments>
@@ -4206,6 +4257,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="AppIcon60x60" width="25" height="25"/>
         <image name="TabBarAlarm" width="25" height="25"/>
         <image name="TabBarAlarmSelected" width="25" height="25"/>
         <image name="TabBarCap" width="25" height="25"/>

@@ -145,6 +145,8 @@
         //Tell the passcode screen that we want to change the passcode
         [passcodeScreen confirmExistingToChange];
     }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 
