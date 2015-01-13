@@ -54,11 +54,8 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
     }
 #endif
     
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"passcodeLockEnabled"]) {
-        [self.window makeKeyAndVisible];
-        [self showAuthentication];
-        [self authenticateUser];
-    }
+    //If security has been enabled show the login screen
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"passcodeLockEnabled"]) {[self showAuthentication];}
     
     return YES;
 }
@@ -75,11 +72,8 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"passcodeLockEnabled"]) {
-        [self.window makeKeyAndVisible];
-        [self showAuthentication];
-        [self authenticateUser];
-    }
+    //If security has been enabled show the login screen
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"passcodeLockEnabled"]) {[self showAuthentication];}
     application.applicationIconBadgeNumber = 0;
 }
 
@@ -169,37 +163,43 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
 }
 
 
+//Called when the login screen should be displayed
 - (void) showAuthentication
 {
+    [self.window makeKeyAndVisible];
+    
+    //First we check that a login screen isnt already being displayed
     if (!(self.loginScreen.isViewLoaded && self.loginScreen.view.window)) {
+        //We display the view ontop of whatever is currently being displayed
         UIViewController* topController = [UIApplication sharedApplication].keyWindow.rootViewController;
         while (topController.presentedViewController){
             topController = topController.presentedViewController;
         }
         self.loginScreen = [[LoginViewController alloc] init];
-        [topController presentViewController: self.loginScreen animated: NO completion:nil];
+        [topController presentViewController: self.loginScreen animated: NO completion:nil]; //We dont animate as we want it to appear asap
     }
-}
-
-
-- (void) authenticateUser
-{
+    
+    //If touch id has been enabled we give the user the opportunity to use it
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"touchIdEnabled"]) {
         LAContext *context = [[LAContext alloc] init];
         NSError *error = nil;
+        //First we check that touch id can be used, if they can't or any errors occur, we default to passcode
         if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&error]) {
+            //If touch id is available for use the touch id interface will be shown
             [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
-                     localizedReason:@"Authenticate to unlock Academicus"
-                     reply:^(BOOL success, NSError *error) {
-                         if (success) {
-                             dispatch_async(dispatch_get_main_queue(), ^ {
-                                 [self.loginScreen dismissViewControllerAnimated:YES completion:nil];
-                             });
-                         }
-            }];
+                    localizedReason:@"Authenticate to unlock Academicus"
+                              reply:^(BOOL success, NSError *error) {
+                                  //If they successfully authenticate we dismiss the login screen
+                                  if (success) {
+                                      dispatch_async(dispatch_get_main_queue(), ^ {
+                                          [self.loginScreen dismissViewControllerAnimated:YES completion:nil];
+                                      });
+                                  }
+                              }];
         }
     }
 }
+
 
 -(void)setDefaultSettings
 {
