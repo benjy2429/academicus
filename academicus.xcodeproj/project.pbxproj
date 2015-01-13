@@ -25,8 +25,12 @@
 		A39B890A1A5C9B2400F883EC /* AboutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39B89091A5C9B2400F883EC /* AboutTableViewController.m */; };
 		A39B890D1A5C9B4A00F883EC /* AchievementDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39B890C1A5C9B4A00F883EC /* AchievementDetailTableViewController.m */; };
 		A39B89101A5C9B6900F883EC /* WorkDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39B890F1A5C9B6900F883EC /* WorkDetailTableViewController.m */; };
+		A3A125DF1A645AA3006EC50D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3A125DE1A645AA3006EC50D /* AudioToolbox.framework */; };
+		A3A125E11A647D14006EC50D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3A125E01A647D14006EC50D /* Security.framework */; };
 		A3A3B6131A5DE3EA008D17E9 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A3B6121A5DE3EA008D17E9 /* LoginViewController.m */; };
 		A3A3B6181A5DFFBA008D17E9 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3A3B6171A5DFFBA008D17E9 /* LoginView.xib */; };
+		A3AC584B1A64B06F001B2151 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A3AC584A1A64B06F001B2151 /* KeychainItemWrapper.m */; };
+		A3AC584C1A64B06F001B2151 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A3AC584A1A64B06F001B2151 /* KeychainItemWrapper.m */; };
 		B5030ADB1A43788800E23378 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030ADA1A43788800E23378 /* main.m */; };
 		B5030ADE1A43788800E23378 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030ADD1A43788800E23378 /* AppDelegate.m */; };
 		B5030AE71A43788800E23378 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5030AE51A43788800E23378 /* Main.storyboard */; };
@@ -152,9 +156,13 @@
 		A39B890C1A5C9B4A00F883EC /* AchievementDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AchievementDetailTableViewController.m; sourceTree = "<group>"; };
 		A39B890E1A5C9B6900F883EC /* WorkDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkDetailTableViewController.h; sourceTree = "<group>"; };
 		A39B890F1A5C9B6900F883EC /* WorkDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkDetailTableViewController.m; sourceTree = "<group>"; };
+		A3A125DE1A645AA3006EC50D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		A3A125E01A647D14006EC50D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A3A3B6111A5DE3EA008D17E9 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		A3A3B6121A5DE3EA008D17E9 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		A3A3B6171A5DFFBA008D17E9 /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
+		A3AC58491A64B06F001B2151 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeychainItemWrapper.h; path = "../../../Downloads/gist1170641-521eec26e5ab95870af6a810665861deec14c5e9/KeychainItemWrapper.h"; sourceTree = "<group>"; };
+		A3AC584A1A64B06F001B2151 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeychainItemWrapper.m; path = "../../../Downloads/gist1170641-521eec26e5ab95870af6a810665861deec14c5e9/KeychainItemWrapper.m"; sourceTree = "<group>"; };
 		B5030AD51A43788800E23378 /* academicus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = academicus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5030AD91A43788800E23378 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5030ADA1A43788800E23378 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -219,6 +227,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3A125E11A647D14006EC50D /* Security.framework in Frameworks */,
+				A3A125DF1A645AA3006EC50D /* AudioToolbox.framework in Frameworks */,
 				B5F232A91A4F5CCC00EAFF93 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -366,6 +376,8 @@
 		B5030ACC1A43788800E23378 = {
 			isa = PBXGroup;
 			children = (
+				A3A125E01A647D14006EC50D /* Security.framework */,
+				A3A125DE1A645AA3006EC50D /* AudioToolbox.framework */,
 				B5030AD71A43788800E23378 /* academicus */,
 				B585D55C1A5B490200AC36D1 /* features */,
 				B546EAF01A5B397D0014820C /* CFNetwork.framework */,
@@ -410,6 +422,8 @@
 		B5030AD81A43788800E23378 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A3AC58491A64B06F001B2151 /* KeychainItemWrapper.h */,
+				A3AC584A1A64B06F001B2151 /* KeychainItemWrapper.m */,
 				B5030AD91A43788800E23378 /* Info.plist */,
 				B5030ADA1A43788800E23378 /* main.m */,
 			);
@@ -629,6 +643,7 @@
 				A368B7A41A43876500F8089B /* SubjectOld.m in Sources */,
 				A368B7A11A43861F00F8089B /* YearOld.m in Sources */,
 				A39B89041A5C7EDC00F883EC /* ProgressTableViewController.m in Sources */,
+				A3AC584B1A64B06F001B2151 /* KeychainItemWrapper.m in Sources */,
 				A39B89071A5C8ADE00F883EC /* MyPortfolioTableViewController.m in Sources */,
 				A3981DF21A473E6000334345 /* SubjectDetailTableViewController.m in Sources */,
 				B5030B191A438E1900E23378 /* QualificationsTableViewController.m in Sources */,
@@ -681,6 +696,7 @@
 				B546EAD31A5B38E40014820C /* DataModel.xcdatamodeld in Sources */,
 				B546EAD41A5B38E40014820C /* Settings.m in Sources */,
 				B546EAD51A5B38E40014820C /* AppDelegate.m in Sources */,
+				A3AC584C1A64B06F001B2151 /* KeychainItemWrapper.m in Sources */,
 				B546EAD61A5B38E40014820C /* QualificationDetailTableViewController.m in Sources */,
 				B546EAD71A5B38E40014820C /* SubjectOld.m in Sources */,
 				B546EAD81A5B38E40014820C /* YearOld.m in Sources */,

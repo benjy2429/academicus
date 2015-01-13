@@ -56,7 +56,7 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"passcodeLockEnabled"]) {
         [self.window makeKeyAndVisible];
-        [self showAuthenticaiton];
+        [self showAuthentication];
         [self authenticateUser];
     }
     
@@ -77,7 +77,7 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"passcodeLockEnabled"]) {
         [self.window makeKeyAndVisible];
-        [self showAuthenticaiton];
+        [self showAuthentication];
         [self authenticateUser];
     }
     application.applicationIconBadgeNumber = 0;
@@ -169,21 +169,22 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
 }
 
 
-- (void) showAuthenticaiton
+- (void) showAuthentication
 {
-    UIViewController* topController = [UIApplication sharedApplication].keyWindow.rootViewController;
-    while (topController.presentedViewController){
-        topController = topController.presentedViewController;
+    if (!(self.loginScreen.isViewLoaded && self.loginScreen.view.window)) {
+        UIViewController* topController = [UIApplication sharedApplication].keyWindow.rootViewController;
+        while (topController.presentedViewController){
+            topController = topController.presentedViewController;
+        }
+        self.loginScreen = [[LoginViewController alloc] init];
+        [topController presentViewController: self.loginScreen animated: NO completion:nil];
     }
-    self.loginScreen = [[LoginViewController alloc] init];
-    [topController presentViewController: self.loginScreen animated: NO completion:nil];
 }
 
 
 - (void) authenticateUser
 {
-    bool touchIdEnabled = true; //TODO: check settings to see if it is
-    if (touchIdEnabled) {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"touchIdEnabled"]) {
         LAContext *context = [[LAContext alloc] init];
         NSError *error = nil;
         if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&error]) {
@@ -192,7 +193,7 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
                      reply:^(BOOL success, NSError *error) {
                          if (success) {
                              dispatch_async(dispatch_get_main_queue(), ^ {
-                                 [self.loginScreen closePasscodeScreen];
+                                 [self.loginScreen dismissViewControllerAnimated:YES completion:nil];
                              });
                          }
             }];
@@ -202,7 +203,7 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
 
 -(void)setDefaultSettings
 {
-    NSDictionary *defaults = @{ @"passcodeLockEnabled" : @NO };
+    NSDictionary *defaults = @{ @"passcodeLockEnabled" : @NO, @"touchIdEnabled" : @NO };
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
 }
 

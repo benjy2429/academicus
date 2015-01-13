@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <LocalAuthentication/LocalAuthentication.h>
+#import "LoginViewController.h"
 
-@interface SettingsTableViewController : UITableViewController
+@interface SettingsTableViewController : UITableViewController <LoginViewControllerDelegate>
+
+//Security section
+@property (weak, nonatomic) IBOutlet UITableViewCell *changePasscodeRow;
+@property (weak, nonatomic) IBOutlet UISwitch *passcodeSwitch;
+@property (weak, nonatomic) IBOutlet UITableViewCell *touchIdRow;
+@property (weak, nonatomic) IBOutlet UISwitch *touchIdSwitch;
 
 @end
