@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="13F34" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Achievement" representedClassName="Achievement" syncable="YES">
+        <attribute name="dateAchieved" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="displayOrder" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="information" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="portfolio" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Portfolio" inverseName="achievements" inverseEntity="Portfolio" syncable="YES"/>
+    </entity>
     <entity name="AssessmentCriteria" representedClassName="AssessmentCriteria" syncable="YES">
         <attribute name="deadline" attributeType="Date" syncable="YES"/>
         <attribute name="displayOrder" attributeType="Integer 32" syncable="YES"/>
@@ -13,6 +20,15 @@
         <attribute name="reminder" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="weighting" attributeType="Float" minValueString="0" maxValueString="100" syncable="YES"/>
         <relationship name="subject" maxCount="1" deletionRule="Nullify" destinationEntity="Subject" inverseName="assessments" inverseEntity="Subject" syncable="YES"/>
+    </entity>
+    <entity name="Portfolio" representedClassName="Portfolio" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="website" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="achievements" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Achievement" inverseName="portfolio" inverseEntity="Achievement" syncable="YES"/>
+        <relationship name="workExperiences" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WorkExperience" inverseName="portfolio" inverseEntity="WorkExperience" syncable="YES"/>
     </entity>
     <entity name="Qualification" representedClassName="Qualification" syncable="YES">
         <attribute name="displayOrder" attributeType="Integer 32" syncable="YES"/>
@@ -30,6 +46,18 @@
         <relationship name="assessments" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="AssessmentCriteria" inverseName="subject" inverseEntity="AssessmentCriteria" syncable="YES"/>
         <relationship name="year" maxCount="1" deletionRule="Nullify" destinationEntity="Year" inverseName="subjects" inverseEntity="Year" syncable="YES"/>
     </entity>
+    <entity name="WorkExperience" representedClassName="WorkExperience" syncable="YES">
+        <attribute name="companyAddress" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="companyName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="displayOrder" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="information" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="jobTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="refereeEmail" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="refereeName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="portfolio" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Portfolio" inverseName="workExperiences" inverseEntity="Portfolio" syncable="YES"/>
+    </entity>
     <entity name="Year" representedClassName="Year" syncable="YES">
         <attribute name="endDate" attributeType="Date" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
@@ -38,9 +66,12 @@
         <relationship name="subjects" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Subject" inverseName="year" inverseEntity="Subject" syncable="YES"/>
     </entity>
     <elements>
-        <element name="AssessmentCriteria" positionX="457" positionY="-102" width="128" height="223"/>
-        <element name="Qualification" positionX="-216" positionY="20" width="128" height="88"/>
-        <element name="Subject" positionX="178" positionY="-54" width="128" height="178"/>
-        <element name="Year" positionX="-29" positionY="18" width="128" height="120"/>
+        <element name="AssessmentCriteria" positionX="385" positionY="-117" width="128" height="223"/>
+        <element name="Qualification" positionX="-207" positionY="20" width="128" height="88"/>
+        <element name="Subject" positionX="180" positionY="-61" width="128" height="178"/>
+        <element name="Year" positionX="-20" positionY="-0" width="128" height="120"/>
+        <element name="Portfolio" positionX="-216" positionY="221" width="128" height="148"/>
+        <element name="Achievement" positionX="-18" positionY="197" width="128" height="118"/>
+        <element name="WorkExperience" positionX="169" positionY="176" width="128" height="193"/>
     </elements>
 </model>
