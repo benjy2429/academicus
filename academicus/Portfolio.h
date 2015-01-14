@@ -2,22 +2,23 @@
 //  Portfolio.h
 //  academicus
 //
-//  Created by Ben on 18/12/2014.
-//  Copyright (c) 2014 sheffield. All rights reserved.
+//  Created by Luke on 13/01/2015.
+//  Copyright (c) 2015 sheffield. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@interface Portfolio : NSObject
+@class Achievement, WorkExperience;
 
-@property (strong) NSString *name;
-@property (strong) NSString *address;
-@property (strong) NSString *phone;
-@property (strong) NSString *email;
-@property (strong) NSString *website;
-@property (strong) UIImage *photo;
-@property (strong) NSString *hobbies;
-@property (strong) NSMutableArray *achievements;
-@property (strong) NSMutableArray *workExperiences;
+@interface Portfolio : NSManagedObject
+
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * address;
+@property (nonatomic, retain) NSString * phone;
+@property (nonatomic, retain) NSString * email;
+@property (nonatomic, retain) NSString * website;
+@property (nonatomic, retain) Achievement *achievements;
+@property (nonatomic, retain) WorkExperience *workExperiences;
 
 @end
