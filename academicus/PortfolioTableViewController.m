@@ -8,10 +8,6 @@
 
 #import "PortfolioTableViewController.h"
 
-@interface PortfolioTableViewController ()
-
-@end
-
 @implementation PortfolioTableViewController
 
 - (void)viewDidLoad {
@@ -63,6 +59,12 @@
 }
 
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -80,6 +82,10 @@
         
         controller.delegate = self;
         controller.itemToEdit = self.portfolio;
+        
+    } else if ([segue.identifier isEqualToString:@"toAchievements"]) {
+        AchievementsTableViewController *controller = (AchievementsTableViewController*) segue.destinationViewController;
+        controller.managedObjectContext = self.managedObjectContext;
     }
 }
 

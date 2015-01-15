@@ -7,7 +7,29 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Achievement.h"
+
+@class AchievementDetailTableViewController;
+
+@protocol AchievementDetailTableViewControllerDelegate <NSObject>
+
+- (void)achievementDetailTableViewControllerDidCancel:(AchievementDetailTableViewController*)controller;
+- (void)achievementDetailTableViewController:(AchievementDetailTableViewController*)controller didFinishAddingAchievement:(Achievement*)achievement;
+- (void)achievementDetailTableViewController:(AchievementDetailTableViewController*)controller didFinishEditingAchievement:(Achievement*)achievement;
+
+@end
 
 @interface AchievementDetailTableViewController : UITableViewController
+
+@property (nonatomic, weak) NSManagedObjectContext *managedObjectContext;
+@property (weak) id <AchievementDetailTableViewControllerDelegate> delegate;
+@property (strong) Achievement *itemToEdit;
+
+@property (weak, nonatomic) IBOutlet UITextField *nameField;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UITextView *descriptionField;
+
+@property (strong) NSDate* dateAchieved;
+@property (assign) BOOL datePickerVisible;
 
 @end
