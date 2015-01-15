@@ -21,8 +21,11 @@
     [self.ratingStar5 setTitleColor: APP_TINT_COLOUR forState: UIControlStateNormal];
     
     self.positiveFeedbackField.text = POSITIVE_FEEDBACK_PLACEHOLDER;
+    self.positiveFeedbackField.textColor = [UIColor colorWithWhite:0.8f alpha:1.0f];
     self.negativeFeedbackField.text = NEGATIVE_FEEDBACK_PLACEHOLDER;
+    self.negativeFeedbackField.textColor = [UIColor colorWithWhite:0.8f alpha:1.0f];
     self.notesField.text = NOTES_PLACEHOLDER;
+    self.notesField.textColor = [UIColor colorWithWhite:0.8f alpha:1.0f];
     self.currentRating = 0;
 
     if ([self.itemToEdit.hasGrade boolValue]) {
@@ -228,13 +231,13 @@
 {
     if (textView.tag == 201 && [textView.text isEqualToString:@""]) {
         textView.text = POSITIVE_FEEDBACK_PLACEHOLDER;
-        textView.textColor = [UIColor lightGrayColor];
+        textView.textColor = [UIColor colorWithWhite:0.8f alpha:1.0f];
     } else if (textView.tag == 202 && [textView.text isEqualToString:@""]) {
         textView.text = NEGATIVE_FEEDBACK_PLACEHOLDER;
-        textView.textColor = [UIColor lightGrayColor];
+        textView.textColor = [UIColor colorWithWhite:0.8f alpha:1.0f];
     } else if (textView.tag == 203 && [textView.text isEqualToString:@""]) {
         textView.text = NOTES_PLACEHOLDER;
-        textView.textColor = [UIColor lightGrayColor];
+        textView.textColor = [UIColor colorWithWhite:0.8f alpha:1.0f];
     }
     
     [textView resignFirstResponder];

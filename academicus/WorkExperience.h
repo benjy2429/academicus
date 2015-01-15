@@ -19,7 +19,7 @@
 @property (nonatomic, retain) NSDate * startDate;
 @property (nonatomic, retain) NSDate * endDate;
 @property (nonatomic, retain) NSString * refereeName;
-@property (nonatomic, retain) NSNumber * refereeEmail;
+@property (nonatomic, retain) NSString * refereeEmail;
 @property (nonatomic, retain) NSString * information;
 @property (nonatomic, retain) NSNumber * displayOrder;
 @property (nonatomic, retain) Portfolio *portfolio;

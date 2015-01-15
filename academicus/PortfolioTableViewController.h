@@ -10,6 +10,7 @@
 #import "PersonalTableViewController.h"
 #import "HobbiesTableViewController.h"
 #import "AchievementsTableViewController.h"
+#import "WorkTableViewController.h"
 
 @interface PortfolioTableViewController : UITableViewController <PersonalTableViewControllerDelegate, HobbiesTableViewControllerDelegate, NSFetchedResultsControllerDelegate>
 
