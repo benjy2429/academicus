@@ -48,6 +48,34 @@
         // self.pictureField.text = self.itemToEdit.picture;
         
     }
+    
+    //Add a gesture recognizer to detect left swipes on the rating cell
+    UISwipeGestureRecognizer* ratingLeftSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleRatingLeftSwipe)];
+    ratingLeftSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+    ratingLeftSwipeRecognizer.numberOfTouchesRequired = 1;
+    [self.ratingCell addGestureRecognizer:ratingLeftSwipeRecognizer];
+    
+    //Add a gesture recognizer to detect right swipes on the rating cell
+    UISwipeGestureRecognizer* ratingRightSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleRatingRightSwipe)];
+    ratingRightSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+    ratingRightSwipeRecognizer.numberOfTouchesRequired = 1;
+    [self.ratingCell addGestureRecognizer:ratingRightSwipeRecognizer];
+}
+
+
+//Called when a left swipe is detected
+- (void) handleRatingLeftSwipe
+{
+    if (self.currentRating > 0) {[self setRating:self.currentRating - 1];} //Providing at least one star has been given, reduce the current rating
+
+}
+
+
+//Called when a right swipe is detected
+- (void) handleRatingRightSwipe
+{
+    if (self.currentRating < 5) {[self setRating:self.currentRating + 1];} //Proviging no more than five stats have been given, increase the current rating
+
 }
 
 

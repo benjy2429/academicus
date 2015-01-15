@@ -65,7 +65,7 @@
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     // Override the height of the table view header
-    self.headerView.frame = CGRectMake(0, 0, 0, 120);
+    self.headerView.frame = CGRectMake(0, 0, 0, 125);
 
     [self configureExpandableInfo];
     
@@ -105,26 +105,30 @@
         [self.teacherNameLabel performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
     }
     
+    [self.teacherEmailLabel setContentInset:UIEdgeInsetsMake(-8, 0, 8, 0)];
     if (![self.subject.teacherEmail isEqualToString:@""]) {
         self.teacherEmailLabel.text = [NSString stringWithFormat: @"Teacher Email: %@", self.subject.teacherEmail];
         self.expandSize += sizePerField;
     } else {
         [self.teacherEmailLabel performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+        [self.teacherEmailScrollView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
     }
-    
-    //TODO implement locaiton
-    /*
-     if (![self.subject.location isEqualToString:@""]) {
-     self.locationLabel.text = [NSString stringWithFormat: @"Location: %@", self.subject.location];
-     } else {
-     [self.locationLabel performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
-     }*/
-     self.expandSize += sizePerField;
-    
+      
     if (self.moduleAllocated == 100) {
-        [self.warningLabel performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
-        [self.exclamationLabel performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+        //[self.warningLabel performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+        //[self.exclamationLabel performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+        CGRect frame = self.warningLabel.frame;
+        frame.size.height = 0;
+        [self.warningLabel setFrame:frame];
+        
+        self.exclamationLabel.hidden = YES;
     } else {
+        CGRect frame = self.warningLabel.frame;
+        frame.size.height = 36;
+        [self.warningLabel setFrame:frame];
+        
+        self.exclamationLabel.hidden = NO;
+        
         self.expandSize += 50;
     }
 }
