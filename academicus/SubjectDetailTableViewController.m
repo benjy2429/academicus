@@ -115,7 +115,7 @@
         return false;
     }
     //Check that the weighting for this subject is permissible given weightings for other subjects
-    if ([self.weightingField.text floatValue] + self.weightingAllocated > 100) {
+    if ([self.weightingField.text floatValue] + (self.weightingAllocated - [self.itemToEdit.yearWeighting floatValue]) > 100) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The year weighting is too high. The weighting for all subjects in a year should total 100%" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
         [alert show];
         return false;

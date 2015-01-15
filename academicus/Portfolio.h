@@ -18,6 +18,7 @@
 @property (nonatomic, retain) NSString * phone;
 @property (nonatomic, retain) NSString * email;
 @property (nonatomic, retain) NSString * website;
+@property (nonatomic, retain) NSString * hobbies;
 @property (nonatomic, retain) Achievement *achievements;
 @property (nonatomic, retain) WorkExperience *workExperiences;
 

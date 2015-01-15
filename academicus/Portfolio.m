@@ -18,6 +18,7 @@
 @dynamic phone;
 @dynamic email;
 @dynamic website;
+@dynamic hobbies;
 @dynamic achievements;
 @dynamic workExperiences;
 

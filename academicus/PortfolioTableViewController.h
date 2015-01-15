@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "PersonalTableViewController.h"
+#import "HobbiesTableViewController.h"
 
-@interface PortfolioTableViewController : UITableViewController <PersonalTableViewControllerDelegate, NSFetchedResultsControllerDelegate>
+@interface PortfolioTableViewController : UITableViewController <PersonalTableViewControllerDelegate, HobbiesTableViewControllerDelegate, NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, weak) NSManagedObjectContext *managedObjectContext;
 @property (strong) Portfolio *portfolio;

@@ -73,6 +73,13 @@
         
         controller.delegate = self;
         controller.itemToEdit = self.portfolio;
+        
+    } else if ([segue.identifier isEqualToString:@"toHobbies"]) {
+        UINavigationController *navController = segue.destinationViewController;
+        HobbiesTableViewController *controller = (HobbiesTableViewController*) navController.topViewController;
+        
+        controller.delegate = self;
+        controller.itemToEdit = self.portfolio;
     }
 }
 
@@ -86,7 +93,30 @@
 }
 
 
-- (void)personalTableViewController:(PersonalTableViewController*)controller didFinishSavingPortfolio:(Portfolio*)qualification
+- (void)personalTableViewController:(PersonalTableViewController*)controller didFinishSavingPortfolio:(Portfolio*)portfolio
+{
+    // Save the item to the datastore
+    NSError *error;
+    if (![self.managedObjectContext save:&error]) {
+        COREDATA_ERROR(error);
+        return;
+    }
+    
+    // Dismiss the view
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+#pragma mark - HobbiesTableViewControllerDelegate
+
+- (void)hobbiesTableViewControllerDidCancel:(HobbiesTableViewController*)controller
+{
+    // Dismiss the view
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+- (void)hobbiesTableViewController:(HobbiesTableViewController*)controller didFinishSavingPortfolio:(Portfolio*)portfolio
 {
     // Save the item to the datastore
     NSError *error;

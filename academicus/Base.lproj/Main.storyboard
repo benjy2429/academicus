@@ -493,7 +493,7 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="bj5-CF-ZUP" kind="show" id="ZxO-eu-pOQ"/>
+                                            <segue destination="KbX-bs-xNJ" kind="presentation" identifier="toHobbies" id="ZxO-eu-pOQ"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="wHJ-3u-vE4">
@@ -1257,25 +1257,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection headerTitle="Hobbies &amp; Interests" id="ew5-WP-pOw">
+                            <tableViewSection headerTitle="Hobbies &amp; Interests" footerTitle="In this section write a little about your extra curricular activites." id="ew5-WP-pOw">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="250" id="nzk-CC-QTq">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nzk-CC-QTq" id="xqa-XS-xnG">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="In this section write a little about your extra curricular activites." translatesAutoresizingMaskIntoConstraints="NO" id="qlr-nx-csP">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qlr-nx-csP">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="qlr-nx-csP" firstAttribute="trailing" secondItem="xqa-XS-xnG" secondAttribute="trailingMargin" constant="7" id="ZMQ-6B-6o4"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="qlr-nx-csP" secondAttribute="bottom" constant="7" id="dY4-B9-X1N"/>
-                                                <constraint firstItem="qlr-nx-csP" firstAttribute="top" secondItem="xqa-XS-xnG" secondAttribute="topMargin" constant="7" id="vNE-0V-2Ji"/>
-                                                <constraint firstItem="qlr-nx-csP" firstAttribute="leading" secondItem="xqa-XS-xnG" secondAttribute="leadingMargin" constant="7" id="zKO-FT-dmW"/>
+                                                <constraint firstItem="qlr-nx-csP" firstAttribute="trailing" secondItem="xqa-XS-xnG" secondAttribute="trailingMargin" constant="7" id="ZMQ-6B-6o4">
+                                                    <variation key="heightClass=regular-widthClass=compact" constant="8"/>
+                                                </constraint>
+                                                <constraint firstAttribute="bottomMargin" secondItem="qlr-nx-csP" secondAttribute="bottom" constant="7" id="dY4-B9-X1N">
+                                                    <variation key="heightClass=regular-widthClass=compact" constant="-7"/>
+                                                </constraint>
+                                                <constraint firstItem="qlr-nx-csP" firstAttribute="top" secondItem="xqa-XS-xnG" secondAttribute="topMargin" constant="7" id="vNE-0V-2Ji">
+                                                    <variation key="heightClass=regular-widthClass=compact" constant="-7"/>
+                                                </constraint>
+                                                <constraint firstItem="qlr-nx-csP" firstAttribute="leading" secondItem="xqa-XS-xnG" secondAttribute="leadingMargin" constant="7" id="zKO-FT-dmW">
+                                                    <variation key="heightClass=regular-widthClass=compact" constant="2"/>
+                                                </constraint>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="subviews">
@@ -1309,11 +1317,25 @@
                             <outlet property="delegate" destination="bj5-CF-ZUP" id="1qp-9a-biM"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Hobbies" id="DQo-D7-lan"/>
+                    <navigationItem key="navigationItem" title="Hobbies" id="DQo-D7-lan">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="SzR-5F-oJY">
+                            <connections>
+                                <action selector="cancel" destination="bj5-CF-ZUP" id="idC-8i-x3l"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="cAZ-Wf-deH">
+                            <connections>
+                                <action selector="done" destination="bj5-CF-ZUP" id="DWZ-bc-QlR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="hobbiesField" destination="qlr-nx-csP" id="B7j-Qw-Ein"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5be-M9-bwY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1923" y="2803.5"/>
+            <point key="canvasLocation" x="1923" y="3498"/>
         </scene>
         <!--Achievements-->
         <scene sceneID="kmV-Dm-KeW">
@@ -3436,6 +3458,15 @@
                                         </mask>
                                         <mask key="constraints">
                                             <exclude reference="Ybt-BE-WQE"/>
+                                            <exclude reference="3ND-zc-Y0h"/>
+                                            <exclude reference="TUc-dR-0yi"/>
+                                            <exclude reference="Xu5-uR-oVE"/>
+                                            <exclude reference="nMx-QP-8rg"/>
+                                            <exclude reference="Bsz-Z8-bzU"/>
+                                            <exclude reference="Jml-d5-Srh"/>
+                                            <exclude reference="Tzz-82-4Er"/>
+                                            <exclude reference="aXA-XT-qw8"/>
+                                            <exclude reference="hYo-t0-vhC"/>
                                             <exclude reference="EAb-sY-cey"/>
                                             <exclude reference="OU6-ox-O2c"/>
                                             <exclude reference="WC2-5l-HQc"/>
@@ -3443,15 +3474,6 @@
                                             <exclude reference="5yl-N2-kop"/>
                                             <exclude reference="CK9-x3-eeQ"/>
                                             <exclude reference="juB-fl-ac2"/>
-                                            <exclude reference="Bsz-Z8-bzU"/>
-                                            <exclude reference="Jml-d5-Srh"/>
-                                            <exclude reference="Tzz-82-4Er"/>
-                                            <exclude reference="aXA-XT-qw8"/>
-                                            <exclude reference="hYo-t0-vhC"/>
-                                            <exclude reference="3ND-zc-Y0h"/>
-                                            <exclude reference="TUc-dR-0yi"/>
-                                            <exclude reference="Xu5-uR-oVE"/>
-                                            <exclude reference="nMx-QP-8rg"/>
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
@@ -3464,6 +3486,15 @@
                                         </mask>
                                         <mask key="constraints">
                                             <include reference="Ybt-BE-WQE"/>
+                                            <include reference="3ND-zc-Y0h"/>
+                                            <include reference="TUc-dR-0yi"/>
+                                            <include reference="Xu5-uR-oVE"/>
+                                            <include reference="nMx-QP-8rg"/>
+                                            <include reference="Bsz-Z8-bzU"/>
+                                            <include reference="Jml-d5-Srh"/>
+                                            <include reference="Tzz-82-4Er"/>
+                                            <include reference="aXA-XT-qw8"/>
+                                            <include reference="hYo-t0-vhC"/>
                                             <include reference="EAb-sY-cey"/>
                                             <include reference="OU6-ox-O2c"/>
                                             <include reference="WC2-5l-HQc"/>
@@ -3471,15 +3502,6 @@
                                             <include reference="5yl-N2-kop"/>
                                             <include reference="CK9-x3-eeQ"/>
                                             <include reference="juB-fl-ac2"/>
-                                            <include reference="Bsz-Z8-bzU"/>
-                                            <include reference="Jml-d5-Srh"/>
-                                            <include reference="Tzz-82-4Er"/>
-                                            <include reference="aXA-XT-qw8"/>
-                                            <include reference="hYo-t0-vhC"/>
-                                            <include reference="3ND-zc-Y0h"/>
-                                            <include reference="TUc-dR-0yi"/>
-                                            <include reference="Xu5-uR-oVE"/>
-                                            <include reference="nMx-QP-8rg"/>
                                         </mask>
                                     </variation>
                                 </view>
@@ -4551,6 +4573,24 @@
             </objects>
             <point key="canvasLocation" x="1152" y="2807.25"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="rYP-l2-jDJ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KbX-bs-xNJ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oUz-Bd-tPH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="bj5-CF-ZUP" kind="relationship" relationship="rootViewController" id="Kq3-LX-al3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ttD-Y3-Ckz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1923" y="2803.5"/>
+        </scene>
     </scenes>
     <resources>
         <image name="AppIcon60x60" width="25" height="25"/>
@@ -4572,4 +4612,5 @@
         <segue reference="hLf-mw-eHg"/>
         <segue reference="zvW-iK-Ohd"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" red="0.47843137254901957" green="0.38039215686274508" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
 </document>

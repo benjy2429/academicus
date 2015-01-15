@@ -24,6 +24,7 @@
     <entity name="Portfolio" representedClassName="Portfolio" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hobbies" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="website" optional="YES" attributeType="String" syncable="YES"/>
@@ -68,7 +69,7 @@
     <elements>
         <element name="Achievement" positionX="-18" positionY="197" width="128" height="118"/>
         <element name="AssessmentCriteria" positionX="385" positionY="-117" width="128" height="223"/>
-        <element name="Portfolio" positionX="-216" positionY="221" width="128" height="148"/>
+        <element name="Portfolio" positionX="-216" positionY="221" width="128" height="165"/>
         <element name="Qualification" positionX="-207" positionY="20" width="128" height="88"/>
         <element name="Subject" positionX="180" positionY="-61" width="128" height="178"/>
         <element name="WorkExperience" positionX="169" positionY="176" width="128" height="193"/>
