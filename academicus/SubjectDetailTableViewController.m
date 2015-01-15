@@ -39,8 +39,6 @@
             self.greenSlider.value = colourComponents[1];
             self.blueSlider.value = colourComponents[2];
         }
-         
-        //self.locationField.text = self.itemToEdit.location; //TODO: Get locaiton value
         
         self.teacherNameField.text = self.itemToEdit.teacherName;
         self.teacherEmailField.text = self.itemToEdit.teacherEmail;
@@ -116,12 +114,6 @@
         [alert show];
         return false;
     }
-    //Check that the location length is less than 50
-    if ([self.nameField.text length] > 50) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The location must be less than 50 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
-        [alert show];
-        return false;
-    }
     //Check that the weighting for this subject is permissible given weightings for other subjects
     if ([self.weightingField.text floatValue] + self.weightingAllocated > 100) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The year weighting is too high. The weighting for all subjects in a year should total 100%" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
@@ -142,7 +134,6 @@
         self.itemToEdit.yearWeighting = [NSNumber numberWithFloat:[self.weightingField.text floatValue]];
         self.itemToEdit.targetGrade = [NSNumber numberWithInt:[self.targetField.text intValue]];
         self.itemToEdit.colour = self.colour;
-        //self.itemToEdit.location //TODO: Set locaiton value
         self.itemToEdit.teacherName = self.teacherNameField.text;
         self.itemToEdit.teacherEmail = self.teacherEmailField.text;
         
@@ -155,7 +146,6 @@
         newSubject.yearWeighting = [NSNumber numberWithFloat:[self.weightingField.text floatValue]];
         newSubject.targetGrade = [NSNumber numberWithInt: [self.targetField.text intValue]];
         newSubject.colour = self.colour;
-        //newSubject.location = self.locationField.text; //TODO: Set locaiton value
         newSubject.teacherName = self.teacherNameField.text;
         newSubject.teacherEmail = self.teacherEmailField.text;
         

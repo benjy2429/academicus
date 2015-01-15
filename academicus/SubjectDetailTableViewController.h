@@ -31,7 +31,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *weightingField;
 @property (weak, nonatomic) IBOutlet UITextField *targetField;
-@property (weak, nonatomic) IBOutlet UITextField *locationField;
 @property (weak, nonatomic) IBOutlet UITextField *teacherNameField;
 @property (weak, nonatomic) IBOutlet UITextField *teacherEmailField;
 

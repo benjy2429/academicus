@@ -22,7 +22,7 @@
 
 @end
 
-@interface AssessmentGradeTableViewController : UITableViewController <UITableViewDelegate, UITextFieldDelegate, UITextViewDelegate>
+@interface AssessmentGradeTableViewController : UITableViewController <UITableViewDelegate, UITextFieldDelegate, UITextViewDelegate, UIGestureRecognizerDelegate>
 
 @property (weak) id <AssessmentGradeTableViewControllerDelegate> delegate;
 
@@ -36,6 +36,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *pictureField;
 
 @property (assign) int currentRating;
+@property (weak, nonatomic) IBOutlet UIView *ratingCell;
 @property (weak, nonatomic) IBOutlet UIButton *ratingStar1;
 @property (weak, nonatomic) IBOutlet UIButton *ratingStar2;
 @property (weak, nonatomic) IBOutlet UIButton *ratingStar3;

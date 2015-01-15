@@ -28,8 +28,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *expandBtn;
 @property (weak, nonatomic) IBOutlet UILabel *moduleProgressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *teacherNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *teacherEmailLabel;
-@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+@property (weak, nonatomic) IBOutlet UIScrollView *teacherEmailScrollView;
+@property (weak, nonatomic) IBOutlet UITextView *teacherEmailLabel;
 @property (weak, nonatomic) IBOutlet UILabel *warningLabel;
 @property (weak, nonatomic) IBOutlet UILabel *exclamationLabel;
 
