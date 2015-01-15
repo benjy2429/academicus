@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 
-@interface AboutTableViewController : UITableViewController
+@interface AboutTableViewController : UITableViewController <MFMailComposeViewControllerDelegate>
+
+@property (nonatomic, strong) NSArray *recipients;
 
 @end

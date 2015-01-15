@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "QualificationsTableViewController.h"
 #import "RemindersTableViewController.h"
+#import "SettingsTableViewController.h"
 
 #import <LocalAuthentication/LocalAuthentication.h>
 
@@ -34,6 +35,10 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
     navigationController = tabController.viewControllers[1];
     QualificationsTableViewController *qualificationController = (QualificationsTableViewController*) navigationController.topViewController;
     qualificationController.managedObjectContext = self.managedObjectContext;
+    
+    navigationController = tabController.viewControllers[3];
+    SettingsTableViewController *settingsController = (SettingsTableViewController*) navigationController.topViewController;
+    settingsController.managedObjectContext = self.managedObjectContext;
     
     [self setDefaultSettings];
     
@@ -203,7 +208,7 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
 
 -(void)setDefaultSettings
 {
-    NSDictionary *defaults = @{ @"passcodeLockEnabled" : @NO, @"touchIdEnabled" : @NO };
+    NSDictionary *defaults = @{ @"passcodeLockEnabled" : @NO, @"touchIdEnabled" : @NO, @"notificationsEnabled" : @YES };
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
 }
 

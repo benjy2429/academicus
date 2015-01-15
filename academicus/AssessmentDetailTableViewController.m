@@ -106,7 +106,39 @@
         // If editing, update the item and call the delegate method to dismiss the view
         self.itemToEdit.name = self.nameField.text;
         self.itemToEdit.weighting = [NSNumber numberWithFloat:[self.weightingField.text floatValue]];
+        
+        // Calculate the date 3 weeks after the deadline to set a notification reminder
+        NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+        [dateComponents setDay:21];
+        NSDate *deadlineReminderDate = [[NSCalendar currentCalendar] dateByAddingComponents:dateComponents toDate:self.deadlineDate options:0];
+        
+        // Set a notification 3 weeks after the deadline if notifications are enabled
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"notificationsEnabled"] && [deadlineReminderDate timeIntervalSince1970] > [[NSDate date] timeIntervalSince1970] && self.itemToEdit.deadline != self.deadlineDate) {
+            
+            // Find the existing noification and delete it
+            NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+            for (UILocalNotification *notification in notifications) {
+                NSDictionary *userInfo = notification.userInfo;
+                
+                if ([[userInfo valueForKey:@"isDeadlineReminder"] boolValue] && [userInfo valueForKey:@"deadline"] == self.itemToEdit.deadline) {
+                    [[UIApplication sharedApplication] cancelLocalNotification:notification];
+                    break;
+                }
+            }
+            
+            // Create a new notification
+            UILocalNotification *notification = [[UILocalNotification alloc] init];
+            notification.fireDate = deadlineReminderDate;
+            notification.alertBody = [NSString stringWithFormat:@"Don't forget to add a grade for %@!", self.itemToEdit.name];
+            notification.timeZone = [NSTimeZone defaultTimeZone];
+            notification.userInfo = @{@"isDeadlineReminder" : @YES, @"deadline": self.deadlineDate};
+            notification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+            
+            [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+        }
+        
         self.itemToEdit.deadline = self.deadlineDate;
+        
         
         // If a reminder exists, cancel the notification
         if (self.itemToEdit.reminder != nil) {
@@ -146,6 +178,24 @@
         newAssessment.weighting = [NSNumber numberWithFloat:[self.weightingField.text floatValue]];
         newAssessment.deadline = self.deadlineDate;
         newAssessment.reminder = (self.reminderSwitch.on) ? self.reminderDate : nil;
+        
+        // Calculate the date 3 weeks after the deadline to set a notification reminder
+        NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+        [dateComponents setDay:21];
+        NSDate *deadlineReminderDate = [[NSCalendar currentCalendar] dateByAddingComponents:dateComponents toDate:self.deadlineDate options:0];
+        
+        // Set a notification 3 weeks after the deadline if notifications are enabled
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"notificationsEnabled"] && [deadlineReminderDate timeIntervalSince1970] > [[NSDate date] timeIntervalSince1970]) {
+            UILocalNotification *notification = [[UILocalNotification alloc] init];
+            notification.fireDate = deadlineReminderDate;
+            notification.alertBody = [NSString stringWithFormat:@"Don't forget to add a grade for %@!", newAssessment.name];
+            notification.timeZone = [NSTimeZone defaultTimeZone];
+            notification.userInfo = @{@"isDeadlineReminder" : @YES, @"deadline": newAssessment.deadline};
+            notification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+            
+            [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+        }
+        
         
         // Check if a reminder has been added so a new notification can be scheduled
         if (self.reminderSwitch.on) {

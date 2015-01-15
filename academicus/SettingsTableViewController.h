@@ -9,8 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <LocalAuthentication/LocalAuthentication.h>
 #import "LoginViewController.h"
+#import "AssessmentCriteria.h"
 
-@interface SettingsTableViewController : UITableViewController <LoginViewControllerDelegate>
+@interface SettingsTableViewController : UITableViewController <LoginViewControllerDelegate, NSFetchedResultsControllerDelegate>
+
+@property (nonatomic, weak) NSManagedObjectContext *managedObjectContext;
+
+@property (weak, nonatomic) IBOutlet UISwitch *notificationsSwitch;
 
 //Security section
 @property (weak, nonatomic) IBOutlet UITableViewCell *changePasscodeRow;

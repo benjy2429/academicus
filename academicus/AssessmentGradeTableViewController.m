@@ -155,7 +155,24 @@
     self.itemToEdit.positiveFeedback = (![self.positiveFeedbackField.text isEqualToString:POSITIVE_FEEDBACK_PLACEHOLDER]) ? self.positiveFeedbackField.text : @"";
     self.itemToEdit.negativeFeedback = (![self.negativeFeedbackField.text isEqualToString:NEGATIVE_FEEDBACK_PLACEHOLDER]) ? self.negativeFeedbackField.text : @"";
     self.itemToEdit.notes = (![self.notesField.text isEqualToString:NOTES_PLACEHOLDER]) ? self.notesField.text : @"";
-    //self.itemToEdit.picture =
+    
+    // Calculate the date 3 weeks after the deadline to set a notification reminder
+    NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+    [dateComponents setDay:21];
+    NSDate *deadlineReminderDate = [[NSCalendar currentCalendar] dateByAddingComponents:dateComponents toDate:self.itemToEdit.deadline options:0];
+    
+    // Check if a deadline reminder was set and if so, delete it
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"notificationsEnabled"] && [deadlineReminderDate timeIntervalSince1970] > [[NSDate date] timeIntervalSince1970]) {
+        NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+        for (UILocalNotification *notification in notifications) {
+            NSDictionary *userInfo = notification.userInfo;
+            
+            if ([[userInfo valueForKey:@"isDeadlineReminder"] boolValue] && [userInfo valueForKey:@"deadline"] == self.itemToEdit.deadline) {
+                [[UIApplication sharedApplication] cancelLocalNotification:notification];
+                break;
+            }
+        }
+    }
     
     [self.delegate AssessmentGradeTableViewController:self didFinishEditingAssessment:self.itemToEdit];
 }

@@ -13,20 +13,55 @@
 @end
 
 @implementation SettingsTableViewController
+{
+    // Local instance variable for the fetched results controller
+    NSFetchedResultsController *_fetchedResultsController;
+}
+
+
+// Custom getter for the fetched results controller
+- (NSFetchedResultsController*)fetchedResultsController
+{
+    // Initialise the fetched results controller if nil
+    if (_fetchedResultsController == nil) {
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        
+        // Get the objects from the managed object context
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"AssessmentCriteria" inManagedObjectContext:self.managedObjectContext];
+        [fetchRequest setEntity:entity];
+        
+        // Set the sorting preference
+        NSSortDescriptor *dateSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"deadline" ascending:NO];
+        [fetchRequest setSortDescriptors:@[dateSortDescriptor]];
+        
+        // Set the predicate
+        NSPredicate *predicate = [NSPredicate predicateWithFormat: @"hasGrade == false"];
+        [fetchRequest setPredicate:predicate];
+        
+        // Create the fetched results controller
+        _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"DeadlineReminders"];
+        
+        // Assign this class as the delegate
+        _fetchedResultsController.delegate = self;
+    }
+    
+    return _fetchedResultsController;
+}
+
+
 
 - (void) viewDidLoad
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    //Toggle the notifications switch depending on the stored setting
+    self.notificationsSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"notificationsEnabled"];
     
     //Adjust the view depending on the passcode setting
     [self configureViewFromPasscode:[[NSUserDefaults standardUserDefaults] boolForKey:@"passcodeLockEnabled"]];
     
     //Toggle the touch id switch depending on the stored setting
     self.touchIdSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"touchIdEnabled"];
-
 }
 
 
@@ -46,6 +81,60 @@
     } else {
         [passcodeScreen confirmExistingToDisable]; //If turning off we authenticate
     }
+}
+
+
+- (IBAction)notificationSwitchChanged:(UISwitch *)sender
+{
+    if (sender.on) {
+        
+        // Fetch the data using CoreData
+        NSError *error;
+        if (![self.fetchedResultsController performFetch:&error]) {
+            
+            // Throw a custom error if the fetch fails
+            COREDATA_ERROR(error);
+            return;
+        }
+        
+        for (AssessmentCriteria *assessment in [self.fetchedResultsController fetchedObjects]) {
+            
+            // Calculate the date 3 weeks after the deadline to set a notification reminder
+            NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+            [dateComponents setDay:21];
+            NSDate *deadlineReminderDate = [[NSCalendar currentCalendar] dateByAddingComponents:dateComponents toDate:assessment.deadline options:0];
+            
+            // Set a notification 3 weeks after the deadline if notifications are enabled
+            if ([deadlineReminderDate timeIntervalSince1970] > [[NSDate date] timeIntervalSince1970]) {
+                
+                UILocalNotification *notification = [[UILocalNotification alloc] init];
+                notification.fireDate = deadlineReminderDate;
+                notification.alertBody = [NSString stringWithFormat:@"Don't forget to add a grade for %@!", assessment.name];
+                notification.timeZone = [NSTimeZone defaultTimeZone];
+                notification.userInfo = @{@"isDeadlineReminder" : @YES, @"deadline": assessment.deadline};
+                notification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+                
+                [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+            }
+            
+
+        }       
+        
+        
+    } else {
+        // Get all the notifications and delete the deadline reminders
+        NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+        for (UILocalNotification *notification in notifications) {
+            NSDictionary *userInfo = notification.userInfo;
+            
+            if ([[userInfo valueForKey:@"isDeadlineReminder"] boolValue]) {
+                [[UIApplication sharedApplication] cancelLocalNotification:notification];
+            }
+        }
+    }
+    
+    // Set the NSUserDefaults setting to store the change
+    [[NSUserDefaults standardUserDefaults] setBool:sender.on forKey:@"notificationsEnabled"];
 }
 
 
@@ -145,6 +234,8 @@
         //Tell the passcode screen that we want to change the passcode
         [passcodeScreen confirmExistingToChange];
     }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 
