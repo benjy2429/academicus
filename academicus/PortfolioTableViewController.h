@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PersonalTableViewController.h"
 
-@interface PortfolioTableViewController : UITableViewController
+@interface PortfolioTableViewController : UITableViewController <PersonalTableViewControllerDelegate, NSFetchedResultsControllerDelegate>
+
+@property (nonatomic, weak) NSManagedObjectContext *managedObjectContext;
+@property (strong) Portfolio *portfolio;
 
 @end

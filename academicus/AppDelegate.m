@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "QualificationsTableViewController.h"
 #import "RemindersTableViewController.h"
+#import "PortfolioTableViewController.h"
 #import "SettingsTableViewController.h"
 
 #import <LocalAuthentication/LocalAuthentication.h>
@@ -35,6 +36,10 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
     navigationController = tabController.viewControllers[1];
     QualificationsTableViewController *qualificationController = (QualificationsTableViewController*) navigationController.topViewController;
     qualificationController.managedObjectContext = self.managedObjectContext;
+    
+    navigationController = tabController.viewControllers[2];
+    PortfolioTableViewController *portfolioController = (PortfolioTableViewController*) navigationController.topViewController;
+    portfolioController.managedObjectContext = self.managedObjectContext;
     
     navigationController = tabController.viewControllers[3];
     SettingsTableViewController *settingsController = (SettingsTableViewController*) navigationController.topViewController;

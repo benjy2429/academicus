@@ -17,71 +17,86 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    // Delete the cache to prevent inconsistencies in iOS7
+    [NSFetchedResultsController deleteCacheWithName:@"Portfolio"];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    // Retrieve the objects for this table view using CoreData
+    [self performFetch];
 }
 
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+- (void)performFetch
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
-    // Configure the cell...
+    // Get the objects from the managed object context
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Portfolio" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+
+    // Set the sorting preference
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:NO];
+    [fetchRequest setSortDescriptors:@[sortDescriptor]];
     
-    return cell;
+    
+    // Fetch the data for the table view using CoreData
+    NSError *error;
+    NSArray *foundObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    if (foundObjects.count == 0) {
+        // If a portfolio doesnt exist in the persistent store, create a new one
+        self.portfolio = [NSEntityDescription insertNewObjectForEntityForName:@"Portfolio" inManagedObjectContext:self.managedObjectContext];
+        
+        if (![self.managedObjectContext save:&error]) {
+            COREDATA_ERROR(error);
+            return;
+        }
+        
+    } else if (foundObjects.count == 1) {
+        // If one portfolio was returned, set it to the property
+        self.portfolio = [foundObjects objectAtIndex:0];
+        
+    } else {
+        // If more than one portfolio objects were returned, there was an error
+        COREDATA_ERROR(error);
+        return;
+    }
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"toPersonal"]) {
+        UINavigationController *navController = segue.destinationViewController;
+        PersonalTableViewController *controller = (PersonalTableViewController*) navController.topViewController;
+        
+        controller.delegate = self;
+        controller.itemToEdit = self.portfolio;
+    }
 }
-*/
+
+
+#pragma mark - PersonalTableViewControllerDelegate
+
+- (void)personalTableViewControllerDidCancel:(PersonalTableViewController*)controller
+{
+    // Dismiss the view
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+- (void)personalTableViewController:(PersonalTableViewController*)controller didFinishSavingPortfolio:(Portfolio*)qualification
+{
+    // Save the item to the datastore
+    NSError *error;
+    if (![self.managedObjectContext save:&error]) {
+        COREDATA_ERROR(error);
+        return;
+    }
+    
+    // Dismiss the view
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end
