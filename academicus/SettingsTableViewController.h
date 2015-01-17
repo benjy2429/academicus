@@ -23,4 +23,6 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *touchIdRow;
 @property (weak, nonatomic) IBOutlet UISwitch *touchIdSwitch;
 
+@property (weak, nonatomic) IBOutlet UISwitch *savePhotosSwitch;
+
 @end

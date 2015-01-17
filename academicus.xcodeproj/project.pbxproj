@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A377B6461A68717F00B33C97 /* Portfolio.m in Sources */ = {isa = PBXBuildFile; fileRef = A377B6451A68717F00B33C97 /* Portfolio.m */; };
+		A377B6471A68718E00B33C97 /* Portfolio.m in Sources */ = {isa = PBXBuildFile; fileRef = A377B6451A68717F00B33C97 /* Portfolio.m */; };
 		A3981DEF1A473E4200334345 /* SubjectsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3981DEE1A473E4200334345 /* SubjectsTableViewController.m */; };
 		A3981DF21A473E6000334345 /* SubjectDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3981DF11A473E6000334345 /* SubjectDetailTableViewController.m */; };
 		A3981DF81A47595000334345 /* AssessmentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3981DF71A47595000334345 /* AssessmentsTableViewController.m */; };
@@ -31,8 +33,6 @@
 		A3B2E76A1A65C942000C993A /* WorkExperience.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B2E7681A65C942000C993A /* WorkExperience.m */; };
 		A3B2E76D1A65C943000C993A /* Achievement.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B2E76C1A65C943000C993A /* Achievement.m */; };
 		A3B2E76E1A65C943000C993A /* Achievement.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B2E76C1A65C943000C993A /* Achievement.m */; };
-		A3B2E7711A65C944000C993A /* Portfolio.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B2E7701A65C944000C993A /* Portfolio.m */; };
-		A3B2E7721A65C944000C993A /* Portfolio.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B2E7701A65C944000C993A /* Portfolio.m */; };
 		B5030ADB1A43788800E23378 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030ADA1A43788800E23378 /* main.m */; };
 		B5030ADE1A43788800E23378 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030ADD1A43788800E23378 /* AppDelegate.m */; };
 		B5030AE71A43788800E23378 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5030AE51A43788800E23378 /* Main.storyboard */; };
@@ -112,6 +112,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A377B6441A68717E00B33C97 /* Portfolio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Portfolio.h; sourceTree = "<group>"; };
+		A377B6451A68717F00B33C97 /* Portfolio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Portfolio.m; sourceTree = "<group>"; };
 		A3981DED1A473E4200334345 /* SubjectsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectsTableViewController.h; sourceTree = "<group>"; };
 		A3981DEE1A473E4200334345 /* SubjectsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectsTableViewController.m; sourceTree = "<group>"; };
 		A3981DF01A473E6000334345 /* SubjectDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectDetailTableViewController.h; sourceTree = "<group>"; };
@@ -151,8 +153,6 @@
 		A3B2E7681A65C942000C993A /* WorkExperience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkExperience.m; sourceTree = "<group>"; };
 		A3B2E76B1A65C943000C993A /* Achievement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Achievement.h; sourceTree = "<group>"; };
 		A3B2E76C1A65C943000C993A /* Achievement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Achievement.m; sourceTree = "<group>"; };
-		A3B2E76F1A65C944000C993A /* Portfolio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Portfolio.h; sourceTree = "<group>"; };
-		A3B2E7701A65C944000C993A /* Portfolio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Portfolio.m; sourceTree = "<group>"; };
 		B5030AD51A43788800E23378 /* academicus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = academicus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5030AD91A43788800E23378 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5030ADA1A43788800E23378 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -324,8 +324,8 @@
 		A3981DEB1A472FA500334345 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A3B2E76F1A65C944000C993A /* Portfolio.h */,
-				A3B2E7701A65C944000C993A /* Portfolio.m */,
+				A377B6441A68717E00B33C97 /* Portfolio.h */,
+				A377B6451A68717F00B33C97 /* Portfolio.m */,
 				A3B2E76B1A65C943000C993A /* Achievement.h */,
 				A3B2E76C1A65C943000C993A /* Achievement.m */,
 				A3B2E7671A65C942000C993A /* WorkExperience.h */,
@@ -607,11 +607,11 @@
 				A39B88FE1A5C7EBA00F883EC /* AchievementsTableViewController.m in Sources */,
 				A3981DF81A47595000334345 /* AssessmentsTableViewController.m in Sources */,
 				B5FD432B1A51029D00AC583E /* Subject.m in Sources */,
+				A377B6461A68717F00B33C97 /* Portfolio.m in Sources */,
 				A3981DFB1A47596F00334345 /* AssessmentDetailTableViewController.m in Sources */,
 				A3981DEF1A473E4200334345 /* SubjectsTableViewController.m in Sources */,
 				A3B2E76D1A65C943000C993A /* Achievement.m in Sources */,
 				B5F232AF1A4F5D5D00EAFF93 /* DataModel.xcdatamodeld in Sources */,
-				A3B2E7711A65C944000C993A /* Portfolio.m in Sources */,
 				B5030B0D1A438A6E00E23378 /* Settings.m in Sources */,
 				A3B2E7691A65C942000C993A /* WorkExperience.m in Sources */,
 				B5030ADE1A43788800E23378 /* AppDelegate.m in Sources */,
@@ -656,11 +656,11 @@
 				B5C99C441A5E27950074C5B3 /* LoginViewController.m in Sources */,
 				B546EAC81A5B38E40014820C /* YearsTableViewController.m in Sources */,
 				B546EAC91A5B38E40014820C /* YearDetailTableViewController.m in Sources */,
+				A377B6471A68718E00B33C97 /* Portfolio.m in Sources */,
 				B546EACA1A5B38E40014820C /* SettingsTableViewController.m in Sources */,
 				B546EACD1A5B38E40014820C /* Year.m in Sources */,
 				A3B2E76E1A65C943000C993A /* Achievement.m in Sources */,
 				B546EACF1A5B38E40014820C /* AssessmentsTableViewController.m in Sources */,
-				A3B2E7721A65C944000C993A /* Portfolio.m in Sources */,
 				B546EAD01A5B38E40014820C /* Subject.m in Sources */,
 				A3B2E76A1A65C942000C993A /* WorkExperience.m in Sources */,
 				B546EAD11A5B38E40014820C /* AssessmentDetailTableViewController.m in Sources */,

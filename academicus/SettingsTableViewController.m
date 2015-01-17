@@ -62,6 +62,9 @@
     
     //Toggle the touch id switch depending on the stored setting
     self.touchIdSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"touchIdEnabled"];
+    
+    //Toggle the save photos switch depending on the stored setting
+    self.savePhotosSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"autoSavePhotos"];
 }
 
 
@@ -236,6 +239,14 @@
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
+//When the save photos switch is toggled
+- (IBAction)savePhotosSwitchChanged:(UISwitch* )sender
+{
+    //Change the save photos setting
+    [[NSUserDefaults standardUserDefaults] setBool:sender.on forKey:@"autoSavePhotos"];
 }
 
 

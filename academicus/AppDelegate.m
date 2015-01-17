@@ -211,9 +211,10 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
 }
 
 
+//This method defines the default values of all settings
 -(void)setDefaultSettings
 {
-    NSDictionary *defaults = @{ @"passcodeLockEnabled" : @NO, @"touchIdEnabled" : @NO, @"notificationsEnabled" : @YES };
+    NSDictionary *defaults = @{ @"passcodeLockEnabled" : @NO, @"touchIdEnabled" : @NO, @"notificationsEnabled" : @YES, @"autoSavePhotos" : @YES};
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
 }
 
