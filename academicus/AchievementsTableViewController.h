@@ -8,12 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "AchievementDetailTableViewController.h"
-#import "Portfolio.h"
 #import "Achievement.h"
 
 @interface AchievementsTableViewController : UITableViewController <NSFetchedResultsControllerDelegate, AchievementDetailTableViewControllerDelegate>
 
-@property (weak) Portfolio *portfolio;
 @property (nonatomic, weak) NSManagedObjectContext *managedObjectContext;
 
 // This variable is used to determine whether the user clicked the edit button, or swiped a row

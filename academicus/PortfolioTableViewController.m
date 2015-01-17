@@ -86,6 +86,10 @@
     } else if ([segue.identifier isEqualToString:@"toAchievements"]) {
         AchievementsTableViewController *controller = (AchievementsTableViewController*) segue.destinationViewController;
         controller.managedObjectContext = self.managedObjectContext;
+        
+    }  else if ([segue.identifier isEqualToString:@"toWorkExperiences"]) {
+        WorkTableViewController *controller = (WorkTableViewController*) segue.destinationViewController;
+        controller.managedObjectContext = self.managedObjectContext;
     }
 }
 

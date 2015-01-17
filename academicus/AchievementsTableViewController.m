@@ -30,10 +30,6 @@
         NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"displayOrder" ascending:NO];
         [fetchRequest setSortDescriptors:@[sortDescriptor]];
         
-        // Set the predicate
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"portfolio == %@", self.portfolio];
-        [fetchRequest setPredicate:predicate];
-        
         // Create the fetched results controller
         _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Achievements"];
         
@@ -352,7 +348,7 @@
 }
 
 
-#pragma mark - SubjectDetailTableViewControllerDelegate
+#pragma mark - AchievementDetailTableViewControllerDelegate
 
 - (void)achievementDetailTableViewController:(id)controller didFinishAddingAchievement:(Achievement *)achievement
 {
