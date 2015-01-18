@@ -55,6 +55,7 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
     //[[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor blackColor]} forState:UIControlStateNormal];
     //[[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
     [[UITabBar appearance] setTintColor: APP_TINT_COLOUR];
+    [[UISearchBar appearance] setBarTintColor: APP_TINT_COLOUR];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     // iOS 8 local notification registration

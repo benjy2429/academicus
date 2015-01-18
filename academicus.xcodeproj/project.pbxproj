@@ -76,8 +76,13 @@
 		B585D5681A5B490200AC36D1 /* 01_launch.rb in Resources */ = {isa = PBXBuildFile; fileRef = B585D5621A5B490200AC36D1 /* 01_launch.rb */; };
 		B585D5691A5B490200AC36D1 /* 02_pre_stop_hooks.rb in Resources */ = {isa = PBXBuildFile; fileRef = B585D5631A5B490200AC36D1 /* 02_pre_stop_hooks.rb */; };
 		B585D56A1A5B490200AC36D1 /* env.rb in Resources */ = {isa = PBXBuildFile; fileRef = B585D5641A5B490200AC36D1 /* env.rb */; };
+		B592AA111A6B2CA100025414 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B592AA101A6B2CA100025414 /* Info.plist */; };
 		B5A47B7B1A5EE7E700136BAF /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3A3B6171A5DFFBA008D17E9 /* LoginView.xib */; };
 		B5A47B7D1A5F13AB00136BAF /* grades_management_assessments.feature in Resources */ = {isa = PBXBuildFile; fileRef = B5A47B7C1A5F13AB00136BAF /* grades_management_assessments.feature */; };
+		B5A490611A6AE07500506B7B /* LocationSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A490601A6AE07500506B7B /* LocationSearchTableViewController.m */; };
+		B5A490621A6AE07500506B7B /* LocationSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A490601A6AE07500506B7B /* LocationSearchTableViewController.m */; };
+		B5A490651A6B176800506B7B /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A490641A6B176800506B7B /* MapViewController.m */; };
+		B5A490661A6B176800506B7B /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A490641A6B176800506B7B /* MapViewController.m */; };
 		B5A6CA251A5B574C0041CEE9 /* navbar_steps.rb in Resources */ = {isa = PBXBuildFile; fileRef = B5A6CA241A5B574C0041CEE9 /* navbar_steps.rb */; };
 		B5A846581A50CCEF001D2E47 /* Year.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A846571A50CCEF001D2E47 /* Year.m */; };
 		B5A8465E1A50E2F2001D2E47 /* AssessmentCriteria.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A8465D1A50E2F2001D2E47 /* AssessmentCriteria.m */; };
@@ -186,7 +191,12 @@
 		B585D5621A5B490200AC36D1 /* 01_launch.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = 01_launch.rb; sourceTree = "<group>"; };
 		B585D5631A5B490200AC36D1 /* 02_pre_stop_hooks.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = 02_pre_stop_hooks.rb; sourceTree = "<group>"; };
 		B585D5641A5B490200AC36D1 /* env.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = env.rb; sourceTree = "<group>"; };
+		B592AA101A6B2CA100025414 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = academicus/Info.plist; sourceTree = "<group>"; };
 		B5A47B7C1A5F13AB00136BAF /* grades_management_assessments.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = grades_management_assessments.feature; path = features/grades_management_assessments.feature; sourceTree = SOURCE_ROOT; };
+		B5A4905F1A6AE07500506B7B /* LocationSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationSearchTableViewController.h; sourceTree = "<group>"; };
+		B5A490601A6AE07500506B7B /* LocationSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationSearchTableViewController.m; sourceTree = "<group>"; };
+		B5A490631A6B176800506B7B /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		B5A490641A6B176800506B7B /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		B5A6CA241A5B574C0041CEE9 /* navbar_steps.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = navbar_steps.rb; sourceTree = "<group>"; };
 		B5A846561A50CCEF001D2E47 /* Year.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Year.h; sourceTree = "<group>"; };
 		B5A846571A50CCEF001D2E47 /* Year.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Year.m; sourceTree = "<group>"; };
@@ -279,6 +289,10 @@
 				B5030B151A438DFA00E23378 /* PortfolioTableViewController.m */,
 				A39B88F61A5C7E8B00F883EC /* PersonalTableViewController.h */,
 				A39B88F71A5C7E8B00F883EC /* PersonalTableViewController.m */,
+				B5A4905F1A6AE07500506B7B /* LocationSearchTableViewController.h */,
+				B5A490601A6AE07500506B7B /* LocationSearchTableViewController.m */,
+				B5A490631A6B176800506B7B /* MapViewController.h */,
+				B5A490641A6B176800506B7B /* MapViewController.m */,
 				A39B88F91A5C7EAB00F883EC /* HobbiesTableViewController.h */,
 				A39B88FA1A5C7EAB00F883EC /* HobbiesTableViewController.m */,
 				A39B88FC1A5C7EBA00F883EC /* AchievementsTableViewController.h */,
@@ -352,6 +366,7 @@
 		B5030ACC1A43788800E23378 = {
 			isa = PBXGroup;
 			children = (
+				B592AA101A6B2CA100025414 /* Info.plist */,
 				A3A125E01A647D14006EC50D /* Security.framework */,
 				A3A125DE1A645AA3006EC50D /* AudioToolbox.framework */,
 				B5030AD71A43788800E23378 /* academicus */,
@@ -556,6 +571,7 @@
 			files = (
 				B5030AE71A43788800E23378 /* Main.storyboard in Resources */,
 				B5EDAD2D1A5B7E0100AD147A /* grades_management_years.feature in Resources */,
+				B592AA111A6B2CA100025414 /* Info.plist in Resources */,
 				A3A3B6181A5DFFBA008D17E9 /* LoginView.xib in Resources */,
 				B5A6CA251A5B574C0041CEE9 /* navbar_steps.rb in Resources */,
 				B5030AEC1A43788800E23378 /* LaunchScreen.xib in Resources */,
@@ -598,9 +614,11 @@
 				A3A3B6131A5DE3EA008D17E9 /* LoginViewController.m in Sources */,
 				B5DED5991A46451500D22147 /* YearsTableViewController.m in Sources */,
 				A39B88FB1A5C7EAB00F883EC /* HobbiesTableViewController.m in Sources */,
+				B5A490651A6B176800506B7B /* MapViewController.m in Sources */,
 				A39B890D1A5C9B4A00F883EC /* AchievementDetailTableViewController.m in Sources */,
 				B5DED59C1A46470800D22147 /* YearDetailTableViewController.m in Sources */,
 				B5030B131A438DDF00E23378 /* SettingsTableViewController.m in Sources */,
+				B5A490611A6AE07500506B7B /* LocationSearchTableViewController.m in Sources */,
 				A39B89011A5C7ED000F883EC /* WorkTableViewController.m in Sources */,
 				A39B89101A5C9B6900F883EC /* WorkDetailTableViewController.m in Sources */,
 				B5A846581A50CCEF001D2E47 /* Year.m in Sources */,
@@ -647,9 +665,11 @@
 				B5C99C3B1A5E27950074C5B3 /* PersonalTableViewController.m in Sources */,
 				B5C99C3C1A5E27950074C5B3 /* HobbiesTableViewController.m in Sources */,
 				B5C99C3D1A5E27950074C5B3 /* AchievementsTableViewController.m in Sources */,
+				B5A490661A6B176800506B7B /* MapViewController.m in Sources */,
 				B5C99C3E1A5E27950074C5B3 /* AchievementDetailTableViewController.m in Sources */,
 				B5C99C3F1A5E27950074C5B3 /* WorkTableViewController.m in Sources */,
 				B5C99C401A5E27950074C5B3 /* WorkDetailTableViewController.m in Sources */,
+				B5A490621A6AE07500506B7B /* LocationSearchTableViewController.m in Sources */,
 				B5C99C411A5E27950074C5B3 /* MyPortfolioTableViewController.m in Sources */,
 				B5C99C421A5E27950074C5B3 /* ProgressTableViewController.m in Sources */,
 				B5C99C431A5E27950074C5B3 /* AboutTableViewController.m in Sources */,

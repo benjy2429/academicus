@@ -16,7 +16,8 @@
     
     //Load previously entered data
     self.nameField.text = self.itemToEdit.name;
-    self.addressField.text = self.itemToEdit.address;
+    self.addressLocation = self.itemToEdit.address;
+    [self configureAddressCell];
     self.telephoneField.text = self.itemToEdit.phone;
     self.emailField.text = self.itemToEdit.email;
     self.websiteField.text = self.itemToEdit.website;
@@ -39,7 +40,7 @@
 {
     self.itemToEdit.photo = UIImagePNGRepresentation(self.originalPhoto); //Convert the photo to nsdata for core data storage
     self.itemToEdit.name = self.nameField.text;
-    self.itemToEdit.address = self.addressField.text;
+    self.itemToEdit.address = self.addressLocation;
     self.itemToEdit.phone = self.telephoneField.text;
     self.itemToEdit.email = self.emailField.text;
     self.itemToEdit.website = self.websiteField.text;
@@ -52,6 +53,12 @@
 - (IBAction)cancel
 {
     [self.delegate personalTableViewControllerDidCancel:self];
+}
+
+
+- (void)configureAddressCell
+{
+    self.addressLabel.text = (self.addressLocation != nil) ? [NSString stringWithFormat:@"%@, %@", self.addressLocation.name, ABCreateStringWithAddressDictionary(self.addressLocation.addressDictionary, NO)] : @"No Location Selected";
 }
 
 
@@ -170,11 +177,9 @@
 {
     if (indexPath.section == 3 && indexPath.row == 0 && self.originalPhoto != nil) {
         return tableView.frame.size.width;
+    } else {
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }
-    if (indexPath.section == 1 && indexPath.row == 0){
-        return 100;
-    }
-    return 50;
 }
 
 
@@ -193,6 +198,47 @@
     UIImage* croppedPhoto = [UIImage imageWithCGImage:croppedImageRef scale:(self.photoView.frame.size.width/self.originalPhoto.size.width) orientation:self.originalPhoto.imageOrientation];
     //Add the cropped image to the view
     [self.photoView setImage:croppedPhoto];
+}
+
+
+#pragma mark - LocationSearchTableViewControllerDelegate
+
+- (void)locationSearchTableViewControllerDidCancel:(LocationSearchTableViewController *)controller
+{
+    // Dismiss the view controller
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+- (void)locationSearchTableViewController:(LocationSearchTableViewController*)controller didSelectLocation:(CLPlacemark *)location
+{
+    self.addressLocation = location;
+    [self configureAddressCell];
+    
+    // Dismiss the view controller
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)locationSearchTableViewControllerDidRemoveLocation:(LocationSearchTableViewController*)controller
+{
+    self.addressLocation = nil;
+    [self configureAddressCell];
+    
+    // Dismiss the view controller
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"toLocationSearch"]) {
+        UINavigationController *navController = segue.destinationViewController;
+        LocationSearchTableViewController *controller = (LocationSearchTableViewController*) navController.topViewController;
+        controller.delegate = self;
+        controller.currentLocation = self.addressLocation;
+    }
 }
 
 @end

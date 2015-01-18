@@ -22,7 +22,7 @@
         <relationship name="subject" maxCount="1" deletionRule="Nullify" destinationEntity="Subject" inverseName="assessments" inverseEntity="Subject" syncable="YES"/>
     </entity>
     <entity name="Portfolio" representedClassName="Portfolio" syncable="YES">
-        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="address" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="hobbies" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>

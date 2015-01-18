@@ -48,5 +48,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Academicus uses your location to show your current position on the address map.</string>
 </dict>
 </plist>

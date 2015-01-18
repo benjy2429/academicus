@@ -13,7 +13,7 @@
 
 @interface Portfolio : NSManagedObject
 
-@property (nonatomic, retain) NSString * address;
+@property (nonatomic, retain) CLPlacemark * address;
 @property (nonatomic, retain) NSString * email;
 @property (nonatomic, retain) NSString * hobbies;
 @property (nonatomic, retain) NSString * name;
