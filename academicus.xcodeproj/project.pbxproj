@@ -351,6 +351,8 @@
 				B586BF2B1A6B673900996991 /* MyPortfolioTableViewCell.m */,
 				A39B89021A5C7EDC00F883EC /* ProgressTableViewController.h */,
 				A39B89031A5C7EDC00F883EC /* ProgressTableViewController.m */,
+				A39B89021A5C7EDC00F883EC /* StatisticsTableViewController.h */,
+				A39B89031A5C7EDC00F883EC /* StatisticsTableViewController.m */,
 				A3981DEB1A472FA500334345 /* Models */,
 			);
 			name = Portfolio;
