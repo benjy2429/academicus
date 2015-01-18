@@ -349,7 +349,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NAY-FF-UeB">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NAY-FF-UeB">
                                                     <rect key="frame" x="-25" y="-15" width="51" height="31"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="31" id="VFa-QZ-gXh"/>
@@ -437,9 +437,9 @@
                                                     <exclude reference="OVY-Z6-Mgk"/>
                                                 </mask>
                                                 <mask key="constraints">
+                                                    <exclude reference="8HA-Rv-Mta"/>
                                                     <exclude reference="i8H-x9-DJP"/>
                                                     <exclude reference="xAK-ba-0E6"/>
-                                                    <exclude reference="8HA-Rv-Mta"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
@@ -447,9 +447,9 @@
                                                     <include reference="OVY-Z6-Mgk"/>
                                                 </mask>
                                                 <mask key="constraints">
+                                                    <include reference="8HA-Rv-Mta"/>
                                                     <include reference="i8H-x9-DJP"/>
                                                     <include reference="xAK-ba-0E6"/>
-                                                    <include reference="8HA-Rv-Mta"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -710,7 +710,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dpg-NI-fRF" id="1RM-xU-Knz">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Academic Progress" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BSt-D3-uCN">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Academic Statistics" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BSt-D3-uCN">
                                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -744,7 +744,7 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="2xY-tj-WEB" kind="show" id="W1h-rL-rgQ"/>
+                                            <segue destination="2xY-tj-WEB" kind="show" identifier="toAcademicStatistics" id="W1h-rL-rgQ"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -1316,14 +1316,14 @@
                                                     <exclude reference="HHe-fa-vNn"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="1gy-Kc-7gA"/>
-                                                    <exclude reference="5gS-7Q-KSG"/>
-                                                    <exclude reference="yRB-07-s8q"/>
-                                                    <exclude reference="yyQ-8j-uaP"/>
                                                     <exclude reference="6gd-em-oHr"/>
                                                     <exclude reference="aIc-zN-A8j"/>
                                                     <exclude reference="rAx-Au-oGc"/>
                                                     <exclude reference="xEK-Bp-OG1"/>
+                                                    <exclude reference="1gy-Kc-7gA"/>
+                                                    <exclude reference="5gS-7Q-KSG"/>
+                                                    <exclude reference="yRB-07-s8q"/>
+                                                    <exclude reference="yyQ-8j-uaP"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
@@ -1332,14 +1332,14 @@
                                                     <include reference="HHe-fa-vNn"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="1gy-Kc-7gA"/>
-                                                    <include reference="5gS-7Q-KSG"/>
-                                                    <include reference="yRB-07-s8q"/>
-                                                    <include reference="yyQ-8j-uaP"/>
                                                     <include reference="6gd-em-oHr"/>
                                                     <include reference="aIc-zN-A8j"/>
                                                     <include reference="rAx-Au-oGc"/>
                                                     <include reference="xEK-Bp-OG1"/>
+                                                    <include reference="1gy-Kc-7gA"/>
+                                                    <include reference="5gS-7Q-KSG"/>
+                                                    <include reference="yRB-07-s8q"/>
+                                                    <include reference="yyQ-8j-uaP"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -2284,11 +2284,11 @@
             </objects>
             <point key="canvasLocation" x="4188" y="2803.5"/>
         </scene>
-        <!--Academic Progress-->
+        <!--Academic Statistics-->
         <scene sceneID="UBn-xm-aQc">
             <objects>
-                <tableViewController id="2xY-tj-WEB" customClass="ProgressTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" id="zRZ-Py-NDi">
+                <tableViewController title="Academic Statistics" id="2xY-tj-WEB" customClass="StatisticsTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" id="zRZ-Py-NDi">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2299,13 +2299,20 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="jVR-bm-N4i">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jVR-bm-N4i" id="jQN-I0-mal">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                         </prototypes>
+                        <sections/>
                         <connections>
                             <outlet property="dataSource" destination="2xY-tj-WEB" id="60P-R8-L2B"/>
                             <outlet property="delegate" destination="2xY-tj-WEB" id="im7-LA-cr1"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Academic Progress" id="Ijl-q5-BnU"/>
+                    <navigationItem key="navigationItem" title="Academic Statistics" id="Ijl-q5-BnU"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SPv-qd-zQZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

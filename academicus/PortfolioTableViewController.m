@@ -90,6 +90,10 @@
     }  else if ([segue.identifier isEqualToString:@"toWorkExperiences"]) {
         WorkTableViewController *controller = (WorkTableViewController*) segue.destinationViewController;
         controller.managedObjectContext = self.managedObjectContext;
+        
+    }  else if ([segue.identifier isEqualToString:@"toAcademicStatistics"]) {
+       StatisticsTableViewController *controller = (StatisticsTableViewController*) segue.destinationViewController;
+       controller.managedObjectContext = self.managedObjectContext;
     }
 }
 
