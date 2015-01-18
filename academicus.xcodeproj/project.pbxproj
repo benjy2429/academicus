@@ -76,6 +76,7 @@
 		B585D5681A5B490200AC36D1 /* 01_launch.rb in Resources */ = {isa = PBXBuildFile; fileRef = B585D5621A5B490200AC36D1 /* 01_launch.rb */; };
 		B585D5691A5B490200AC36D1 /* 02_pre_stop_hooks.rb in Resources */ = {isa = PBXBuildFile; fileRef = B585D5631A5B490200AC36D1 /* 02_pre_stop_hooks.rb */; };
 		B585D56A1A5B490200AC36D1 /* env.rb in Resources */ = {isa = PBXBuildFile; fileRef = B585D5641A5B490200AC36D1 /* env.rb */; };
+		B586BF2C1A6B673900996991 /* MyPortfolioTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B586BF2B1A6B673900996991 /* MyPortfolioTableViewCell.m */; };
 		B592AA111A6B2CA100025414 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B592AA101A6B2CA100025414 /* Info.plist */; };
 		B5A47B7B1A5EE7E700136BAF /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3A3B6171A5DFFBA008D17E9 /* LoginView.xib */; };
 		B5A47B7D1A5F13AB00136BAF /* grades_management_assessments.feature in Resources */ = {isa = PBXBuildFile; fileRef = B5A47B7C1A5F13AB00136BAF /* grades_management_assessments.feature */; };
@@ -191,6 +192,8 @@
 		B585D5621A5B490200AC36D1 /* 01_launch.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = 01_launch.rb; sourceTree = "<group>"; };
 		B585D5631A5B490200AC36D1 /* 02_pre_stop_hooks.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = 02_pre_stop_hooks.rb; sourceTree = "<group>"; };
 		B585D5641A5B490200AC36D1 /* env.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = env.rb; sourceTree = "<group>"; };
+		B586BF2A1A6B673900996991 /* MyPortfolioTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPortfolioTableViewCell.h; sourceTree = "<group>"; };
+		B586BF2B1A6B673900996991 /* MyPortfolioTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPortfolioTableViewCell.m; sourceTree = "<group>"; };
 		B592AA101A6B2CA100025414 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = academicus/Info.plist; sourceTree = "<group>"; };
 		B5A47B7C1A5F13AB00136BAF /* grades_management_assessments.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = grades_management_assessments.feature; path = features/grades_management_assessments.feature; sourceTree = SOURCE_ROOT; };
 		B5A4905F1A6AE07500506B7B /* LocationSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationSearchTableViewController.h; sourceTree = "<group>"; };
@@ -305,6 +308,8 @@
 				A39B890F1A5C9B6900F883EC /* WorkDetailTableViewController.m */,
 				A39B89051A5C8ADE00F883EC /* MyPortfolioTableViewController.h */,
 				A39B89061A5C8ADE00F883EC /* MyPortfolioTableViewController.m */,
+				B586BF2A1A6B673900996991 /* MyPortfolioTableViewCell.h */,
+				B586BF2B1A6B673900996991 /* MyPortfolioTableViewCell.m */,
 				A39B89021A5C7EDC00F883EC /* ProgressTableViewController.h */,
 				A39B89031A5C7EDC00F883EC /* ProgressTableViewController.m */,
 				A3981DEB1A472FA500334345 /* Models */,
@@ -633,6 +638,7 @@
 				B5030B0D1A438A6E00E23378 /* Settings.m in Sources */,
 				A3B2E7691A65C942000C993A /* WorkExperience.m in Sources */,
 				B5030ADE1A43788800E23378 /* AppDelegate.m in Sources */,
+				B586BF2C1A6B673900996991 /* MyPortfolioTableViewCell.m in Sources */,
 				B5030B1F1A43C77B00E23378 /* QualificationDetailTableViewController.m in Sources */,
 				A39B89041A5C7EDC00F883EC /* ProgressTableViewController.m in Sources */,
 				A3AC584B1A64B06F001B2151 /* KeychainItemWrapper.m in Sources */,

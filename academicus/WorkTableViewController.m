@@ -354,6 +354,7 @@
 - (void)workDetailTableViewController:(id)controller didFinishAddingWork:(WorkExperience *)work
 {
     work.displayOrder = [NSNumber numberWithInteger:[[self.fetchedResultsController fetchedObjects] count]];
+    work.portfolio = self.portfolio;
     
     // Save the item to the datastore
     NSError *error;

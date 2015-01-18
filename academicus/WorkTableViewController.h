@@ -13,6 +13,7 @@
 @interface WorkTableViewController : UITableViewController <NSFetchedResultsControllerDelegate, WorkDetailTableViewControllerDelegate>
 
 @property (nonatomic, weak) NSManagedObjectContext *managedObjectContext;
+@property (weak) Portfolio *portfolio;
 
 // This variable is used to determine whether the user clicked the edit button, or swiped a row
 @property (assign) BOOL inSwipeDeleteMode;

@@ -8,93 +8,138 @@
 
 #import "MyPortfolioTableViewController.h"
 
-@interface MyPortfolioTableViewController ()
-
-@end
+static NSString * const cellIdentifier = @"myPortfolioCell";
 
 @implementation MyPortfolioTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    // Override the height of the table view header
+    self.tableView.tableHeaderView.frame = CGRectMake(0, 0, 0, 135);
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self configureHeader];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+- (void)configureHeader
+{
+    [self.profileImage setImage:[UIImage imageWithData:self.portfolio.photo]];
+    self.profileImage.layer.cornerRadius = 40;
+    self.profileImage.layer.masksToBounds = YES;
+    self.profileImage.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    self.profileImage.layer.borderWidth = 1.0f;
+    
+    self.nameLabel.text = self.portfolio.name;
+    
+    // Set the header shadow
+    self.tableView.tableHeaderView.layer.masksToBounds = NO;
+    self.tableView.tableHeaderView.layer.shadowOffset = CGSizeMake(0, 3);
+    self.tableView.tableHeaderView.layer.shadowRadius = 2;
+    self.tableView.tableHeaderView.layer.shadowOpacity = 0.3;
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return 4;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+    return [self basicCellAtIndexPath:indexPath];
+}
+
+
+- (MyPortfolioTableViewCell *)basicCellAtIndexPath:(NSIndexPath *)indexPath {
+    MyPortfolioTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    [self configureBasicCell:cell atIndexPath:indexPath];
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+
+- (void)configureBasicCell:(MyPortfolioTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    
+    NSMutableArray *contentStrings = [[NSMutableArray alloc] init];
+    
+    switch (indexPath.row) {
+        case 0: {
+            cell.titleLabel.text = @"Contact Details";
+            
+            if (![self.portfolio.phone isEqualToString:@""]) { [contentStrings addObject:[NSString stringWithFormat:@"Telephone: %@", self.portfolio.phone]]; }
+            if (![self.portfolio.email isEqualToString:@""]) { [contentStrings addObject:[NSString stringWithFormat:@"Email: %@", self.portfolio.email]]; }
+            if (![self.portfolio.website isEqualToString:@""]) { [contentStrings addObject:[NSString stringWithFormat:@"Website: %@", self.portfolio.website]]; }
+            if (![self.portfolio.website isEqualToString:@""]) { [contentStrings addObject:[NSString stringWithFormat:@"Address: %@", self.portfolio.address.name]]; }
+            cell.contentLabel.text = [contentStrings componentsJoinedByString:@"\n"];
+            break;
+            
+        }
+        case 1: {
+            cell.titleLabel.text = @"Hobbies";
+            cell.contentLabel.text = (![self.portfolio.hobbies isEqualToString:@""]) ? [NSString stringWithFormat:@"%@", self.portfolio.hobbies] : @"" ;
+            break;
+            
+        }
+        case 2: {
+            cell.titleLabel.text = @"Achievements";
+            
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateStyle:NSDateFormatterShortStyle];
+            
+            for (Achievement *achievement in self.portfolio.achievements) {
+                [contentStrings addObject:[NSString stringWithFormat:@"%@ - %@", [formatter stringFromDate:achievement.dateAchieved], achievement.name]];
+            }
+            
+            cell.contentLabel.text = [contentStrings componentsJoinedByString:@"\n"];
+            break;
+            
+        }
+        case 3: {
+            cell.titleLabel.text = @"Work Experience";
+            
+            
+            if (![self.portfolio.hobbies isEqualToString:@""]) { [contentStrings addObject:[NSString stringWithFormat:@"%@", self.portfolio.hobbies]]; }
+            cell.contentLabel.text = [contentStrings componentsJoinedByString:@"\n"];
+            break;
+            
+        }
+    }
+
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [self heightForBasicCellAtIndexPath:indexPath];
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+
+- (CGFloat)heightForBasicCellAtIndexPath:(NSIndexPath *)indexPath {
+    static MyPortfolioTableViewCell *sizingCell = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sizingCell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    });
+    
+    [self configureBasicCell:sizingCell atIndexPath:indexPath];
+    return [self calculateHeightForConfiguredSizingCell:sizingCell];
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+
+- (CGFloat)calculateHeightForConfiguredSizingCell:(UITableViewCell *)sizingCell {
+    
+    sizingCell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableView.frame), CGRectGetHeight(sizingCell.bounds));
+    
+    [sizingCell setNeedsLayout];
+    [sizingCell layoutIfNeeded];
+    
+    CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    return size.height + 1.0f; // Add 1.0f for the cell separator height
 }
-*/
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 80.0f;
 }
-*/
 
 @end

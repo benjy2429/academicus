@@ -353,6 +353,7 @@
 - (void)achievementDetailTableViewController:(id)controller didFinishAddingAchievement:(Achievement *)achievement
 {
     achievement.displayOrder = [NSNumber numberWithInteger:[[self.fetchedResultsController fetchedObjects] count]];
+    achievement.portfolio = self.portfolio;
     
     // Save the item to the datastore
     NSError *error;

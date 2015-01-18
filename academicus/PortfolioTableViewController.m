@@ -86,10 +86,16 @@
     } else if ([segue.identifier isEqualToString:@"toAchievements"]) {
         AchievementsTableViewController *controller = (AchievementsTableViewController*) segue.destinationViewController;
         controller.managedObjectContext = self.managedObjectContext;
+        controller.portfolio = self.portfolio;
         
-    }  else if ([segue.identifier isEqualToString:@"toWorkExperiences"]) {
+    } else if ([segue.identifier isEqualToString:@"toWorkExperiences"]) {
         WorkTableViewController *controller = (WorkTableViewController*) segue.destinationViewController;
         controller.managedObjectContext = self.managedObjectContext;
+        controller.portfolio = self.portfolio;
+        
+    } else if ([segue.identifier isEqualToString:@"generatePortfolio"]) {
+        MyPortfolioTableViewController *controller = (MyPortfolioTableViewController*) segue.destinationViewController;
+        controller.portfolio = self.portfolio;
     }
 }
 
