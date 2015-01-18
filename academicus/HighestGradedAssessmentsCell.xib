@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="highestGradedAssessmentsCell" rowHeight="200" id="KGk-i7-Jjw" customClass="HighestGradedAssessmentsCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Highest Graded Assessments" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uPF-Wo-f0E">
+                        <rect key="frame" x="15" y="23" width="290" height="28"/>
+                        <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="22"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nOh-ro-dss">
+                        <rect key="frame" x="15" y="71" width="290" height="20"/>
+                        <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="65s-8w-HJr">
+                        <rect key="frame" x="15" y="151" width="290" height="20"/>
+                        <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zbq-rA-nEB">
+                        <rect key="frame" x="15" y="111" width="290" height="20"/>
+                        <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Zbq-rA-nEB" firstAttribute="top" secondItem="nOh-ro-dss" secondAttribute="bottom" constant="20" id="8ky-PM-FG6"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Zbq-rA-nEB" secondAttribute="trailing" constant="7" id="9bi-mg-lfU"/>
+                    <constraint firstItem="Zbq-rA-nEB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="7" id="Ap3-SF-ECj"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="uPF-Wo-f0E" secondAttribute="trailing" constant="7" id="DcK-7q-ocl"/>
+                    <constraint firstItem="nOh-ro-dss" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="7" id="OSB-5N-dQN"/>
+                    <constraint firstItem="65s-8w-HJr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="7" id="P3d-k0-fRe"/>
+                    <constraint firstItem="uPF-Wo-f0E" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="15" id="TJ7-SH-ELy"/>
+                    <constraint firstItem="nOh-ro-dss" firstAttribute="top" secondItem="uPF-Wo-f0E" secondAttribute="bottom" constant="20" id="UZq-7K-87d"/>
+                    <constraint firstItem="65s-8w-HJr" firstAttribute="top" secondItem="Zbq-rA-nEB" secondAttribute="bottom" constant="20" id="blb-HM-8hm"/>
+                    <constraint firstItem="uPF-Wo-f0E" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="7" id="d8T-p5-MQI"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="nOh-ro-dss" secondAttribute="trailing" constant="7" id="psa-JQ-osW"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="65s-8w-HJr" secondAttribute="trailing" constant="7" id="ySw-ob-3zg"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="518" y="376"/>
+        </tableViewCell>
+    </objects>
+</document>
