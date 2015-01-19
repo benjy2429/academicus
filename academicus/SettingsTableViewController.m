@@ -225,6 +225,14 @@
 }
 
 
+- (IBAction)iCloudBackupSwitchChanged:(UISwitch *)sender
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Coming Soon!" message:@"The iCloud backup feature is coming soon" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
+    [sender setOn:NO animated:YES];
+}
+
+
 //Triggered when the change passcode row is clicked
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

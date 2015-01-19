@@ -57,7 +57,6 @@
 		B5030ADE1A43788800E23378 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030ADD1A43788800E23378 /* AppDelegate.m */; };
 		B5030AE71A43788800E23378 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5030AE51A43788800E23378 /* Main.storyboard */; };
 		B5030AE91A43788800E23378 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5030AE81A43788800E23378 /* Images.xcassets */; };
-		B5030AEC1A43788800E23378 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5030AEA1A43788800E23378 /* LaunchScreen.xib */; };
 		B5030AF81A43788800E23378 /* academicusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030AF71A43788800E23378 /* academicusTests.m */; };
 		B5030B0D1A438A6E00E23378 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B0C1A438A6E00E23378 /* Settings.m */; };
 		B5030B101A438DC100E23378 /* RemindersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B0F1A438DC100E23378 /* RemindersTableViewController.m */; };
@@ -87,7 +86,6 @@
 		B546EAE21A5B38E40014820C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030ADA1A43788800E23378 /* main.m */; };
 		B546EAE41A5B38E40014820C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F232A81A4F5CCC00EAFF93 /* CoreData.framework */; };
 		B546EAE61A5B38E40014820C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5030AE51A43788800E23378 /* Main.storyboard */; };
-		B546EAE71A5B38E40014820C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5030AEA1A43788800E23378 /* LaunchScreen.xib */; };
 		B546EAE81A5B38E40014820C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5030AE81A43788800E23378 /* Images.xcassets */; };
 		B546EAEF1A5B39440014820C /* calabash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B546EAEE1A5B39440014820C /* calabash.framework */; };
 		B546EAF11A5B397D0014820C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B546EAF01A5B397D0014820C /* CFNetwork.framework */; };
@@ -97,7 +95,6 @@
 		B585D5691A5B490200AC36D1 /* 02_pre_stop_hooks.rb in Resources */ = {isa = PBXBuildFile; fileRef = B585D5631A5B490200AC36D1 /* 02_pre_stop_hooks.rb */; };
 		B585D56A1A5B490200AC36D1 /* env.rb in Resources */ = {isa = PBXBuildFile; fileRef = B585D5641A5B490200AC36D1 /* env.rb */; };
 		B586BF2C1A6B673900996991 /* MyPortfolioTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B586BF2B1A6B673900996991 /* MyPortfolioTableViewCell.m */; };
-		B592AA111A6B2CA100025414 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B592AA101A6B2CA100025414 /* Info.plist */; };
 		B5A47B7B1A5EE7E700136BAF /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3A3B6171A5DFFBA008D17E9 /* LoginView.xib */; };
 		B5A47B7D1A5F13AB00136BAF /* grades_management_assessments.feature in Resources */ = {isa = PBXBuildFile; fileRef = B5A47B7C1A5F13AB00136BAF /* grades_management_assessments.feature */; };
 		B5A490611A6AE07500506B7B /* LocationSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A490601A6AE07500506B7B /* LocationSearchTableViewController.m */; };
@@ -204,7 +201,6 @@
 		B5030ADD1A43788800E23378 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B5030AE61A43788800E23378 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B5030AE81A43788800E23378 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		B5030AEB1A43788800E23378 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		B5030AF11A43788800E23378 /* academicusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = academicusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5030AF61A43788800E23378 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5030AF71A43788800E23378 /* academicusTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = academicusTests.m; sourceTree = "<group>"; };
@@ -349,8 +345,6 @@
 				A39B89061A5C8ADE00F883EC /* MyPortfolioTableViewController.m */,
 				B586BF2A1A6B673900996991 /* MyPortfolioTableViewCell.h */,
 				B586BF2B1A6B673900996991 /* MyPortfolioTableViewCell.m */,
-				A39B89021A5C7EDC00F883EC /* ProgressTableViewController.h */,
-				A39B89031A5C7EDC00F883EC /* ProgressTableViewController.m */,
 				A39B89021A5C7EDC00F883EC /* StatisticsTableViewController.h */,
 				A39B89031A5C7EDC00F883EC /* StatisticsTableViewController.m */,
 				A3981DEB1A472FA500334345 /* Models */,
@@ -473,7 +467,6 @@
 				A3981DE81A472F3C00334345 /* Settings */,
 				B5030AE51A43788800E23378 /* Main.storyboard */,
 				B5030AE81A43788800E23378 /* Images.xcassets */,
-				B5030AEA1A43788800E23378 /* LaunchScreen.xib */,
 				A3A3B6171A5DFFBA008D17E9 /* LoginView.xib */,
 				B5030AD81A43788800E23378 /* Supporting Files */,
 				B5F232AD1A4F5D5D00EAFF93 /* DataModel.xcdatamodeld */,
@@ -649,7 +642,6 @@
 				A3A3B6181A5DFFBA008D17E9 /* LoginView.xib in Resources */,
 				B5A6CA251A5B574C0041CEE9 /* navbar_steps.rb in Resources */,
 				A3BC004E1A6B32EE00D1B81F /* HighestGradedAssessmentsCell.xib in Resources */,
-				B5030AEC1A43788800E23378 /* LaunchScreen.xib in Resources */,
 				B5030AE91A43788800E23378 /* Images.xcassets in Resources */,
 				A34E954A1A6B4C1600D08274 /* HighestRatedAssessmentsCell.xib in Resources */,
 				B5C99C381A5E22530074C5B3 /* grades_management_subjects.feature in Resources */,
@@ -671,7 +663,6 @@
 				B5A47B7B1A5EE7E700136BAF /* LoginView.xib in Resources */,
 				B546EAE61A5B38E40014820C /* Main.storyboard in Resources */,
 				A3BC004F1A6B32EE00D1B81F /* HighestGradedAssessmentsCell.xib in Resources */,
-				B546EAE71A5B38E40014820C /* LaunchScreen.xib in Resources */,
 				A3BC00481A6B2D5E00D1B81F /* NumberOfAssessmentsCell.xib in Resources */,
 				B546EAE81A5B38E40014820C /* Images.xcassets in Resources */,
 				A3BC00411A6B28DF00D1B81F /* NumberOfYearsCell.xib in Resources */,
@@ -811,14 +802,6 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		B5030AEA1A43788800E23378 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B5030AEB1A43788800E23378 /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -902,6 +885,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -919,6 +903,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -970,6 +955,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				BUNDLE_LOADER = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -998,6 +984,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				BUNDLE_LOADER = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

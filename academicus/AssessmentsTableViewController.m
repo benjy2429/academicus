@@ -135,6 +135,8 @@
 
 
 - (void)toggleSubjectInformation {
+    [self.tableView beginUpdates];
+    
     int adjustmentSize = self.expandSize + 5;
     if (self.isSubjectExpanded) {
         [UIView animateWithDuration:0.1 animations:^{
@@ -164,6 +166,8 @@
 
     }
     self.isSubjectExpanded = !self.isSubjectExpanded;
+    
+    [self.tableView endUpdates];
 }
 
 
