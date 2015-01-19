@@ -122,6 +122,8 @@
         //Once all the options have been added, we display the action sheet style alert
         [self presentViewController:actionSheet animated:YES completion:nil];
     }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 

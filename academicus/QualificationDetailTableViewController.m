@@ -18,6 +18,7 @@
     if (self.itemToEdit != nil) {
         self.title = @"Edit Qualification";
         self.nameField.text = self.itemToEdit.name;
+        self.institutionField.text = self.itemToEdit.institution;
     }
 }
 
@@ -51,6 +52,18 @@
         [alert show];
         return false;
     }
+    //Check for the presence of an institution
+    if ([self.institutionField.text length] < 1) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"You must provide an institution" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return false;
+    }
+    //Check that the institution length is less than 50
+    if ([self.institutionField.text length] > 50) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The institution must be less than 50 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return false;
+    }
     return true;
 }
 
@@ -62,6 +75,7 @@
     if (self.itemToEdit != nil) {
         // If editing, update the item
         self.itemToEdit.name = self.nameField.text;
+        self.itemToEdit.institution = self.institutionField.text;
         [self.delegate QualificationDetailTableViewController:self didFinishEditingQualification:self.itemToEdit];
         
     } else {
@@ -69,6 +83,7 @@
         Qualification *newQualification = [NSEntityDescription insertNewObjectForEntityForName:@"Qualification" inManagedObjectContext:self.managedObjectContext];
         
         newQualification.name = self.nameField.text;
+        newQualification.institution = self.institutionField.text;
         
         [self.delegate QualificationDetailTableViewController:self didFinishAddingQualification:newQualification];
     }
@@ -81,15 +96,5 @@
     return nil;
 }
 
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
-}
 
 @end

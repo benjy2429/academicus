@@ -34,6 +34,7 @@
     </entity>
     <entity name="Qualification" representedClassName="Qualification" syncable="YES">
         <attribute name="displayOrder" attributeType="Integer 32" syncable="YES"/>
+        <attribute name="institution" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="years" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Year" inverseName="qualification" inverseEntity="Year" syncable="YES"/>
     </entity>
@@ -71,7 +72,7 @@
         <element name="Achievement" positionX="-18" positionY="197" width="128" height="118"/>
         <element name="AssessmentCriteria" positionX="385" positionY="-117" width="128" height="223"/>
         <element name="Portfolio" positionX="-216" positionY="221" width="128" height="178"/>
-        <element name="Qualification" positionX="-207" positionY="20" width="128" height="88"/>
+        <element name="Qualification" positionX="-207" positionY="20" width="128" height="105"/>
         <element name="Subject" positionX="180" positionY="-61" width="128" height="178"/>
         <element name="WorkExperience" positionX="169" positionY="176" width="128" height="195"/>
         <element name="Year" positionX="-20" positionY="-0" width="128" height="120"/>

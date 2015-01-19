@@ -13,6 +13,7 @@
 @implementation Qualification
 
 @dynamic name;
+@dynamic institution;
 @dynamic displayOrder;
 @dynamic years;
 
