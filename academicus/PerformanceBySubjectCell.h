@@ -10,4 +10,6 @@
 
 @interface PerformanceBySubjectCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *performanceTitle;
+
 @end

@@ -8,11 +8,35 @@
 
 #import <UIKit/UIKit.h>
 #import "NumberOfYearsCell.h"
+#import "NumberOfAssessmentsCell.h"
+#import "HighestGradedAssessmentsCell.h"
+#import "HighestRatedAssessmentsCell.h"
+#import "AssessmentsOnTargetCell.h"
+#import "PerformanceBySubjectCell.h"
 #import "Qualification.h"
+#import "Subject.h"
+#import "AssessmentCriteria.h"
 
-@interface StatisticsTableViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+
+typedef enum StatisticalCells : NSUInteger {
+    NumberOfYearsStats,
+    NumberOfAssessmentsStats,
+    HighestGradedAssessmentsStats,
+    HighestRatedAssessmentsStats,
+    AssessmentsOnTargetStats,
+    PerformanceBySubjectStats
+} StatisticalCells;
+
+
+@interface StatisticsTableViewController : UITableViewController <NSFetchedResultsControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (nonatomic, weak) NSManagedObjectContext *managedObjectContext;
-@property (strong) Qualification* qualification;
+@property (strong) NSArray* qualifications;
+@property (strong) NSArray* assessments;
+
+@property (strong) Qualification* selectedQualification;
+@property (assign) BOOL qualificationVisible;
+
+@property (strong)  NSMutableArray* cellsToDisplay;
 
 @end

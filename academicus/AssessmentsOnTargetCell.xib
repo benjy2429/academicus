@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
@@ -14,21 +15,36 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Assessments On Target" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ffm-Yf-PbR">
-                        <rect key="frame" x="10" y="29" width="150" height="41"/>
+                        <rect key="frame" x="10" y="28" width="150" height="43"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="150" id="u29-qv-B32"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZOQ-bC-P2p">
+                        <rect key="frame" x="210" y="40" width="50" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="ST6-xi-U0n"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-LightItalic" family="Helvetica Neue" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="centerX" secondItem="Ffm-Yf-PbR" secondAttribute="centerX" constant="75" id="5wR-eH-XUS"/>
+                    <constraint firstAttribute="centerX" secondItem="ZOQ-bC-P2p" secondAttribute="centerX" constant="-75" id="6nQ-FD-5xE"/>
                     <constraint firstAttribute="centerY" secondItem="Ffm-Yf-PbR" secondAttribute="centerY" id="J19-l2-sxb"/>
+                    <constraint firstAttribute="centerY" secondItem="ZOQ-bC-P2p" secondAttribute="centerY" id="vuv-wk-ENo"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="522" y="374"/>
+            <connections>
+                <outlet property="onTargetLabel" destination="Ffm-Yf-PbR" id="E3k-cr-SWc"/>
+                <outlet property="percentageOnTargetLabel" destination="ZOQ-bC-P2p" id="sfv-BV-2EN"/>
+            </connections>
+            <point key="canvasLocation" x="522" y="373"/>
         </tableViewCell>
     </objects>
 </document>

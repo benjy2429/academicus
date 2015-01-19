@@ -10,6 +10,8 @@
 
 @interface NumberOfYearsCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *yearsPicture;
+
 @property (weak, nonatomic) IBOutlet UILabel *yearsLabel;
 
 - (void) configureCellWithYears: (int) years;

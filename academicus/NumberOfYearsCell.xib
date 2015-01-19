@@ -22,11 +22,11 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4 Years" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zof-Im-3qB">
-                        <rect key="frame" x="185" y="38" width="100" height="24"/>
+                        <rect key="frame" x="185" y="39" width="100" height="22"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="100" id="lhc-x4-34w"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="19"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -40,8 +40,9 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="yearsLabel" destination="Zof-Im-3qB" id="9tL-vL-nRW"/>
+                <outlet property="yearsPicture" destination="szn-Sh-Sw6" id="Z9H-ZA-dYG"/>
             </connections>
-            <point key="canvasLocation" x="414" y="444"/>
+            <point key="canvasLocation" x="123" y="243"/>
         </tableViewCell>
     </objects>
     <resources>
