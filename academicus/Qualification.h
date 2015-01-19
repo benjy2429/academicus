@@ -14,6 +14,7 @@
 @interface Qualification : NSManagedObject
 
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * institution;
 @property (nonatomic, retain) NSNumber * displayOrder;
 @property (nonatomic, retain) NSOrderedSet *years;
 @end

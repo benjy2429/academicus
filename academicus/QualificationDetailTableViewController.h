@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneBtn;
 
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
+@property (weak, nonatomic) IBOutlet UITextField *institutionField;
 
 @property (nonatomic, weak) NSManagedObjectContext *managedObjectContext;
 

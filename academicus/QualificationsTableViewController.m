@@ -112,7 +112,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:myIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:myIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:myIdentifier];
     }
     
     // Set the content for each type of cell
@@ -132,6 +132,7 @@
     Qualification *qualification = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     cell.textLabel.text = qualification.name;
+    cell.detailTextLabel.text = qualification.institution;
 }
 
 

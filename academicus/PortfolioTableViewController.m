@@ -95,6 +95,7 @@
         
     } else if ([segue.identifier isEqualToString:@"generatePortfolio"]) {
         MyPortfolioTableViewController *controller = (MyPortfolioTableViewController*) segue.destinationViewController;
+        controller.managedObjectContext = self.managedObjectContext;
         controller.portfolio = self.portfolio;
         
     }  else if ([segue.identifier isEqualToString:@"toAcademicStatistics"]) {
