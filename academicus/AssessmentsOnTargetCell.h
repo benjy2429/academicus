@@ -10,4 +10,10 @@
 
 @interface AssessmentsOnTargetCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *onTargetLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *percentageOnTargetLabel;
+
+- (void) configureCellWithMetTarget:(int)assessmentsOnTarget gradedAssessments: (int) assessmentsGraded;
+
 @end

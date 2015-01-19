@@ -20,4 +20,10 @@
     // Configure the view for the selected state
 }
 
+- (void) configureCellWithMetTarget:(int)assessmentsOnTarget gradedAssessments: (int) assessmentsGraded
+{
+    int percentageOnTarget = (assessmentsOnTarget/(float)assessmentsGraded) * 100;
+    self.percentageOnTargetLabel.text = [NSString stringWithFormat: @"%i%%", percentageOnTarget];
+}
+
 @end

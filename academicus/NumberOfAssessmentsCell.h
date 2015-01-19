@@ -12,4 +12,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *assessmentsLabel;
 
+@property (weak, nonatomic) IBOutlet UIImageView *assessmentPicture;
+
+- (void) configureCellWithAssessments: (int) numberOfAssessments;
+
 @end

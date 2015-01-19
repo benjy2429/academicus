@@ -16,8 +16,8 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Performance By Subject" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e9P-nv-qxm">
-                        <rect key="frame" x="15" y="23" width="290" height="17"/>
-                        <fontDescription key="fontDescription" name="HoeflerText-BlackItalic" family="Hoefler Text" pointSize="17"/>
+                        <rect key="frame" x="15" y="23" width="290" height="22"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -28,6 +28,9 @@
                     <constraint firstAttribute="trailingMargin" secondItem="e9P-nv-qxm" secondAttribute="trailing" constant="7" id="yf7-4E-NI2"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="performanceTitle" destination="e9P-nv-qxm" id="9ch-HV-a52"/>
+            </connections>
             <point key="canvasLocation" x="372" y="221"/>
         </tableViewCell>
     </objects>

@@ -20,4 +20,13 @@
     // Configure the view for the selected state
 }
 
+- (void) configureCellWithAssessments: (int) numberOfAssessments
+{
+    if (numberOfAssessments == 1) {
+        self.assessmentsLabel.text = [NSString stringWithFormat: @"%i Assessments", numberOfAssessments];
+    } else {
+        self.assessmentsLabel.text = [NSString stringWithFormat: @"%i Assessments", numberOfAssessments];
+    }
+}
+
 @end
