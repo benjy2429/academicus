@@ -18,9 +18,11 @@
 #import <CoreData/CoreData.h>
 #import <CoreLocation/CoreLocation.h>
 
-extern NSString* const ManagedObjectContextSaveDidFailNotification;
-
+//Global app tint colour
 #define APP_TINT_COLOUR [UIColor colorWithRed:0.48f green:0.38f blue:0.57f alpha:1.0f]
+
+//Global core data error
+extern NSString* const ManagedObjectContextSaveDidFailNotification;
 
 #define COREDATA_ERROR(__error__)\
 NSLog(@"*** ERROR IN COREDATA: %s:%d\n%@\n%@",\

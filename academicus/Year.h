@@ -32,4 +32,6 @@
 - (void)removeSubjectsObject:(NSManagedObject *)value;
 - (void)addSubjects:(NSOrderedSet *)values;
 - (void)removeSubjects:(NSOrderedSet *)values;
+
 @end
+

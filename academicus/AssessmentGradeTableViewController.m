@@ -10,16 +10,17 @@
 
 @implementation AssessmentGradeTableViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 
+    //Colour the rating stars with the app tint colour
     [self.ratingStar1 setTitleColor: APP_TINT_COLOUR forState: UIControlStateNormal];
     [self.ratingStar2 setTitleColor: APP_TINT_COLOUR forState: UIControlStateNormal];
     [self.ratingStar3 setTitleColor: APP_TINT_COLOUR forState: UIControlStateNormal];
     [self.ratingStar4 setTitleColor: APP_TINT_COLOUR forState: UIControlStateNormal];
     [self.ratingStar5 setTitleColor: APP_TINT_COLOUR forState: UIControlStateNormal];
     
+    //Add placeholders to textfields
     self.positiveFeedbackField.text = POSITIVE_FEEDBACK_PLACEHOLDER;
     self.positiveFeedbackField.textColor = [UIColor colorWithWhite:0.8f alpha:1.0f];
     self.negativeFeedbackField.text = NEGATIVE_FEEDBACK_PLACEHOLDER;
@@ -28,6 +29,7 @@
     self.notesField.textColor = [UIColor colorWithWhite:0.8f alpha:1.0f];
     self.currentRating = 0;
 
+    //If the item already exists populate the fields with the existing data
     if ([self.itemToEdit.hasGrade boolValue]) {
         self.title = @"Edit Grade";
         
@@ -47,9 +49,6 @@
             self.notesField.text = self.itemToEdit.notes;
             self.notesField.textColor = [UIColor blackColor];
         }
-        
-        // self.pictureField.text = self.itemToEdit.picture;
-        
     }
     
     //Add a gesture recognizer to detect left swipes on the rating cell
@@ -66,59 +65,14 @@
 }
 
 
-//Called when a left swipe is detected
-- (void) handleRatingLeftSwipe
-{
-    if (self.currentRating > 0) {[self setRating:self.currentRating - 1];} //Providing at least one star has been given, reduce the current rating
-
-}
-
-
-//Called when a right swipe is detected
-- (void) handleRatingRightSwipe
-{
-    if (self.currentRating < 5) {[self setRating:self.currentRating + 1];} //Proviging no more than five stats have been given, increase the current rating
-
-}
-
-
-- (void) viewWillAppear:(BOOL)animated
-{
+- (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     // Open the keyboard automatically when the view appears
     [self.gradeField becomeFirstResponder];
 }
 
 
-- (IBAction)starPressed:(UIButton*)starButton {
-    switch (starButton.tag) {
-        case 101 : [self setRating:1]; break;
-        case 102 : [self setRating:2]; break;
-        case 103 : [self setRating:3]; break;
-        case 104 : [self setRating:4]; break;
-        case 105 : [self setRating:5]; break;
-        default : [self setRating:0];
-    }
-}
-
-- (void) setRating: (int)rating {
-    [self.ratingStar1 setTitle:((rating > 0) ? @"★" : @"☆") forState: UIControlStateNormal];
-    [self.ratingStar2 setTitle:((rating > 1) ? @"★" : @"☆") forState: UIControlStateNormal];
-    [self.ratingStar3 setTitle:((rating > 2) ? @"★" : @"☆") forState: UIControlStateNormal];
-    [self.ratingStar4 setTitle:((rating > 3) ? @"★" : @"☆") forState: UIControlStateNormal];
-    [self.ratingStar5 setTitle:((rating > 4) ? @"★" : @"☆") forState: UIControlStateNormal];
-    self.currentRating = rating;
-}
-
-- (IBAction)cancel
-{
-    // Delegate method when the cancel button is pressed
-    [self.delegate AssessmentGradeTableViewControllerDidCancel:self];
-}
-
-
-- (BOOL) isEnteredDataValid
-{
+- (BOOL) isEnteredDataValid {
     // Validate that the final grade is between 0% and 100%
     if ([self.gradeField.text floatValue] < 0 || [self.gradeField.text floatValue] > 100) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The final grade must be 0-100%" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
@@ -132,13 +86,13 @@
         return false;
     }
     //Check that the negative feedback length is less than 300
-    if ([self.positiveFeedbackField.text length] > 300) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The negaitve feedback must be less than 300 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+    if ([self.negativeFeedbackField.text length] > 300) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The negative feedback must be less than 300 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
         [alert show];
         return false;
     }
     //Check that the notes is less than 300
-    if ([self.positiveFeedbackField.text length] > 300) {
+    if ([self.notesField.text length] > 300) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The notes field must be less than 300 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
         [alert show];
         return false;
@@ -147,8 +101,7 @@
 }
 
 
-- (IBAction)done
-{
+- (IBAction)done {
     if (![self isEnteredDataValid]) {return;}
     
     // If editing, update the item and call the delegate method to dismiss the view
@@ -181,15 +134,90 @@
 }
 
 
-- (NSIndexPath*)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (IBAction)cancel {
+    // Delegate method when the cancel button is pressed
+    [self.delegate AssessmentGradeTableViewControllerDidCancel:self];
+}
+
+
+#pragma mark - Rating Stars
+
+//Called when a left swipe is detected
+- (void) handleRatingLeftSwipe {
+    if (self.currentRating > 0) {[self setRating:self.currentRating - 1];} //Providing at least one star has been given, reduce the current rating
+}
+
+
+//Called when a right swipe is detected
+- (void) handleRatingRightSwipe {
+    if (self.currentRating < 5) {[self setRating:self.currentRating + 1];} //Proviging no more than five stats have been given, increase the current rating
+}
+
+
+//Called when any of the rating stars are tapped
+- (IBAction)starPressed:(UIButton*)starButton {
+    //Determine which star was tapped and pass its value to to set the rating
+    switch (starButton.tag) {
+        case 101 : [self setRating:1]; break;
+        case 102 : [self setRating:2]; break;
+        case 103 : [self setRating:3]; break;
+        case 104 : [self setRating:4]; break;
+        case 105 : [self setRating:5]; break;
+        default : [self setRating:0];
+    }
+}
+
+
+//Take in a rating value and adjust the number of filled stars on screen
+- (void) setRating: (int)rating {
+    [self.ratingStar1 setTitle:((rating > 0) ? @"★" : @"☆") forState: UIControlStateNormal];
+    [self.ratingStar2 setTitle:((rating > 1) ? @"★" : @"☆") forState: UIControlStateNormal];
+    [self.ratingStar3 setTitle:((rating > 2) ? @"★" : @"☆") forState: UIControlStateNormal];
+    [self.ratingStar4 setTitle:((rating > 3) ? @"★" : @"☆") forState: UIControlStateNormal];
+    [self.ratingStar5 setTitle:((rating > 4) ? @"★" : @"☆") forState: UIControlStateNormal];
+    self.currentRating = rating; //Store the current rating value
+}
+
+
+#pragma mark - Table View
+
+- (NSIndexPath*)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Disable the ability to select table rows
     return (indexPath.section == 1 || indexPath.section == 4) ? indexPath : nil;
 }
 
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Check if the remove grade button was pressed
+    if (indexPath.section == 4) {
+        // Remove all the grade information
+        self.itemToEdit.hasGrade = [NSNumber numberWithBool:NO];
+        self.itemToEdit.finalGrade = nil;
+        self.itemToEdit.rating = nil;
+        self.itemToEdit.positiveFeedback = nil;
+        self.itemToEdit.negativeFeedback = nil;
+        self.itemToEdit.notes = nil;
+        //self.itemToEdit.picture =
+        
+        [self.delegate AssessmentGradeTableViewController:self didFinishEditingAssessment:self.itemToEdit];
+        
+        // Check if the rating field was pressed
+    } else if (indexPath.section == 1) {
+        [self setRating:0];
+    }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return ([self.itemToEdit.hasGrade boolValue]) ? [super numberOfSectionsInTableView:tableView] : [super numberOfSectionsInTableView:tableView] - 1;
+}
+
+
+#pragma mark -UITextFieldDelegate
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSString *newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
     //If grade field
     if (textField.tag == 001) {
@@ -199,8 +227,7 @@
 }
 
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
+- (void)textFieldDidEndEditing:(UITextField *)textField {
     //If grade field
     if (textField.tag == 001) {
         textField.text = [NSString stringWithFormat:@"%.2f", [textField.text floatValue]];
@@ -208,9 +235,10 @@
 }
 
 
+#pragma mark - UITextViewDelegate
+
 // Remove placeholder text for UITextView elements
-- (void)textViewDidBeginEditing:(UITextView *)textView
-{
+- (void)textViewDidBeginEditing:(UITextView *)textView {
     if (textView.tag == 201 && [textView.text isEqualToString:POSITIVE_FEEDBACK_PLACEHOLDER]) {
         textView.text = @"";
         textView.textColor = [UIColor blackColor];
@@ -227,8 +255,7 @@
 
 
 // Set placeholder text for UITextView elements
-- (void)textViewDidEndEditing:(UITextView *)textView
-{
+- (void)textViewDidEndEditing:(UITextView *)textView {
     if (textView.tag == 201 && [textView.text isEqualToString:@""]) {
         textView.text = POSITIVE_FEEDBACK_PLACEHOLDER;
         textView.textColor = [UIColor colorWithWhite:0.8f alpha:1.0f];
@@ -244,34 +271,5 @@
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Check if the remove grade button was pressed
-    if (indexPath.section == 4) {
-        // Remove all the grade information
-        self.itemToEdit.hasGrade = [NSNumber numberWithBool:NO];
-        self.itemToEdit.finalGrade = nil;
-        self.itemToEdit.rating = nil;
-        self.itemToEdit.positiveFeedback = nil;
-        self.itemToEdit.negativeFeedback = nil;
-        self.itemToEdit.notes = nil;
-        //self.itemToEdit.picture =
-        
-        [self.delegate AssessmentGradeTableViewController:self didFinishEditingAssessment:self.itemToEdit];
-        
-    // Check if the rating field was pressed
-    } else if (indexPath.section == 1) {
-        [self setRating:0];
-    }
-    
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return ([self.itemToEdit.hasGrade boolValue]) ? [super numberOfSectionsInTableView:tableView] : [super numberOfSectionsInTableView:tableView] - 1;
-}
-
-
 @end
+

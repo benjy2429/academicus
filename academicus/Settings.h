@@ -16,4 +16,6 @@
 @property (assign) BOOL touchIdEnabled;
 @property (assign) BOOL soundsEnabled;
 
+
 @end
+

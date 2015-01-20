@@ -15,6 +15,8 @@
 
 @property (nonatomic, weak) NSManagedObjectContext *managedObjectContext;
 
+//Notifications
+@property (strong) NSArray* assessments;
 @property (weak, nonatomic) IBOutlet UISwitch *notificationsSwitch;
 
 //Security section
@@ -23,6 +25,8 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *touchIdRow;
 @property (weak, nonatomic) IBOutlet UISwitch *touchIdSwitch;
 
+//Automatically save photos to the camera roll
 @property (weak, nonatomic) IBOutlet UISwitch *savePhotosSwitch;
 
 @end
+

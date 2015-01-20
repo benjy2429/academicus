@@ -37,8 +37,7 @@
 }
 
 
-- (void)centerMap
-{
+- (void)centerMap {
     MKCoordinateRegion region;
     MKCoordinateSpan span;
     
@@ -53,8 +52,7 @@
 }
 
 
-- (void)mapViewWillStartLocatingUser:(MKMapView *)mapView
-{
+- (void)mapViewWillStartLocatingUser:(MKMapView *)mapView {
     // Get the location services authorisation status
     CLAuthorizationStatus authorizationStatus = [CLLocationManager authorizationStatus];
     
@@ -75,4 +73,6 @@
     }
 }
 
+
 @end
+

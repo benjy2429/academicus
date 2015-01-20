@@ -890,22 +890,40 @@
                                         </mask>
                                     </variation>
                                 </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version X.X" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sqr-vK-1Dc">
+                                    <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="s5c-We-srR" secondAttribute="bottom" id="8cq-bG-pwP"/>
                                 <constraint firstAttribute="centerX" secondItem="s5c-We-srR" secondAttribute="centerX" id="BOR-l6-znq"/>
+                                <constraint firstItem="Sqr-vK-1Dc" firstAttribute="top" secondItem="905-8x-fke" secondAttribute="top" constant="7" id="Sm4-Ia-dIE"/>
                                 <constraint firstItem="s5c-We-srR" firstAttribute="top" secondItem="905-8x-fke" secondAttribute="top" constant="20" id="gFJ-uT-6ku"/>
+                                <constraint firstAttribute="trailing" secondItem="Sqr-vK-1Dc" secondAttribute="trailing" constant="7" id="hKB-jX-f9S"/>
                             </constraints>
                             <variation key="default">
+                                <mask key="subviews">
+                                    <exclude reference="Sqr-vK-1Dc"/>
+                                </mask>
                                 <mask key="constraints">
+                                    <exclude reference="Sm4-Ia-dIE"/>
+                                    <exclude reference="hKB-jX-f9S"/>
                                     <exclude reference="8cq-bG-pwP"/>
                                     <exclude reference="BOR-l6-znq"/>
                                     <exclude reference="gFJ-uT-6ku"/>
                                 </mask>
                             </variation>
                             <variation key="heightClass=regular-widthClass=compact">
+                                <mask key="subviews">
+                                    <include reference="Sqr-vK-1Dc"/>
+                                </mask>
                                 <mask key="constraints">
+                                    <include reference="Sm4-Ia-dIE"/>
+                                    <include reference="hKB-jX-f9S"/>
                                     <include reference="8cq-bG-pwP"/>
                                     <include reference="BOR-l6-znq"/>
                                     <include reference="gFJ-uT-6ku"/>
@@ -1119,10 +1137,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="About" id="6n9-1y-hWX"/>
+                    <connections>
+                        <outlet property="versionLabel" destination="Sqr-vK-1Dc" id="HBc-Lw-u0e"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QEr-Sc-4tc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-458" y="4076"/>
+            <point key="canvasLocation" x="-459" y="4075.5"/>
         </scene>
         <!--Personal-->
         <scene sceneID="Inz-Fs-ckc">
@@ -4003,14 +4024,14 @@
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Year Weighting*" id="XIS-Sj-u0U">
-                                <string key="footerTitle">If your subjects each contribute to an overall grade for the year, what percentage is determiend by this subject? Leave as zero if this subejct is assessed individualy.</string>
+                                <string key="footerTitle">If your subjects each contribute to an overall grade for the year, what percentage is determined by this subject? Leave as zero if this subject is assessed individually.</string>
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="0kn-bo-PrI">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0kn-bo-PrI" id="p39-wK-D0w">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yCE-6P-8gO">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yCE-6P-8gO">
                                                     <rect key="frame" x="15" y="7" width="290" height="30"/>
                                                     <accessibility key="accessibilityConfiguration" label="Weighting"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -4074,7 +4095,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="What grade are you aiming to achieve?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o9V-84-vUP">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="What grade are you aiming for?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o9V-84-vUP">
                                                     <rect key="frame" x="15" y="7" width="570" height="30"/>
                                                     <accessibility key="accessibilityConfiguration" label="Target"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -5198,7 +5219,7 @@
                                                         <rect key="frame" x="343" y="12" width="42" height="21"/>
                                                     </variation>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="102" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ctJ-p2-MZ5">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="102" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ctJ-p2-MZ5">
                                                     <rect key="frame" x="15" y="7" width="290" height="30"/>
                                                     <accessibility key="accessibilityConfiguration" label="Weighting"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>

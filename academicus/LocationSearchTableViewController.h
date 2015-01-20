@@ -13,6 +13,7 @@
 
 @class LocationSearchTableViewController;
 
+// Delegate protocol
 @protocol LocationSearchTableViewControllerDelegate <NSObject>
 - (void)locationSearchTableViewControllerDidCancel:(LocationSearchTableViewController*)controller;
 - (void)locationSearchTableViewController:(LocationSearchTableViewController*)controller didSelectLocation:(CLPlacemark *)location;

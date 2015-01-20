@@ -12,11 +12,10 @@
 
 @class PersonalTableViewController;
 
+// Delegate protocol
 @protocol PersonalTableViewControllerDelegate <NSObject>
-
 - (void)personalTableViewControllerDidCancel:(PersonalTableViewController*)controller;
 - (void)personalTableViewController:(PersonalTableViewController*)controller didFinishSavingPortfolio:(Portfolio*)qualification;
-
 @end
 
 @interface PersonalTableViewController : UITableViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, LocationSearchTableViewControllerDelegate>
@@ -25,8 +24,9 @@
 @property (strong) Portfolio *itemToEdit;
 
 @property (strong) UIImage* originalPhoto; //The original photo selected by the user
-@property (strong) CLPlacemark *addressLocation;
+@property (strong) CLPlacemark *addressLocation; // Temporarily store the selected address
 
+// IBOutlets
 @property (weak, nonatomic) IBOutlet UIImageView *photoView; //The container for the users photo once one has been selected
 @property (weak, nonatomic) IBOutlet UILabel *photoPlaceholder; //A label placeholder for the photo field when no photo is stored
 @property (weak, nonatomic) IBOutlet UITextField *nameField;

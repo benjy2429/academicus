@@ -9,7 +9,6 @@
 #import "Qualification.h"
 #import "Year.h"
 
-
 @implementation Qualification
 
 @dynamic name;
@@ -18,3 +17,4 @@
 @dynamic years;
 
 @end
+

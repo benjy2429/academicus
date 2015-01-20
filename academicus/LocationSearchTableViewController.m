@@ -13,18 +13,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Initialise the geocoder
     self.geocoder = [[CLGeocoder alloc] init];
     
+    // If a location already exists, display it in the table
+    // Otherwise, initialise an empty array
     self.locations = (self.currentLocation != nil) ? [[NSArray alloc] initWithObjects:self.currentLocation, nil] : [[NSArray alloc] init];
     
     // Override the height of the table view header
     self.tableView.tableHeaderView.frame = CGRectMake(0, 0, 0, 44);
-    
 }
 
 
-- (void)forwardGeocode:(NSString *)query
-{
+// Perform forward geocoding with the query string to get a list of locations
+- (void)forwardGeocode:(NSString *)query {
     [self.geocoder geocodeAddressString:query completionHandler:^(NSArray *placemarks, NSError *error) {
         if (!error) {
             self.locations = placemarks;
@@ -35,14 +37,14 @@
 }
 
 
-- (IBAction)cancel
-{
+// Called when the cancel navigation bar button is pressed
+- (IBAction)cancel {
     [self.delegate locationSearchTableViewControllerDidCancel:self];
 }
 
 
-- (IBAction)removeLocation
-{
+// Called when the remove navigation bar button is pressed
+- (IBAction)removeLocation {
     [self.delegate locationSearchTableViewControllerDidRemoveLocation:self];
 }
 
@@ -69,11 +71,13 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:myIdentifier];
     }
     
+    // Add a detail button to the cell
     cell.accessoryType = UITableViewCellAccessoryDetailButton;
     
+    // Get the placemark location for the row
     CLPlacemark *placemark = [self.locations objectAtIndex:indexPath.row];
     
-    // Set the content for each type of
+    // Set the labels to display the location data
     cell.textLabel.text = placemark.name;
     cell.detailTextLabel.text = ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO);
 
@@ -81,22 +85,21 @@
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // When a row is pressed, call the delegate method to dismiss the view
     [self.delegate locationSearchTableViewController:self didSelectLocation:[self.locations objectAtIndex:indexPath.row]];
 }
 
 
-- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+    // When the detail accessory button is pressed, segue to the map view
     [self performSegueWithIdentifier:@"showMap" sender:[self.locations objectAtIndex:indexPath.row]];
 }
 
 
 #pragma mark - Navigation
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showMap"]) {
         MapViewController *controller = (MapViewController*) segue.destinationViewController;
         controller.location = sender;
@@ -106,18 +109,19 @@
 
 #pragma mark - UISearchBarDelegate
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-{
+// Called everytime the text changes in the search bar
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    // Cancel the current geocoding to prevent conflicting results
     [self.geocoder cancelGeocode];
     
+    // Start a new geocode with the new search text
     [self forwardGeocode:searchText];
 }
 
 
 #pragma mark - UIScrollViewDelegate
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     // When the user scrolls down, keep the segmented control at the top of the screen under the navigation bar using a transform
     // Otherwise, scroll up as normal
     CGFloat offsetY = scrollView.contentOffset.y + 64.0f;
@@ -125,4 +129,6 @@
     headerView.transform = CGAffineTransformMakeTranslation(0, MIN(offsetY,0));
 }
 
+
 @end
+

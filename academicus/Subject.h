@@ -36,4 +36,6 @@
 - (void)removeAssessmentsObject:(AssessmentCriteria *)value;
 - (void)addAssessments:(NSOrderedSet *)values;
 - (void)removeAssessments:(NSOrderedSet *)values;
+
 @end
+

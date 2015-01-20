@@ -14,7 +14,6 @@
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak) CLPlacemark *location;
-
 @property (strong) CLLocationManager *locationManager;
 
 @end

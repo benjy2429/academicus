@@ -10,17 +10,6 @@
 
 @implementation AboutTableViewController
 
-
-- (NSArray*)recipients
-{
-    if (_recipients == nil) {
-        // Set the email recipiens
-        _recipients = @[@"lheavens1@sheffield.ac.uk", @"bmcarr1@sheffield.ac.uk"];
-    }
-    return _recipients;
-}
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -37,11 +26,15 @@
     UITapGestureRecognizer *tapGestureRecogniser = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(logoTapped)];
     tapGestureRecogniser.numberOfTapsRequired = 1;
     [logoWrapper addGestureRecognizer:tapGestureRecogniser];
+    
+    //Display the current app version number on screen
+    NSString* versionNum = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"];
+    self.versionLabel.text = [NSString stringWithFormat:@"Version: %@", versionNum];
 }
 
 
-- (void)logoTapped
-{
+//When the logo is tapped, run a funky animation
+- (void)logoTapped {
     // Get the logo wrapper view
     UIView *logoWrapper = (UIView *)[self.tableView.tableHeaderView viewWithTag:700];
     
@@ -60,12 +53,12 @@
     
     // Add the animation to the layer
     [logoWrapper.layer addAnimation:animation forKey: @"transform"];
-    
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+#pragma mark - Table View
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.row) {
         case 0:
             [self sendEmailWithSubject:@"Academicus Query" body:@"We're always happy to answer any questions or queries you may have about our app. Please write your query below."];
@@ -76,9 +69,15 @@
         case 2:
             [self sendEmailWithSubject:@"Academicus Suggestion" body:@"We're always looking for feedback from our users. If you have a suggestion for our app, please let us know in the space below."];
             break;
-        case 3:
-            [NSURL URLWithString:[NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/idcom.sheffield.academicus"]];
-            break;
+        case 3: {
+            NSURL *url  = [NSURL URLWithString:[NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/idcom.sheffield.academicus"]];
+            [[UIApplication sharedApplication] openURL:url];
+        } break;
+        case 4: {
+            //Feature not yet implemented to display a notificaiton to the user
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Coming Soon!" message:@"The FAQ's are coming soon." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+        } break;
         default:
             break;
     }
@@ -86,20 +85,31 @@
 }
 
 
-- (void)sendEmailWithSubject:(NSString *)subject body:(NSString *)body
-{
+#pragma mark - Emails
+
+//Custom getter to assign the developer emails to a recipient list
+- (NSArray*)recipients {
+    if (_recipients == nil) {
+        // Set the email recipiens
+        _recipients = @[@"lheavens1@sheffield.ac.uk", @"bmcarr1@sheffield.ac.uk"];
+    }
+    return _recipients;
+}
+
+
+- (void)sendEmailWithSubject:(NSString *)subject body:(NSString *)body {
     MFMailComposeViewController *mailComposer = [[MFMailComposeViewController alloc] init];
     mailComposer.mailComposeDelegate = self;
     [mailComposer setSubject:subject];
     [mailComposer setMessageBody:body isHTML:NO];
     [mailComposer setToRecipients:self.recipients];
+    [mailComposer.navigationBar setTintColor:[UIColor whiteColor]];
     
     [self presentViewController:mailComposer animated:YES completion:nil];
 }
 
 
-- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
-{
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
     switch (result) {
         case MFMailComposeResultFailed: {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message:@"Unfortunately your email could not be sent. Please check your internet connection or try again later." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -115,3 +125,4 @@
 
 
 @end
+

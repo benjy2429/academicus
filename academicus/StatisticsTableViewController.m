@@ -32,6 +32,12 @@
     // Fetch the data for the table view using CoreData
     NSError *error;
     self.qualifications = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error]; //TODO should we do something with this error or make it nil?
+
+    // Make sure there were no errors fetching the data
+    if (error != nil) {
+        COREDATA_ERROR(error);
+        return;
+    }
 }
 
 
@@ -205,10 +211,7 @@
     }
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // If the cell is the qualification picker cell
     if (indexPath.row == 0) {
         
@@ -221,6 +224,8 @@
         }
 
     }
+    
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)showQualificaitonPicker

@@ -10,8 +10,7 @@
 
 @implementation AssessmentDetailTableViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     self.weightingField.tag = 1;
@@ -52,23 +51,15 @@
 }
 
 
-- (void) viewWillAppear:(BOOL)animated
-{
+- (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
     // Open the keyboard automatically when the view appears
     [self.nameField becomeFirstResponder];
 }
 
 
-- (IBAction)cancel
-{
-    // Delegate method when the cancel button is pressed
-    [self.delegate AssessmentDetailTableViewControllerDidCancel:self];
-}
-
-
-- (BOOL) isEnteredDataValid
-{
+- (BOOL) isEnteredDataValid {
     //Check for the presence of a name
     if ([self.nameField.text length] < 1) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"You must provide a name" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
@@ -93,13 +84,14 @@
         [alert show];
         return false;
     }
-
+    
     return true;
 }
 
 
-- (IBAction)done
-{
+// Called when the done navigation bar button is pressed
+- (IBAction)done {
+    // Validate the input data
     if (![self isEnteredDataValid]) {return;}
     
     if (self.itemToEdit != nil) {
@@ -107,66 +99,26 @@
         self.itemToEdit.name = self.nameField.text;
         self.itemToEdit.weighting = [NSNumber numberWithFloat:[self.weightingField.text floatValue]];
         
-        // Calculate the date 3 weeks after the deadline to set a notification reminder
-        NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
-        [dateComponents setDay:21];
-        NSDate *deadlineReminderDate = [[NSCalendar currentCalendar] dateByAddingComponents:dateComponents toDate:self.deadlineDate options:0];
-        
+        // 3 Week Add Grade Reminder Notification
         // Set a notification 3 weeks after the deadline if notifications are enabled
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"notificationsEnabled"] && [deadlineReminderDate timeIntervalSince1970] > [[NSDate date] timeIntervalSince1970] && self.itemToEdit.deadline != self.deadlineDate) {
-            
-            // Find the existing noification and delete it
-            NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
-            for (UILocalNotification *notification in notifications) {
-                NSDictionary *userInfo = notification.userInfo;
-                
-                if ([[userInfo valueForKey:@"isDeadlineReminder"] boolValue] && [userInfo valueForKey:@"deadline"] == self.itemToEdit.deadline) {
-                    [[UIApplication sharedApplication] cancelLocalNotification:notification];
-                    break;
-                }
-            }
-            
-            // Create a new notification
-            UILocalNotification *notification = [[UILocalNotification alloc] init];
-            notification.fireDate = deadlineReminderDate;
-            notification.alertBody = [NSString stringWithFormat:@"Don't forget to add a grade for %@!", self.itemToEdit.name];
-            notification.timeZone = [NSTimeZone defaultTimeZone];
-            notification.userInfo = @{@"isDeadlineReminder" : @YES, @"deadline": self.deadlineDate};
-            notification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-            
-            [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+        if (self.itemToEdit.deadline != self.deadlineDate) {
+            self.itemToEdit.deadline = self.deadlineDate;
+            [self createDeadlineReminder:self.itemToEdit byReplacing:YES];
         }
-        
-        self.itemToEdit.deadline = self.deadlineDate;
-        
-        
+
+        // User Reminder Notification
         // If a reminder exists, cancel the notification
         if (self.itemToEdit.reminder != nil) {
-            NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
-            
-            for (UILocalNotification *notification in notifications) {
-                NSDictionary *userInfo = notification.userInfo;
-                
-                if ([userInfo valueForKey:@"reminder"] == self.itemToEdit.reminder) {
-                    [[UIApplication sharedApplication] cancelLocalNotification:notification];
-                    break;
-                }
-            }
+            [self removeReminder:self.itemToEdit];
         }
         
         // If the reminder has been enabled, schedule a new notification
         if (self.reminderSwitch.on) {
-            UILocalNotification *notification = [[UILocalNotification alloc] init];
-            notification.fireDate = self.reminderDate;
-            notification.alertBody = [NSString stringWithFormat:@"%@ is due soon!", self.itemToEdit.name];
-            notification.timeZone = [NSTimeZone defaultTimeZone];
-            notification.userInfo = @{@"reminder": self.reminderDate};
-            notification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-            
-            [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+            self.itemToEdit.reminder = self.reminderDate;
+            [self createReminder:self.itemToEdit];
+        } else {
+            self.itemToEdit.reminder = nil;
         }
-        
-        self.itemToEdit.reminder = (self.reminderSwitch.on) ? self.reminderDate : nil;
         
         [self.delegate AssessmentDetailTableViewController:self didFinishEditingAssessment:self.itemToEdit];
         
@@ -179,34 +131,13 @@
         newAssessment.deadline = self.deadlineDate;
         newAssessment.reminder = (self.reminderSwitch.on) ? self.reminderDate : nil;
         
-        // Calculate the date 3 weeks after the deadline to set a notification reminder
-        NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
-        [dateComponents setDay:21];
-        NSDate *deadlineReminderDate = [[NSCalendar currentCalendar] dateByAddingComponents:dateComponents toDate:self.deadlineDate options:0];
+        // 3 Week Add Grade Reminder Notification
+        [self createDeadlineReminder:newAssessment byReplacing:NO];
         
-        // Set a notification 3 weeks after the deadline if notifications are enabled
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"notificationsEnabled"] && [deadlineReminderDate timeIntervalSince1970] > [[NSDate date] timeIntervalSince1970]) {
-            UILocalNotification *notification = [[UILocalNotification alloc] init];
-            notification.fireDate = deadlineReminderDate;
-            notification.alertBody = [NSString stringWithFormat:@"Don't forget to add a grade for %@!", newAssessment.name];
-            notification.timeZone = [NSTimeZone defaultTimeZone];
-            notification.userInfo = @{@"isDeadlineReminder" : @YES, @"deadline": newAssessment.deadline};
-            notification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-            
-            [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-        }
-        
-        
+        // User Reminder Notification
         // Check if a reminder has been added so a new notification can be scheduled
         if (self.reminderSwitch.on) {
-            UILocalNotification *notification = [[UILocalNotification alloc] init];
-            notification.fireDate = self.reminderDate;
-            notification.alertBody = [NSString stringWithFormat:@"%@ is due soon!", newAssessment.name];
-            notification.timeZone = [NSTimeZone defaultTimeZone];
-            notification.userInfo = @{@"reminder": newAssessment.reminder};
-            notification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-            
-            [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+            [self createReminder:newAssessment];
         }
         
         [self.delegate AssessmentDetailTableViewController:self didFinishAddingAssessment:newAssessment];
@@ -214,8 +145,107 @@
 }
 
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
+- (IBAction)cancel {
+    // Delegate method when the cancel button is pressed
+    [self.delegate AssessmentDetailTableViewControllerDidCancel:self];
+}
+
+
+- (IBAction)reminderSwitchChanged:(UISwitch*)sender {
+    // When the switch is set to on, display the date picker and hide any open keyboards
+    if (sender.on) {
+        [self showReminderDatePicker];
+        
+        // Hide the keyboard if the switch is set to on
+        [self.nameField resignFirstResponder];
+        [self.weightingField resignFirstResponder];
+    } else {
+        // Otherwise hide the date picker and reset the reminder value
+        [self hideReminderDatePicker];
+        self.reminderLabel.text = @"No reminder set";
+    }
+}
+
+
+#pragma mark - Local Notifications
+
+// Create a reminder that the user can set
+- (void)createReminder:(AssessmentCriteria *)assessment {
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    notification.fireDate = self.reminderDate;
+    notification.alertBody = [NSString stringWithFormat:@"%@ is due soon!", assessment.name];
+    notification.timeZone = [NSTimeZone defaultTimeZone];
+    notification.userInfo = @{@"reminder": assessment.reminder};
+    notification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+}
+
+
+// Delete a reminder that the user has set
+- (void)removeReminder:(AssessmentCriteria *)assessment {
+    NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    for (UILocalNotification *notification in notifications) {
+        NSDictionary *userInfo = notification.userInfo;
+        
+        if ([userInfo valueForKey:@"reminder"] == self.itemToEdit.reminder) {
+            [[UIApplication sharedApplication] cancelLocalNotification:notification];
+            break;
+        }
+    }
+}
+
+
+// If enabled, automatically create a reminder 3 weeks after the deadline to notify the user to add a grade
+- (void)createDeadlineReminder:(AssessmentCriteria *)assessment byReplacing:(BOOL)willReplace {
+    // Calculate the date 3 weeks after the deadline to set a notification reminder
+    NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+    [dateComponents setDay:21];
+    NSDate *deadlineReminderDate = [[NSCalendar currentCalendar] dateByAddingComponents:dateComponents toDate:self.deadlineDate options:0];
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"notificationsEnabled"] && [deadlineReminderDate timeIntervalSince1970] > [[NSDate date] timeIntervalSince1970]) {
+        
+        if (willReplace) { [self removeDeadlineReminder:assessment]; }
+        
+        UILocalNotification *notification = [[UILocalNotification alloc] init];
+        notification.fireDate = deadlineReminderDate;
+        notification.alertBody = [NSString stringWithFormat:@"Don't forget to add a grade for %@!", assessment.name];
+        notification.timeZone = [NSTimeZone defaultTimeZone];
+        notification.userInfo = @{@"isDeadlineReminder" : @YES, @"deadline": assessment.deadline};
+        notification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+        
+        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    }
+}
+
+
+// If enabled, remove an automatic add grade reminder which was set 3 weeks after the deadline
+- (void)removeDeadlineReminder:(AssessmentCriteria *)assessment {
+    // Find the existing noification and delete it
+    NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    for (UILocalNotification *notification in notifications) {
+        NSDictionary *userInfo = notification.userInfo;
+        
+        if ([[userInfo valueForKey:@"isDeadlineReminder"] boolValue] && [userInfo valueForKey:@"deadline"] == assessment.deadline) {
+            [[UIApplication sharedApplication] cancelLocalNotification:notification];
+            break;
+        }
+    }
+}
+
+
+#pragma mark - UITextFieldDelegate
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    // When the name field is edited, hide any visible date pickers
+    if (self.deadlineDatePickerVisible) {
+        [self hideDeadlineDatePicker];
+    }
+}
+
+
+// When the text field changes, check that the new character is valid
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSString *newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
     if (textField.tag == 1) {
         return ([newText length] < 3 || [newText isEqual: @"100"] || [newText isEqual: @"100."] || [newText isEqual: @"100.0"] || [newText isEqual: @"100.00"] || ([newText characterAtIndex:2] == '.' && [newText length] < 6) || ([newText characterAtIndex:1] == '.' && [newText length] < 5));
@@ -224,23 +254,17 @@
 }
 
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    // When the name field is edited, hide any visible date pickers
-    if (self.deadlineDatePickerVisible) {
-        [self hideDeadlineDatePicker];
-    }
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
+// When the user finishes with a textfield, ensure the contents are in the correct format
+- (void)textFieldDidEndEditing:(UITextField *)textField {
     if (textField.tag == 1) {
         textField.text = [NSString stringWithFormat:@"%.2f", [textField.text floatValue]];
     }
 }
 
-- (NSString*)formatDate:(NSDate*)date
-{
+
+#pragma mark - Date Picker
+
+- (NSString*)formatDate:(NSDate*)date {
     // Helper method to quickly format date strings to be displayed in labels
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"E, d/M/yy, h:mm a"];
@@ -248,8 +272,7 @@
 }
 
 
-- (void)showDeadlineDatePicker
-{
+- (void)showDeadlineDatePicker {
     // Set the visible flag to true
     self.deadlineDatePickerVisible = YES;
     // Find the rows of the label and the date picker
@@ -267,8 +290,7 @@
 }
 
 
-- (void)showReminderDatePicker
-{
+- (void)showReminderDatePicker {
     // Set the visible flag to true
     self.reminderDatePickerVisible = YES;
     // Find the rows of the label and the date picker
@@ -286,8 +308,7 @@
 }
 
 
-- (void)hideDeadlineDatePicker
-{
+- (void)hideDeadlineDatePicker {
     // Set the visible flag to false
     self.deadlineDatePickerVisible = NO;
     // Find the rows of the label and the date picker
@@ -302,8 +323,7 @@
 }
 
 
-- (void)hideReminderDatePicker
-{
+- (void)hideReminderDatePicker {
     // Set the visible flag to false
     self.reminderDatePickerVisible = NO;
     // Find the rows of the label and the date picker
@@ -318,9 +338,38 @@
 }
 
 
+- (void)deadlineDateChanged:(UIDatePicker*)datePicker {
+    // Update the variable and label when the date picker value changes
+    self.deadlineDate = datePicker.date;
+    self.deadlineLabel.text = [self formatDate:self.deadlineDate];
+}
+
+
+- (void)reminderDateChanged:(UIDatePicker*)datePicker {
+    // Update the variable and label when the date picker value changes
+    self.reminderDate = datePicker.date;
+    self.reminderLabel.text = [self formatDate:self.reminderDate];
+}
+
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 4;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    // If the date picker is visible for this section, return 2 otherwise call the super method
+    if ((section == 2 && self.deadlineDatePickerVisible) || (section == 3 && self.reminderDatePickerVisible)) {
+        return 2;
+    } else {
+        return [super tableView:tableView numberOfRowsInSection:section];
+    }
+}
+
+
 // Override this method to enable the date picker cell to be created
-- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // If the cell should be a date picker cell
     if ((indexPath.section == 2 && indexPath.row == 1) || (indexPath.section == 3 && indexPath.row == 1)) {
         
@@ -362,57 +411,7 @@
 }
 
 
-- (void)deadlineDateChanged:(UIDatePicker*)datePicker
-{
-    // Update the variable and label when the date picker value changes
-    self.deadlineDate = datePicker.date;
-    self.deadlineLabel.text = [self formatDate:self.deadlineDate];
-}
-
-
-- (void)reminderDateChanged:(UIDatePicker*)datePicker
-{
-    // Update the variable and label when the date picker value changes
-    self.reminderDate = datePicker.date;
-    self.reminderLabel.text = [self formatDate:self.reminderDate];
-}
-
-
-- (IBAction)reminderSwitchChanged:(UISwitch*)sender
-{
-    // When the switch is set to on, display the date picker and hide any open keyboards
-    if (sender.on) {
-        [self showReminderDatePicker];
-        
-        // Hide the keyboard if the switch is set to on
-        [self.nameField resignFirstResponder];
-        [self.weightingField resignFirstResponder];
-    } else {
-        // Otherwise hide the date picker and reset the reminder value
-        [self hideReminderDatePicker];
-        self.reminderLabel.text = @"No reminder set";
-    }
-}
-
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 4;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // If the date picker is visible for this section, return 2 otherwise call the super method
-    if ((section == 2 && self.deadlineDatePickerVisible) || (section == 3 && self.reminderDatePickerVisible)) {
-        return 2;
-    } else {
-        return [super tableView:tableView numberOfRowsInSection:section];
-    }
-}
-
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     // If this cell contains a cell picker, manually set the cell height to fit the picker
     if ((indexPath.section == 2 && indexPath.row == 1) || (indexPath.section == 3 && indexPath.row == 1)) {
         return 217.0f;
@@ -423,8 +422,7 @@
 }
 
 
-- (NSIndexPath*)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (NSIndexPath*)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // If this cell is a date label, enable selections so the user can click to show or hide the date picker
     if (indexPath.section == 2 && indexPath.row == 0) {
         return indexPath;
@@ -435,8 +433,7 @@
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     // Hide the keyboard if a cell was clicked on
@@ -457,8 +454,7 @@
 
 
 // This method is required to add dynamic cells to a table view containing static cells
-- (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ((indexPath.section == 2 && indexPath.row == 1) || (indexPath.section == 3 && indexPath.row == 1)) {
         NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:0 inSection:indexPath.section];
         return [super tableView:tableView indentationLevelForRowAtIndexPath:newIndexPath];
@@ -466,4 +462,6 @@
     return [super tableView:tableView indentationLevelForRowAtIndexPath:indexPath];
 }
 
+
 @end
+

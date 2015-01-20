@@ -21,8 +21,7 @@
 }
 
 
-- (void)performFetch
-{
+- (void)performFetch {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
     // Get the objects from the managed object context
@@ -37,6 +36,12 @@
     // Fetch the data for the table view using CoreData
     NSError *error;
     NSArray *foundObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    // Make sure there were no errors fetching the data
+    if (error != nil) {
+        COREDATA_ERROR(error);
+        return;
+    }
     
     if (foundObjects.count == 0) {
         // If a portfolio doesnt exist in the persistent store, create a new one
@@ -59,16 +64,15 @@
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    //Deselect the row when selected
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 
 #pragma mark - Navigation
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"toPersonal"]) {
         UINavigationController *navController = segue.destinationViewController;
         PersonalTableViewController *controller = (PersonalTableViewController*) navController.topViewController;
@@ -107,15 +111,13 @@
 
 #pragma mark - PersonalTableViewControllerDelegate
 
-- (void)personalTableViewControllerDidCancel:(PersonalTableViewController*)controller
-{
+- (void)personalTableViewControllerDidCancel:(PersonalTableViewController*)controller {
     // Dismiss the view
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
-- (void)personalTableViewController:(PersonalTableViewController*)controller didFinishSavingPortfolio:(Portfolio*)portfolio
-{
+- (void)personalTableViewController:(PersonalTableViewController*)controller didFinishSavingPortfolio:(Portfolio*)portfolio {
     // Save the item to the datastore
     NSError *error;
     if (![self.managedObjectContext save:&error]) {
@@ -130,15 +132,13 @@
 
 #pragma mark - HobbiesTableViewControllerDelegate
 
-- (void)hobbiesTableViewControllerDidCancel:(HobbiesTableViewController*)controller
-{
+- (void)hobbiesTableViewControllerDidCancel:(HobbiesTableViewController*)controller {
     // Dismiss the view
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
-- (void)hobbiesTableViewController:(HobbiesTableViewController*)controller didFinishSavingPortfolio:(Portfolio*)portfolio
-{
+- (void)hobbiesTableViewController:(HobbiesTableViewController*)controller didFinishSavingPortfolio:(Portfolio*)portfolio {
     // Save the item to the datastore
     NSError *error;
     if (![self.managedObjectContext save:&error]) {
@@ -150,4 +150,6 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+
 @end
+

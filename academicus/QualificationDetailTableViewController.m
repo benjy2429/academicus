@@ -10,8 +10,7 @@
 
 @implementation QualificationDetailTableViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];   
 
     // If an item was passed through, change the window title and populate the fields with existing data
@@ -23,23 +22,16 @@
 }
 
 
-- (void) viewWillAppear:(BOOL)animated
-{
+- (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
     // Open the keyboard automatically when the view appears
     [self.nameField becomeFirstResponder];
 }
 
 
-- (IBAction)cancel
-{
-    // Dismiss the view controller
-    [self.delegate QualificationDetailTableViewControllerDidCancel:self];
-}
-
-
-- (BOOL) isEnteredDataValid
-{
+// Validate the input data
+- (BOOL) isEnteredDataValid {
     //Check for the presence of a name
     if ([self.nameField.text length] < 1) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"You must provide a name" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
@@ -68,14 +60,16 @@
 }
 
 
-- (IBAction)done
-{
+// Called when the done navigation bar button is pressed
+- (IBAction)done {
+    // Validate the input data
     if (![self isEnteredDataValid]) {return;}
     
     if (self.itemToEdit != nil) {
         // If editing, update the item
         self.itemToEdit.name = self.nameField.text;
         self.itemToEdit.institution = self.institutionField.text;
+        
         [self.delegate QualificationDetailTableViewController:self didFinishEditingQualification:self.itemToEdit];
         
     } else {
@@ -90,11 +84,18 @@
 }
 
 
-- (NSIndexPath*)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+// Called when the cancel navigation bar button is pressed
+- (IBAction)cancel {
+    // Dismiss the view controller
+    [self.delegate QualificationDetailTableViewControllerDidCancel:self];
+}
+
+
+- (NSIndexPath*)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Disable the ability to select table rows
     return nil;
 }
 
 
 @end
+

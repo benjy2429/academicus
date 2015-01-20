@@ -15,7 +15,6 @@
 @interface YearsTableViewController : UITableViewController <NSFetchedResultsControllerDelegate, YearDetailTableViewControllerDelegate>
 
 @property (weak) Qualification *qualification;
-
 @property (nonatomic, weak) NSManagedObjectContext *managedObjectContext;
 
 // This variable is used to determine whether the user clicked the edit button, or swiped a row

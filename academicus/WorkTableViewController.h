@@ -19,3 +19,4 @@
 @property (assign) BOOL inSwipeDeleteMode;
 
 @end
+

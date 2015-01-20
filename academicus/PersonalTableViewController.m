@@ -10,8 +10,7 @@
 
 @implementation PersonalTableViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     //Load previously entered data
@@ -26,8 +25,7 @@
 }
 
 
-- (void) viewWillAppear:(BOOL)animated
-{
+- (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     // Open the keyboard automatically when the view appears
@@ -35,9 +33,41 @@
 }
 
 
+- (BOOL) isEnteredDataValid {
+    //Check that the name length is less than 30
+    if ([self.nameField.text length] > 30) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The name must be less than 30 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return false;
+    }
+    //Check that the phone length is less than 15
+    if ([self.telephoneField.text length] > 15) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The telephone number must be less than 15 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return false;
+    }
+    //Check that the email length is less than 50
+    if ([self.emailField.text length] > 50) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The email must be less than 50 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return false;
+    }
+    //Check that the website length is less than 50
+    if ([self.websiteField.text length] > 50) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The website must be less than 50 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return false;
+    }
+    
+    return true;
+}
+
+
 //When the save button is pressed
-- (IBAction)done
-{
+- (IBAction)done {
+    // Validate the input data
+    if (![self isEnteredDataValid]) {return;}
+    
     self.itemToEdit.photo = UIImagePNGRepresentation(self.originalPhoto); //Convert the photo to nsdata for core data storage
     self.itemToEdit.name = self.nameField.text;
     self.itemToEdit.address = self.addressLocation;
@@ -50,26 +80,68 @@
 
 
 //When the cancel button is pressed
-- (IBAction)cancel
-{
+- (IBAction)cancel {
     [self.delegate personalTableViewControllerDidCancel:self];
 }
 
 
-- (void)configureAddressCell
-{
+#pragma mark - Photo Selection
+
+//If the user clicks the cancel button on any of the photo pickers, this method dismisses the picker
+- (void) imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+//If the picker, returns with an image this method is called
+- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    //We store the selected photo in memory so that it can be saved later. We save the original rather than the cropped to preserve the full image
+    self.originalPhoto = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+
+    //If the user has enabled automatic saving, and this photo was taken using the camera, the original photo is saved to the camera roll
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"autoSavePhotos"] && picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
+        UIImageWriteToSavedPhotosAlbum(self.originalPhoto, self, nil, nil);
+    }
+    //We reload the view to adjust row heights
+    [self.tableView reloadData];
+    //The photo is then added to the display
+    [self displayPhoto];
+    //The picker is then hidden
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+//This method formats the photo stored in memory to be dislpayed
+-(void) displayPhoto {
+    //First we determine the orientation of the photo be getting the shortest measurement
+    float smallestDimension = fminf(self.originalPhoto.size.width, self.originalPhoto.size.height);
+    //We create a square that appears in the center of the photo
+    float newOriginX = (self.originalPhoto.size.width - smallestDimension) / 2.0f;
+    float newOriginY = (self.originalPhoto.size.height - smallestDimension) / 2.0f;
+    BOOL landscapeImage = (self.originalPhoto.imageOrientation != UIImageOrientationLeft && self.originalPhoto.imageOrientation != UIImageOrientationRight);
+    CGRect croppedPhotoSize = CGRectMake((landscapeImage ? newOriginX : newOriginY), (landscapeImage ? newOriginY : newOriginX), smallestDimension, smallestDimension);
+    //Create a cropped version of the image
+    CGImageRef croppedImageRef = CGImageCreateWithImageInRect([self.originalPhoto CGImage], croppedPhotoSize);
+    UIImage* croppedPhoto = [UIImage imageWithCGImage:croppedImageRef scale:(self.photoView.frame.size.width/self.originalPhoto.size.width) orientation:self.originalPhoto.imageOrientation];
+    //Add the cropped image to the view
+    [self.photoView setImage:croppedPhoto];
+}
+
+
+#pragma mark - Table View
+
+- (void)configureAddressCell {
     self.addressLabel.text = (self.addressLocation != nil) ? [NSString stringWithFormat:@"%@, %@", self.addressLocation.name, ABCreateStringWithAddressDictionary(self.addressLocation.addressDictionary, NO)] : @"No Location Selected";
 }
 
 
 //When a row is selected
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //The "choose photo" row is the row that has been tapped
     if (indexPath.section == 3 && indexPath.row == 0) {
         //Create a action sheet style alert to provide the user with some options
         UIAlertController* actionSheet =  [UIAlertController alertControllerWithTitle:@"Portfolio Photo" message:@"Select or take a photo for your portfolio" preferredStyle:UIAlertControllerStyleActionSheet ];
-
+        
         //Check to see if a camera is available and add the camera option to the menu if it is
         if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] == YES) {
             UIAlertAction* newPhotoAction = [UIAlertAction actionWithTitle:@"Take new photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action){
@@ -127,35 +199,7 @@
 }
 
 
-//If the user clicks the cancel button on any of the photo pickers, this method dismisses the picker
-- (void) imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    [picker dismissViewControllerAnimated:YES completion:nil];
-}
-
-
-//If the picker, returns with an image this method is called
-- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    //We store the selected photo in memory so that it can be saved later. We save the original rather than the cropped to preserve the full image
-    self.originalPhoto = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-
-    //If the user has enabled automatic saving, and this photo was taken using the camera, the original photo is saved to the camera roll
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"autoSavePhotos"] && picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
-        UIImageWriteToSavedPhotosAlbum(self.originalPhoto, self, nil, nil);
-    }
-    //We reload the view to adjust row heights
-    [self.tableView reloadData];
-    //The photo is then added to the display
-    [self displayPhoto];
-    //The picker is then hidden
-    [picker dismissViewControllerAnimated:YES completion:nil];
-}
-
-
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     //If the current cell is the photo cell
     if (indexPath.section == 3 && indexPath.row == 0) {
         //If a photo is in memory
@@ -175,8 +219,7 @@
 
 
 //Set the height for the cells depending on their position
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 3 && indexPath.row == 0 && self.originalPhoto != nil) {
         return tableView.frame.size.width;
     } else {
@@ -185,35 +228,15 @@
 }
 
 
-//This method formats the photo stored in memory to be dislpayed
--(void) displayPhoto
-{
-    //First we determine the orientation of the photo be getting the shortest measurement
-    float smallestDimension = fminf(self.originalPhoto.size.width, self.originalPhoto.size.height);
-    //We create a square that appears in the center of the photo
-    float newOriginX = (self.originalPhoto.size.width - smallestDimension) / 2.0f;
-    float newOriginY = (self.originalPhoto.size.height - smallestDimension) / 2.0f;
-    BOOL landscapeImage = (self.originalPhoto.imageOrientation != UIImageOrientationLeft && self.originalPhoto.imageOrientation != UIImageOrientationRight);
-    CGRect croppedPhotoSize = CGRectMake((landscapeImage ? newOriginX : newOriginY), (landscapeImage ? newOriginY : newOriginX), smallestDimension, smallestDimension);
-    //Create a cropped version of the image
-    CGImageRef croppedImageRef = CGImageCreateWithImageInRect([self.originalPhoto CGImage], croppedPhotoSize);
-    UIImage* croppedPhoto = [UIImage imageWithCGImage:croppedImageRef scale:(self.photoView.frame.size.width/self.originalPhoto.size.width) orientation:self.originalPhoto.imageOrientation];
-    //Add the cropped image to the view
-    [self.photoView setImage:croppedPhoto];
-}
-
-
 #pragma mark - LocationSearchTableViewControllerDelegate
 
-- (void)locationSearchTableViewControllerDidCancel:(LocationSearchTableViewController *)controller
-{
+- (void)locationSearchTableViewControllerDidCancel:(LocationSearchTableViewController *)controller {
     // Dismiss the view controller
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
-- (void)locationSearchTableViewController:(LocationSearchTableViewController*)controller didSelectLocation:(CLPlacemark *)location
-{
+- (void)locationSearchTableViewController:(LocationSearchTableViewController*)controller didSelectLocation:(CLPlacemark *)location {
     self.addressLocation = location;
     [self configureAddressCell];
     
@@ -221,8 +244,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)locationSearchTableViewControllerDidRemoveLocation:(LocationSearchTableViewController*)controller
-{
+- (void)locationSearchTableViewControllerDidRemoveLocation:(LocationSearchTableViewController*)controller {
     self.addressLocation = nil;
     [self configureAddressCell];
     
@@ -233,8 +255,7 @@
 
 #pragma mark - Navigation
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"toLocationSearch"]) {
         UINavigationController *navController = segue.destinationViewController;
         LocationSearchTableViewController *controller = (LocationSearchTableViewController*) navController.topViewController;
@@ -243,4 +264,6 @@
     }
 }
 
+
 @end
+

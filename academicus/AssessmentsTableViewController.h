@@ -13,17 +13,20 @@
 
 @interface AssessmentsTableViewController : UITableViewController <AssessmentDetailTableViewControllerDelegate, AssessmentGradeTableViewControllerDelegate, NSFetchedResultsControllerDelegate>
 
-@property (weak) Subject *subject;
-
 @property (nonatomic, weak) NSManagedObjectContext *managedObjectContext;
+@property (weak) Subject *subject;
 
 // This variable is used to determine whether the user clicked the edit button, or swiped a row
 @property (assign) BOOL inSwipeDeleteMode;
+
+// Properties for the table header view
 @property (assign) BOOL isSubjectExpanded;
 @property (assign) float expandSize;
 @property (assign) float moduleAllocated;
 @property (assign) float moduleCompleted;
 @property (assign) float currentGrade;
+
+// IBOutlets
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIButton *expandBtn;
 @property (weak, nonatomic) IBOutlet UILabel *moduleProgressLabel;

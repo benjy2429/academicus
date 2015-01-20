@@ -8,16 +8,36 @@
 
 #import "YearsTableViewController.h"
 
-@implementation YearsTableViewController
-{
+@implementation YearsTableViewController {
     // Local instance variable for the fetched results controller
     NSFetchedResultsController *_fetchedResultsController;
 }
 
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    // Delete the cache to prevent inconsistencies in iOS7
+    [NSFetchedResultsController deleteCacheWithName:@"Years"];
+    
+    // Retrieve the objects for this table view using CoreData
+    [self performFetch];
+    
+    // Set the view title to the qualification name
+    self.title = self.qualification.name;
+    
+    // Initialise variable not in edit mode
+    self.inSwipeDeleteMode = NO;
+    
+    // Add an edit button to the navigation bar
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+
+#pragma mark - Core Data
+
 // Custom getter for the fetched results controller
-- (NSFetchedResultsController*)fetchedResultsController
-{
+- (NSFetchedResultsController*)fetchedResultsController {
     // Initialise the fetched results controller if nil
     if (_fetchedResultsController == nil) {
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -45,29 +65,7 @@
 }
 
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    // Delete the cache to prevent inconsistencies in iOS7
-    [NSFetchedResultsController deleteCacheWithName:@"Years"];
-    
-    // Retrieve the objects for this table view using CoreData
-    [self performFetch];
-    
-    // Set the view title to the qualification name
-    self.title = self.qualification.name;
-    
-    // Initialise variable not in edit mode
-    self.inSwipeDeleteMode = NO;
-    
-    // Add an edit button to the navigation bar
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-
-- (void)performFetch
-{
+- (void)performFetch {
     // Fetch the data for the table view using CoreData
     NSError *error;
     if (![self.fetchedResultsController performFetch:&error]) {
@@ -79,8 +77,7 @@
 }
 
 
-- (void)dealloc
-{
+- (void)dealloc {
     // Stop the fetched results controller from sending notifications if the view is deallocated
     _fetchedResultsController.delegate = nil;
 }
@@ -88,16 +85,14 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections
     // 1 for normal mode, 2 for edit mode to contain the add button
     return (self.isEditing && !self.inSwipeDeleteMode) ? 2 : 1;
 }
 
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in each section
     // If the add button is visible, return 1 otherwise return the number of data items
     if (self.isEditing && !self.inSwipeDeleteMode && section == 1) {
@@ -109,8 +104,7 @@
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Check whether the current cell is the add new item cell
     BOOL isAddCell = (self.isEditing && !self.inSwipeDeleteMode && indexPath.section == 1);
     
@@ -133,8 +127,7 @@
 }
 
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath*)indexPath
-{
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath*)indexPath {
     // Get the object for this cell and set the labels
     Year *currentYear = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
@@ -142,8 +135,7 @@
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.isEditing && !self.inSwipeDeleteMode) {
         
         if (indexPath.section == 1 && indexPath.row == 0) {
@@ -165,41 +157,9 @@
 }
 
 
-# pragma mark - Reordering Cells
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-
-
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Prevent the add item cell from being reordered
-    if (indexPath.section == 1) {
-        return NO;
-    } else {
-        return YES;
-    }
-}
-
-
-//Prevent re-ordering below the add new. Will move as far as possible rather than returning to its starting position
-- (NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath {
-    if (sourceIndexPath.section != proposedDestinationIndexPath.section) {
-        NSInteger row = 0;
-        if (sourceIndexPath.section < proposedDestinationIndexPath.section) {
-            row = [tableView numberOfRowsInSection:sourceIndexPath.section] - 1;
-        }
-        return [NSIndexPath indexPathForRow:row inSection:sourceIndexPath.section];
-    }
-    
-    return proposedDestinationIndexPath;
-}
-*/
-
 # pragma mark - Editing Cells
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
         Year *year = [self.fetchedResultsController objectAtIndexPath:indexPath];
@@ -216,11 +176,7 @@
 
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Set the add or delete icons to the correct cells
-    if (!self.inSwipeDeleteMode && indexPath.section == 1) {
-        return UITableViewCellEditingStyleInsert;
-    } else {
-        return UITableViewCellEditingStyleDelete;
-    }
+    return (!self.inSwipeDeleteMode && indexPath.section == 1) ? UITableViewCellEditingStyleInsert : UITableViewCellEditingStyleDelete;
 }
 
 
@@ -246,8 +202,7 @@
 
 
 // This method is run only when the user swipes to delete a row
-- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
     // Set a flag variable and enable editing mode
     self.inSwipeDeleteMode = YES;
     [self setEditing:YES animated:YES];
@@ -255,8 +210,7 @@
 
 
 // This method is run only when the user swipes to delete a row
-- (void) tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void) tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath {
     // Disable editing mode and reset the flag variable
     // Due to a bug in iOS 8.1, this method is called twice and crashes the app so check if in editing mode first
     if (self.editing) {
@@ -301,14 +255,12 @@
 
 #pragma mark - NSFetchedResultsControllerDelegate
 
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
-{
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
     [self.tableView beginUpdates];
 }
 
 
-- (void)controller:(NSFetchedResultsController*)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
-{
+- (void)controller:(NSFetchedResultsController*)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
     // Modify table rows depending on the action performed
     // (Called automatically by the NSFetchedResultsController)
     switch (type) {
@@ -329,8 +281,7 @@
 }
 
 
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     [self.tableView endUpdates];
 }
 
@@ -338,8 +289,7 @@
 
 #pragma mark - YearDetailTableViewControllerDelegate
 
-- (void)YearDetailTableViewController:(id)controller didFinishAddingYear:(Year *)year
-{
+- (void)YearDetailTableViewController:(id)controller didFinishAddingYear:(Year *)year {
     year.qualification = self.qualification;
     
     // Save the item to the datastore
@@ -354,8 +304,7 @@
 }
 
 
-- (void)YearDetailTableViewController:(id)controller didFinishEditingYear:(Year *)year
-{
+- (void)YearDetailTableViewController:(id)controller didFinishEditingYear:(Year *)year {
     // Save the item to the datastore
     NSError *error;
     if (![self.managedObjectContext save:&error]) {
@@ -368,12 +317,11 @@
 }
 
 
-- (void)YearDetailTableViewControllerDidCancel:(id)controller
-{
+- (void)YearDetailTableViewControllerDidCancel:(id)controller {
     // No action to take so dismiss the modal window
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
-
 @end
+

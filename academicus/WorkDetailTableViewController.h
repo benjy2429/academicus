@@ -9,16 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "WorkExperience.h"
 
+// Constant for the company address placeholder
 #define COMPANY_ADDRESS_PLACEHOLDER @"Address"
 
 @class WorkDetailTableViewController;
 
+// Delegate protocol
 @protocol WorkDetailTableViewControllerDelegate <NSObject>
-
 - (void)workDetailTableViewControllerDidCancel:(WorkDetailTableViewController*)controller;
 - (void)workDetailTableViewController:(WorkDetailTableViewController*)controller didFinishAddingWork:(WorkExperience*)work;
 - (void)workDetailTableViewController:(WorkDetailTableViewController*)controller didFinishEditingWork:(WorkExperience*)work;
-
 @end
 
 @interface WorkDetailTableViewController : UITableViewController <UITextViewDelegate>
@@ -27,6 +27,7 @@
 @property (weak) id <WorkDetailTableViewControllerDelegate> delegate;
 @property (strong) WorkExperience *itemToEdit;
 
+// IBOutlets
 @property (weak, nonatomic) IBOutlet UITextField *jobTitleField;
 @property (weak, nonatomic) IBOutlet UITextField *companyNameField;
 @property (weak, nonatomic) IBOutlet UITextView *companyAddressField;
@@ -36,6 +37,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *refereeEmailField;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionField;
 
+// Temporarily store the dates from the date pickers
 @property (strong) NSDate* startDate;
 @property (strong) NSDate* endDate;
 

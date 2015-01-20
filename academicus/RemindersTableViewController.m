@@ -8,20 +8,42 @@
 
 #import "RemindersTableViewController.h"
 
-@interface RemindersTableViewController ()
-
-@end
-
-@implementation RemindersTableViewController
-{
+@implementation RemindersTableViewController {
     // Local instance variable for the fetched results controller
     NSFetchedResultsController *_fetchedResultsController;
 }
 
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    //Default is upcoming
+    self.isPast = false;
+    
+    // Delete the cache to prevent inconsistencies in iOS7
+    [NSFetchedResultsController deleteCacheWithName:@"Reminders"];
+
+    // Retrieve the objects for this table view using CoreData
+    [self performFetch];
+    
+    // Override the height of the table view header
+    self.tableView.tableHeaderView.frame = CGRectMake(0, 0, 0, 44);
+    
+    //Swipe gestures that enable the user to swipe between the segmented controls
+    UISwipeGestureRecognizer *leftGestureRecogniser = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swiped:)];
+    [leftGestureRecogniser setDirection:UISwipeGestureRecognizerDirectionLeft];
+    [self.tableView addGestureRecognizer:leftGestureRecogniser];
+    
+    UISwipeGestureRecognizer *rightGestureRecogniser = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swiped:)];
+    [rightGestureRecogniser setDirection:UISwipeGestureRecognizerDirectionRight];
+    [self.tableView addGestureRecognizer:rightGestureRecogniser];
+}
+
+
+#pragma mark - Core Data
+
 // Custom getter for the fetched results controller
-- (NSFetchedResultsController*)fetchedResultsController
-{
+- (NSFetchedResultsController*)fetchedResultsController {
     // Initialise the fetched results controller if nil
     if (_fetchedResultsController == nil) {
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -50,34 +72,7 @@
 }
 
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
-    self.isPast = false;
-    
-    // Delete the cache to prevent inconsistencies in iOS7
-    [NSFetchedResultsController deleteCacheWithName:@"Reminders"];
-
-    // Retrieve the objects for this table view using CoreData
-    [self performFetch];
-    
-    // Override the height of the table view header
-    self.tableView.tableHeaderView.frame = CGRectMake(0, 0, 0, 44);
-    
-    UISwipeGestureRecognizer *leftGestureRecogniser = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swiped:)];
-    [leftGestureRecogniser setDirection:UISwipeGestureRecognizerDirectionLeft];
-    [self.tableView addGestureRecognizer:leftGestureRecogniser];
-    
-    UISwipeGestureRecognizer *rightGestureRecogniser = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swiped:)];
-    [rightGestureRecogniser setDirection:UISwipeGestureRecognizerDirectionRight];
-    [self.tableView addGestureRecognizer:rightGestureRecogniser];
-    
-}
-
-
-- (void)performFetch
-{
+- (void)performFetch {
     // Fetch the data for the table view using CoreData
     NSError *error;
     if (![self.fetchedResultsController performFetch:&error]) {
@@ -89,21 +84,19 @@
 }
 
 
-- (void)dealloc
-{
+- (void)dealloc {
     // Stop the fetched results controller from sending notifications if the view is deallocated
     _fetchedResultsController.delegate = nil;
 }
 
 
+#pragma mark - Segmented Control
+
+//Called when the segmented control is changed
 - (IBAction)segmentSwitch:(id)sender {
     UISegmentedControl* segmentControl = (UISegmentedControl*) sender;
     NSInteger selectedSegment = segmentControl.selectedSegmentIndex;
-    if (selectedSegment == 0) {
-        self.isPast = false;
-    } else {
-        self.isPast = true;
-    }
+    self.isPast = (selectedSegment != 0);
     
     // Delete the cache
     [NSFetchedResultsController deleteCacheWithName:@"Reminders"];
@@ -113,47 +106,42 @@
 }
 
 
-- (void)swiped:(UISwipeGestureRecognizer *)gestureRecogniser
-{
+//Called when a swipe gesture is recgonised
+- (void)swiped:(UISwipeGestureRecognizer *)gestureRecogniser {
     UISegmentedControl *segmentedControl = (UISegmentedControl *)[self.tableView viewWithTag:700];
+    
+    //Set the segmented control based on the direction of swipe
     if (gestureRecogniser.direction == UISwipeGestureRecognizerDirectionRight) {
         segmentedControl.selectedSegmentIndex = 0;
-        [self segmentSwitch:segmentedControl];
-        
     } else if (gestureRecogniser.direction == UISwipeGestureRecognizerDirectionLeft) {
         segmentedControl.selectedSegmentIndex = 1;
-        [self segmentSwitch:segmentedControl];
     }
+    
+    [self segmentSwitch:segmentedControl];
 }
+
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections
     return [[self.fetchedResultsController sections] count];
 }
 
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in each section
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
     return [sectionInfo numberOfObjects];
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Assign the correct identifier for this cell
     NSString *myIdentifier;
     if (self.isPast) {
         AssessmentCriteria *assessment = [self.fetchedResultsController objectAtIndexPath:indexPath];
-        if ([assessment.hasGrade boolValue]) {
-            myIdentifier = @"pastCellGraded";
-        } else {
-            myIdentifier = @"pastCell";
-        }
+        myIdentifier = ([assessment.hasGrade boolValue]) ? @"pastCellGraded" : @"pastCell";
     } else {
         myIdentifier = @"upcomingCell";
     }
@@ -170,8 +158,7 @@
 }
 
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath*)indexPath
-{
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath*)indexPath {
     // Get the object for this cell and set the labels
     AssessmentCriteria *assessment = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
@@ -196,7 +183,9 @@
     UILabel *subjectNameLabel = (UILabel *)[cell viewWithTag:201];
     subjectNameLabel.text = assessment.subject.name;
 
+    //If a past event configure cell for a past deadline
     if (self.isPast) {
+        //Add a rating
         UILabel *ratingLabel = (UILabel *)[cell viewWithTag:202];
         switch ([assessment.rating intValue]) {
             case 1: ratingLabel.text = @"★☆☆☆☆"; break;
@@ -206,24 +195,24 @@
             case 5: ratingLabel.text = @"★★★★★"; break;
             default: ratingLabel.text = @"No rating"; break;
         }
+        //Show a grade if it has one
         if ([assessment.hasGrade boolValue]) {
             UILabel *gradeLabel = (UILabel *)[cell viewWithTag:300];
             gradeLabel.text = [NSString stringWithFormat: @"%d%%",[assessment.finalGrade intValue]];
         }
     } else {
-        UILabel *daysRemainingLabel = (UILabel *)[cell viewWithTag:202];
+        //Otherwise, configure cell for upcoming deadline
         
+        //Add a days remaining label
+        UILabel *daysRemainingLabel = (UILabel *)[cell viewWithTag:202];
         NSDate *currentDate = [NSDate date];
         NSDate *deadlineDate = assessment.deadline;
-        
         NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
         [calendar rangeOfUnit:NSDayCalendarUnit startDate:&currentDate interval:nil forDate:currentDate];
         [calendar rangeOfUnit:NSDayCalendarUnit startDate:&deadlineDate interval:nil forDate:deadlineDate];
         NSDateComponents *difference = [calendar components:NSDayCalendarUnit fromDate:currentDate toDate:deadlineDate options:0];
         
-        UIImageView *alarmIcon = (UIImageView *)[cell viewWithTag:300];
-        alarmIcon.hidden = (assessment.reminder != nil) ? NO : YES;
-
+        //Add a few special cases depending on the difference between today and the deadline
         switch ([difference day]) {
             case 0: daysRemainingLabel.text = @"Due today"; break;
             case 1: daysRemainingLabel.text = @"Due tomorrow"; break;
@@ -238,31 +227,36 @@
                 break;
             }
         }
+        
+        //Add an alarm icon if a reminder is set
+        UIImageView *alarmIcon = (UIImageView *)[cell viewWithTag:300];
+        alarmIcon.hidden = (assessment.reminder == nil);
     }
 }
 
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
+//Returns a human friendly title for the section headers
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (self.isPast) {
         BOOL hasGrade = [[[[self.fetchedResultsController sections] objectAtIndex:section] name] boolValue];
         return (hasGrade) ? @"Graded" : @"Awaiting Grade";
-    } else {
-        return nil;
     }
+    return nil;
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+//When any cell is selected, segue to the add grade page
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     [self performSegueWithIdentifier:@"visitGrade" sender:cell];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+
+#pragma mark - Navigation
+//Get the destination view controller and pass any objects needed
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"visitGrade"]) {
         UINavigationController *navController = segue.destinationViewController;
         AssessmentGradeTableViewController *controller = (AssessmentGradeTableViewController*) navController.topViewController;
@@ -277,14 +271,12 @@
 
 #pragma mark - NSFetchedResultsControllerDelegate
 
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
-{
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
     [self.tableView beginUpdates];
 }
 
 
-- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
-{
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
     switch (type) {
         case NSFetchedResultsChangeInsert:
             [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
@@ -297,8 +289,8 @@
     }
 }
 
-- (void)controller:(NSFetchedResultsController*)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
-{
+
+- (void)controller:(NSFetchedResultsController*)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
     // Modify table rows depending on the action performed
     // (Called automatically by the NSFetchedResultsController)
     switch (type) {
@@ -319,23 +311,20 @@
 }
 
 
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     [self.tableView endUpdates];
 }
 
 
 #pragma mark - AssessmentGradeTableViewControllerDelegate
 
-- (void)AssessmentGradeTableViewControllerDidCancel:(AssessmentGradeTableViewController*)controller
-{
+- (void)AssessmentGradeTableViewControllerDidCancel:(AssessmentGradeTableViewController*)controller {
     // No action to take so dismiss the modal window
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
-- (void)AssessmentGradeTableViewController:(AssessmentGradeTableViewController*)controller didFinishEditingAssessment:(AssessmentCriteria*)assessment
-{
+- (void)AssessmentGradeTableViewController:(AssessmentGradeTableViewController*)controller didFinishEditingAssessment:(AssessmentCriteria*)assessment {
     // Save the item to the datastore
     NSError *error;
     if (![self.managedObjectContext save:&error]) {
@@ -359,4 +348,6 @@
     headerView.transform = CGAffineTransformMakeTranslation(0, MIN(offsetY,0));
 }
 
+
 @end
+

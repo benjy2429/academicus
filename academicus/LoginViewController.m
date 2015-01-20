@@ -8,14 +8,9 @@
 
 #import "LoginViewController.h"
 
-@interface LoginViewController ()
-
-@end
-
 @implementation LoginViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     //Initialise the keychain item
@@ -47,8 +42,7 @@
 
 
 //Called when the user wants to enter a new passcode
-- (void) enterNewPasscode
-{
+- (void) enterNewPasscode {
     [self resetEnteredDigits]; //Clear any previously entered digits
     self.cancelButton.hidden = false; //The cancel button can be shown
     //Configure the view for entering a new passocde
@@ -58,8 +52,7 @@
 
 
 //Called when the user has entered a new passcode and they need to enter it again to confirm it
-- (void) confirmNewPasscode
-{
+- (void) confirmNewPasscode {
     [self resetEnteredDigits]; //Clear any previously entered digits
     self.cancelButton.hidden = false; //The cancel button can be shown
     //Configure the view for confiming a new passcode
@@ -69,8 +62,7 @@
 
 
 //Called when the user wants to disable secuirty and needs to confirm the current passcode
-- (void) confirmExistingToDisable
-{
+- (void) confirmExistingToDisable {
     [self resetEnteredDigits]; //Clear any previously entered digits
     self.cancelButton.hidden = false; //The cancel button can be shown
     //Configure the view for confirming an existing passcode so that passcode can be turned off
@@ -80,8 +72,7 @@
 
 
 //Called when the user wants to change their passcode
-- (void) confirmExistingToChange
-{
+- (void) confirmExistingToChange {
     [self resetEnteredDigits]; //Clear any previously entered digits
     self.cancelButton.hidden = false; //The cancel button can be shown
     //Configure the view for confirming an existing passcode so that the code can be changed
@@ -91,8 +82,7 @@
 
 
 //Clear any previously entered digits
-- (void) resetEnteredDigits
-{
+- (void) resetEnteredDigits {
     [self.digitsEntered setString: @""];
     self.numDigitsEntered = 0;
     [self updateCodeLabel];
@@ -139,7 +129,6 @@
             [self checkPasscode];
         }
     }
-    
 }
 
 
@@ -224,25 +213,19 @@
 
 
 //Called when the entered code didnt match what was expected
- - (void) failedAttempt {
-     AudioServicesPlayAlertSound(kSystemSoundID_Vibrate); //Vibrate
-     
-     //Shake the label
-     CABasicAnimation* shake = [CABasicAnimation animationWithKeyPath:@"position"];
-     shake.duration = 0.065;
-     shake.repeatCount = 3;
-     shake.autoreverses = YES;
-     [shake setFromValue:[NSValue valueWithCGPoint:CGPointMake(self.codeLabel.center.x - 5, self.codeLabel.center.y)]];
-     [shake setToValue:[NSValue valueWithCGPoint:CGPointMake(self.codeLabel.center.x+5, self.codeLabel.center.y)]];
-     [self.codeLabel.layer addAnimation:shake forKey: @"position"];
-     
-     [self resetEnteredDigits]; //Clear any previously entered digits
- }
+- (void) failedAttempt {
+    AudioServicesPlayAlertSound(kSystemSoundID_Vibrate); //Vibrate
 
+    //Shake the label
+    CABasicAnimation* shake = [CABasicAnimation animationWithKeyPath:@"position"];
+    shake.duration = 0.065;
+    shake.repeatCount = 3;
+    shake.autoreverses = YES;
+    [shake setFromValue:[NSValue valueWithCGPoint:CGPointMake(self.codeLabel.center.x - 5, self.codeLabel.center.y)]];
+    [shake setToValue:[NSValue valueWithCGPoint:CGPointMake(self.codeLabel.center.x+5, self.codeLabel.center.y)]];
+    [self.codeLabel.layer addAnimation:shake forKey: @"position"];
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self resetEnteredDigits]; //Clear any previously entered digits
 }
 
 

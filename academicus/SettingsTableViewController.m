@@ -8,50 +8,9 @@
 
 #import "SettingsTableViewController.h"
 
-@interface SettingsTableViewController ()
-
-@end
-
 @implementation SettingsTableViewController
-{
-    // Local instance variable for the fetched results controller
-    NSFetchedResultsController *_fetchedResultsController;
-}
 
-
-// Custom getter for the fetched results controller
-- (NSFetchedResultsController*)fetchedResultsController
-{
-    // Initialise the fetched results controller if nil
-    if (_fetchedResultsController == nil) {
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        
-        // Get the objects from the managed object context
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"AssessmentCriteria" inManagedObjectContext:self.managedObjectContext];
-        [fetchRequest setEntity:entity];
-        
-        // Set the sorting preference
-        NSSortDescriptor *dateSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"deadline" ascending:NO];
-        [fetchRequest setSortDescriptors:@[dateSortDescriptor]];
-        
-        // Set the predicate
-        NSPredicate *predicate = [NSPredicate predicateWithFormat: @"hasGrade == false"];
-        [fetchRequest setPredicate:predicate];
-        
-        // Create the fetched results controller
-        _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"DeadlineReminders"];
-        
-        // Assign this class as the delegate
-        _fetchedResultsController.delegate = self;
-    }
-    
-    return _fetchedResultsController;
-}
-
-
-
-- (void) viewDidLoad
-{
+- (void) viewDidLoad {
     [super viewDidLoad];
     
     //Toggle the notifications switch depending on the stored setting
@@ -68,40 +27,16 @@
 }
 
 
-//Called when the passcode lock switch is toggled
-- (IBAction) passcodeLockSwitchChanged:(UISwitch *)sender
-{
-    sender.on = !sender.on; //First, we cancel the change becuase we havent determined if they are allowed to do it yet
-    
-    //We load the passcode screen and display it
-    LoginViewController* passcodeScreen = [[LoginViewController alloc] init];
-    passcodeScreen.delegate = self;
-    [self presentViewController: passcodeScreen animated: YES completion:nil];
+#pragma mark - Notifications
 
-    //The action to take depending on which way the user toggled (notted since we inverted above)
-    if (!sender.on) {
-        [passcodeScreen enterNewPasscode]; //If turned on, we establish a new passcode
-    } else {
-        [passcodeScreen confirmExistingToDisable]; //If turning off we authenticate
-    }
-}
-
-
-- (IBAction)notificationSwitchChanged:(UISwitch *)sender
-{
+//When the notifications toggle is changed
+- (IBAction)notificationSwitchChanged:(UISwitch *)sender {
+    //If turned on
     if (sender.on) {
+        // Fetch assessments
+        [self performFetch];
         
-        // Fetch the data using CoreData
-        NSError *error;
-        if (![self.fetchedResultsController performFetch:&error]) {
-            
-            // Throw a custom error if the fetch fails
-            COREDATA_ERROR(error);
-            return;
-        }
-        
-        for (AssessmentCriteria *assessment in [self.fetchedResultsController fetchedObjects]) {
-            
+        for (AssessmentCriteria *assessment in self.assessments) {
             // Calculate the date 3 weeks after the deadline to set a notification reminder
             NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
             [dateComponents setDay:21];
@@ -109,7 +44,6 @@
             
             // Set a notification 3 weeks after the deadline if notifications are enabled
             if ([deadlineReminderDate timeIntervalSince1970] > [[NSDate date] timeIntervalSince1970]) {
-                
                 UILocalNotification *notification = [[UILocalNotification alloc] init];
                 notification.fireDate = deadlineReminderDate;
                 notification.alertBody = [NSString stringWithFormat:@"Don't forget to add a grade for %@!", assessment.name];
@@ -119,11 +53,7 @@
                 
                 [[UIApplication sharedApplication] scheduleLocalNotification:notification];
             }
-            
-
-        }       
-        
-        
+        }
     } else {
         // Get all the notifications and delete the deadline reminders
         NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
@@ -141,9 +71,56 @@
 }
 
 
-//Makes changes to the view depending on whether passcode is turned on
-- (void) configureViewFromPasscode: (BOOL) passcodeOn
-{
+//Fetch all assessments without a grade so that reminder notifications can be set
+- (void)performFetch {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    // Get the objects from the managed object context
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"AssessmentCriteria" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    // Set the sorting preference
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"deadline" ascending:NO];
+    [fetchRequest setSortDescriptors:@[sortDescriptor]];
+    
+    // Set the predicate
+    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"hasGrade == false"];
+    [fetchRequest setPredicate:predicate];
+    
+    // Fetch the data for the table view using CoreData
+    NSError *error;
+    self.assessments = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    // Make sure there were no errors fetching the data
+    if (error != nil) {
+        COREDATA_ERROR(error);
+        return;
+    }
+}
+
+
+#pragma mark - Security
+
+//Called when the passcode lock switch is toggled
+- (IBAction) passcodeLockSwitchChanged:(UISwitch *)sender {
+    sender.on = !sender.on; //First, we cancel the change becuase we havent determined if they are allowed to do it yet
+    
+    //We load the passcode screen and display it
+    LoginViewController* passcodeScreen = [[LoginViewController alloc] init];
+    passcodeScreen.delegate = self;
+    [self presentViewController: passcodeScreen animated: YES completion:nil];
+
+    //The action to take depending on which way the user toggled (notted since we inverted above)
+    if (!sender.on) {
+        [passcodeScreen enterNewPasscode]; //If turned on, we establish a new passcode
+    } else {
+        [passcodeScreen confirmExistingToDisable]; //If turning off we authenticate
+    }
+}
+
+
+//Makes changes to the view depending on whether passcode toggle is turned on
+- (void) configureViewFromPasscode: (BOOL) passcodeOn {
     if (passcodeOn) {
         self.passcodeSwitch.on = true; //Turn on the passcode switch
         
@@ -182,16 +159,14 @@
 
 
 //Called if an action on the passcode screen was cancelled
-- (void)LoginViewControllerDidNotAuthenticate:(LoginViewController*)controller
-{
+- (void)LoginViewControllerDidNotAuthenticate:(LoginViewController*)controller {
     //Close passcode screen
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
 //Method called when old passcode has been authenticated and passcode can now be turned off
-- (void)LoginViewControllerDidAuthenticate:(LoginViewController*)controller
-{
+- (void)LoginViewControllerDidAuthenticate:(LoginViewController*)controller {
     //Change the passcode setting to recongise that secuirty is off
     [[NSUserDefaults standardUserDefaults] setBool:false forKey:@"passcodeLockEnabled"];
     
@@ -204,8 +179,7 @@
 
 
 //Method called when either the passcode has been changed or a new passcode has been set up
-- (void)LoginViewControllerDidChangePasscode:(LoginViewController*)controller
-{
+- (void)LoginViewControllerDidChangePasscode:(LoginViewController*)controller {
     //Change the passcode setting to recognise that security is on
     [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"passcodeLockEnabled"];
     
@@ -218,24 +192,36 @@
 
 
 //When the touch id switch is toggled
-- (IBAction)touchIdSwitchChanged:(UISwitch* )sender
-{
+- (IBAction)touchIdSwitchChanged:(UISwitch* )sender {
     //Change the touch id setting
     [[NSUserDefaults standardUserDefaults] setBool:sender.on forKey:@"touchIdEnabled"];
 }
 
 
-- (IBAction)iCloudBackupSwitchChanged:(UISwitch *)sender
-{
+#pragma mark - iCloud
+
+//Called when the iCloud toggle is changed
+- (IBAction)iCloudBackupSwitchChanged:(UISwitch *)sender {
+    //Feature not yet implemented to display a notificaiton to the user
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Coming Soon!" message:@"The iCloud backup feature is coming soon" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alert show];
     [sender setOn:NO animated:YES];
 }
 
 
+#pragma mark - Photos
+
+//When the save photos switch is toggled
+- (IBAction)savePhotosSwitchChanged:(UISwitch* )sender {
+    //Change the save photos setting
+    [[NSUserDefaults standardUserDefaults] setBool:sender.on forKey:@"autoSavePhotos"];
+}
+
+
+#pragma mark - Table View
+
 //Triggered when the change passcode row is clicked
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 2 && indexPath.row == 1) {
         //Load and display the login screen
         LoginViewController* passcodeScreen = [[LoginViewController alloc] init];
@@ -247,20 +233,6 @@
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-
-//When the save photos switch is toggled
-- (IBAction)savePhotosSwitchChanged:(UISwitch* )sender
-{
-    //Change the save photos setting
-    [[NSUserDefaults standardUserDefaults] setBool:sender.on forKey:@"autoSavePhotos"];
-}
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 

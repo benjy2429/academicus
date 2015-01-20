@@ -8,16 +8,33 @@
 
 #import "AchievementsTableViewController.h"
 
-@implementation AchievementsTableViewController
-{
+@implementation AchievementsTableViewController {
     // Local instance variable for the fetched results controller
     NSFetchedResultsController *_fetchedResultsController;
 }
 
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    // Delete the cache to prevent inconsistencies in iOS7
+    [NSFetchedResultsController deleteCacheWithName:@"Achievements"];
+    
+    // Retrieve the objects for this table view using CoreData
+    [self performFetch];
+    
+    // Initialise variable not in edit mode
+    self.inSwipeDeleteMode = NO;
+    
+    // Add an edit button to the navigation bar
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+
+#pragma mark - Core Date
+
 // Custom getter for the fetched results controller
-- (NSFetchedResultsController*)fetchedResultsController
-{
+- (NSFetchedResultsController*)fetchedResultsController {
     // Initialise the fetched results controller if nil
     if (_fetchedResultsController == nil) {
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -41,26 +58,7 @@
 }
 
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    // Delete the cache to prevent inconsistencies in iOS7
-    [NSFetchedResultsController deleteCacheWithName:@"Achievements"];
-    
-    // Retrieve the objects for this table view using CoreData
-    [self performFetch];
-    
-    // Initialise variable not in edit mode
-    self.inSwipeDeleteMode = NO;
-    
-    // Add an edit button to the navigation bar
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-
-- (void)performFetch
-{
+- (void)performFetch {
     // Fetch the data for the table view using CoreData
     NSError *error;
     if (![self.fetchedResultsController performFetch:&error]) {
@@ -72,8 +70,7 @@
 }
 
 
-- (void)dealloc
-{
+- (void)dealloc {
     // Stop the fetched results controller from sending notifications if the view is deallocated
     _fetchedResultsController.delegate = nil;
 }
@@ -81,16 +78,14 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections
     // 1 for normal mode, 2 for edit mode to contain the add button
     return (self.isEditing && !self.inSwipeDeleteMode) ? 2 : 1;
 }
 
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in each section
     // If the add button is visible, return 1 otherwise return the number of data items
     if (self.isEditing && !self.inSwipeDeleteMode && section == 1) {
@@ -101,8 +96,7 @@
     }
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Check whether the current cell is the add new item cell
     BOOL isAddCell = (self.isEditing && !self.inSwipeDeleteMode && indexPath.section == 1);
     
@@ -125,8 +119,7 @@
 }
 
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath*)indexPath
-{
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath*)indexPath {
     // Get the object for this cell and set the labels
     Achievement *achievement = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = achievement.name;
@@ -138,8 +131,7 @@
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.isEditing && !self.inSwipeDeleteMode) {
         
         if (indexPath.section == 1 && indexPath.row == 0) {
@@ -197,11 +189,7 @@
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     // Prevent the add item cell from being reordered
-    if (indexPath.section == 1) {
-        return NO;
-    } else {
-        return YES;
-    }
+    return (indexPath.section != 1);
 }
 
 
@@ -221,8 +209,7 @@
 
 # pragma mark - Editing Cells
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
         Achievement *achievement = [self.fetchedResultsController objectAtIndexPath:indexPath];
@@ -239,11 +226,7 @@
 
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Set the add or delete icons to the correct cells
-    if (!self.inSwipeDeleteMode && indexPath.section == 1) {
-        return UITableViewCellEditingStyleInsert;
-    } else {
-        return UITableViewCellEditingStyleDelete;
-    }
+    return (!self.inSwipeDeleteMode && indexPath.section == 1) ? UITableViewCellEditingStyleInsert : UITableViewCellEditingStyleDelete;
 }
 
 
@@ -269,8 +252,7 @@
 
 
 // This method is run only when the user swipes to delete a row
-- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
     // Set a flag variable and enable editing mode
     self.inSwipeDeleteMode = YES;
     [self setEditing:YES animated:YES];
@@ -278,8 +260,7 @@
 
 
 // This method is run only when the user swipes to delete a row
-- (void) tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void) tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath {
     // Disable editing mode and reset the flag variable
     // Due to a bug in iOS 8.1, this method is called twice and crashes the app so check if in editing mode first
     if (self.editing) {
@@ -291,8 +272,7 @@
 
 #pragma mark - Navigation
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"addAchievement"]) {
         UINavigationController *navController = segue.destinationViewController;
         AchievementDetailTableViewController *controller = (AchievementDetailTableViewController*) navController.topViewController;
@@ -314,14 +294,12 @@
 
 #pragma mark - NSFetchedResultsControllerDelegate
 
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
-{
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
     [self.tableView beginUpdates];
 }
 
 
-- (void)controller:(NSFetchedResultsController*)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
-{
+- (void)controller:(NSFetchedResultsController*)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
     // Modify table rows depending on the action performed
     // (Called automatically by the NSFetchedResultsController)
     switch (type) {
@@ -342,16 +320,14 @@
 }
 
 
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     [self.tableView endUpdates];
 }
 
 
 #pragma mark - AchievementDetailTableViewControllerDelegate
 
-- (void)achievementDetailTableViewController:(id)controller didFinishAddingAchievement:(Achievement *)achievement
-{
+- (void)achievementDetailTableViewController:(id)controller didFinishAddingAchievement:(Achievement *)achievement {
     achievement.displayOrder = [NSNumber numberWithInteger:[[self.fetchedResultsController fetchedObjects] count]];
     achievement.portfolio = self.portfolio;
     
@@ -367,8 +343,7 @@
 }
 
 
-- (void)achievementDetailTableViewController:(id)controller didFinishEditingAchievement:(Achievement *)achievement
-{
+- (void)achievementDetailTableViewController:(id)controller didFinishEditingAchievement:(Achievement *)achievement {
     // Save the item to the datastore
     NSError *error;
     if (![self.managedObjectContext save:&error]) {
@@ -381,10 +356,11 @@
 }
 
 
-- (void)achievementDetailTableViewControllerDidCancel:(id)controller
-{
+- (void)achievementDetailTableViewControllerDidCancel:(id)controller {
     // No action to take so dismiss the modal window
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+
 @end
+

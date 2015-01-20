@@ -11,22 +11,19 @@
 #import "RemindersTableViewController.h"
 #import "PortfolioTableViewController.h"
 #import "SettingsTableViewController.h"
-
 #import <LocalAuthentication/LocalAuthentication.h>
 
 NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectContextSaveDidFailNotification";
 
-@interface AppDelegate ()
-
-@end
-
 @implementation AppDelegate
 
 
+//Called when the application starts
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    //Add a listener to respond to core data error notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coreDataError:) name:ManagedObjectContextSaveDidFailNotification object:nil];
     
+    //Pass the managed object context to each of the top views for each tab
     UITabBarController *tabController = (UITabBarController*) self.window.rootViewController;
     
     UINavigationController *navigationController = tabController.viewControllers[0];
@@ -45,15 +42,13 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
     SettingsTableViewController *settingsController = (SettingsTableViewController*) navigationController.topViewController;
     settingsController.managedObjectContext = self.managedObjectContext;
     
+    //Initialises the NSUserDefaults
     [self setDefaultSettings];
     
     // UI customisation methods
     [[UINavigationBar appearance] setBarTintColor: APP_TINT_COLOUR];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    //[[UITabBar appearance] setBarTintColor:[UIColor colorWithRed:0.48f green:0.38f blue:0.57f alpha:0.5f]];
-    //[[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor blackColor]} forState:UIControlStateNormal];
-    //[[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
     [[UITabBar appearance] setTintColor: APP_TINT_COLOUR];
     [[UISearchBar appearance] setBarTintColor: APP_TINT_COLOUR];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
@@ -71,41 +66,48 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
     return YES;
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-}
 
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-}
+- (void)applicationWillResignActive:(UIApplication *)application {}
+
+
+- (void)applicationDidEnterBackground:(UIApplication *)application {}
+
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     //If security has been enabled show the login screen
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"passcodeLockEnabled"]) {[self showAuthentication];}
+    //Clear the badge number
     application.applicationIconBadgeNumber = 0;
 }
+
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    //Clear the badge number
     application.applicationIconBadgeNumber = 0;
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
 
-- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
-{
+- (void)applicationWillTerminate:(UIApplication *)application {}
+
+
+//If a local notification is received when the app is active or open, display an alert
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Reminder" message:notification.alertBody delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alertView show];
 }
 
 
-- (NSManagedObjectModel*)managedObjectModel
+//This method defines the default values of all settings
+-(void)setDefaultSettings
 {
+    NSDictionary *defaults = @{ @"passcodeLockEnabled" : @NO, @"touchIdEnabled" : @NO, @"notificationsEnabled" : @YES, @"autoSavePhotos" : @YES};
+    [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
+}
+
+
+#pragma mark - Core Data Methods
+//Custom getter to generate the NSManagedObjectModel
+- (NSManagedObjectModel*)managedObjectModel {
     if (_managedObjectModel == nil) {
         NSString *modelPath = [[NSBundle mainBundle] pathForResource:@"DataModel" ofType:@"momd"];
         NSURL *modelURL = [NSURL fileURLWithPath:modelPath];
@@ -115,18 +117,20 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
 }
 
 
-- (NSString*)documentsDirectory
-{
+//Returns a string to the path of the documents directory
+- (NSString*)documentsDirectory {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     return [paths lastObject];
 }
 
 
-- (NSString *)dataStorePath
-{
+//Returns the path to the datastore file
+- (NSString *)dataStorePath {
     return [[self documentsDirectory] stringByAppendingPathComponent:@"DataStore.sqlite"];
 }
 
+
+//Custom getter to generate a NSPersistentStoreCoordinator
 - (NSPersistentStoreCoordinator*)persistentStoreCoordinator
 {
     if (_persistentStoreCoordinator == nil) {
@@ -144,6 +148,7 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
 }
 
 
+//Custom getter to generate the NSManagedObjectContext
 - (NSManagedObjectContext*)managedObjectContext
 {
     if (_managedObjectContext == nil) {
@@ -158,6 +163,7 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
 }
 
 
+//Displays an alert view if a fatal core data was recevied
 - (void)coreDataError:(NSNotification*)notification
 {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Whoops!" message:@"We're sorry, there was an error accessing or saving your data. Please report this to the developers." delegate:self cancelButtonTitle:@"Quit" otherButtonTitles:nil];
@@ -166,6 +172,7 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
 }
 
 
+//Terminates the app if the user dismisses the fatal core data error alert
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (alertView.tag == 666) {
@@ -173,6 +180,8 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
     }
 }
 
+
+#pragma mark - Authentication
 
 //Called when the login screen should be displayed
 - (void) showAuthentication
@@ -212,11 +221,5 @@ NSString* const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCon
 }
 
 
-//This method defines the default values of all settings
--(void)setDefaultSettings
-{
-    NSDictionary *defaults = @{ @"passcodeLockEnabled" : @NO, @"touchIdEnabled" : @NO, @"notificationsEnabled" : @YES, @"autoSavePhotos" : @YES};
-    [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
-}
-
 @end
+

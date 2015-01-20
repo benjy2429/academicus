@@ -39,6 +39,12 @@ static NSString * const cellIdentifier = @"myPortfolioCell";
     // Fetch the data for the table view using CoreData
     NSError *error;
     self.qualifications = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    // Make sure there were no errors fetching the data
+    if (error != nil) {
+        COREDATA_ERROR(error);
+        return;
+    }
 }
 
 

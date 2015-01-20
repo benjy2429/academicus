@@ -11,11 +11,10 @@
 
 @class HobbiesTableViewController;
 
+// Delegate Protocol
 @protocol HobbiesTableViewControllerDelegate <NSObject>
-
 - (void)hobbiesTableViewControllerDidCancel:(HobbiesTableViewController*)controller;
 - (void)hobbiesTableViewController:(HobbiesTableViewController*)controller didFinishSavingPortfolio:(Portfolio*)qualification;
-
 @end
 
 @interface HobbiesTableViewController : UITableViewController

@@ -8,14 +8,12 @@
 
 #import "SubjectDetailTableViewController.h"
 
-#define ARC4_RAND_MAX 0x100000000
-
 @implementation SubjectDetailTableViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Assign tags to the fields
     self.nameField.tag = 0;
     self.weightingField.tag = 1;
     self.targetField.tag = 2;
@@ -54,30 +52,18 @@
         self.greenSlider.value = green;
         self.blueSlider.value = blue;
         self.colourView.backgroundColor = self.colour;
-      
-        //TODO: Complete
-        //TODO: This has not been added for all files so check other classes!!
     }
 }
 
 
-- (void) viewWillAppear:(BOOL)animated
-{
+- (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     // Open the keyboard automatically when the view appears
     [self.nameField becomeFirstResponder];
 }
 
 
-- (IBAction)cancel
-{
-    // Delegate method when the cancel button is pressed
-    [self.delegate SubjectDetailTableViewControllerDidCancel:self];
-}
-
-
-- (BOOL) isEnteredDataValid
-{
+- (BOOL) isEnteredDataValid {
     //Check for the presence of a name
     if ([self.nameField.text length] < 1) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"You must provide a name" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
@@ -108,9 +94,9 @@
         [alert show];
         return false;
     }
-    //Check that the teacher email length is less than 30
-    if ([self.teacherEmailField.text length] > 30) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The teacher email must be less than 30 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+    //Check that the teacher email length is less than 50
+    if ([self.teacherEmailField.text length] > 50) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The teacher email must be less than 50 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
         [alert show];
         return false;
     }
@@ -124,8 +110,9 @@
 }
 
 
-- (IBAction)done
-{
+// Called when the done navigation bar button is pressed
+- (IBAction)done {
+    // Validate the input data
     if (![self isEnteredDataValid]) {return;}
     
     if (self.itemToEdit != nil) {
@@ -150,20 +137,27 @@
         newSubject.teacherEmail = self.teacherEmailField.text;
         
         [self.delegate SubjectDetailTableViewController:self didFinishAddingSubject: newSubject];
-
     }
 }
 
 
-- (NSIndexPath*)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Disable the ability to select table rows
-    return nil;
+// Called when the cancel navigation bar button is pressed
+- (IBAction)cancel {
+    // Delegate method when the cancel button is pressed
+    [self.delegate SubjectDetailTableViewControllerDidCancel:self];
 }
 
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
+- (IBAction)colourSliderChanged {
+    self.colour = [UIColor colorWithRed:self.redSlider.value green:self.greenSlider.value blue:self.blueSlider.value alpha:1.0f];
+    self.colourView.backgroundColor = self.colour;
+}
+
+
+#pragma mark - UITextFieldDelegate
+
+// When the text field changes, check that the new character is valid
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSString *newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
     switch (textField.tag) {
         //If weighting field
@@ -171,38 +165,25 @@
             return ([newText length] < 3 || [newText isEqual: @"100"] || [newText isEqual: @"100."] || [newText isEqual: @"100.0"] || [newText isEqual: @"100.00"] || ([newText characterAtIndex:2] == '.' && [newText length] < 6) || ([newText characterAtIndex:1] == '.' && [newText length] < 5));
             break;
         //If target field
-        case 2:
-            return ([newText length] < 3 || [newText isEqual: @"100"]);
-            break;
+        case 2: return ([newText length] < 3 || [newText isEqual: @"100"]); break;
         //Otherwise
-        default:
-            return YES;
+        default: return YES;
     }
 }
 
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
+// When the user finishes with a textfield, ensure the contents are in the correct format
+- (void)textFieldDidEndEditing:(UITextField *)textField {
     switch (textField.tag) {
-            //If grade field
-        case 1:
-            textField.text = [NSString stringWithFormat:@"%.2f", [textField.text floatValue]];
-            break;
-            //If rating field
-        case 2:
-            textField.text = [NSString stringWithFormat:@"%i", [textField.text intValue]];
-            break;
-            //Otherwise
-        default:
-            return;
+        //If grade field
+        case 1: textField.text = [NSString stringWithFormat:@"%.2f", [textField.text floatValue]]; break;
+        //If rating field
+        case 2: textField.text = [NSString stringWithFormat:@"%i", [textField.text intValue]]; break;
+        //Otherwise
+        default: return;
     }
 }
 
-
-- (IBAction)colourSliderChanged
-{
-    self.colour = [UIColor colorWithRed:self.redSlider.value green:self.greenSlider.value blue:self.blueSlider.value alpha:1.0f];
-    self.colourView.backgroundColor = self.colour;
-}
 
 @end
+

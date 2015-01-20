@@ -8,16 +8,58 @@
 
 #import "AssessmentsTableViewController.h"
 
-@implementation AssessmentsTableViewController
-{
+@implementation AssessmentsTableViewController {
     // Local instance variable for the fetched results controller
     NSFetchedResultsController *_fetchedResultsController;
 }
 
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    // Delete the cache to prevent inconsistencies in iOS7
+    [NSFetchedResultsController deleteCacheWithName:@"Assessments"];
+    
+    // Set the view title to the qualification name
+    self.title = self.subject.name;
+    
+    // Retrieve the objects for this table view using CoreData
+    [self performFetch];
+    
+    // Initialise variable not in edit mode
+    self.inSwipeDeleteMode = NO;
+    
+    // Add an edit button to the navigation bar
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    // Override the height of the table view header
+    self.headerView.frame = CGRectMake(0, 0, 0, 125);
+    
+    [self configureExpandableInfo];
+    
+    [self configureHeader];
+    
+    // Set the header shadow
+    self.headerView.layer.masksToBounds = NO;
+    self.headerView.layer.shadowOffset = CGSizeMake(0, 3);
+    self.headerView.layer.shadowRadius = 2;
+    self.headerView.layer.shadowOpacity = 0.3;
+}
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    // Reload the table view to ensure data is up to date
+    // Do this everytime the view appears incase the content is changed on another tab
+    [self.tableView reloadData];
+}
+
+
+#pragma mark - Core Data
+
 // Custom getter for the fetched results controller
-- (NSFetchedResultsController*)fetchedResultsController
-{
+- (NSFetchedResultsController*)fetchedResultsController {
     // Initialise the fetched results controller if nil
     if (_fetchedResultsController == nil) {
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -45,41 +87,28 @@
 }
 
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    // Delete the cache to prevent inconsistencies in iOS7
-    [NSFetchedResultsController deleteCacheWithName:@"Assessments"];
-    
-    // Set the view title to the qualification name
-    self.title = self.subject.name;
-    
-    // Retrieve the objects for this table view using CoreData
-    [self performFetch];
-    
-    // Initialise variable not in edit mode
-    self.inSwipeDeleteMode = NO;
-    
-    // Add an edit button to the navigation bar
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    // Override the height of the table view header
-    self.headerView.frame = CGRectMake(0, 0, 0, 125);
-
-    [self configureExpandableInfo];
-    
-    [self configureHeader];
-    
-    // Set the header shadow
-    self.headerView.layer.masksToBounds = NO;
-    self.headerView.layer.shadowOffset = CGSizeMake(0, 3);
-    self.headerView.layer.shadowRadius = 2;
-    self.headerView.layer.shadowOpacity = 0.3;
+- (void)performFetch {
+    // Fetch the data for the table view using CoreData
+    NSError *error;
+    if (![self.fetchedResultsController performFetch:&error]) {
+        
+        // Throw a custom error if the fetch fails
+        COREDATA_ERROR(error);
+        return;
+    }
 }
 
 
-- (void) configureExpandableInfo{
+- (void)dealloc {
+    // Stop the fetched results controller from sending notifications if the view is deallocated
+    _fetchedResultsController.delegate = nil;
+}
+
+
+#pragma mark - Table Header Area
+
+// Initialise and configure the expandable subject view
+- (void) configureExpandableInfo {
     [self.expandBtn addTarget:self action: @selector(toggleSubjectInformation) forControlEvents:UIControlEventTouchUpInside];
     self.isSubjectExpanded = false;
     self.expandSize = 0;
@@ -95,7 +124,7 @@
         if ([assessment.hasGrade boolValue]) {self.moduleCompleted += [assessment.weighting floatValue];}
     }
 
-    self.moduleProgressLabel.text = [NSString stringWithFormat: @"Module Completed: %2.f%%", self.moduleCompleted]; //TODO implement the percentage of course completed
+    self.moduleProgressLabel.text = [NSString stringWithFormat: @"Module Completed: %2.f%%", self.moduleCompleted];
     self.expandSize += sizePerField;
 
     if (![self.subject.teacherName isEqualToString:@""]) {
@@ -115,25 +144,21 @@
     }
       
     if (self.moduleAllocated == 100) {
-        //[self.warningLabel performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
-        //[self.exclamationLabel performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         CGRect frame = self.warningLabel.frame;
         frame.size.height = 0;
         [self.warningLabel setFrame:frame];
-        
         self.exclamationLabel.hidden = YES;
     } else {
         CGRect frame = self.warningLabel.frame;
         frame.size.height = 36;
         [self.warningLabel setFrame:frame];
-        
         self.exclamationLabel.hidden = NO;
-        
         self.expandSize += 50;
     }
 }
 
 
+// Toggle the visibility of the subject information view with animations
 - (void)toggleSubjectInformation {
     [self.tableView beginUpdates];
     
@@ -171,38 +196,8 @@
 }
 
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    // Reload the table view to ensure data is up to date
-    // Do this everytime the view appears incase the content is changed on another tab
-    [self.tableView reloadData];
-}
-
-
-- (void)performFetch
-{
-    // Fetch the data for the table view using CoreData
-    NSError *error;
-    if (![self.fetchedResultsController performFetch:&error]) {
-        
-        // Throw a custom error if the fetch fails
-        COREDATA_ERROR(error);
-        return;
-    }
-}
-
-
-- (void)dealloc
-{
-    // Stop the fetched results controller from sending notifications if the view is deallocated
-    _fetchedResultsController.delegate = nil;
-}
-
-
-- (void)configureHeader
-{
+// Initialise and configure the header information
+- (void)configureHeader {
     // Get the views and labels from the header
     UILabel *targetLabel = (UILabel *)[self.headerView viewWithTag:201];
     UIView *targetWrapper = (UIView *)[self.headerView viewWithTag:202];
@@ -243,27 +238,21 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections
     // 1 for normal mode, 2 for edit mode to contain the add button
     return (self.isEditing && !self.inSwipeDeleteMode) ? 2 : 1;
 }
 
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in each section
     // If the add button is visible, return 1 otherwise return the number of data items
-    if (self.isEditing && !self.inSwipeDeleteMode && section == 1) {
-        return 1;
-    } else {
-        return [self.subject.assessments count];
-    }
+    return (self.isEditing && !self.inSwipeDeleteMode && section == 1) ? 1 : [self.subject.assessments count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Check whether the current cell is the add new item cell
     BOOL isAddCell = (self.isEditing && !self.inSwipeDeleteMode && indexPath.section == 1);
     
@@ -293,8 +282,7 @@
 }
 
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath*)indexPath
-{
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath*)indexPath {
     // Get the object for this cell and set the labels
     AssessmentCriteria *currentAssessment = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
@@ -312,16 +300,16 @@
         dueDateLabel.textColor = [UIColor blackColor];
         dueMonthLabel.textColor = [UIColor blackColor];
     }
+    
+    nameLabel.text = currentAssessment.name;
 
+    // Calculate and display the days remaining
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"d"];
     dueDateLabel.text = [formatter stringFromDate:currentAssessment.deadline];
     
     [formatter setDateFormat:@"MMM"];
     dueMonthLabel.text = [formatter stringFromDate:currentAssessment.deadline];
-    
-    nameLabel.text = currentAssessment.name;
-    
     
     if (![currentAssessment.hasGrade boolValue]) {
         // Calculate the number of days between today and the assignment deadline
@@ -360,8 +348,7 @@
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.isEditing && !self.inSwipeDeleteMode) {
         
         if (indexPath.section == 1 && indexPath.row == 0) {
@@ -424,11 +411,7 @@
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     // Prevent the add item cell from being reordered
-    if (indexPath.section == 1) {
-        return NO;
-    } else {
-        return YES;
-    }
+    return (indexPath.section != 1);
 }
 
 
@@ -448,8 +431,7 @@
 
 # pragma mark - Editing Cells
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
         AssessmentCriteria *assessment = [self.fetchedResultsController objectAtIndexPath:indexPath];
@@ -466,11 +448,7 @@
 
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Set the add or delete icons to the correct cells
-    if (!self.inSwipeDeleteMode && indexPath.section == 1) {
-        return UITableViewCellEditingStyleInsert;
-    } else {
-        return UITableViewCellEditingStyleDelete;
-    }
+    return (!self.inSwipeDeleteMode && indexPath.section == 1) ? UITableViewCellEditingStyleInsert : UITableViewCellEditingStyleDelete;
 }
 
 
@@ -498,8 +476,7 @@
 
 
 // This method is run only when the user swipes to delete a row
-- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
     // Set a flag variable and enable editing mode
     self.inSwipeDeleteMode = YES;
     [self setEditing:YES animated:YES];
@@ -507,8 +484,7 @@
 
 
 // This method is run only when the user swipes to delete a row
-- (void) tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void) tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath {
     // Disable editing mode and reset the flag variable
     // Due to a bug in iOS 8.1, this method is called twice and crashes the app so check if in editing mode first
     if (self.editing) {
@@ -520,8 +496,7 @@
 
 #pragma mark - Navigation
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"addAssessment"]) {
         UINavigationController *navController = segue.destinationViewController;
         AssessmentDetailTableViewController *controller = (AssessmentDetailTableViewController*) navController.topViewController;
@@ -553,14 +528,12 @@
 
 #pragma mark - NSFetchedResultsControllerDelegate
 
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
-{
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
     [self.tableView beginUpdates];
 }
 
 
-- (void)controller:(NSFetchedResultsController*)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
-{
+- (void)controller:(NSFetchedResultsController*)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
     // Modify table rows depending on the action performed
     // (Called automatically by the NSFetchedResultsController)
     switch (type) {
@@ -581,16 +554,14 @@
 }
 
 
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     [self.tableView endUpdates];
 }
 
 
 #pragma mark - AssessmentDetailTableViewControllerDelegate
 
-- (void)AssessmentDetailTableViewController:(id)controller didFinishAddingAssessment:(AssessmentCriteria *)assessment
-{
+- (void)AssessmentDetailTableViewController:(id)controller didFinishAddingAssessment:(AssessmentCriteria *)assessment {
     assessment.subject = self.subject;
     assessment.displayOrder = [NSNumber numberWithInteger:[[self.fetchedResultsController fetchedObjects] count]];
     
@@ -607,8 +578,7 @@
 }
 
 
-- (void)AssessmentDetailTableViewController:(id)controller didFinishEditingAssessment:(AssessmentCriteria *)assessment
-{
+- (void)AssessmentDetailTableViewController:(id)controller didFinishEditingAssessment:(AssessmentCriteria *)assessment {
     // Save the item to the datastore
     NSError *error;
     if (![self.managedObjectContext save:&error]) {
@@ -622,8 +592,7 @@
 }
 
 
-- (void)AssessmentDetailTableViewControllerDidCancel:(id)controller
-{
+- (void)AssessmentDetailTableViewControllerDidCancel:(id)controller {
     // No action to take so dismiss the modal window
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -631,15 +600,13 @@
 
 #pragma mark - AssessmentGradeTableViewControllerDelegate
 
-- (void)AssessmentGradeTableViewControllerDidCancel:(AssessmentGradeTableViewController*)controller
-{
+- (void)AssessmentGradeTableViewControllerDidCancel:(AssessmentGradeTableViewController*)controller {
     // No action to take so dismiss the modal window
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
-- (void)AssessmentGradeTableViewController:(AssessmentGradeTableViewController*)controller didFinishEditingAssessment:(AssessmentCriteria*)assessment
-{
+- (void)AssessmentGradeTableViewController:(AssessmentGradeTableViewController*)controller didFinishEditingAssessment:(AssessmentCriteria*)assessment {
     // Save the item to the datastore
     NSError *error;
     if (![self.managedObjectContext save:&error]) {
@@ -647,14 +614,16 @@
         return;
     }
 
+    // Need to reload the view to update the header information
     [self viewDidLoad];
     
+    // Display a feedback message based on the final grade
     NSString* feedbackTitle;
     NSString* feedbackMessage;
     if (self.moduleCompleted == 100) {
         if (self.currentGrade < [self.subject.targetGrade floatValue]) {
             feedbackTitle = @"Awww man!";
-            feedbackMessage = @"It looks like your final grade for this subject is a little short of your target. Keep positive and use this as a learning experience. Focus on meeting your other targets with greater determinaiton!";
+            feedbackMessage = @"It looks like your final grade for this subject is a little short of your target. Keep positive and use this as a learning experience. Focus on meeting your other targets with greater determination!";
         } else {
             feedbackTitle = @"Woo hoo!";
             feedbackMessage = @"Way to go, you've finished the subject and met your goal! Treat yourself, you deserve it.";
@@ -665,7 +634,7 @@
             feedbackMessage = @"It looks like you fell short of your target this time. Keep trying though, there is still time to increase your mark!";
         } else {
             feedbackTitle = @"Nice work!";
-            feedbackMessage = @"You met your target for this assessment. You've just proved you can attain the marks your want if you have the right mindset. Keep up the good work!";
+            feedbackMessage = @"You met your target for this assessment. You've just proved you can attain the marks you want if you have the right mindset. Keep up the good work!";
         }
     }
     
@@ -677,13 +646,8 @@
 
 }
 
-/*
- This method illustrates how to use a mask layer to hide/how part of the contents of a view, and how to
- create an animation that reveals/hides the contents of a layer.
- It creates a circular sweep animatinon that reveals an image in an arc, like the sweep of a radar display
- */
-- (void) doMaskAnimation:(UIView*) sender percentageFill:(float)fillAmount;
-{
+
+- (void) doMaskAnimation:(UIView*) sender percentageFill:(float)fillAmount {
     
     //Create a shape layer that we will use as a mask for the waretoLogoLarge image view
     CAShapeLayer *maskLayer = [CAShapeLayer layer];
@@ -744,4 +708,6 @@
     [maskLayer addAnimation: swipe forKey: @"strokeEnd"];
 }
 
+
 @end
+

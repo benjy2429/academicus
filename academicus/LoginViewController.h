@@ -24,11 +24,9 @@ typedef enum LoginViewState : NSUInteger {
 
 //Define the methods a delegate must implement
 @protocol LoginViewControllerDelegate <NSObject>
-
 - (void)LoginViewControllerDidNotAuthenticate:(LoginViewController*)controller; //Called if an action was cancelled
 - (void)LoginViewControllerDidAuthenticate:(LoginViewController*)controller; //Method called when old passcode has been authenticated and passcode can now be turned off
 - (void)LoginViewControllerDidChangePasscode:(LoginViewController*)controller; //Method called when either the passcode has been changed or a new passcode has been set up
-
 @end
 
 @interface LoginViewController : UIViewController
@@ -46,6 +44,7 @@ typedef enum LoginViewState : NSUInteger {
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *codeLabel;
+
 //Keypad buttons
 @property (weak, nonatomic) IBOutlet UIButton *numKey1;
 @property (weak, nonatomic) IBOutlet UIButton *numKey2;
@@ -68,6 +67,7 @@ typedef enum LoginViewState : NSUInteger {
 
 //Sets the view up so the user can change the current passcode
 - (void) confirmExistingToChange;
+
 
 @end
 

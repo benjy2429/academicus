@@ -37,6 +37,7 @@
 		A3A3B6181A5DFFBA008D17E9 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3A3B6171A5DFFBA008D17E9 /* LoginView.xib */; };
 		A3AC584B1A64B06F001B2151 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A3AC584A1A64B06F001B2151 /* KeychainItemWrapper.m */; };
 		A3AC584C1A64B06F001B2151 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A3AC584A1A64B06F001B2151 /* KeychainItemWrapper.m */; };
+		A3B02C471A6DCC26002E6683 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3B02C461A6DCC26002E6683 /* AddressBookUI.framework */; };
 		A3B2E7691A65C942000C993A /* WorkExperience.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B2E7681A65C942000C993A /* WorkExperience.m */; };
 		A3B2E76A1A65C942000C993A /* WorkExperience.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B2E7681A65C942000C993A /* WorkExperience.m */; };
 		A3B2E76D1A65C943000C993A /* Achievement.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B2E76C1A65C943000C993A /* Achievement.m */; };
@@ -181,6 +182,7 @@
 		A3A3B6171A5DFFBA008D17E9 /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
 		A3AC58491A64B06F001B2151 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		A3AC584A1A64B06F001B2151 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
+		A3B02C461A6DCC26002E6683 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		A3B2E7671A65C942000C993A /* WorkExperience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkExperience.h; sourceTree = "<group>"; };
 		A3B2E7681A65C942000C993A /* WorkExperience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkExperience.m; sourceTree = "<group>"; };
 		A3B2E76B1A65C943000C993A /* Achievement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Achievement.h; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3B02C471A6DCC26002E6683 /* AddressBookUI.framework in Frameworks */,
 				A3A125E11A647D14006EC50D /* Security.framework in Frameworks */,
 				A3A125DF1A645AA3006EC50D /* AudioToolbox.framework in Frameworks */,
 				B5F232A91A4F5CCC00EAFF93 /* CoreData.framework in Frameworks */,
@@ -322,7 +325,6 @@
 		A3981DE71A472F2E00334345 /* Portfolio */ = {
 			isa = PBXGroup;
 			children = (
-				A3BC00281A6B25C500D1B81F /* Statistic Views */,
 				B5030B141A438DFA00E23378 /* PortfolioTableViewController.h */,
 				B5030B151A438DFA00E23378 /* PortfolioTableViewController.m */,
 				A39B88F61A5C7E8B00F883EC /* PersonalTableViewController.h */,
@@ -347,6 +349,7 @@
 				B586BF2B1A6B673900996991 /* MyPortfolioTableViewCell.m */,
 				A39B89021A5C7EDC00F883EC /* StatisticsTableViewController.h */,
 				A39B89031A5C7EDC00F883EC /* StatisticsTableViewController.m */,
+				A3BC00281A6B25C500D1B81F /* Statistic Views */,
 				A3981DEB1A472FA500334345 /* Models */,
 			);
 			name = Portfolio;
@@ -431,6 +434,7 @@
 		B5030ACC1A43788800E23378 = {
 			isa = PBXGroup;
 			children = (
+				A3B02C461A6DCC26002E6683 /* AddressBookUI.framework */,
 				B592AA101A6B2CA100025414 /* Info.plist */,
 				A3A125E01A647D14006EC50D /* Security.framework */,
 				A3A125DE1A645AA3006EC50D /* AudioToolbox.framework */,

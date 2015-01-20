@@ -10,8 +10,7 @@
 
 @implementation WorkDetailTableViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     self.companyAddressField.text = COMPANY_ADDRESS_PLACEHOLDER;
@@ -47,26 +46,23 @@
 }
 
 
-- (void) viewWillAppear:(BOOL)animated
-{
+- (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     // Open the keyboard automatically when the view appears
     [self.jobTitleField becomeFirstResponder];
 }
 
 
-- (IBAction)cancel
-{
-    // Delegate method when the cancel button is pressed
-    [self.delegate workDetailTableViewControllerDidCancel:self];
-}
-
-
-- (BOOL) isEnteredDataValid
-{
+- (BOOL) isEnteredDataValid {
     //Check for the presence of a job title
     if ([self.jobTitleField.text length] < 1) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"You must provide a job title" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return false;
+    }
+    //Check that the job title length is less than 40
+    if ([self.jobTitleField.text length] > 40) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The job title must be less than 40 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
         [alert show];
         return false;
     }
@@ -76,9 +72,33 @@
         [alert show];
         return false;
     }
+    //Check that the company name length is less than 40
+    if ([self.companyNameField.text length] > 40) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The company name must be less than 100 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return false;
+    }
+    //Check that the company address length is less than 100
+    if ([self.companyAddressField.text length] > 100) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The company address must be less than 100 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return false;
+    }
     //Check that start date is before end date
     if ([self.startDate timeIntervalSince1970] >= [self.endDate timeIntervalSince1970]) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The start date must be before the end date" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return false;
+    }
+    //Check that the referee name length is less than 30
+    if ([self.refereeNameField.text length] > 30) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The referee name must be less than 30 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return false;
+    }
+    //Check that the referee email length is less than 50
+    if ([self.refereeEmailField.text length] > 50) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The referee email must be less than 50 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
         [alert show];
         return false;
     }
@@ -86,8 +106,8 @@
 }
 
 
-- (IBAction)done
-{
+- (IBAction)done {
+    // Validate the input data
     if (![self isEnteredDataValid]) {return;}
     
     if (self.itemToEdit != nil) {
@@ -120,8 +140,15 @@
 }
 
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
+- (IBAction)cancel {
+    // Delegate method when the cancel button is pressed
+    [self.delegate workDetailTableViewControllerDidCancel:self];
+}
+
+
+#pragma mark - UITextFieldDelegate
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
     // When the name field is edited, hide any visible date pickers
     if (self.startDatePickerVisible) {
         [self hideStartDatePicker];
@@ -131,9 +158,10 @@
 }
 
 
+#pragma mark - UITextViewDelegate
+
 // Remove placeholder text for UITextView elements
-- (void)textViewDidBeginEditing:(UITextView *)textView
-{
+- (void)textViewDidBeginEditing:(UITextView *)textView {
     if (textView.tag == 201 && [textView.text isEqualToString:COMPANY_ADDRESS_PLACEHOLDER]) {
         textView.text = @"";
         textView.textColor = [UIColor blackColor];
@@ -144,8 +172,7 @@
 
 
 // Set placeholder text for UITextView elements
-- (void)textViewDidEndEditing:(UITextView *)textView
-{
+- (void)textViewDidEndEditing:(UITextView *)textView {
     if (textView.tag == 201 && [textView.text isEqualToString:@""]) {
         textView.text = COMPANY_ADDRESS_PLACEHOLDER;
         textView.textColor = [UIColor colorWithWhite:0.8f alpha:1.0f];
@@ -155,8 +182,9 @@
 }
 
 
-- (NSString*)formatDate:(NSDate*)date
-{
+#pragma mark - Date Pickers
+
+- (NSString*)formatDate:(NSDate*)date {
     // Helper method to quickly format date strings to be displayed in labels
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterLongStyle];
@@ -164,8 +192,7 @@
 }
 
 
-- (void)showStartDatePicker
-{
+- (void)showStartDatePicker {
     // Set the visible flag to true
     self.startDatePickerVisible = YES;
     // Find the rows of the label and the date picker
@@ -185,8 +212,7 @@
 }
 
 
-- (void)showEndDatePicker
-{
+- (void)showEndDatePicker {
     // Set the visible flag to true
     self.endDatePickerVisible = YES;
     // Find the rows of the label and the date picker
@@ -206,8 +232,7 @@
 }
 
 
-- (void)hideStartDatePicker
-{
+- (void)hideStartDatePicker {
     // Set the visible flag to false
     self.startDatePickerVisible = NO;
     // Find the rows of the label and the date picker
@@ -222,8 +247,7 @@
 }
 
 
-- (void)hideEndDatePicker
-{
+- (void)hideEndDatePicker {
     // Set the visible flag to false
     self.endDatePickerVisible = NO;
     // Find the rows of the label and the date picker
@@ -238,9 +262,34 @@
 }
 
 
+- (void)startDateChanged:(UIDatePicker*)datePicker {
+    // Update the variable and label when the date picker value changes
+    self.startDate = datePicker.date;
+    self.startDateLabel.text = [self formatDate:self.startDate];
+}
+
+
+- (void)endDateChanged:(UIDatePicker*)datePicker {
+    // Update the variable and label when the date picker value changes
+    self.endDate = datePicker.date;
+    self.endDateLabel.text = [self formatDate:self.endDate];
+}
+
+
+#pragma mark - Table view data source
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    // If the date picker is visible for this section, return 2 otherwise call the super method
+    if ((section == 2 && self.startDatePickerVisible) || (section == 3 && self.endDatePickerVisible)) {
+        return 2;
+    } else {
+        return [super tableView:tableView numberOfRowsInSection:section];
+    }
+}
+
+
 // Override this method to enable the date picker cell to be created
-- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // If the cell should be a date picker cell
     if ((indexPath.section == 2 && indexPath.row == 1) || (indexPath.section == 3 && indexPath.row == 1)) {
         
@@ -275,36 +324,7 @@
 }
 
 
-- (void)startDateChanged:(UIDatePicker*)datePicker
-{
-    // Update the variable and label when the date picker value changes
-    self.startDate = datePicker.date;
-    self.startDateLabel.text = [self formatDate:self.startDate];
-}
-
-
-- (void)endDateChanged:(UIDatePicker*)datePicker
-{
-    // Update the variable and label when the date picker value changes
-    self.endDate = datePicker.date;
-    self.endDateLabel.text = [self formatDate:self.endDate];
-}
-
-
-#pragma mark - Table view data source
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // If the date picker is visible for this section, return 2 otherwise call the super method
-    if ((section == 2 && self.startDatePickerVisible) || (section == 3 && self.endDatePickerVisible)) {
-        return 2;
-    } else {
-        return [super tableView:tableView numberOfRowsInSection:section];
-    }
-}
-
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     // If this cell contains a cell picker, manually set the cell height to fit the picker
     if ((indexPath.section == 2 && indexPath.row == 1) || (indexPath.section == 3 && indexPath.row == 1)) {
         return 217.0f;
@@ -315,8 +335,7 @@
 }
 
 
-- (NSIndexPath*)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (NSIndexPath*)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // If this cell is a date label, enable selections so the user can click to show or hide the date picker
     if ((indexPath.section == 2 && indexPath.row == 0) || (indexPath.section == 3 && indexPath.row == 0)) {
         return indexPath;
@@ -327,8 +346,7 @@
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     // Hide the keyboard if a cell was clicked on
@@ -375,8 +393,7 @@
 
 
 // This method is required to add dynamic cells to a table view containing static cells
-- (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ((indexPath.section == 2 && indexPath.row == 1) || (indexPath.section == 3 && indexPath.row == 1)) {
         NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:0 inSection:indexPath.section];
         return [super tableView:tableView indentationLevelForRowAtIndexPath:newIndexPath];
