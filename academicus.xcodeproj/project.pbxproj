@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A34050741A703D5800BB8501 /* generic_app.feature in Resources */ = {isa = PBXBuildFile; fileRef = A34050731A703D5800BB8501 /* generic_app.feature */; };
+		A34050751A703D5800BB8501 /* generic_app.feature in Resources */ = {isa = PBXBuildFile; fileRef = A34050731A703D5800BB8501 /* generic_app.feature */; };
+		A34050761A703D9E00BB8501 /* MyPortfolioTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B586BF2B1A6B673900996991 /* MyPortfolioTableViewCell.m */; };
+		A34050771A703DC300BB8501 /* HighestRatedAssessmentsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A34E95471A6B4C1500D08274 /* HighestRatedAssessmentsCell.m */; };
+		A34050781A703DD400BB8501 /* PerformanceBySubjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A34E95511A6B4D4D00D08274 /* PerformanceBySubjectCell.m */; };
 		A34E95491A6B4C1600D08274 /* HighestRatedAssessmentsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A34E95471A6B4C1500D08274 /* HighestRatedAssessmentsCell.m */; };
 		A34E954A1A6B4C1600D08274 /* HighestRatedAssessmentsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A34E95481A6B4C1600D08274 /* HighestRatedAssessmentsCell.xib */; };
 		A34E95531A6B4D4D00D08274 /* PerformanceBySubjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A34E95511A6B4D4D00D08274 /* PerformanceBySubjectCell.m */; };
@@ -140,6 +145,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A34050731A703D5800BB8501 /* generic_app.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = generic_app.feature; sourceTree = "<group>"; };
 		A34E95461A6B4C1500D08274 /* HighestRatedAssessmentsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighestRatedAssessmentsCell.h; sourceTree = "<group>"; };
 		A34E95471A6B4C1500D08274 /* HighestRatedAssessmentsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighestRatedAssessmentsCell.m; sourceTree = "<group>"; };
 		A34E95481A6B4C1600D08274 /* HighestRatedAssessmentsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HighestRatedAssessmentsCell.xib; sourceTree = "<group>"; };
@@ -521,6 +527,7 @@
 		B585D55C1A5B490200AC36D1 /* features */ = {
 			isa = PBXGroup;
 			children = (
+				A34050731A703D5800BB8501 /* generic_app.feature */,
 				B585D55D1A5B490200AC36D1 /* grades_management_qualifications.feature */,
 				B5EDAD2C1A5B7E0100AD147A /* grades_management_years.feature */,
 				B5C99C371A5E22530074C5B3 /* grades_management_subjects.feature */,
@@ -657,6 +664,7 @@
 				A3BC00401A6B28DF00D1B81F /* NumberOfYearsCell.xib in Resources */,
 				A3A3B6181A5DFFBA008D17E9 /* LoginView.xib in Resources */,
 				B5A6CA251A5B574C0041CEE9 /* navbar_steps.rb in Resources */,
+				A34050741A703D5800BB8501 /* generic_app.feature in Resources */,
 				A3BC004E1A6B32EE00D1B81F /* HighestGradedAssessmentsCell.xib in Resources */,
 				B5030AE91A43788800E23378 /* Images.xcassets in Resources */,
 				A34E954A1A6B4C1600D08274 /* HighestRatedAssessmentsCell.xib in Resources */,
@@ -684,6 +692,7 @@
 				A3BC00411A6B28DF00D1B81F /* NumberOfYearsCell.xib in Resources */,
 				B585D5651A5B490200AC36D1 /* grades_management_qualifications.feature in Resources */,
 				B585D56A1A5B490200AC36D1 /* env.rb in Resources */,
+				A34050751A703D5800BB8501 /* generic_app.feature in Resources */,
 				B585D5681A5B490200AC36D1 /* 01_launch.rb in Resources */,
 				A34E955B1A6B4D7400D08274 /* AssessmentsOnTargetCell.xib in Resources */,
 				B585D5691A5B490200AC36D1 /* 02_pre_stop_hooks.rb in Resources */,
@@ -768,9 +777,11 @@
 				B5C99C401A5E27950074C5B3 /* WorkDetailTableViewController.m in Sources */,
 				B5A490621A6AE07500506B7B /* LocationSearchTableViewController.m in Sources */,
 				B5C99C411A5E27950074C5B3 /* MyPortfolioTableViewController.m in Sources */,
+				A34050771A703DC300BB8501 /* HighestRatedAssessmentsCell.m in Sources */,
 				A3BC00461A6B2D5E00D1B81F /* NumberOfAssessmentsCell.m in Sources */,
 				B5C99C421A5E27950074C5B3 /* StatisticsTableViewController.m in Sources */,
 				B5C99C431A5E27950074C5B3 /* AboutTableViewController.m in Sources */,
+				A34050761A703D9E00BB8501 /* MyPortfolioTableViewCell.m in Sources */,
 				B5C99C441A5E27950074C5B3 /* LoginViewController.m in Sources */,
 				A3BC004D1A6B32EE00D1B81F /* HighestGradedAssessmentsCell.m in Sources */,
 				B546EAC81A5B38E40014820C /* YearsTableViewController.m in Sources */,
@@ -779,6 +790,7 @@
 				B546EACA1A5B38E40014820C /* SettingsTableViewController.m in Sources */,
 				B546EACD1A5B38E40014820C /* Year.m in Sources */,
 				A3B2E76E1A65C943000C993A /* Achievement.m in Sources */,
+				A34050781A703DD400BB8501 /* PerformanceBySubjectCell.m in Sources */,
 				B546EACF1A5B38E40014820C /* AssessmentsTableViewController.m in Sources */,
 				B546EAD01A5B38E40014820C /* Subject.m in Sources */,
 				A3B2E76A1A65C942000C993A /* WorkExperience.m in Sources */,
