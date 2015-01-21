@@ -32,6 +32,10 @@
     // Add an edit button to the navigation bar
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    self.weightingAllocated = [self.subject weightingAllocated];
+    self.subjectCompleted = [self.subject amountOfSubjectCompleted];
+    self.currentGrade = [self.subject calculateCurrentGrade];
+    
     // Override the height of the table view header
     self.headerView.frame = CGRectMake(0, 0, 0, 125);
     
@@ -44,6 +48,8 @@
     self.headerView.layer.shadowOffset = CGSizeMake(0, 3);
     self.headerView.layer.shadowRadius = 2;
     self.headerView.layer.shadowOpacity = 0.3;
+    
+    
 }
 
 
@@ -114,17 +120,8 @@
     self.expandSize = 0;
     float sizePerField = 37.5;
     
-    //Calculate amount of module allocated and amount of module completed
-    self.moduleAllocated = 0.0f;
-    self.moduleCompleted = 0.0f;
-    NSArray *assessments = [self.fetchedResultsController.fetchedObjects mutableCopy];
-    for (NSManagedObject *object in assessments) {
-        AssessmentCriteria *assessment = (AssessmentCriteria *) object;
-        self.moduleAllocated += [assessment.weighting floatValue];
-        if ([assessment.hasGrade boolValue]) {self.moduleCompleted += [assessment.weighting floatValue];}
-    }
-
-    self.moduleProgressLabel.text = [NSString stringWithFormat: @"Module Completed: %2.f%%", self.moduleCompleted];
+    //Populate fields in this section based on information about the subject
+    self.moduleProgressLabel.text = [NSString stringWithFormat: @"Subject Completed: %2.f%%", self.subjectCompleted];
     self.expandSize += sizePerField;
 
     if (![self.subject.teacherName isEqualToString:@""]) {
@@ -143,7 +140,7 @@
         [self.teacherEmailScrollView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
     }
       
-    if (self.moduleAllocated == 100) {
+    if (self.weightingAllocated == 100) {
         CGRect frame = self.warningLabel.frame;
         frame.size.height = 0;
         [self.warningLabel setFrame:frame];
@@ -217,22 +214,13 @@
     // Set the target grade
     targetLabel.text = [NSString stringWithFormat:@"%@%%", self.subject.targetGrade];
     
-    // Calculate the current grade from the marked assessments
-    self.currentGrade = 0.0f;
-    NSArray *assessments = [self.fetchedResultsController.fetchedObjects mutableCopy];
-    for (NSManagedObject *object in assessments) {
-        AssessmentCriteria *assessment = (AssessmentCriteria *) object;
-        if ([assessment.hasGrade boolValue]) {
-            self.currentGrade += (([assessment.finalGrade floatValue] * [assessment.weighting floatValue]) / 100);
-        }
-    }
     currentLabel.text = [NSString stringWithFormat:@"%.0f%%", self.currentGrade];
     
     [self doMaskAnimation:targetWrapper percentageFill:[self.subject.targetGrade floatValue]];
     [self doMaskAnimation:currentWrapper percentageFill:self.currentGrade];
     
     UILabel *currentGradeTitleLabel = (UILabel *)[self.headerView viewWithTag:50];
-    currentGradeTitleLabel.text = (self.moduleCompleted == 100) ? @"Final Grade" : @"Current Grade";
+    currentGradeTitleLabel.text = (self.subjectCompleted == 100) ? @"Final Grade" : @"Current Grade";
 }
 
 
@@ -344,31 +332,7 @@
     
     if (![currentAssessment.hasGrade boolValue]) {
         // Calculate the number of days between today and the assignment deadline
-        NSDate *currentDate = [NSDate date];
-        NSDate *deadlineDate = currentAssessment.deadline;
-        
-        NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-        [calendar rangeOfUnit:NSDayCalendarUnit startDate:&currentDate interval:nil forDate:currentDate];
-        [calendar rangeOfUnit:NSDayCalendarUnit startDate:&deadlineDate interval:nil forDate:deadlineDate];
-        NSDateComponents *difference = [calendar components:NSDayCalendarUnit fromDate:currentDate toDate:deadlineDate options:0];
-        
-        switch ([difference day]) {
-            case 0: countdownLabel.text = @"Due today"; break;
-            case 1: countdownLabel.text = @"Due tomorrow"; break;
-            default: {
-                if ([difference day] < 0) {
-                    countdownLabel.text = @"Deadline passed";
-                } else if ([difference day] < 366) {
-                    countdownLabel.text = [NSString stringWithFormat: @"You have %i days remaining", (int)[difference day]];
-                } else {
-                    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-                    [dateFormatter setDateFormat:@"dd-MM-yyyy"];
-                    countdownLabel.text = [NSString stringWithFormat: @"Due on %@", [dateFormatter stringFromDate:currentAssessment.deadline]];
-                }
-                break;
-            }
-        }
-        
+        countdownLabel.text = [currentAssessment getFriendlyDaysRemaining];
     } else {
         // Display the final grade
         UILabel *gradeLabel = (UILabel *) [cell viewWithTag:105];
@@ -533,7 +497,7 @@
         AssessmentDetailTableViewController *controller = (AssessmentDetailTableViewController*) navController.topViewController;
         controller.delegate = self;
         controller.managedObjectContext = self.managedObjectContext;
-        controller.moduleAllocated = self.moduleAllocated;
+        controller.weightingAllocated = self.weightingAllocated;
     
     } else if ([segue.identifier isEqualToString:@"editAssessment"]) {
         UINavigationController *navController = segue.destinationViewController;
@@ -543,7 +507,7 @@
         
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         controller.itemToEdit = [self.fetchedResultsController objectAtIndexPath:indexPath];
-        controller.moduleAllocated = self.moduleAllocated - [controller.itemToEdit.weighting floatValue];
+        controller.weightingAllocated = self.weightingAllocated - [controller.itemToEdit.weighting floatValue];
 
     } else if ([segue.identifier isEqualToString:@"addGrade"]) {
         UINavigationController *navController = segue.destinationViewController;
@@ -653,7 +617,7 @@
         // Display a feedback message based on the final grade
         NSString* feedbackTitle;
         NSString* feedbackMessage;
-        if (self.moduleCompleted == 100) {
+        if (self.subjectCompleted == 100) {
             if (self.currentGrade < [self.subject.targetGrade floatValue]) {
                 feedbackTitle = @"Awww man!";
                 feedbackMessage = @"It looks like your final grade for this subject is a little short of your target. Keep positive and use this as a learning experience. Focus on meeting your other targets with greater determination!";

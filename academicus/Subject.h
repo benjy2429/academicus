@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "AssessmentCriteria.h"
+#import "Year.h"
 
 @class AssessmentCriteria, Year;
 
@@ -36,6 +38,11 @@
 - (void)removeAssessmentsObject:(AssessmentCriteria *)value;
 - (void)addAssessments:(NSOrderedSet *)values;
 - (void)removeAssessments:(NSOrderedSet *)values;
+
+- (float)amountOfSubjectCompleted;
+- (float)weightingAllocated;
+- (float)calculateCurrentGrade;
+- (NSString*) toStringForPorfolio;
 
 @end
 

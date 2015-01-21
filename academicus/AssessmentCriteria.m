@@ -7,8 +7,6 @@
 //
 
 #import "AssessmentCriteria.h"
-#import "Subject.h"
-
 
 @implementation AssessmentCriteria
 
@@ -90,6 +88,44 @@
             break;
         }
     }
+}
+
+
+//Return a human friendly version of the number of days remaining until the deadline
+- (NSString*) getFriendlyDaysRemaining {
+    //Get todays date
+    NSDate *currentDate = [NSDate date];
+    
+    //Calculate the difference in days
+    NSDate *deadlineDate = self.deadline;
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&currentDate interval:nil forDate:currentDate];
+    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&deadlineDate interval:nil forDate:deadlineDate];
+    NSDateComponents *difference = [calendar components:NSDayCalendarUnit fromDate:currentDate toDate:deadlineDate options:0];
+    
+    //Add a few special cases depending on the difference between today and the deadline
+    switch ([difference day]) {
+        case 0: return @"Due today"; break; //If due today
+        case 1: return @"Due tomorrow"; break; //If due tomorrow
+        default: {
+            //If the number of day exceeds a year, display the date instead
+            if ([difference day] < 366) {
+                return [NSString stringWithFormat: @"You have %i days remaining", (int)[difference day]];
+            } else {
+                NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"dd-MM-yyyy"];
+                return [NSString stringWithFormat: @"Due on %@", [dateFormatter stringFromDate:self.deadline]];
+            }
+            break;
+        }
+    }
+}
+
+
+//Return a formatted string containing deatils for the portfolio page
+- (NSString*) toStringForPorfolio {
+    float weightedGrade = (([self.finalGrade floatValue] * [self.weighting floatValue]) / 100);
+    return [NSString stringWithFormat:@"                  %@: %.0f%%", self.name, weightedGrade];
 }
 
 

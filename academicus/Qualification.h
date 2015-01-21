@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "Year.h"
 
 @class Year;
 
@@ -31,6 +32,8 @@
 - (void)removeYearsObject:(Year *)value;
 - (void)addYears:(NSOrderedSet *)values;
 - (void)removeYears:(NSOrderedSet *)values;
+
+- (NSString*) toStringForPorfolio;
 
 @end
 

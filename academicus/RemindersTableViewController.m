@@ -14,10 +14,10 @@
 }
 
 
-- (void)viewDidLoad {
+- (void) viewDidLoad {
     [super viewDidLoad];
 
-    //Default is upcoming
+    // Default is upcoming
     self.isPast = false;
     
     // Delete the cache to prevent inconsistencies in iOS7
@@ -29,7 +29,7 @@
     // Override the height of the table view header
     self.tableView.tableHeaderView.frame = CGRectMake(0, 0, 0, 44);
     
-    //Swipe gestures that enable the user to swipe between the segmented controls
+    // Swipe gestures that enable the user to swipe between the segmented controls
     UISwipeGestureRecognizer *leftGestureRecogniser = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swiped:)];
     [leftGestureRecogniser setDirection:UISwipeGestureRecognizerDirectionLeft];
     [self.tableView addGestureRecognizer:leftGestureRecogniser];
@@ -43,7 +43,7 @@
 #pragma mark - Core Data
 
 // Custom getter for the fetched results controller
-- (NSFetchedResultsController*)fetchedResultsController {
+- (NSFetchedResultsController*) fetchedResultsController {
     // Initialise the fetched results controller if nil
     if (_fetchedResultsController == nil) {
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -67,16 +67,14 @@
         // Assign this class as the delegate
         _fetchedResultsController.delegate = self;
     }
-    
     return _fetchedResultsController;
 }
 
 
-- (void)performFetch {
+- (void) performFetch {
     // Fetch the data for the table view using CoreData
     NSError *error;
     if (![self.fetchedResultsController performFetch:&error]) {
-        
         // Throw a custom error if the fetch fails
         COREDATA_ERROR(error);
         return;
@@ -84,7 +82,7 @@
 }
 
 
-- (void)dealloc {
+- (void) dealloc {
     // Stop the fetched results controller from sending notifications if the view is deallocated
     _fetchedResultsController.delegate = nil;
 }
@@ -92,8 +90,8 @@
 
 #pragma mark - Segmented Control
 
-//Called when the segmented control is changed
-- (IBAction)segmentSwitch:(id)sender {
+// Called when the segmented control is changed
+- (IBAction) segmentSwitch:(id)sender {
     UISegmentedControl* segmentControl = (UISegmentedControl*) sender;
     NSInteger selectedSegment = segmentControl.selectedSegmentIndex;
     self.isPast = (selectedSegment != 0);
@@ -106,11 +104,11 @@
 }
 
 
-//Called when a swipe gesture is recgonised
-- (void)swiped:(UISwipeGestureRecognizer *)gestureRecogniser {
+// Called when a swipe gesture is recgonised
+- (void) swiped:(UISwipeGestureRecognizer *)gestureRecogniser {
     UISegmentedControl *segmentedControl = (UISegmentedControl *)[self.tableView viewWithTag:700];
     
-    //Set the segmented control based on the direction of swipe
+    // Set the segmented control based on the direction of swipe
     if (gestureRecogniser.direction == UISwipeGestureRecognizerDirectionRight) {
         segmentedControl.selectedSegmentIndex = 0;
     } else if (gestureRecogniser.direction == UISwipeGestureRecognizerDirectionLeft) {
@@ -123,20 +121,20 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections
     return [[self.fetchedResultsController sections] count];
 }
 
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in each section
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
     return [sectionInfo numberOfObjects];
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Assign the correct identifier for this cell
     NSString *myIdentifier;
     if (self.isPast) {
@@ -158,15 +156,15 @@
 }
 
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath*)indexPath {
+- (void) configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath*)indexPath {
     // Get the object for this cell and set the labels
     AssessmentCriteria *assessment = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
-    //Subject Colour
+    // Subject Colour
     UIView *colourBar = (UIView *)[cell viewWithTag:100];
     colourBar.backgroundColor = assessment.subject.colour;
     
-    //Date labels
+    // Date labels
     UILabel *dateDayLabel = (UILabel *)[cell viewWithTag:101];
     NSCalendar* calender = [NSCalendar currentCalendar];
     NSDateComponents* dateComponents = [calender components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:assessment.deadline];
@@ -177,15 +175,15 @@
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     dateMonthLabel.text = [[dateFormatter shortMonthSymbols] objectAtIndex:([dateComponents month]-1)];
  
-    //Assessment Information
+    // Assessment Information
     UILabel *assessmentNameLabel = (UILabel *)[cell viewWithTag:200];
     assessmentNameLabel.text = assessment.name;
     UILabel *subjectNameLabel = (UILabel *)[cell viewWithTag:201];
     subjectNameLabel.text = assessment.subject.name;
 
-    //If a past event configure cell for a past deadline
+    // If a past event configure cell for a past deadline
     if (self.isPast) {
-        //Add a rating
+        // Add a rating
         UILabel *ratingLabel = (UILabel *)[cell viewWithTag:202];
         switch ([assessment.rating intValue]) {
             case 1: ratingLabel.text = @"★☆☆☆☆"; break;
@@ -195,7 +193,7 @@
             case 5: ratingLabel.text = @"★★★★★"; break;
             default: ratingLabel.text = @"No rating"; break;
         }
-        //Show a grade if it has one
+        // Show a grade if it has one
         if ([assessment.hasGrade boolValue]) {
             UILabel *gradeLabel = (UILabel *)[cell viewWithTag:300];
             gradeLabel.text = [NSString stringWithFormat: @"%d%%",[assessment.finalGrade intValue]];
@@ -205,28 +203,9 @@
         
         //Add a days remaining label
         UILabel *daysRemainingLabel = (UILabel *)[cell viewWithTag:202];
-        NSDate *currentDate = [NSDate date];
-        NSDate *deadlineDate = assessment.deadline;
-        NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-        [calendar rangeOfUnit:NSDayCalendarUnit startDate:&currentDate interval:nil forDate:currentDate];
-        [calendar rangeOfUnit:NSDayCalendarUnit startDate:&deadlineDate interval:nil forDate:deadlineDate];
-        NSDateComponents *difference = [calendar components:NSDayCalendarUnit fromDate:currentDate toDate:deadlineDate options:0];
-        
-        //Add a few special cases depending on the difference between today and the deadline
-        switch ([difference day]) {
-            case 0: daysRemainingLabel.text = @"Due today"; break;
-            case 1: daysRemainingLabel.text = @"Due tomorrow"; break;
-            default: {
-                if ([difference day] < 366) {
-                    daysRemainingLabel.text = [NSString stringWithFormat: @"You have %i days remaining", (int)[difference day]];
-                } else {
-                    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-                    [dateFormatter setDateFormat:@"dd-MM-yyyy"];
-                    daysRemainingLabel.text = [NSString stringWithFormat: @"Due on %@", [dateFormatter stringFromDate:assessment.deadline]];
-                }
-                break;
-            }
-        }
+
+        //Get a human friendly version of the days remaining until the deadline
+        daysRemainingLabel.text = [assessment getFriendlyDaysRemaining];
         
         //Add an alarm icon if a reminder is set
         UIImageView *alarmIcon = (UIImageView *)[cell viewWithTag:300];
@@ -339,8 +318,7 @@
 
 #pragma mark - UIScrollViewDelegate
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     // When the user scrolls down, keep the segmented control at the top of the screen under the navigation bar using a transform
     // Otherwise, scroll up as normal
     CGFloat offsetY = scrollView.contentOffset.y + 64.0f;

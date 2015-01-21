@@ -79,7 +79,7 @@
         return false;
     }
     //Check that the weighting for this assessment is permissible given weightings for other assessment criteria
-    if ([self.weightingField.text floatValue] + self.moduleAllocated > 100) {
+    if ([self.weightingField.text floatValue] + self.weightingAllocated > 100) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The subject weighting is too high. The weighting for all assessments in a subject should total 100%" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
         [alert show];
         return false;

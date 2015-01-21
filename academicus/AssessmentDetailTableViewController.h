@@ -25,7 +25,7 @@
 @property (strong) AssessmentCriteria *itemToEdit;
 
 // Percentage of the module that has already been allocated (passed in)
-@property (assign) float moduleAllocated;
+@property (assign) float weightingAllocated;
 
 // IBOutlets
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneBtn;
