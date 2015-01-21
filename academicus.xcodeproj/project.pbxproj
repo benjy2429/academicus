@@ -130,7 +130,6 @@
 		B5F232AF1A4F5D5D00EAFF93 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5F232AD1A4F5D5D00EAFF93 /* DataModel.xcdatamodeld */; };
 		B5F238E91A6F29D70072428C /* CLPlacemark+FullAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F238E81A6F29D70072428C /* CLPlacemark+FullAddress.m */; };
 		B5F238EA1A6F29D70072428C /* CLPlacemark+FullAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F238E81A6F29D70072428C /* CLPlacemark+FullAddress.m */; };
-		B5F38C561A7020E7009CBCF9 /* AssessmentCriteriaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F38C551A7020E7009CBCF9 /* AssessmentCriteriaTests.m */; };
 		B5FD432B1A51029D00AC583E /* Subject.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FD432A1A51029D00AC583E /* Subject.m */; };
 /* End PBXBuildFile section */
 
@@ -264,7 +263,6 @@
 		B5F232AE1A4F5D5D00EAFF93 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		B5F238E71A6F29D70072428C /* CLPlacemark+FullAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLPlacemark+FullAddress.h"; sourceTree = "<group>"; };
 		B5F238E81A6F29D70072428C /* CLPlacemark+FullAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLPlacemark+FullAddress.m"; sourceTree = "<group>"; };
-		B5F38C551A7020E7009CBCF9 /* AssessmentCriteriaTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AssessmentCriteriaTests.m; path = academicusTests/AssessmentCriteriaTests.m; sourceTree = SOURCE_ROOT; };
 		B5FD43291A51029D00AC583E /* Subject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Subject.h; sourceTree = "<group>"; };
 		B5FD432A1A51029D00AC583E /* Subject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Subject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -511,7 +509,6 @@
 				B58FD3331A702C4000BE0D25 /* academicusTests.m */,
 				B5030AF51A43788800E23378 /* Supporting Files */,
 				B5A671B61A700C25005F7424 /* CLPlacemark+FullAddressTests.m */,
-				B5F38C551A7020E7009CBCF9 /* AssessmentCriteriaTests.m */,
 			);
 			path = academicusTests;
 			sourceTree = "<group>";
@@ -758,7 +755,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5F38C561A7020E7009CBCF9 /* AssessmentCriteriaTests.m in Sources */,
 				B58FD3341A702C4000BE0D25 /* academicusTests.m in Sources */,
 				B5A671B71A700C25005F7424 /* CLPlacemark+FullAddressTests.m in Sources */,
 			);
