@@ -103,19 +103,19 @@
         // Set a notification 3 weeks after the deadline if notifications are enabled
         if (self.itemToEdit.deadline != self.deadlineDate) {
             self.itemToEdit.deadline = self.deadlineDate;
-            [self createDeadlineReminder:self.itemToEdit byReplacing:YES];
+            [self.itemToEdit createDeadlineReminderByReplacing:YES];
         }
 
         // User Reminder Notification
         // If a reminder exists, cancel the notification
         if (self.itemToEdit.reminder != nil) {
-            [self removeReminder:self.itemToEdit];
+            [self.itemToEdit removeReminder];
         }
         
         // If the reminder has been enabled, schedule a new notification
         if (self.reminderSwitch.on) {
             self.itemToEdit.reminder = self.reminderDate;
-            [self createReminder:self.itemToEdit];
+            [self.itemToEdit createReminder];
         } else {
             self.itemToEdit.reminder = nil;
         }
@@ -132,12 +132,12 @@
         newAssessment.reminder = (self.reminderSwitch.on) ? self.reminderDate : nil;
         
         // 3 Week Add Grade Reminder Notification
-        [self createDeadlineReminder:newAssessment byReplacing:NO];
+        [newAssessment createDeadlineReminderByReplacing:NO];
         
         // User Reminder Notification
         // Check if a reminder has been added so a new notification can be scheduled
         if (self.reminderSwitch.on) {
-            [self createReminder:newAssessment];
+            [newAssessment createReminder];
         }
         
         [self.delegate AssessmentDetailTableViewController:self didFinishAddingAssessment:newAssessment];
@@ -163,73 +163,6 @@
         // Otherwise hide the date picker and reset the reminder value
         [self hideReminderDatePicker];
         self.reminderLabel.text = @"No reminder set";
-    }
-}
-
-
-#pragma mark - Local Notifications
-
-// Create a reminder that the user can set
-- (void)createReminder:(AssessmentCriteria *)assessment {
-    UILocalNotification *notification = [[UILocalNotification alloc] init];
-    notification.fireDate = self.reminderDate;
-    notification.alertBody = [NSString stringWithFormat:@"%@ is due soon!", assessment.name];
-    notification.timeZone = [NSTimeZone defaultTimeZone];
-    notification.userInfo = @{@"reminder": assessment.reminder};
-    notification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-    
-    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-}
-
-
-// Delete a reminder that the user has set
-- (void)removeReminder:(AssessmentCriteria *)assessment {
-    NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
-    for (UILocalNotification *notification in notifications) {
-        NSDictionary *userInfo = notification.userInfo;
-        
-        if ([userInfo valueForKey:@"reminder"] == self.itemToEdit.reminder) {
-            [[UIApplication sharedApplication] cancelLocalNotification:notification];
-            break;
-        }
-    }
-}
-
-
-// If enabled, automatically create a reminder 3 weeks after the deadline to notify the user to add a grade
-- (void)createDeadlineReminder:(AssessmentCriteria *)assessment byReplacing:(BOOL)willReplace {
-    // Calculate the date 3 weeks after the deadline to set a notification reminder
-    NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
-    [dateComponents setDay:21];
-    NSDate *deadlineReminderDate = [[NSCalendar currentCalendar] dateByAddingComponents:dateComponents toDate:self.deadlineDate options:0];
-    
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"notificationsEnabled"] && [deadlineReminderDate timeIntervalSince1970] > [[NSDate date] timeIntervalSince1970]) {
-        
-        if (willReplace) { [self removeDeadlineReminder:assessment]; }
-        
-        UILocalNotification *notification = [[UILocalNotification alloc] init];
-        notification.fireDate = deadlineReminderDate;
-        notification.alertBody = [NSString stringWithFormat:@"Don't forget to add a grade for %@!", assessment.name];
-        notification.timeZone = [NSTimeZone defaultTimeZone];
-        notification.userInfo = @{@"isDeadlineReminder" : @YES, @"deadline": assessment.deadline};
-        notification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-        
-        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-    }
-}
-
-
-// If enabled, remove an automatic add grade reminder which was set 3 weeks after the deadline
-- (void)removeDeadlineReminder:(AssessmentCriteria *)assessment {
-    // Find the existing noification and delete it
-    NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
-    for (UILocalNotification *notification in notifications) {
-        NSDictionary *userInfo = notification.userInfo;
-        
-        if ([[userInfo valueForKey:@"isDeadlineReminder"] boolValue] && [userInfo valueForKey:@"deadline"] == assessment.deadline) {
-            [[UIApplication sharedApplication] cancelLocalNotification:notification];
-            break;
-        }
     }
 }
 

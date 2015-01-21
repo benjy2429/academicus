@@ -26,5 +26,10 @@
 @property (nonatomic, retain) Subject *subject;
 @property (nonatomic, retain) NSNumber * displayOrder;
 
+- (void)createReminder;
+- (void)removeReminder;
+- (void)createDeadlineReminderByReplacing:(BOOL)willReplace;
+- (void)removeDeadlineReminder;
+
 @end
 

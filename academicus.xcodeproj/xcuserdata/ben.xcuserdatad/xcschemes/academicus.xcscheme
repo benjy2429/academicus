@@ -12,6 +12,16 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B5030AF01A43788800E23378"
+               BuildableName = "academicusTests.xctest"
+               BlueprintName = "academicusTests"
+               ReferencedContainer = "container:academicus.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
