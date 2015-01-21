@@ -131,7 +131,7 @@
 #pragma mark - Table View
 
 - (void)configureAddressCell {
-    self.addressLabel.text = (self.addressLocation != nil) ? [NSString stringWithFormat:@"%@, %@", self.addressLocation.name, ABCreateStringWithAddressDictionary(self.addressLocation.addressDictionary, NO)] : @"No Location Selected";
+    self.addressLabel.text = (self.addressLocation != nil) ? [NSString stringWithFormat:@"%@, %@", self.addressLocation.name, [self.addressLocation fullAddress]] : @"No Location Selected";
 }
 
 

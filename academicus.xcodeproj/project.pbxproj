@@ -122,6 +122,8 @@
 		B5EDAD2D1A5B7E0100AD147A /* grades_management_years.feature in Resources */ = {isa = PBXBuildFile; fileRef = B5EDAD2C1A5B7E0100AD147A /* grades_management_years.feature */; };
 		B5F232A91A4F5CCC00EAFF93 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F232A81A4F5CCC00EAFF93 /* CoreData.framework */; };
 		B5F232AF1A4F5D5D00EAFF93 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5F232AD1A4F5D5D00EAFF93 /* DataModel.xcdatamodeld */; };
+		B5F238E91A6F29D70072428C /* CLPlacemark+FullAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F238E81A6F29D70072428C /* CLPlacemark+FullAddress.m */; };
+		B5F238EA1A6F29D70072428C /* CLPlacemark+FullAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F238E81A6F29D70072428C /* CLPlacemark+FullAddress.m */; };
 		B5FD432B1A51029D00AC583E /* Subject.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FD432A1A51029D00AC583E /* Subject.m */; };
 /* End PBXBuildFile section */
 
@@ -251,6 +253,8 @@
 		B5EDAD2C1A5B7E0100AD147A /* grades_management_years.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grades_management_years.feature; sourceTree = "<group>"; };
 		B5F232A81A4F5CCC00EAFF93 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B5F232AE1A4F5D5D00EAFF93 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		B5F238E71A6F29D70072428C /* CLPlacemark+FullAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLPlacemark+FullAddress.h"; sourceTree = "<group>"; };
+		B5F238E81A6F29D70072428C /* CLPlacemark+FullAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLPlacemark+FullAddress.m"; sourceTree = "<group>"; };
 		B5FD43291A51029D00AC583E /* Subject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Subject.h; sourceTree = "<group>"; };
 		B5FD432A1A51029D00AC583E /* Subject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Subject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -465,6 +469,8 @@
 				B5030B071A43880700E23378 /* academicus-prefix.pch */,
 				B5030ADC1A43788800E23378 /* AppDelegate.h */,
 				B5030ADD1A43788800E23378 /* AppDelegate.m */,
+				B5F238E71A6F29D70072428C /* CLPlacemark+FullAddress.h */,
+				B5F238E81A6F29D70072428C /* CLPlacemark+FullAddress.m */,
 				A3981DE61A472F1900334345 /* Reminders */,
 				A3981DE51A472ED800334345 /* Grades Management */,
 				A3981DE71A472F2E00334345 /* Portfolio */,
@@ -701,6 +707,7 @@
 				A34E95531A6B4D4D00D08274 /* PerformanceBySubjectCell.m in Sources */,
 				A39B88FE1A5C7EBA00F883EC /* AchievementsTableViewController.m in Sources */,
 				A3BC004C1A6B32EE00D1B81F /* HighestGradedAssessmentsCell.m in Sources */,
+				B5F238E91A6F29D70072428C /* CLPlacemark+FullAddress.m in Sources */,
 				A3981DF81A47595000334345 /* AssessmentsTableViewController.m in Sources */,
 				B5FD432B1A51029D00AC583E /* Subject.m in Sources */,
 				A377B6461A68717F00B33C97 /* Portfolio.m in Sources */,
@@ -782,6 +789,7 @@
 				B546EADD1A5B38E40014820C /* AssessmentGradeTableViewController.m in Sources */,
 				B546EADF1A5B38E40014820C /* PortfolioTableViewController.m in Sources */,
 				A34E95591A6B4D7400D08274 /* AssessmentsOnTargetCell.m in Sources */,
+				B5F238EA1A6F29D70072428C /* CLPlacemark+FullAddress.m in Sources */,
 				B546EAE11A5B38E40014820C /* Qualification.m in Sources */,
 				B546EAE21A5B38E40014820C /* main.m in Sources */,
 			);

@@ -29,7 +29,7 @@
     NSArray* arrayOfButtons = [NSArray arrayWithObjects: self.numKey0, self.numKey1, self.numKey2, self.numKey3, self.numKey4, self.numKey5, self.numKey6, self.numKey7, self.numKey8, self.numKey9, self.numKeyBlank, self.numKeyDelete, nil];
     for (UIButton* button in arrayOfButtons){
         button.layer.cornerRadius = 30;
-        button.layer.borderWidth = 3;
+        button.layer.borderWidth = 2;
         button.clipsToBounds = YES;
         button.layer.borderColor = [[UIColor whiteColor] CGColor];
         [button setTitleColor: [UIColor whiteColor] forState: UIControlStateNormal];

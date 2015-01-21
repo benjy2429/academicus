@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
-#import <AddressBookUI/AddressBookUI.h>
+#import "CLPlacemark+FullAddress.h"
 #import "MapViewController.h"
 
 @class LocationSearchTableViewController;

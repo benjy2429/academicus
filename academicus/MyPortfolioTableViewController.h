@@ -16,6 +16,7 @@
 #import "Year.h"
 #import "Subject.h"
 #import "AssessmentCriteria.h"
+#import "CLPlacemark+FullAddress.h"
 
 @interface MyPortfolioTableViewController : UITableViewController <MFMailComposeViewControllerDelegate>
 

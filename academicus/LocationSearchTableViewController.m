@@ -79,7 +79,7 @@
     
     // Set the labels to display the location data
     cell.textLabel.text = placemark.name;
-    cell.detailTextLabel.text = ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO);
+    cell.detailTextLabel.text = [placemark fullAddress];
 
     return cell;
 }

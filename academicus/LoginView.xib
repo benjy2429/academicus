@@ -36,7 +36,7 @@
                         <constraint firstAttribute="height" constant="60" id="Rju-47-JgI"/>
                         <constraint firstAttribute="width" constant="60" id="fXc-vk-lR3"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="30"/>
                     <state key="normal" title="1">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -62,7 +62,7 @@
                         <constraint firstAttribute="height" constant="60" id="LvV-CD-ECQ"/>
                         <constraint firstAttribute="width" constant="60" id="NCw-aA-GCq"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="30"/>
                     <state key="normal" title="2">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -88,7 +88,7 @@
                         <constraint firstAttribute="width" constant="60" id="k0z-w2-Uld"/>
                         <constraint firstAttribute="height" constant="60" id="v9m-Lu-5sa"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="30"/>
                     <state key="normal" title="3">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -114,7 +114,7 @@
                         <constraint firstAttribute="height" constant="60" id="fD7-EH-Rmg"/>
                         <constraint firstAttribute="width" constant="60" id="p1d-Dr-8SK"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="30"/>
                     <state key="normal" title="4"/>
                     <variation key="default">
                         <mask key="constraints">
@@ -138,7 +138,7 @@
                         <constraint firstAttribute="width" constant="60" id="Q14-cn-JK6"/>
                         <constraint firstAttribute="height" constant="60" id="es1-tG-G7M"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="30"/>
                     <state key="normal" title="5">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -164,7 +164,7 @@
                         <constraint firstAttribute="height" constant="60" id="e5S-dS-3jK"/>
                         <constraint firstAttribute="width" constant="60" id="kPk-Qo-VfW"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="30"/>
                     <state key="normal" title="6">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -190,7 +190,7 @@
                         <constraint firstAttribute="width" constant="60" id="04N-8T-guy"/>
                         <constraint firstAttribute="height" constant="60" id="ISY-fJ-Fof"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="30"/>
                     <state key="normal" title="7">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -216,7 +216,7 @@
                         <constraint firstAttribute="width" constant="60" id="DbB-hF-Gys"/>
                         <constraint firstAttribute="height" constant="60" id="kNs-H4-kbR"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="30"/>
                     <state key="normal" title="8">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -242,7 +242,7 @@
                         <constraint firstAttribute="width" constant="60" id="8yQ-yN-XA9"/>
                         <constraint firstAttribute="height" constant="60" id="qDY-al-jdO"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="30"/>
                     <state key="normal" title="9">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -268,7 +268,7 @@
                         <constraint firstAttribute="width" constant="60" id="ifA-27-yxI"/>
                         <constraint firstAttribute="height" constant="60" id="q7S-ei-B2Q"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="30"/>
                     <state key="normal">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -294,7 +294,7 @@
                         <constraint firstAttribute="height" constant="60" id="l9F-uN-1GT"/>
                         <constraint firstAttribute="width" constant="60" id="tVF-NG-cIX"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="30"/>
                     <state key="normal" title="0">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -320,7 +320,7 @@
                         <constraint firstAttribute="height" constant="60" id="wbD-f5-erY"/>
                         <constraint firstAttribute="width" constant="60" id="yy5-Xm-7uh"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="30"/>
                     <state key="normal" title="X">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
