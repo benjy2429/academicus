@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 #import "Subject.h"
 #import "AssessmentDetailTableViewController.h"
 #import "AssessmentGradeTableViewController.h"
 
-@interface AssessmentsTableViewController : UITableViewController <AssessmentDetailTableViewControllerDelegate, AssessmentGradeTableViewControllerDelegate, NSFetchedResultsControllerDelegate>
+@interface AssessmentsTableViewController : UITableViewController <AssessmentDetailTableViewControllerDelegate, AssessmentGradeTableViewControllerDelegate, NSFetchedResultsControllerDelegate, MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, weak) NSManagedObjectContext *managedObjectContext;
 @property (weak) Subject *subject;
@@ -32,7 +33,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *moduleProgressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *teacherNameLabel;
 @property (weak, nonatomic) IBOutlet UIScrollView *teacherEmailScrollView;
-@property (weak, nonatomic) IBOutlet UITextView *teacherEmailLabel;
+@property (weak, nonatomic) IBOutlet UILabel *teacherEmailAddressLabel;
+@property (weak, nonatomic) IBOutlet UIButton *teacherEmailAddressButton;
 @property (weak, nonatomic) IBOutlet UILabel *warningLabel;
 @property (weak, nonatomic) IBOutlet UILabel *exclamationLabel;
 

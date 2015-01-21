@@ -230,6 +230,7 @@ static NSString * const cellIdentifier = @"myPortfolioCell";
     mailComposer.mailComposeDelegate = self;
     [mailComposer setSubject:@"Academicus Portfolio Export"];
     [mailComposer setMessageBody:body isHTML:YES];
+    [mailComposer.navigationBar setTintColor:[UIColor whiteColor]];
     NSString *recipients = (self.portfolio.email && ![self.portfolio.email isEqualToString:@""]) ? self.portfolio.email : @"";
     [mailComposer setToRecipients:@[recipients]];
     
