@@ -27,9 +27,10 @@
 @property (nonatomic, retain) Subject *subject;
 @property (nonatomic, retain) NSNumber * displayOrder;
 
-
-- (NSString*) getFriendlyDaysRemaining;
-- (NSString*) toStringForPorfolio;
+- (void)createReminder;
+- (void)removeReminder;
+- (void)createDeadlineReminderByReplacing:(BOOL)willReplace;
+- (void)removeDeadlineReminder;
 
 @end
 

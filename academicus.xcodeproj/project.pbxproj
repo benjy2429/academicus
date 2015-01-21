@@ -58,7 +58,6 @@
 		B5030ADE1A43788800E23378 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030ADD1A43788800E23378 /* AppDelegate.m */; };
 		B5030AE71A43788800E23378 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5030AE51A43788800E23378 /* Main.storyboard */; };
 		B5030AE91A43788800E23378 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5030AE81A43788800E23378 /* Images.xcassets */; };
-		B5030AF81A43788800E23378 /* academicusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030AF71A43788800E23378 /* academicusTests.m */; };
 		B5030B0D1A438A6E00E23378 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B0C1A438A6E00E23378 /* Settings.m */; };
 		B5030B101A438DC100E23378 /* RemindersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B0F1A438DC100E23378 /* RemindersTableViewController.m */; };
 		B5030B131A438DDF00E23378 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5030B121A438DDF00E23378 /* SettingsTableViewController.m */; };
@@ -96,12 +95,14 @@
 		B585D5691A5B490200AC36D1 /* 02_pre_stop_hooks.rb in Resources */ = {isa = PBXBuildFile; fileRef = B585D5631A5B490200AC36D1 /* 02_pre_stop_hooks.rb */; };
 		B585D56A1A5B490200AC36D1 /* env.rb in Resources */ = {isa = PBXBuildFile; fileRef = B585D5641A5B490200AC36D1 /* env.rb */; };
 		B586BF2C1A6B673900996991 /* MyPortfolioTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B586BF2B1A6B673900996991 /* MyPortfolioTableViewCell.m */; };
+		B58FD3341A702C4000BE0D25 /* academicusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B58FD3331A702C4000BE0D25 /* academicusTests.m */; };
 		B5A47B7B1A5EE7E700136BAF /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3A3B6171A5DFFBA008D17E9 /* LoginView.xib */; };
 		B5A47B7D1A5F13AB00136BAF /* grades_management_assessments.feature in Resources */ = {isa = PBXBuildFile; fileRef = B5A47B7C1A5F13AB00136BAF /* grades_management_assessments.feature */; };
 		B5A490611A6AE07500506B7B /* LocationSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A490601A6AE07500506B7B /* LocationSearchTableViewController.m */; };
 		B5A490621A6AE07500506B7B /* LocationSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A490601A6AE07500506B7B /* LocationSearchTableViewController.m */; };
 		B5A490651A6B176800506B7B /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A490641A6B176800506B7B /* MapViewController.m */; };
 		B5A490661A6B176800506B7B /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A490641A6B176800506B7B /* MapViewController.m */; };
+		B5A671B71A700C25005F7424 /* CLPlacemark+FullAddressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A671B61A700C25005F7424 /* CLPlacemark+FullAddressTests.m */; };
 		B5A6CA251A5B574C0041CEE9 /* navbar_steps.rb in Resources */ = {isa = PBXBuildFile; fileRef = B5A6CA241A5B574C0041CEE9 /* navbar_steps.rb */; };
 		B5A846581A50CCEF001D2E47 /* Year.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A846571A50CCEF001D2E47 /* Year.m */; };
 		B5A8465E1A50E2F2001D2E47 /* AssessmentCriteria.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A8465D1A50E2F2001D2E47 /* AssessmentCriteria.m */; };
@@ -124,6 +125,7 @@
 		B5F232AF1A4F5D5D00EAFF93 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5F232AD1A4F5D5D00EAFF93 /* DataModel.xcdatamodeld */; };
 		B5F238E91A6F29D70072428C /* CLPlacemark+FullAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F238E81A6F29D70072428C /* CLPlacemark+FullAddress.m */; };
 		B5F238EA1A6F29D70072428C /* CLPlacemark+FullAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F238E81A6F29D70072428C /* CLPlacemark+FullAddress.m */; };
+		B5F38C561A7020E7009CBCF9 /* AssessmentCriteriaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F38C551A7020E7009CBCF9 /* AssessmentCriteriaTests.m */; };
 		B5FD432B1A51029D00AC583E /* Subject.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FD432A1A51029D00AC583E /* Subject.m */; };
 /* End PBXBuildFile section */
 
@@ -207,7 +209,6 @@
 		B5030AE81A43788800E23378 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B5030AF11A43788800E23378 /* academicusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = academicusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5030AF61A43788800E23378 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B5030AF71A43788800E23378 /* academicusTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = academicusTests.m; sourceTree = "<group>"; };
 		B5030B071A43880700E23378 /* academicus-prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "academicus-prefix.pch"; sourceTree = "<group>"; };
 		B5030B0B1A438A6E00E23378 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		B5030B0C1A438A6E00E23378 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
@@ -232,12 +233,14 @@
 		B585D5641A5B490200AC36D1 /* env.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = env.rb; sourceTree = "<group>"; };
 		B586BF2A1A6B673900996991 /* MyPortfolioTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPortfolioTableViewCell.h; sourceTree = "<group>"; };
 		B586BF2B1A6B673900996991 /* MyPortfolioTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPortfolioTableViewCell.m; sourceTree = "<group>"; };
+		B58FD3331A702C4000BE0D25 /* academicusTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = academicusTests.m; sourceTree = "<group>"; };
 		B592AA101A6B2CA100025414 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = academicus/Info.plist; sourceTree = "<group>"; };
 		B5A47B7C1A5F13AB00136BAF /* grades_management_assessments.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = grades_management_assessments.feature; path = features/grades_management_assessments.feature; sourceTree = SOURCE_ROOT; };
 		B5A4905F1A6AE07500506B7B /* LocationSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationSearchTableViewController.h; sourceTree = "<group>"; };
 		B5A490601A6AE07500506B7B /* LocationSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationSearchTableViewController.m; sourceTree = "<group>"; };
 		B5A490631A6B176800506B7B /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		B5A490641A6B176800506B7B /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		B5A671B61A700C25005F7424 /* CLPlacemark+FullAddressTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLPlacemark+FullAddressTests.m"; sourceTree = "<group>"; };
 		B5A6CA241A5B574C0041CEE9 /* navbar_steps.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = navbar_steps.rb; sourceTree = "<group>"; };
 		B5A846561A50CCEF001D2E47 /* Year.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Year.h; sourceTree = "<group>"; };
 		B5A846571A50CCEF001D2E47 /* Year.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Year.m; sourceTree = "<group>"; };
@@ -255,6 +258,7 @@
 		B5F232AE1A4F5D5D00EAFF93 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		B5F238E71A6F29D70072428C /* CLPlacemark+FullAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLPlacemark+FullAddress.h"; sourceTree = "<group>"; };
 		B5F238E81A6F29D70072428C /* CLPlacemark+FullAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLPlacemark+FullAddress.m"; sourceTree = "<group>"; };
+		B5F38C551A7020E7009CBCF9 /* AssessmentCriteriaTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AssessmentCriteriaTests.m; path = academicusTests/AssessmentCriteriaTests.m; sourceTree = SOURCE_ROOT; };
 		B5FD43291A51029D00AC583E /* Subject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Subject.h; sourceTree = "<group>"; };
 		B5FD432A1A51029D00AC583E /* Subject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Subject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -498,8 +502,10 @@
 		B5030AF41A43788800E23378 /* academicusTests */ = {
 			isa = PBXGroup;
 			children = (
-				B5030AF71A43788800E23378 /* academicusTests.m */,
+				B58FD3331A702C4000BE0D25 /* academicusTests.m */,
 				B5030AF51A43788800E23378 /* Supporting Files */,
+				B5A671B61A700C25005F7424 /* CLPlacemark+FullAddressTests.m */,
+				B5F38C551A7020E7009CBCF9 /* AssessmentCriteriaTests.m */,
 			);
 			path = academicusTests;
 			sourceTree = "<group>";
@@ -743,7 +749,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5030AF81A43788800E23378 /* academicusTests.m in Sources */,
+				B5F38C561A7020E7009CBCF9 /* AssessmentCriteriaTests.m in Sources */,
+				B58FD3341A702C4000BE0D25 /* academicusTests.m in Sources */,
+				B5A671B71A700C25005F7424 /* CLPlacemark+FullAddressTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
