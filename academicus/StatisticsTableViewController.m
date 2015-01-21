@@ -8,16 +8,43 @@
 
 #import "StatisticsTableViewController.h"
 
-@interface StatisticsTableViewController ()
-
-@end
-
 @implementation StatisticsTableViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Perform an initial fetch to get qualifications for the picker
+    [self performFetch];
+}
+
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    // Fetch the data when the view loads to ensure it is up to date
+    [self performFetch];
+    [self loadAssessments];
+    
+    // Reload the date picker options
+    UIPickerView *picker = (UIPickerView *)[self.tableView viewWithTag:500];
+    [picker reloadAllComponents];
+    
+    // If the selected qualification was not returned, clear the selected qualification
+    if (![self.qualifications containsObject:self.selectedQualification]) {
+        self.selectedQualification = nil;
+        [picker selectRow:0 inComponent:0 animated:NO];
+    }
+    
+    // Reload the table to update the cells
+    [self.tableView reloadData];
+    
+    // Update the selected qualification label incase the qualification name changed
+    UILabel *qualificationLabel = (UILabel*) [self.tableView viewWithTag:100];
+    qualificationLabel.text = (self.selectedQualification) ? self.selectedQualification.name : @"Select Qualification";
+}
+
+
+- (void)performFetch {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
     // Get the objects from the managed object context
@@ -32,7 +59,7 @@
     // Fetch the data for the table view using CoreData
     NSError *error;
     self.qualifications = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error]; //TODO should we do something with this error or make it nil?
-
+    
     // Make sure there were no errors fetching the data
     if (error != nil) {
         COREDATA_ERROR(error);
@@ -41,17 +68,12 @@
 }
 
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     int rows = (self.selectedQualification != nil) ? (int)[self.cellsToDisplay count]+1 : 1;
@@ -87,6 +109,7 @@
                 UIPickerView *qualifciationPicker = [[UIPickerView alloc] initWithFrame:frame];
                 [qualifciationPicker setDataSource:self];
                 [qualifciationPicker setDelegate:self];
+                [qualifciationPicker setTag:500];
                 qualifciationPicker.showsSelectionIndicator = YES;
                 [cell.contentView addSubview:qualifciationPicker];
             }

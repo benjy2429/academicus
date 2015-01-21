@@ -23,6 +23,15 @@ static NSString * const cellIdentifier = @"myPortfolioCell";
 }
 
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    // Perform another fetch when the view appears incase the qualifications have changed
+    [self performFetch];
+    [self.tableView reloadData];
+}
+
+
 - (void)performFetch
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];

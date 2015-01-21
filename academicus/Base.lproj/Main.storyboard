@@ -4664,22 +4664,22 @@
                                         <mask key="constraints">
                                             <exclude reference="MP3-rz-C0r"/>
                                             <exclude reference="Ybt-BE-WQE"/>
-                                            <exclude reference="EAb-sY-cey"/>
-                                            <exclude reference="OU6-ox-O2c"/>
-                                            <exclude reference="WC2-5l-HQc"/>
                                             <exclude reference="3ND-zc-Y0h"/>
                                             <exclude reference="TUc-dR-0yi"/>
                                             <exclude reference="Xu5-uR-oVE"/>
                                             <exclude reference="nMx-QP-8rg"/>
-                                            <exclude reference="5yl-N2-kop"/>
-                                            <exclude reference="CK9-x3-eeQ"/>
-                                            <exclude reference="fxm-cu-BcY"/>
-                                            <exclude reference="juB-fl-ac2"/>
                                             <exclude reference="Bsz-Z8-bzU"/>
                                             <exclude reference="Jml-d5-Srh"/>
                                             <exclude reference="Tzz-82-4Er"/>
                                             <exclude reference="aXA-XT-qw8"/>
                                             <exclude reference="hYo-t0-vhC"/>
+                                            <exclude reference="EAb-sY-cey"/>
+                                            <exclude reference="OU6-ox-O2c"/>
+                                            <exclude reference="WC2-5l-HQc"/>
+                                            <exclude reference="5yl-N2-kop"/>
+                                            <exclude reference="CK9-x3-eeQ"/>
+                                            <exclude reference="fxm-cu-BcY"/>
+                                            <exclude reference="juB-fl-ac2"/>
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact">
@@ -4692,22 +4692,22 @@
                                         <mask key="constraints">
                                             <include reference="MP3-rz-C0r"/>
                                             <include reference="Ybt-BE-WQE"/>
-                                            <include reference="EAb-sY-cey"/>
-                                            <include reference="OU6-ox-O2c"/>
-                                            <include reference="WC2-5l-HQc"/>
                                             <include reference="3ND-zc-Y0h"/>
                                             <include reference="TUc-dR-0yi"/>
                                             <include reference="Xu5-uR-oVE"/>
                                             <include reference="nMx-QP-8rg"/>
-                                            <include reference="5yl-N2-kop"/>
-                                            <include reference="CK9-x3-eeQ"/>
-                                            <include reference="fxm-cu-BcY"/>
-                                            <include reference="juB-fl-ac2"/>
                                             <include reference="Bsz-Z8-bzU"/>
                                             <include reference="Jml-d5-Srh"/>
                                             <include reference="Tzz-82-4Er"/>
                                             <include reference="aXA-XT-qw8"/>
                                             <include reference="hYo-t0-vhC"/>
+                                            <include reference="EAb-sY-cey"/>
+                                            <include reference="OU6-ox-O2c"/>
+                                            <include reference="WC2-5l-HQc"/>
+                                            <include reference="5yl-N2-kop"/>
+                                            <include reference="CK9-x3-eeQ"/>
+                                            <include reference="fxm-cu-BcY"/>
+                                            <include reference="juB-fl-ac2"/>
                                         </mask>
                                     </variation>
                                 </view>

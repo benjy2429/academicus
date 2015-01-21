@@ -68,7 +68,7 @@
     // Validate the input data
     if (![self isEnteredDataValid]) {return;}
     
-    self.itemToEdit.photo = UIImagePNGRepresentation(self.originalPhoto); //Convert the photo to nsdata for core data storage
+    self.itemToEdit.photo = UIImageJPEGRepresentation(self.originalPhoto, 1.0f); //Convert the photo to nsdata for core data storage
     self.itemToEdit.name = self.nameField.text;
     self.itemToEdit.address = self.addressLocation;
     self.itemToEdit.phone = self.telephoneField.text;
