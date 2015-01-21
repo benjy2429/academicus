@@ -101,17 +101,24 @@ static NSString * const cellIdentifier = @"myPortfolioCell";
             if (self.portfolio.email && ![self.portfolio.email isEqualToString:@""]) { [contentStrings addObject:[NSString stringWithFormat:@"Email: %@", self.portfolio.email]]; }
             if (self.portfolio.website && ![self.portfolio.website isEqualToString:@""]) { [contentStrings addObject:[NSString stringWithFormat:@"Website: %@", self.portfolio.website]]; }
             if (self.portfolio.address) { [contentStrings addObject:[NSString stringWithFormat:@"Address: %@, %@", self.portfolio.address.name, [self.portfolio.address fullAddress]]]; }
-            cell.contentLabel.text = [contentStrings componentsJoinedByString:@"\n"];
+            cell.contentLabel.text = [contentStrings componentsJoinedByString:@"\n\n"];
             break;
             
         }
         case 1: {
             cell.titleLabel.text = @"Education";
-            
+            NSMutableArray* qualificationStrings = [[NSMutableArray alloc]init];
+
+            //For each qualificaiton generate the qualificaiton string
             for (Qualification *qualification in self.qualifications) {
+                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                [formatter setDateFormat:@"YYYY"];
+                
+                NSMutableArray* yearStrings = [[NSMutableArray alloc]init];
                 NSDate *startDate = nil;
                 NSDate *endDate = nil;
                 
+                //For each year generate the year string and calculate information for the qualificaiton string
                 for (Year *year in qualification.years) {
                     NSMutableArray *subjectStrings = [[NSMutableArray alloc] init];
                     float totalYearGrade = 0.0f;
@@ -125,29 +132,49 @@ static NSString * const cellIdentifier = @"myPortfolioCell";
                         if ([endDate timeIntervalSince1970] < [year.endDate timeIntervalSince1970]) { endDate = year.endDate; }
                     }
                     
+                    //For each subject generate a subject string and calculate information for the year string
                     for (Subject *subject in year.subjects) {
+                        NSMutableArray *assessmentStrings = [[NSMutableArray alloc] init];
                         float totalSubjectGrade = 0.0f;
                         
+                        //For each assesment generate an assessment string and calculate information for the subject string
                         for (AssessmentCriteria *assessment in subject.assessments) {
                             if ([assessment.hasGrade boolValue]) {
                                 float weightedGrade = (([assessment.finalGrade floatValue] * [assessment.weighting floatValue]) / 100);
                                 totalSubjectGrade += (([assessment.finalGrade floatValue] * [assessment.weighting floatValue]) / 100);
-                                [subjectStrings addObject:[NSString stringWithFormat:@"        %@: %.0f%%", assessment.name, weightedGrade]];
+                                [assessmentStrings insertObject:[NSString stringWithFormat:@"                  %@: %.0f%%", assessment.name, weightedGrade] atIndex:0];
                             }
                         }
+                        
+                        //Generate the subject string
                         totalYearGrade += ((totalSubjectGrade * [subject.yearWeighting floatValue]) / 100);
+                        NSString* subjectString = [NSString stringWithFormat:@"            %@: %.0f%%", subject.name, totalSubjectGrade];
+                        if (assessmentStrings.count > 0) {
+                            subjectString = [NSString stringWithFormat: @"%@\n%@", subjectString, [assessmentStrings componentsJoinedByString:@"\n"]];
+                        }
+                        [subjectStrings insertObject: subjectString atIndex:0];
                     }
-                    [contentStrings addObject:[NSString stringWithFormat:@"    %@: %.0f%%", year.name, totalYearGrade]];
-                    if (subjectStrings.count > 0) { [contentStrings addObject:[NSString stringWithFormat:@"%@", [subjectStrings componentsJoinedByString:@"\n"]]]; }
+                    
+                    //Generate the year string
+                    NSString* yearString = [NSString stringWithFormat:@"      %@: %.0f%%", year.name, totalYearGrade];
+                    if (subjectStrings.count > 0) {
+                        yearString = [NSString stringWithFormat: @"%@\n%@", yearString, [subjectStrings componentsJoinedByString:@"\n"]];
+                    }
+                    [yearStrings insertObject: yearString atIndex:0];
+                    
                 }
                 
-                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-                [formatter setDateFormat:@"YYYY"];
-                
-                [contentStrings insertObject:[NSString stringWithFormat:@"%@ (%@ - %@)\n%@", qualification.name, [formatter stringFromDate:startDate], [formatter stringFromDate:endDate], qualification.institution] atIndex:0];
-                
+                //Generate the qualification string
+                NSString* qualificationString =[NSString stringWithFormat:@"%@ (%@ - %@)\n%@", qualification.name, [formatter stringFromDate:startDate], [formatter stringFromDate:endDate], qualification.institution];
+            
+                if (yearStrings.count > 0) {
+                    qualificationString = [NSString stringWithFormat: @"%@\n%@", qualificationString, [yearStrings componentsJoinedByString:@"\n"]];
+                }
+                [qualificationStrings addObject:qualificationString];
             }
-            cell.contentLabel.text = [contentStrings componentsJoinedByString:@"\n"];
+            
+            //Add all the qualification strings to the cell
+            cell.contentLabel.text = [qualificationStrings componentsJoinedByString:@"\n"];
             
             break;
             
