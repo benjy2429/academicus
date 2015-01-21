@@ -74,7 +74,7 @@
 
 - (BOOL) isEnteredDataValid {
     // Validate that the final grade is between 0% and 100%
-    if ([self.gradeField.text floatValue] < 0 || [self.gradeField.text floatValue] > 100) {
+    if ([self.gradeField.text isEqualToString:@""] || [self.gradeField.text floatValue] < 0 || [self.gradeField.text floatValue] > 100) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The final grade must be 0-100%" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
         [alert show];
         return false;
@@ -197,7 +197,6 @@
         self.itemToEdit.positiveFeedback = nil;
         self.itemToEdit.negativeFeedback = nil;
         self.itemToEdit.notes = nil;
-        //self.itemToEdit.picture =
         
         [self.delegate AssessmentGradeTableViewController:self didFinishEditingAssessment:self.itemToEdit];
         

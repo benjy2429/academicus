@@ -134,12 +134,12 @@
         [self.teacherNameLabel performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
     }
     
-    [self.teacherEmailLabel setContentInset:UIEdgeInsetsMake(-8, 0, 8, 0)];
     if (![self.subject.teacherEmail isEqualToString:@""]) {
-        self.teacherEmailLabel.text = [NSString stringWithFormat: @"Teacher Email: %@", self.subject.teacherEmail];
+        [self.teacherEmailAddressButton setTitle:self.subject.teacherEmail forState: UIControlStateNormal];
         self.expandSize += sizePerField;
     } else {
-        [self.teacherEmailLabel performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+        [self.teacherEmailAddressLabel performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+        [self.teacherEmailAddressButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         [self.teacherEmailScrollView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
     }
       
@@ -233,6 +233,37 @@
     
     UILabel *currentGradeTitleLabel = (UILabel *)[self.headerView viewWithTag:50];
     currentGradeTitleLabel.text = (self.moduleCompleted == 100) ? @"Final Grade" : @"Current Grade";
+}
+
+
+#pragma mark - Email
+
+//When the teacher email is clicked, compose a new email with the teachers email as a recipient
+- (IBAction)emailButtonTapped:(id)sender {
+    MFMailComposeViewController *mailComposer = [[MFMailComposeViewController alloc] init];
+    mailComposer.mailComposeDelegate = self;
+    [mailComposer.navigationBar setTintColor:[UIColor whiteColor]];
+    
+    NSString *recipients = (self.subject.teacherEmail && ![self.subject.teacherEmail isEqualToString:@""]) ? self.subject.teacherEmail : @"";
+    [mailComposer setToRecipients:@[recipients]];
+    
+    [self presentViewController:mailComposer animated:YES completion:nil];
+}
+
+
+//When the user has finished with the email
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+    switch (result) {
+        case MFMailComposeResultFailed: {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message:@"Unfortunately your email could not be sent. Please check your internet connection or try again later." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+            break;
+        }
+        default:
+            break;
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -617,29 +648,32 @@
     // Need to reload the view to update the header information
     [self viewDidLoad];
     
-    // Display a feedback message based on the final grade
-    NSString* feedbackTitle;
-    NSString* feedbackMessage;
-    if (self.moduleCompleted == 100) {
-        if (self.currentGrade < [self.subject.targetGrade floatValue]) {
-            feedbackTitle = @"Awww man!";
-            feedbackMessage = @"It looks like your final grade for this subject is a little short of your target. Keep positive and use this as a learning experience. Focus on meeting your other targets with greater determination!";
+    //If a grade has been entered
+    if (assessment.finalGrade != nil) {
+        // Display a feedback message based on the final grade
+        NSString* feedbackTitle;
+        NSString* feedbackMessage;
+        if (self.moduleCompleted == 100) {
+            if (self.currentGrade < [self.subject.targetGrade floatValue]) {
+                feedbackTitle = @"Awww man!";
+                feedbackMessage = @"It looks like your final grade for this subject is a little short of your target. Keep positive and use this as a learning experience. Focus on meeting your other targets with greater determination!";
+            } else {
+                feedbackTitle = @"Woo hoo!";
+                feedbackMessage = @"Way to go, you've finished the subject and met your goal! Treat yourself, you deserve it.";
+            }
         } else {
-            feedbackTitle = @"Woo hoo!";
-            feedbackMessage = @"Way to go, you've finished the subject and met your goal! Treat yourself, you deserve it.";
+            if ([assessment.finalGrade floatValue] < [self.subject.targetGrade floatValue]) {
+                feedbackTitle = @"Oh no!";
+                feedbackMessage = @"It looks like you fell short of your target this time. Keep trying though, there is still time to increase your mark!";
+            } else {
+                feedbackTitle = @"Nice work!";
+                feedbackMessage = @"You met your target for this assessment. You've just proved you can attain the marks you want if you have the right mindset. Keep up the good work!";
+            }
         }
-    } else {
-        if ([assessment.finalGrade floatValue] < [self.subject.targetGrade floatValue]) {
-            feedbackTitle = @"Oh no!";
-            feedbackMessage = @"It looks like you fell short of your target this time. Keep trying though, there is still time to increase your mark!";
-        } else {
-            feedbackTitle = @"Nice work!";
-            feedbackMessage = @"You met your target for this assessment. You've just proved you can attain the marks you want if you have the right mindset. Keep up the good work!";
-        }
+        
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle: feedbackTitle message: feedbackMessage delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        [alert show];
     }
-    
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle: feedbackTitle message: feedbackMessage delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
-    [alert show];
     
     // Dismiss the edit item view
     [self dismissViewControllerAnimated:YES completion:nil];
