@@ -100,7 +100,7 @@ static NSString * const cellIdentifier = @"myPortfolioCell";
             if (self.portfolio.phone && ![self.portfolio.phone isEqualToString:@""]) { [contentStrings addObject:[NSString stringWithFormat:@"Telephone: %@", self.portfolio.phone]]; }
             if (self.portfolio.email && ![self.portfolio.email isEqualToString:@""]) { [contentStrings addObject:[NSString stringWithFormat:@"Email: %@", self.portfolio.email]]; }
             if (self.portfolio.website && ![self.portfolio.website isEqualToString:@""]) { [contentStrings addObject:[NSString stringWithFormat:@"Website: %@", self.portfolio.website]]; }
-            if (self.portfolio.address) { [contentStrings addObject:[NSString stringWithFormat:@"Address: %@", self.portfolio.address.name]]; }
+            if (self.portfolio.address) { [contentStrings addObject:[NSString stringWithFormat:@"Address: %@, %@", self.portfolio.address.name, [self.portfolio.address fullAddress]]]; }
             cell.contentLabel.text = [contentStrings componentsJoinedByString:@"\n"];
             break;
             

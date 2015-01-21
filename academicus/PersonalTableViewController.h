@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Portfolio.h"
 #import "LocationSearchTableViewController.h"
+#import "CLPlacemark+FullAddress.h"
 
 @class PersonalTableViewController;
 
