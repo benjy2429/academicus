@@ -29,6 +29,12 @@
     UIPickerView *picker = (UIPickerView *)[self.tableView viewWithTag:500];
     [picker reloadAllComponents];
     
+    // If the selected qualification was not returned, clear the selected qualification
+    if (![self.qualifications containsObject:self.selectedQualification]) {
+        self.selectedQualification = nil;
+        [picker selectRow:0 inComponent:0 animated:NO];
+    }
+    
     // Reload the table to update the cells
     [self.tableView reloadData];
     
