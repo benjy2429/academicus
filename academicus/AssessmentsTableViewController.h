@@ -23,8 +23,8 @@
 // Properties for the table header view
 @property (assign) BOOL isSubjectExpanded;
 @property (assign) float expandSize;
-@property (assign) float moduleAllocated;
-@property (assign) float moduleCompleted;
+@property (assign) float weightingAllocated;
+@property (assign) float subjectCompleted;
 @property (assign) float currentGrade;
 
 // IBOutlets

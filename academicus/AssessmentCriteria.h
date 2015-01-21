@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "Subject.h"
 
 @class Subject;
 
@@ -25,6 +26,10 @@
 @property (nonatomic, retain) NSNumber * hasGrade;
 @property (nonatomic, retain) Subject *subject;
 @property (nonatomic, retain) NSNumber * displayOrder;
+
+
+- (NSString*) getFriendlyDaysRemaining;
+
 
 @end
 

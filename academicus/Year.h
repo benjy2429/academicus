@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "Qualification.h"
+#import "Subject.h"
 
 @class Qualification;
 
@@ -32,6 +34,8 @@
 - (void)removeSubjectsObject:(NSManagedObject *)value;
 - (void)addSubjects:(NSOrderedSet *)values;
 - (void)removeSubjects:(NSOrderedSet *)values;
+
+- (float) weightingAllocated;
 
 @end
 

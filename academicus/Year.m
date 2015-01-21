@@ -7,8 +7,6 @@
 //
 
 #import "Year.h"
-#import "Qualification.h"
-
 
 @implementation Year
 
@@ -17,6 +15,19 @@
 @dynamic startDate;
 @dynamic qualification;
 @dynamic subjects;
+
+
+// Get the total subject weights for the year
+- (float) weightingAllocated {
+    // Sum the weightings of all the existing subjects
+    float weightingAllocated = 0.0f;
+    for (Subject *subject in self.subjects) {
+        weightingAllocated += [subject.yearWeighting floatValue];
+    }
+    
+    return weightingAllocated;
+}
+
 
 @end
 

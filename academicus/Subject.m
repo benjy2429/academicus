@@ -7,9 +7,6 @@
 //
 
 #import "Subject.h"
-#import "AssessmentCriteria.h"
-#import "Year.h"
-
 
 @implementation Subject
 
@@ -22,6 +19,37 @@
 @dynamic assessments;
 @dynamic year;
 @dynamic displayOrder;
+
+
+- (float) amountOfSubjectCompleted {
+    float subjectCompleted = 0.0f;
+    for (AssessmentCriteria *assessment in self.assessments) {
+        if ([assessment.hasGrade boolValue]) {subjectCompleted += [assessment.weighting floatValue];}
+    }
+    return subjectCompleted;
+}
+
+
+- (float) weightingAllocated {
+    float subjectAllocated = 0.0f;
+    for (AssessmentCriteria *assessment in self.assessments) {
+        subjectAllocated += [assessment.weighting floatValue];
+    }
+    return subjectAllocated;
+}
+
+
+- (float) calculateCurrentGrade {
+    // Calculate the current grade from the marked assessments
+    float currentGrade = 0.0f;
+    for (AssessmentCriteria *assessment in self.assessments) {
+        if ([assessment.hasGrade boolValue]) {
+            currentGrade += (([assessment.finalGrade floatValue] * [assessment.weighting floatValue]) / 100);
+        }
+    }
+    return currentGrade;
+}
+
 
 @end
 

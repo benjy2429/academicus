@@ -469,16 +469,14 @@
 				B5030B071A43880700E23378 /* academicus-prefix.pch */,
 				B5030ADC1A43788800E23378 /* AppDelegate.h */,
 				B5030ADD1A43788800E23378 /* AppDelegate.m */,
-				B5F238E71A6F29D70072428C /* CLPlacemark+FullAddress.h */,
-				B5F238E81A6F29D70072428C /* CLPlacemark+FullAddress.m */,
 				A3981DE61A472F1900334345 /* Reminders */,
 				A3981DE51A472ED800334345 /* Grades Management */,
 				A3981DE71A472F2E00334345 /* Portfolio */,
 				A3981DE81A472F3C00334345 /* Settings */,
-				B5030AE51A43788800E23378 /* Main.storyboard */,
-				B5030AE81A43788800E23378 /* Images.xcassets */,
-				A3A3B6171A5DFFBA008D17E9 /* LoginView.xib */,
 				B5030AD81A43788800E23378 /* Supporting Files */,
+				B5030AE51A43788800E23378 /* Main.storyboard */,
+				A3A3B6171A5DFFBA008D17E9 /* LoginView.xib */,
+				B5030AE81A43788800E23378 /* Images.xcassets */,
 				B5F232AD1A4F5D5D00EAFF93 /* DataModel.xcdatamodeld */,
 			);
 			path = academicus;
@@ -487,6 +485,8 @@
 		B5030AD81A43788800E23378 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B5F238E71A6F29D70072428C /* CLPlacemark+FullAddress.h */,
+				B5F238E81A6F29D70072428C /* CLPlacemark+FullAddress.m */,
 				A3AC58491A64B06F001B2151 /* KeychainItemWrapper.h */,
 				A3AC584A1A64B06F001B2151 /* KeychainItemWrapper.m */,
 				B5030AD91A43788800E23378 /* Info.plist */,

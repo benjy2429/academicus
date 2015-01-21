@@ -34,18 +34,6 @@
 }
 
 
-// Custom getter for the total allocated weighting variable
-- (float)weightingAllocated {
-    // Sum the weightings of all the existing subjects
-    _weightingAllocated = 0.0f;
-    for (Subject *subject in [self.fetchedResultsController fetchedObjects]) {
-        _weightingAllocated += [subject.yearWeighting floatValue];
-    }
-    
-    return _weightingAllocated;
-}
-
-
 #pragma mark - Core Data
 
 // Custom getter for the fetched results controller
@@ -298,14 +286,14 @@
         SubjectDetailTableViewController *controller = (SubjectDetailTableViewController*) navController.topViewController;
         controller.delegate = self;
         controller.managedObjectContext = self.managedObjectContext;
-        controller.weightingAllocated = self.weightingAllocated;
+        controller.weightingAllocated = [self.year weightingAllocated];
         
     } else if ([segue.identifier isEqualToString:@"editSubject"]) {
         UINavigationController *navController = segue.destinationViewController;
         SubjectDetailTableViewController *controller = (SubjectDetailTableViewController*) navController.topViewController;
         controller.delegate = self;
         controller.managedObjectContext = self.managedObjectContext;
-        controller.weightingAllocated = self.weightingAllocated;
+        controller.weightingAllocated = [self.year weightingAllocated] - [controller.itemToEdit.yearWeighting floatValue];
         
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         controller.itemToEdit = [self.fetchedResultsController objectAtIndexPath:indexPath];

@@ -7,7 +7,6 @@
 //
 
 #import "Qualification.h"
-#import "Year.h"
 
 @implementation Qualification
 
