@@ -125,5 +125,66 @@
 }
 
 
+- (void)testAssessmentCreateReminder {
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDate *reminderDate = [cal dateByAddingUnit:NSCalendarUnitDay value:21 toDate:self.assessment.deadline options:0];
+    
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    AssessmentCriteria *assessment = [self createAssessment:@{@"reminder":reminderDate}];
+    NSArray *currentNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    XCTAssertTrue(currentNotifications.count == 0);
+    [assessment createReminder];
+    currentNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    XCTAssertTrue(currentNotifications.count == 1);
+    UILocalNotification *notification = [currentNotifications objectAtIndex:0];
+    NSDictionary *userInfo = notification.userInfo;
+    XCTAssertTrue([[userInfo objectForKey:@"reminder"] isEqualToDate:assessment.reminder]);
+}
+
+
+- (void)testAssessmentRemoveReminder {
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDate *reminderDate = [cal dateByAddingUnit:NSCalendarUnitDay value:21 toDate:self.assessment.deadline options:0];
+    
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    AssessmentCriteria *assessment = [self createAssessment:@{@"reminder":reminderDate}];
+    [assessment createReminder];
+    NSArray *currentNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    XCTAssertTrue(currentNotifications.count == 1);
+    [assessment removeReminder];
+    currentNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    XCTAssertTrue(currentNotifications.count == 0);
+}
+
+
+- (void)testAssessmentCreateDeadlineReminder {
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    NSArray *currentNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    XCTAssertTrue(currentNotifications.count == 0);
+    [self.assessment createDeadlineReminder];
+    currentNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    XCTAssertTrue(currentNotifications.count == 1);
+    UILocalNotification *notification = [currentNotifications objectAtIndex:0];
+    NSDictionary *userInfo = notification.userInfo;
+    XCTAssertTrue([userInfo objectForKey:@"isDeadlineReminder"]);
+    XCTAssertTrue([[userInfo objectForKey:@"deadline"] isEqualToDate:self.assessment.deadline]);
+    
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDate *fireDate = [cal dateByAddingUnit:NSCalendarUnitDay value:21 toDate:self.assessment.deadline options:0];
+    XCTAssertTrue([notification.fireDate isEqualToDate:fireDate]);
+}
+
+
+- (void)testAssessmentRemoveDeadlineReminder {
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    [self.assessment createDeadlineReminder];
+    NSArray *currentNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    XCTAssertTrue(currentNotifications.count == 1);
+    [self.assessment removeDeadlineReminder];
+    currentNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    XCTAssertTrue(currentNotifications.count == 0);
+}
+
+
 @end
 

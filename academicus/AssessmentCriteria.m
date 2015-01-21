@@ -45,7 +45,7 @@
     for (UILocalNotification *notification in notifications) {
         NSDictionary *userInfo = notification.userInfo;
         
-        if ([userInfo valueForKey:@"reminder"] == self.reminder) {
+        if ([[userInfo valueForKey:@"reminder"] isEqualToDate:self.reminder]) {
             [[UIApplication sharedApplication] cancelLocalNotification:notification];
             break;
         }
@@ -54,15 +54,13 @@
 
 
 // If enabled, automatically create a reminder 3 weeks after the deadline to notify the user to add a grade
-- (void)createDeadlineReminderByReplacing:(BOOL)willReplace {
+- (void)createDeadlineReminder {
     // Calculate the date 3 weeks after the deadline to set a notification reminder
     NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
     [dateComponents setDay:21];
     NSDate *deadlineReminderDate = [[NSCalendar currentCalendar] dateByAddingComponents:dateComponents toDate:self.deadline options:0];
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"notificationsEnabled"] && [deadlineReminderDate timeIntervalSince1970] > [[NSDate date] timeIntervalSince1970]) {
-        
-        if (willReplace) { [self removeDeadlineReminder]; }
         
         UILocalNotification *notification = [[UILocalNotification alloc] init];
         notification.fireDate = deadlineReminderDate;
@@ -83,7 +81,7 @@
     for (UILocalNotification *notification in notifications) {
         NSDictionary *userInfo = notification.userInfo;
         
-        if ([[userInfo valueForKey:@"isDeadlineReminder"] boolValue] && [userInfo valueForKey:@"deadline"] == self.deadline) {
+        if ([[userInfo valueForKey:@"isDeadlineReminder"] boolValue] && [[userInfo valueForKey:@"deadline"] isEqualToDate:self.deadline]) {
             [[UIApplication sharedApplication] cancelLocalNotification:notification];
             break;
         }
