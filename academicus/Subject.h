@@ -42,6 +42,7 @@
 - (float)amountOfSubjectCompleted;
 - (float)weightingAllocated;
 - (float)calculateCurrentGrade;
+- (NSString*) toStringForPorfolio;
 
 @end
 

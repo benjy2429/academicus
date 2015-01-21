@@ -33,5 +33,7 @@
 - (void)addYears:(NSOrderedSet *)values;
 - (void)removeYears:(NSOrderedSet *)values;
 
+- (NSString*) toStringForPorfolio;
+
 @end
 

@@ -36,6 +36,7 @@
 - (void)removeSubjects:(NSOrderedSet *)values;
 
 - (float) weightingAllocated;
+- (NSString*) toStringForPorfolio;
 
 @end
 

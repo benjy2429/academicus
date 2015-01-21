@@ -29,7 +29,7 @@
 
 
 - (NSString*) getFriendlyDaysRemaining;
-
+- (NSString*) toStringForPorfolio;
 
 @end
 

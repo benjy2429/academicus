@@ -55,5 +55,11 @@
 }
 
 
+//Return a formatted string containing deatils for the portfolio page
+- (NSString*) toStringForPorfolio {
+    float weightedGrade = (([self.finalGrade floatValue] * [self.weighting floatValue]) / 100);
+    return [NSString stringWithFormat:@"                  %@: %.0f%%", self.name, weightedGrade];
+}
+
 @end
 

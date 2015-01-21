@@ -51,5 +51,26 @@
 }
 
 
+//Generate a subject string for the portfolio
+- (NSString*) toStringForPorfolio {
+    NSMutableArray *assessmentStrings = [[NSMutableArray alloc] init];
+    
+    //For each assesment that has a grade, generate an assessment string
+    for (AssessmentCriteria *assessment in self.assessments) {
+        if ([assessment.hasGrade boolValue]) {
+            [assessmentStrings insertObject:[assessment toStringForPorfolio] atIndex:0];
+        }
+    }
+    
+    NSString* subjectString = [NSString stringWithFormat:@"            %@: %.0f%%", self.name, [self calculateCurrentGrade]];
+    
+    //If one or more assessment strings exist, add them to the subject string
+    if (assessmentStrings.count > 0) {
+        return [NSString stringWithFormat: @"%@\n%@", subjectString, [assessmentStrings componentsJoinedByString:@"\n"]];
+    }
+    
+    return subjectString;
+}
+
 @end
 
