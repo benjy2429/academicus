@@ -134,6 +134,8 @@
 		B5DED59C1A46470800D22147 /* YearDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DED59B1A46470800D22147 /* YearDetailTableViewController.m */; };
 		B5EC09B61A70865A000B8E27 /* settings.feature in Resources */ = {isa = PBXBuildFile; fileRef = B5EC09B51A70865A000B8E27 /* settings.feature */; };
 		B5EC09B71A70865A000B8E27 /* settings.feature in Resources */ = {isa = PBXBuildFile; fileRef = B5EC09B51A70865A000B8E27 /* settings.feature */; };
+		B5EC09B91A709258000B8E27 /* reminders.feature in Resources */ = {isa = PBXBuildFile; fileRef = B5EC09B81A709258000B8E27 /* reminders.feature */; };
+		B5EC09BA1A709258000B8E27 /* reminders.feature in Resources */ = {isa = PBXBuildFile; fileRef = B5EC09B81A709258000B8E27 /* reminders.feature */; };
 		B5EDAD2D1A5B7E0100AD147A /* grades_management_years.feature in Resources */ = {isa = PBXBuildFile; fileRef = B5EDAD2C1A5B7E0100AD147A /* grades_management_years.feature */; };
 		B5F232A91A4F5CCC00EAFF93 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F232A81A4F5CCC00EAFF93 /* CoreData.framework */; };
 		B5F232AF1A4F5D5D00EAFF93 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5F232AD1A4F5D5D00EAFF93 /* DataModel.xcdatamodeld */; };
@@ -271,6 +273,7 @@
 		B5DED59A1A46470800D22147 /* YearDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YearDetailTableViewController.h; sourceTree = "<group>"; };
 		B5DED59B1A46470800D22147 /* YearDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = YearDetailTableViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B5EC09B51A70865A000B8E27 /* settings.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = settings.feature; sourceTree = "<group>"; };
+		B5EC09B81A709258000B8E27 /* reminders.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reminders.feature; sourceTree = "<group>"; };
 		B5EDAD2C1A5B7E0100AD147A /* grades_management_years.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grades_management_years.feature; sourceTree = "<group>"; };
 		B5F232A81A4F5CCC00EAFF93 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B5F232AE1A4F5D5D00EAFF93 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -546,6 +549,7 @@
 				B58FD33B1A706F1800BE0D25 /* portfolio_achievements.feature */,
 				B58FD33E1A70746500BE0D25 /* portfolio_work_experiece.feature */,
 				B5EC09B51A70865A000B8E27 /* settings.feature */,
+				B5EC09B81A709258000B8E27 /* reminders.feature */,
 				B585D55E1A5B490200AC36D1 /* step_definitions */,
 				B585D5611A5B490200AC36D1 /* support */,
 			);
@@ -670,6 +674,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5EC09B91A709258000B8E27 /* reminders.feature in Resources */,
 				B5030AE71A43788800E23378 /* Main.storyboard in Resources */,
 				A34E955A1A6B4D7400D08274 /* AssessmentsOnTargetCell.xib in Resources */,
 				A3BC00471A6B2D5E00D1B81F /* NumberOfAssessmentsCell.xib in Resources */,
@@ -717,6 +722,7 @@
 				B58FD3371A70657300BE0D25 /* portolio_personal.feature in Resources */,
 				A34E955B1A6B4D7400D08274 /* AssessmentsOnTargetCell.xib in Resources */,
 				B585D5691A5B490200AC36D1 /* 02_pre_stop_hooks.rb in Resources */,
+				B5EC09BA1A709258000B8E27 /* reminders.feature in Resources */,
 				B58FD33A1A706BE200BE0D25 /* portfolio_hobbies.feature in Resources */,
 				B5EC09B71A70865A000B8E27 /* settings.feature in Resources */,
 				B585D5661A5B490200AC36D1 /* calabash_steps.rb in Resources */,
