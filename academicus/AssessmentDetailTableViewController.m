@@ -73,7 +73,13 @@
         return false;
     }
     //Check for weighting value
-    if ([self.weightingField.text isEqualToString:@""] || [self.weightingField.text floatValue] < 0 || [self.weightingField.text floatValue] > 100) {
+    if ([self.weightingField.text length] < 1) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"You must provide a subject weighting" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return false;
+    }
+    //Check weighting is between 0 and 100%
+    if ([self.weightingField.text floatValue] < 0 || [self.weightingField.text floatValue] > 100) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The subject weighting must be 0-100%" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
         [alert show];
         return false;

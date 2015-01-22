@@ -151,7 +151,7 @@ Scenario: Visit edit subject page
   And I am on the Subjects page for "Year 1"
   When I touch navbar button "Edit"
   And I touch "COM4510"
-  Then I should see "Edit Subject"
+  Then I should see navbar with title "Edit Subject"
   And I should see "COM4510"
   And I should see "0"
   And I should see "70"

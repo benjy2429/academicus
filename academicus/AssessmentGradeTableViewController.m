@@ -73,8 +73,14 @@
 
 
 - (BOOL) isEnteredDataValid {
+    //Check for weighting value
+    if ([self.gradeField.text length] < 1) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"You must provide a final grade" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return false;
+    }
     // Validate that the final grade is between 0% and 100%
-    if ([self.gradeField.text isEqualToString:@""] || [self.gradeField.text floatValue] < 0 || [self.gradeField.text floatValue] > 100) {
+    if ([self.gradeField.text floatValue] < 0 || [self.gradeField.text floatValue] > 100) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The final grade must be 0-100%" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
         [alert show];
         return false;
@@ -93,7 +99,7 @@
     }
     //Check that the notes is less than 300
     if ([self.notesField.text length] > 300) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The notes field must be less than 300 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The notes must be less than 300 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
         [alert show];
         return false;
     }
