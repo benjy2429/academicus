@@ -144,6 +144,10 @@
                 nibName = @"AssessmentsOnTargetCell";
                 cellIdentifier = @"assessmentsOnTargetCell";
             } break;
+            case NumberOfSubjectsStats: {
+                nibName = @"NumberOfSubjectsCell";
+                cellIdentifier = @"numberOfSubjectsCell";
+            } break;
             case PerformanceBySubjectStats: {
                 nibName = @"PerformanceBySubjectCell";
                 cellIdentifier = @"performanceBySubjectCell";
@@ -170,12 +174,13 @@
         arrayIndexToUse --;
     }
     switch ((StatisticalCells) [self.cellsToDisplay[arrayIndexToUse] integerValue]) {
-        case NumberOfYearsStats: return 100; break;
-        case NumberOfAssessmentsStats: return 100; break;
-        case HighestGradedAssessmentsStats: return 200; break;
-        case HighestRatedAssessmentsStats: return 200; break;
-        case AssessmentsOnTargetStats: return 100; break;
-        case PerformanceBySubjectStats: return 370; break;
+        case NumberOfYearsStats: return 150; break;
+        case NumberOfAssessmentsStats: return 150; break;
+        case HighestGradedAssessmentsStats: return 250; break;
+        case HighestRatedAssessmentsStats: return 250; break;
+        case AssessmentsOnTargetStats: return 150; break;
+        case NumberOfSubjectsStats: return 150; break;
+        case PerformanceBySubjectStats: return 400; break;
         default: return [super tableView:tableView heightForRowAtIndexPath:indexPath]; break;
     }
 }
@@ -227,6 +232,10 @@
                     }
                 }
                 [specialisedCell configureCellWithMetTarget:assessmentsOnTarget gradedAssessments: assessmentsGraded];
+            } break;
+            case NumberOfSubjectsStats: {
+                NumberOfSubjectsCell* specialisedCell = (NumberOfSubjectsCell*) cell;
+                [specialisedCell configureCellWithSubjects: (int)[self.subjects count]];
             } break;
             case PerformanceBySubjectStats: {
                 PerformanceBySubjectCell* specialisedCell = (PerformanceBySubjectCell*) cell;
@@ -335,6 +344,7 @@
             [self.cellsToDisplay addObject: @(HighestGradedAssessmentsStats)];
             [self.cellsToDisplay addObject: @(HighestRatedAssessmentsStats)];
             [self.cellsToDisplay addObject: @(AssessmentsOnTargetStats)];
+            [self.cellsToDisplay addObject: @(NumberOfSubjectsStats)];
             [self.cellsToDisplay addObject: @(PerformanceBySubjectStats)];
         } else {
             //TODO add a "you should add some grades to get stats"

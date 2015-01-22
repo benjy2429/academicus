@@ -23,10 +23,16 @@ const float HIGHEST_RATED_DURATION = 1.0f;
 }
 
 - (void) configureCellWithHighestRatings: (NSArray*) ratingOrderedAssessments {
+    
+    [self.firstTimer invalidate];
+    [self.secondTimer invalidate];
+    [self.thirdTimer invalidate];
+    
     if ([ratingOrderedAssessments count] > 0) {
         AssessmentCriteria* assessment = (AssessmentCriteria*) ratingOrderedAssessments[0];
         self.firstRatingLabel.text = assessment.name;
         self.firstStar.textColor = APP_TINT_COLOUR;
+        self.firstSubjectLabel.text = assessment.subject.name;
         
         self.currentFirstRatingValue = 0;
         self.finalFirstRatingValue = [assessment.rating intValue];
@@ -34,14 +40,15 @@ const float HIGHEST_RATED_DURATION = 1.0f;
         self.firstTimer = [NSTimer scheduledTimerWithTimeInterval: (HIGHEST_RATED_DURATION/self.finalFirstRatingValue) target:self selector:@selector(updateFirstRating) userInfo:nil repeats: YES];
     } else {
         self.firstRatingLabel.hidden = YES;
-        self.firstRatingValue.hidden = YES;
-        self.firstStar.hidden = YES;
+        self.firstRatingValue.text = @"-";
+        self.firstSubjectLabel.hidden = YES;
     }
     
     if ([ratingOrderedAssessments count] > 1) {
         AssessmentCriteria* assessment = (AssessmentCriteria*) ratingOrderedAssessments[1];
         self.secondRatingLabel.text = assessment.name;
         self.secondStar.textColor = APP_TINT_COLOUR;
+        self.secondSubjectLabel.text = assessment.subject.name;
         
         self.currentSecondRatingValue = 0;
         self.finalSecondRatingValue = [assessment.rating intValue];
@@ -49,14 +56,15 @@ const float HIGHEST_RATED_DURATION = 1.0f;
         self.secondTimer = [NSTimer scheduledTimerWithTimeInterval: (HIGHEST_RATED_DURATION/self.finalSecondRatingValue) target:self selector:@selector(updateSecondRating) userInfo:nil repeats: YES];
     } else {
         self.secondRatingLabel.hidden = YES;
-        self.secondRatingValue.hidden = YES;
-        self.secondStar.hidden = YES;
+        self.secondRatingValue.text = @"-";
+        self.secondSubjectLabel.hidden = YES;
     }
     
     if ([ratingOrderedAssessments count] > 2) {
         AssessmentCriteria* assessment = (AssessmentCriteria*) ratingOrderedAssessments[2];
         self.thirdRatingLabel.text = assessment.name;
         self.thirdStar.textColor = APP_TINT_COLOUR;
+        self.thirdSubjectLabel.text = assessment.subject.name;
         
         self.currentThirdRatingValue = 0;
         self.finalThirdRatingValue = [assessment.rating intValue];
@@ -64,8 +72,8 @@ const float HIGHEST_RATED_DURATION = 1.0f;
         self.thirdTimer = [NSTimer scheduledTimerWithTimeInterval: (HIGHEST_RATED_DURATION/self.finalThirdRatingValue) target:self selector:@selector(updateThirdRating) userInfo:nil repeats: YES];
     } else {
         self.thirdRatingLabel.hidden = YES;
-        self.thirdRatingValue.hidden = YES;
-        self.thirdStar.hidden = YES;
+        self.thirdRatingValue.text = @"-";
+        self.thirdSubjectLabel.hidden = YES;
     }
 }
 

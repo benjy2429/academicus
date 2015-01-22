@@ -23,7 +23,7 @@
 - (void) configureCellWithAssessments: (int) numberOfAssessments
 {
     if (numberOfAssessments == 1) {
-        self.assessmentsLabel.text = [NSString stringWithFormat: @"%i Assessments", numberOfAssessments];
+        self.assessmentsLabel.text = [NSString stringWithFormat: @"%i Assessment", numberOfAssessments];
     } else {
         self.assessmentsLabel.text = [NSString stringWithFormat: @"%i Assessments", numberOfAssessments];
     }

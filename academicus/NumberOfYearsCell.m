@@ -27,6 +27,11 @@
     } else {
         self.yearsLabel.text = [NSString stringWithFormat: @"%i Years", years];
     }
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy"];
+    self.yearLabel.text = [formatter stringFromDate:[NSDate date]];
+    [self.yearLabel setTransform:CGAffineTransformMakeRotation(-(12/(float)180)*M_PI)];
 }
 
 @end

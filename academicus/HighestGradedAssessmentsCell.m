@@ -24,38 +24,50 @@ const float HIGHEST_GRADED_DURATION = 1.0f;
 
 - (void) configureCellWithHighestGrades: (NSArray*) gradeOrderedAssessments
 {
+    [self.firstTimer invalidate];
+    [self.secondTimer invalidate];
+    [self.thirdTimer invalidate];
+    
     if ([gradeOrderedAssessments count] > 0) {
         AssessmentCriteria* assessment = (AssessmentCriteria*) gradeOrderedAssessments[0];
         self.firstHighestLabel.text = assessment.name;
+        self.firstSubjectLabel.text = assessment.subject.name;
         self.currentFirstGradeValue = 0;
         self.finalFirstGradeValue = [assessment.finalGrade intValue];
         [self updateFirstGrade];
         self.firstTimer = [NSTimer scheduledTimerWithTimeInterval: (HIGHEST_GRADED_DURATION/self.finalFirstGradeValue) target:self selector:@selector(updateFirstGrade) userInfo:nil repeats: YES];
     } else {
         self.firstHighestLabel.hidden = YES;
-        self.firstHighestGradeLabel.hidden = YES;
+        self.firstHighestGradeLabel.text = @"--%";
+        self.firstSubjectLabel.hidden=YES;
     }
     
     if ([gradeOrderedAssessments count] > 1) {
         AssessmentCriteria* assessment = (AssessmentCriteria*) gradeOrderedAssessments[1];
         self.secondHighestLabel.text = assessment.name;
+        self.secondSubjectLabel.text = assessment.subject.name;
         self.currentSecondGradeValue = 0;
         self.finalSecondGradeValue = [assessment.finalGrade intValue];
         [self updateSecondGrade];
-        self.secondTimer = [NSTimer scheduledTimerWithTimeInterval: (HIGHEST_GRADED_DURATION/self.finalSecondGradeValue) target:self selector:@selector(updateSecondGrade) userInfo:nil repeats: YES];    } else {
+        self.secondTimer = [NSTimer scheduledTimerWithTimeInterval: (HIGHEST_GRADED_DURATION/self.finalSecondGradeValue) target:self selector:@selector(updateSecondGrade) userInfo:nil repeats: YES];
+    } else {
         self.secondHighestLabel.hidden = YES;
-        self.secondHighestGradeLabel.hidden = YES;
+        self.secondHighestGradeLabel.text = @"--%";
+        self.secondSubjectLabel.hidden = YES;
     }
     
     if ([gradeOrderedAssessments count] > 2) {
         AssessmentCriteria* assessment = (AssessmentCriteria*) gradeOrderedAssessments[2];
         self.thirdHighestLabel.text = assessment.name;
+        self.thirdSubjectLabel.text = assessment.subject.name;
         self.currentThirdGradeValue = 0;
         self.finalThirdGradeValue = [assessment.finalGrade intValue];
         [self updateThirdGrade];
-        self.thirdTimer = [NSTimer scheduledTimerWithTimeInterval: (HIGHEST_GRADED_DURATION/self.finalThirdGradeValue) target:self selector:@selector(updateThirdGrade) userInfo:nil repeats: YES];    } else {
+        self.thirdTimer = [NSTimer scheduledTimerWithTimeInterval: (HIGHEST_GRADED_DURATION/self.finalThirdGradeValue) target:self selector:@selector(updateThirdGrade) userInfo:nil repeats: YES];
+    } else {
         self.thirdHighestLabel.hidden = YES;
-        self.thirdHighestGradeLabel.hidden = YES;
+        self.thirdHighestGradeLabel.text = @"--%";
+        self.thirdSubjectLabel.hidden = YES;
     }
 }
 

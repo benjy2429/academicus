@@ -25,6 +25,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *secondStar;
 @property (weak, nonatomic) IBOutlet UILabel *thirdStar;
 
+@property (weak, nonatomic) IBOutlet UILabel *firstSubjectLabel;
+@property (weak, nonatomic) IBOutlet UILabel *secondSubjectLabel;
+@property (weak, nonatomic) IBOutlet UILabel *thirdSubjectLabel;
+
+
 //Animation Properties
 @property (strong) NSTimer* firstTimer;
 @property (assign) int currentFirstRatingValue;

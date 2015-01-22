@@ -12,6 +12,7 @@
 #import "HighestGradedAssessmentsCell.h"
 #import "HighestRatedAssessmentsCell.h"
 #import "AssessmentsOnTargetCell.h"
+#import "NumberOfSubjectsCell.h"
 #import "PerformanceBySubjectCell.h"
 #import "Qualification.h"
 #import "Subject.h"
@@ -24,6 +25,7 @@ typedef enum StatisticalCells : NSUInteger {
     HighestGradedAssessmentsStats,
     HighestRatedAssessmentsStats,
     AssessmentsOnTargetStats,
+    NumberOfSubjectsStats,
     PerformanceBySubjectStats
 } StatisticalCells;
 

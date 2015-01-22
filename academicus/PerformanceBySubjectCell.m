@@ -36,7 +36,11 @@ const float COLUMN_ANIMATION_DELAY = 0.3f;
     self.graphWidth = [UIScreen mainScreen].bounds.size.width - 55;
     self.graphHeight = self.performanceGraphView.frame.size.height;
     
-    self.columnWidth = self.graphWidth / (float)[self.subjects count];
+    if ([self.subjects count] > 2) {
+        self.columnWidth = self.graphWidth / (float)[self.subjects count];
+    } else {
+        self.columnWidth = self.graphWidth / 2.0f;
+    }
     
     int currentIndex = 0;
     for (Subject* subject in self.subjects) {
@@ -53,10 +57,10 @@ const float COLUMN_ANIMATION_DELAY = 0.3f;
 
 - (void) drawAxis {
     UIView *yAxis = [[UIView alloc] initWithFrame:CGRectMake(self.graphOriginX, self.graphOriginY, AXIS_THICKNESS, -self.graphHeight)];
-    yAxis.backgroundColor = [UIColor blackColor];
+    yAxis.backgroundColor = [UIColor grayColor];
     
     UIView *xAxis = [[UIView alloc] initWithFrame:CGRectMake(self.graphOriginX, self.graphOriginY,self.graphWidth ,AXIS_THICKNESS)];
-    xAxis.backgroundColor = [UIColor blackColor];
+    xAxis.backgroundColor = [UIColor grayColor];
     
     [self.performanceGraphView addSubview:yAxis];
     [self.performanceGraphView addSubview:xAxis];

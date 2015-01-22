@@ -21,6 +21,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *secondHighestGradeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *thirdHighestGradeLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *firstSubjectLabel;
+@property (weak, nonatomic) IBOutlet UILabel *secondSubjectLabel;
+@property (weak, nonatomic) IBOutlet UILabel *thirdSubjectLabel;
+
+
 //Animation Properties
 @property (strong) NSTimer* firstTimer;
 @property (assign) int currentFirstGradeValue;
