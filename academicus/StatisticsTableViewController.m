@@ -24,6 +24,7 @@
     // Fetch the data when the view loads to ensure it is up to date
     [self performFetch];
     [self loadAssessments];
+    [self loadSubjects];
     
     // Reload the date picker options
     UIPickerView *picker = (UIPickerView *)[self.tableView viewWithTag:500];
@@ -154,6 +155,7 @@
             [tableView registerNib:[UINib nibWithNibName:nibName bundle:nil] forCellReuseIdentifier:cellIdentifier];
             cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         }
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 
         return cell;
 }
@@ -173,7 +175,7 @@
         case HighestGradedAssessmentsStats: return 200; break;
         case HighestRatedAssessmentsStats: return 200; break;
         case AssessmentsOnTargetStats: return 100; break;
-        case PerformanceBySubjectStats: return 300; break;
+        case PerformanceBySubjectStats: return 370; break;
         default: return [super tableView:tableView heightForRowAtIndexPath:indexPath]; break;
     }
 }
@@ -228,7 +230,7 @@
             } break;
             case PerformanceBySubjectStats: {
                 PerformanceBySubjectCell* specialisedCell = (PerformanceBySubjectCell*) cell;
-                //[specialisedCell configureCellWithAssessments]
+                [specialisedCell configureCellWithSubjects: self.subjects];
             } break;
         }
     }
@@ -243,6 +245,7 @@
             [self showQualificaitonPicker];
         } else {
             [self loadAssessments];
+            [self loadSubjects];
             [self hideQualificaitonPicker];
         }
 
@@ -319,7 +322,13 @@
         
         // Fetch the data for the table view using CoreData
         NSError *error;
-        self.assessments = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error]; //TODO should we do something with this error or make it nil?
+        self.assessments = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+        
+        // Make sure there were no errors fetching the data
+        if (error != nil) {
+            COREDATA_ERROR(error);
+            return;
+        }
         
         if ([self.assessments count] > 0) {
             [self.cellsToDisplay addObject: @(NumberOfAssessmentsStats)];
@@ -333,5 +342,28 @@
     }
 }
 
+- (void) loadSubjects {
+    if (self.selectedQualification != nil) {
+        
+        NSFetchRequest* fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription* entity = [NSEntityDescription entityForName:@"Subject" inManagedObjectContext:self.managedObjectContext];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"year.qualification == %@", self.selectedQualification];
+        NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+        
+        [fetchRequest setEntity:entity];
+        [fetchRequest setPredicate:predicate];
+        [fetchRequest setSortDescriptors:@[sortDescriptor]];
+        
+        // Fetch the data for the table view using CoreData
+        NSError *error;
+        self.subjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+        
+        // Make sure there were no errors fetching the data
+        if (error != nil) {
+            COREDATA_ERROR(error);
+            return;
+        }
+    }
+}
 
 @end

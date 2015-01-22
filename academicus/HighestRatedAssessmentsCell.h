@@ -25,7 +25,20 @@
 @property (weak, nonatomic) IBOutlet UILabel *secondStar;
 @property (weak, nonatomic) IBOutlet UILabel *thirdStar;
 
-- (void) configureCellWithHighestRatings: (NSArray*) ratingOrderedAssessments
-;
+//Animation Properties
+@property (strong) NSTimer* firstTimer;
+@property (assign) int currentFirstRatingValue;
+@property (assign) int finalFirstRatingValue;
+
+@property (strong) NSTimer* secondTimer;
+@property (assign) int currentSecondRatingValue;
+@property (assign) int finalSecondRatingValue;
+
+@property (strong) NSTimer* thirdTimer;
+@property (assign) int currentThirdRatingValue;
+@property (assign) int finalThirdRatingValue;
+
+- (void) configureCellWithHighestRatings: (NSArray*) ratingOrderedAssessments;
 
 @end
+

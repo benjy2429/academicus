@@ -21,6 +21,19 @@
 @property (weak, nonatomic) IBOutlet UILabel *secondHighestGradeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *thirdHighestGradeLabel;
 
+//Animation Properties
+@property (strong) NSTimer* firstTimer;
+@property (assign) int currentFirstGradeValue;
+@property (assign) int finalFirstGradeValue;
+
+@property (strong) NSTimer* secondTimer;
+@property (assign) int currentSecondGradeValue;
+@property (assign) int finalSecondGradeValue;
+
+@property (strong) NSTimer* thirdTimer;
+@property (assign) int currentThirdGradeValue;
+@property (assign) int finalThirdGradeValue;
+
 - (void) configureCellWithHighestGrades: (NSArray*) gradeOrderedAssessments;
 
 @end

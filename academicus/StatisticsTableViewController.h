@@ -33,6 +33,8 @@ typedef enum StatisticalCells : NSUInteger {
 @property (nonatomic, weak) NSManagedObjectContext *managedObjectContext;
 @property (strong) NSArray* qualifications;
 @property (strong) NSArray* assessments;
+@property (strong) NSArray* subjects;
+
 
 @property (strong) Qualification* selectedQualification;
 @property (assign) BOOL qualificationVisible;

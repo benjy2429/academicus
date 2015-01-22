@@ -43,6 +43,56 @@
 }
 
 
+#pragma mark - Tests
+
+- (void) testAssessmentStringForProfile {
+    AssessmentCriteria* assessment = [self createAssessment:@{@"name":@"TEST",@"finalGrade":[NSNumber numberWithFloat:50.0f]}];
+    XCTAssertTrue([[assessment toStringForPorfolio] isEqualToString: @"                  TEST: 50%"]);
+}
+
+
+- (void) testAssessmentFriendlyDaysRemaining {
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    AssessmentCriteria* assessment = [self createAssessment:@{@"deadline":[cal dateByAddingUnit: NSCalendarUnitDay value:1 toDate:[NSDate date] options:0]}];
+    XCTAssertTrue([[assessment getFriendlyDaysRemaining] isEqualToString: @"Due tomorrow"]);
+    
+    assessment = [self createAssessment:@{@"deadline":[NSDate date]}];
+    XCTAssertTrue([[assessment getFriendlyDaysRemaining] isEqualToString: @"Due today"]);
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd-MM-yyyy"];
+    NSDate* date = [cal dateByAddingUnit:NSCalendarUnitYear value:2 toDate:[NSDate date] options:0];
+    assessment = [self createAssessment:@{@"deadline":date}];
+    NSString* string = [NSString stringWithFormat: @"Due on %@", [formatter stringFromDate:date]];
+    XCTAssertTrue([[assessment getFriendlyDaysRemaining] isEqualToString: string]);
+    
+    assessment = [self createAssessment:@{@"deadline":[cal dateByAddingUnit:NSCalendarUnitDay value:5 toDate:[NSDate date] options:0]}];
+    XCTAssertTrue([[assessment getFriendlyDaysRemaining] isEqualToString: @"Due in 5 days"]);
+}
+
+
+- (void) testAmountOfSubjectCompleted {
+    XCTAssertEqual([self.subject amountOfSubjectCompleted], 50.0f);
+}
+
+
+- (void) testSubjectWeightingAllocated {
+    XCTAssertEqual([self.subject weightingAllocated], 50.0f);
+}
+
+
+- (void) testCalculateCurrentGrade {
+    XCTAssertEqual([self.subject calculateCurrentGrade], 25.0f);
+}
+
+
+- (void) testYearWeightingAllocated {
+    XCTAssertEqual([self.year weightingAllocated], 100.0f);
+}
+
+
+#pragma mark - Object Creation Methods
+
 - (void)createManagedObjectContext {
     NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"DataModel" withExtension:@"momd"];
     NSManagedObjectModel *model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
@@ -106,12 +156,13 @@
 - (AssessmentCriteria *)createAssessment:(NSDictionary *)dict {
     AssessmentCriteria *assessment = [NSEntityDescription insertNewObjectForEntityForName:@"AssessmentCriteria" inManagedObjectContext:self.moc];
     assessment.name = [dict objectForKey:@"name"] ? [dict objectForKey:@"name"] : @"Test Assessment";
-    assessment.weighting = [dict objectForKey:@"weighting"] ? [dict objectForKey:@"weighting"] : [NSNumber numberWithFloat:100.0f];
+    assessment.weighting = [dict objectForKey:@"weighting"] ? [dict objectForKey:@"weighting"] : [NSNumber numberWithFloat:50.0f];
     assessment.deadline = [dict objectForKey:@"deadline"] ? [dict objectForKey:@"deadline"] : [NSDate date];
     assessment.reminder = [dict objectForKey:@"reminder"] ? [dict objectForKey:@"reminder"] : nil;
+    assessment.finalGrade = [dict objectForKey:@"finalGrade"] ? [dict objectForKey:@"finalGrade"] : [NSNumber numberWithFloat:50.0f];
     assessment.displayOrder = [dict objectForKey:@"displayOrder"] ? [dict objectForKey:@"displayOrder"] : [NSNumber numberWithInt:0];
     assessment.subject = [dict objectForKey:@"subject"] ? [dict objectForKey:@"subject"] : self.subject;
-    assessment.hasGrade = [dict objectForKey:@"hasGrade"] ? [dict objectForKey:@"hasGrade"] : [NSNumber numberWithBool:NO];
+    assessment.hasGrade = [dict objectForKey:@"hasGrade"] ? [dict objectForKey:@"hasGrade"] : [NSNumber numberWithBool:YES];
     assessment.rating = [dict objectForKey:@"rating"] ? [dict objectForKey:@"rating"] : nil;
     assessment.positiveFeedback = [dict objectForKey:@"positiveFeedback"] ? [dict objectForKey:@"positiveFeedback"] : nil;
     assessment.negativeFeedback = [dict objectForKey:@"negativeFeedback"] ? [dict objectForKey:@"negativeFeedback"] : nil;
