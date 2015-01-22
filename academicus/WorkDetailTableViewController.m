@@ -293,11 +293,11 @@
     // If the cell should be a date picker cell
     if ((indexPath.section == 2 && indexPath.row == 1) || (indexPath.section == 3 && indexPath.row == 1)) {
         
-        NSString *identifier = (indexPath.section == 1) ? @"datePickerStartCell" : @"datePickerEndCell";
+        NSString *identifier = (indexPath.section == 2) ? @"datePickerStartCell" : @"datePickerEndCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         
         // Create a new cell
-        if (cell == nil) {
+        if (cell == nil) { 
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             

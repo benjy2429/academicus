@@ -102,8 +102,9 @@
         // 3 Week Add Grade Reminder Notification
         // Set a notification 3 weeks after the deadline if notifications are enabled
         if (self.itemToEdit.deadline != self.deadlineDate) {
+            [self.itemToEdit removeDeadlineReminder];
             self.itemToEdit.deadline = self.deadlineDate;
-            [self.itemToEdit createDeadlineReminderByReplacing:YES];
+            [self.itemToEdit createDeadlineReminder];
         }
 
         // User Reminder Notification
@@ -132,7 +133,7 @@
         newAssessment.reminder = (self.reminderSwitch.on) ? self.reminderDate : nil;
         
         // 3 Week Add Grade Reminder Notification
-        [newAssessment createDeadlineReminderByReplacing:NO];
+        [newAssessment createDeadlineReminder];
         
         // User Reminder Notification
         // Check if a reminder has been added so a new notification can be scheduled

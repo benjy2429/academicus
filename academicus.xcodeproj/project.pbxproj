@@ -103,13 +103,20 @@
 		B585D56A1A5B490200AC36D1 /* env.rb in Resources */ = {isa = PBXBuildFile; fileRef = B585D5641A5B490200AC36D1 /* env.rb */; };
 		B586BF2C1A6B673900996991 /* MyPortfolioTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B586BF2B1A6B673900996991 /* MyPortfolioTableViewCell.m */; };
 		B58FD3341A702C4000BE0D25 /* academicusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B58FD3331A702C4000BE0D25 /* academicusTests.m */; };
+		B58FD3361A70657300BE0D25 /* portolio_personal.feature in Resources */ = {isa = PBXBuildFile; fileRef = B58FD3351A70657300BE0D25 /* portolio_personal.feature */; };
+		B58FD3371A70657300BE0D25 /* portolio_personal.feature in Resources */ = {isa = PBXBuildFile; fileRef = B58FD3351A70657300BE0D25 /* portolio_personal.feature */; };
+		B58FD3391A706BE200BE0D25 /* portfolio_hobbies.feature in Resources */ = {isa = PBXBuildFile; fileRef = B58FD3381A706BE200BE0D25 /* portfolio_hobbies.feature */; };
+		B58FD33A1A706BE200BE0D25 /* portfolio_hobbies.feature in Resources */ = {isa = PBXBuildFile; fileRef = B58FD3381A706BE200BE0D25 /* portfolio_hobbies.feature */; };
+		B58FD33C1A706F1800BE0D25 /* portfolio_achievements.feature in Resources */ = {isa = PBXBuildFile; fileRef = B58FD33B1A706F1800BE0D25 /* portfolio_achievements.feature */; };
+		B58FD33D1A706F1800BE0D25 /* portfolio_achievements.feature in Resources */ = {isa = PBXBuildFile; fileRef = B58FD33B1A706F1800BE0D25 /* portfolio_achievements.feature */; };
+		B58FD33F1A70746500BE0D25 /* portfolio_work_experiece.feature in Resources */ = {isa = PBXBuildFile; fileRef = B58FD33E1A70746500BE0D25 /* portfolio_work_experiece.feature */; };
+		B58FD3401A70746500BE0D25 /* portfolio_work_experiece.feature in Resources */ = {isa = PBXBuildFile; fileRef = B58FD33E1A70746500BE0D25 /* portfolio_work_experiece.feature */; };
 		B5A47B7B1A5EE7E700136BAF /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3A3B6171A5DFFBA008D17E9 /* LoginView.xib */; };
 		B5A47B7D1A5F13AB00136BAF /* grades_management_assessments.feature in Resources */ = {isa = PBXBuildFile; fileRef = B5A47B7C1A5F13AB00136BAF /* grades_management_assessments.feature */; };
 		B5A490611A6AE07500506B7B /* LocationSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A490601A6AE07500506B7B /* LocationSearchTableViewController.m */; };
 		B5A490621A6AE07500506B7B /* LocationSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A490601A6AE07500506B7B /* LocationSearchTableViewController.m */; };
 		B5A490651A6B176800506B7B /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A490641A6B176800506B7B /* MapViewController.m */; };
 		B5A490661A6B176800506B7B /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A490641A6B176800506B7B /* MapViewController.m */; };
-		B5A671B71A700C25005F7424 /* CLPlacemark+FullAddressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A671B61A700C25005F7424 /* CLPlacemark+FullAddressTests.m */; };
 		B5A6CA251A5B574C0041CEE9 /* navbar_steps.rb in Resources */ = {isa = PBXBuildFile; fileRef = B5A6CA241A5B574C0041CEE9 /* navbar_steps.rb */; };
 		B5A846581A50CCEF001D2E47 /* Year.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A846571A50CCEF001D2E47 /* Year.m */; };
 		B5A8465E1A50E2F2001D2E47 /* AssessmentCriteria.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A8465D1A50E2F2001D2E47 /* AssessmentCriteria.m */; };
@@ -127,6 +134,10 @@
 		B5C99C441A5E27950074C5B3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A3B6121A5DE3EA008D17E9 /* LoginViewController.m */; };
 		B5DED5991A46451500D22147 /* YearsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DED5981A46451500D22147 /* YearsTableViewController.m */; };
 		B5DED59C1A46470800D22147 /* YearDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DED59B1A46470800D22147 /* YearDetailTableViewController.m */; };
+		B5EC09B61A70865A000B8E27 /* settings.feature in Resources */ = {isa = PBXBuildFile; fileRef = B5EC09B51A70865A000B8E27 /* settings.feature */; };
+		B5EC09B71A70865A000B8E27 /* settings.feature in Resources */ = {isa = PBXBuildFile; fileRef = B5EC09B51A70865A000B8E27 /* settings.feature */; };
+		B5EC09B91A709258000B8E27 /* reminders.feature in Resources */ = {isa = PBXBuildFile; fileRef = B5EC09B81A709258000B8E27 /* reminders.feature */; };
+		B5EC09BA1A709258000B8E27 /* reminders.feature in Resources */ = {isa = PBXBuildFile; fileRef = B5EC09B81A709258000B8E27 /* reminders.feature */; };
 		B5EDAD2D1A5B7E0100AD147A /* grades_management_years.feature in Resources */ = {isa = PBXBuildFile; fileRef = B5EDAD2C1A5B7E0100AD147A /* grades_management_years.feature */; };
 		B5F232A91A4F5CCC00EAFF93 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F232A81A4F5CCC00EAFF93 /* CoreData.framework */; };
 		B5F232AF1A4F5D5D00EAFF93 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5F232AD1A4F5D5D00EAFF93 /* DataModel.xcdatamodeld */; };
@@ -240,13 +251,16 @@
 		B586BF2A1A6B673900996991 /* MyPortfolioTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPortfolioTableViewCell.h; sourceTree = "<group>"; };
 		B586BF2B1A6B673900996991 /* MyPortfolioTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPortfolioTableViewCell.m; sourceTree = "<group>"; };
 		B58FD3331A702C4000BE0D25 /* academicusTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = academicusTests.m; sourceTree = "<group>"; };
+		B58FD3351A70657300BE0D25 /* portolio_personal.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = portolio_personal.feature; sourceTree = "<group>"; };
+		B58FD3381A706BE200BE0D25 /* portfolio_hobbies.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = portfolio_hobbies.feature; sourceTree = "<group>"; };
+		B58FD33B1A706F1800BE0D25 /* portfolio_achievements.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = portfolio_achievements.feature; sourceTree = "<group>"; };
+		B58FD33E1A70746500BE0D25 /* portfolio_work_experiece.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = portfolio_work_experiece.feature; sourceTree = "<group>"; };
 		B592AA101A6B2CA100025414 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = academicus/Info.plist; sourceTree = "<group>"; };
 		B5A47B7C1A5F13AB00136BAF /* grades_management_assessments.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = grades_management_assessments.feature; path = features/grades_management_assessments.feature; sourceTree = SOURCE_ROOT; };
 		B5A4905F1A6AE07500506B7B /* LocationSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationSearchTableViewController.h; sourceTree = "<group>"; };
 		B5A490601A6AE07500506B7B /* LocationSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationSearchTableViewController.m; sourceTree = "<group>"; };
 		B5A490631A6B176800506B7B /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		B5A490641A6B176800506B7B /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
-		B5A671B61A700C25005F7424 /* CLPlacemark+FullAddressTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLPlacemark+FullAddressTests.m"; sourceTree = "<group>"; };
 		B5A6CA241A5B574C0041CEE9 /* navbar_steps.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = navbar_steps.rb; sourceTree = "<group>"; };
 		B5A846561A50CCEF001D2E47 /* Year.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Year.h; sourceTree = "<group>"; };
 		B5A846571A50CCEF001D2E47 /* Year.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Year.m; sourceTree = "<group>"; };
@@ -259,6 +273,8 @@
 		B5DED5981A46451500D22147 /* YearsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YearsTableViewController.m; sourceTree = "<group>"; };
 		B5DED59A1A46470800D22147 /* YearDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YearDetailTableViewController.h; sourceTree = "<group>"; };
 		B5DED59B1A46470800D22147 /* YearDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = YearDetailTableViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B5EC09B51A70865A000B8E27 /* settings.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = settings.feature; sourceTree = "<group>"; };
+		B5EC09B81A709258000B8E27 /* reminders.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reminders.feature; sourceTree = "<group>"; };
 		B5EDAD2C1A5B7E0100AD147A /* grades_management_years.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grades_management_years.feature; sourceTree = "<group>"; };
 		B5F232A81A4F5CCC00EAFF93 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B5F232AE1A4F5D5D00EAFF93 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -509,7 +525,6 @@
 			children = (
 				B58FD3331A702C4000BE0D25 /* academicusTests.m */,
 				B5030AF51A43788800E23378 /* Supporting Files */,
-				B5A671B61A700C25005F7424 /* CLPlacemark+FullAddressTests.m */,
 			);
 			path = academicusTests;
 			sourceTree = "<group>";
@@ -529,6 +544,12 @@
 				B5EDAD2C1A5B7E0100AD147A /* grades_management_years.feature */,
 				B5C99C371A5E22530074C5B3 /* grades_management_subjects.feature */,
 				B5A47B7C1A5F13AB00136BAF /* grades_management_assessments.feature */,
+				B58FD3351A70657300BE0D25 /* portolio_personal.feature */,
+				B58FD3381A706BE200BE0D25 /* portfolio_hobbies.feature */,
+				B58FD33B1A706F1800BE0D25 /* portfolio_achievements.feature */,
+				B58FD33E1A70746500BE0D25 /* portfolio_work_experiece.feature */,
+				B5EC09B51A70865A000B8E27 /* settings.feature */,
+				B5EC09B81A709258000B8E27 /* reminders.feature */,
 				B585D55E1A5B490200AC36D1 /* step_definitions */,
 				B585D5611A5B490200AC36D1 /* support */,
 			);
@@ -653,18 +674,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5EC09B91A709258000B8E27 /* reminders.feature in Resources */,
 				B5030AE71A43788800E23378 /* Main.storyboard in Resources */,
 				A34E955A1A6B4D7400D08274 /* AssessmentsOnTargetCell.xib in Resources */,
 				A3BC00471A6B2D5E00D1B81F /* NumberOfAssessmentsCell.xib in Resources */,
+				B58FD3361A70657300BE0D25 /* portolio_personal.feature in Resources */,
 				A34E95541A6B4D4D00D08274 /* PerformanceBySubjectCell.xib in Resources */,
 				B5EDAD2D1A5B7E0100AD147A /* grades_management_years.feature in Resources */,
 				A3BC00401A6B28DF00D1B81F /* NumberOfYearsCell.xib in Resources */,
 				A3A3B6181A5DFFBA008D17E9 /* LoginView.xib in Resources */,
 				B5A6CA251A5B574C0041CEE9 /* navbar_steps.rb in Resources */,
 				A3BC004E1A6B32EE00D1B81F /* HighestGradedAssessmentsCell.xib in Resources */,
+				B5EC09B61A70865A000B8E27 /* settings.feature in Resources */,
 				B5030AE91A43788800E23378 /* Images.xcassets in Resources */,
+				B58FD3391A706BE200BE0D25 /* portfolio_hobbies.feature in Resources */,
 				A34E954A1A6B4C1600D08274 /* HighestRatedAssessmentsCell.xib in Resources */,
 				B5C99C381A5E22530074C5B3 /* grades_management_subjects.feature in Resources */,
+				B58FD33C1A706F1800BE0D25 /* portfolio_achievements.feature in Resources */,
 				B5A47B7D1A5F13AB00136BAF /* grades_management_assessments.feature in Resources */,
 				A340507F1A70524700BB8501 /* grades_management_qualifications.feature in Resources */,
 			);
@@ -693,9 +719,14 @@
 				B585D56A1A5B490200AC36D1 /* env.rb in Resources */,
 				A340507C1A70523A00BB8501 /* grades_management_assessments.feature in Resources */,
 				B585D5681A5B490200AC36D1 /* 01_launch.rb in Resources */,
+				B58FD3371A70657300BE0D25 /* portolio_personal.feature in Resources */,
 				A34E955B1A6B4D7400D08274 /* AssessmentsOnTargetCell.xib in Resources */,
 				B585D5691A5B490200AC36D1 /* 02_pre_stop_hooks.rb in Resources */,
+				B5EC09BA1A709258000B8E27 /* reminders.feature in Resources */,
+				B58FD33A1A706BE200BE0D25 /* portfolio_hobbies.feature in Resources */,
+				B5EC09B71A70865A000B8E27 /* settings.feature in Resources */,
 				B585D5661A5B490200AC36D1 /* calabash_steps.rb in Resources */,
+				B58FD33D1A706F1800BE0D25 /* portfolio_achievements.feature in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -758,7 +789,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B58FD3341A702C4000BE0D25 /* academicusTests.m in Sources */,
-				B5A671B71A700C25005F7424 /* CLPlacemark+FullAddressTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

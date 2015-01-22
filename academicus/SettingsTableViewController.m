@@ -37,22 +37,7 @@
         [self performFetch];
         
         for (AssessmentCriteria *assessment in self.assessments) {
-            // Calculate the date 3 weeks after the deadline to set a notification reminder
-            NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
-            [dateComponents setDay:21];
-            NSDate *deadlineReminderDate = [[NSCalendar currentCalendar] dateByAddingComponents:dateComponents toDate:assessment.deadline options:0];
-            
-            // Set a notification 3 weeks after the deadline if notifications are enabled
-            if ([deadlineReminderDate timeIntervalSince1970] > [[NSDate date] timeIntervalSince1970]) {
-                UILocalNotification *notification = [[UILocalNotification alloc] init];
-                notification.fireDate = deadlineReminderDate;
-                notification.alertBody = [NSString stringWithFormat:@"Don't forget to add a grade for %@!", assessment.name];
-                notification.timeZone = [NSTimeZone defaultTimeZone];
-                notification.userInfo = @{@"isDeadlineReminder" : @YES, @"deadline": assessment.deadline};
-                notification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-                
-                [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-            }
+            [assessment createDeadlineReminder];
         }
     } else {
         // Get all the notifications and delete the deadline reminders

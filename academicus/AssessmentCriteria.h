@@ -29,7 +29,7 @@
 
 - (void)createReminder;
 - (void)removeReminder;
-- (void)createDeadlineReminderByReplacing:(BOOL)willReplace;
+- (void)createDeadlineReminder;
 - (void)removeDeadlineReminder;
 - (NSString*) getFriendlyDaysRemaining;
 - (NSString*) toStringForPorfolio;
