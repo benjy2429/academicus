@@ -77,13 +77,25 @@
         return false;
     }
     //Check for weighting value
-    if ([self.weightingField.text isEqualToString:@""] || [self.weightingField.text floatValue] < 0 || [self.weightingField.text floatValue] > 100) {
+    if ([self.weightingField.text length] < 1) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"You must provide a year weighting" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return false;
+    }
+    //Check weighting is between 0 and 100%
+    if ([self.weightingField.text floatValue] < 0 || [self.weightingField.text floatValue] > 100) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The year weighting must be 0-100%" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
         [alert show];
         return false;
     }
     //Check for target value
-    if ([self.targetField.text isEqualToString:@""] || [self.targetField.text intValue] < 0 || [self.targetField.text intValue] > 100) {
+    if ([self.targetField.text length] < 1) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"You must provide a target grade" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return false;
+    }
+    //Check target is between 0 and 100%
+    if ([self.targetField.text intValue] < 0 || [self.targetField.text intValue] > 100) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The target grade must be 0-100%" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
         [alert show];
         return false;
