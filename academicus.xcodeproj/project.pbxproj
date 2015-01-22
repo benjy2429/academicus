@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A34050741A703D5800BB8501 /* generic_app.feature in Resources */ = {isa = PBXBuildFile; fileRef = A34050731A703D5800BB8501 /* generic_app.feature */; };
-		A34050751A703D5800BB8501 /* generic_app.feature in Resources */ = {isa = PBXBuildFile; fileRef = A34050731A703D5800BB8501 /* generic_app.feature */; };
 		A34050761A703D9E00BB8501 /* MyPortfolioTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B586BF2B1A6B673900996991 /* MyPortfolioTableViewCell.m */; };
 		A34050771A703DC300BB8501 /* HighestRatedAssessmentsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A34E95471A6B4C1500D08274 /* HighestRatedAssessmentsCell.m */; };
 		A34050781A703DD400BB8501 /* PerformanceBySubjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A34E95511A6B4D4D00D08274 /* PerformanceBySubjectCell.m */; };
+		A340507C1A70523A00BB8501 /* grades_management_assessments.feature in Resources */ = {isa = PBXBuildFile; fileRef = B5A47B7C1A5F13AB00136BAF /* grades_management_assessments.feature */; };
+		A340507D1A70523E00BB8501 /* grades_management_subjects.feature in Resources */ = {isa = PBXBuildFile; fileRef = B5C99C371A5E22530074C5B3 /* grades_management_subjects.feature */; };
+		A340507E1A70524300BB8501 /* grades_management_years.feature in Resources */ = {isa = PBXBuildFile; fileRef = B5EDAD2C1A5B7E0100AD147A /* grades_management_years.feature */; };
+		A340507F1A70524700BB8501 /* grades_management_qualifications.feature in Resources */ = {isa = PBXBuildFile; fileRef = B585D55D1A5B490200AC36D1 /* grades_management_qualifications.feature */; };
 		A34E95491A6B4C1600D08274 /* HighestRatedAssessmentsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A34E95471A6B4C1500D08274 /* HighestRatedAssessmentsCell.m */; };
 		A34E954A1A6B4C1600D08274 /* HighestRatedAssessmentsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A34E95481A6B4C1600D08274 /* HighestRatedAssessmentsCell.xib */; };
 		A34E95531A6B4D4D00D08274 /* PerformanceBySubjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A34E95511A6B4D4D00D08274 /* PerformanceBySubjectCell.m */; };
@@ -155,7 +157,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A34050731A703D5800BB8501 /* generic_app.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = generic_app.feature; sourceTree = "<group>"; };
 		A34E95461A6B4C1500D08274 /* HighestRatedAssessmentsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighestRatedAssessmentsCell.h; sourceTree = "<group>"; };
 		A34E95471A6B4C1500D08274 /* HighestRatedAssessmentsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighestRatedAssessmentsCell.m; sourceTree = "<group>"; };
 		A34E95481A6B4C1600D08274 /* HighestRatedAssessmentsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HighestRatedAssessmentsCell.xib; sourceTree = "<group>"; };
@@ -539,7 +540,6 @@
 		B585D55C1A5B490200AC36D1 /* features */ = {
 			isa = PBXGroup;
 			children = (
-				A34050731A703D5800BB8501 /* generic_app.feature */,
 				B585D55D1A5B490200AC36D1 /* grades_management_qualifications.feature */,
 				B5EDAD2C1A5B7E0100AD147A /* grades_management_years.feature */,
 				B5C99C371A5E22530074C5B3 /* grades_management_subjects.feature */,
@@ -694,6 +694,7 @@
 				B5C99C381A5E22530074C5B3 /* grades_management_subjects.feature in Resources */,
 				B58FD33C1A706F1800BE0D25 /* portfolio_achievements.feature in Resources */,
 				B5A47B7D1A5F13AB00136BAF /* grades_management_assessments.feature in Resources */,
+				A340507F1A70524700BB8501 /* grades_management_qualifications.feature in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -708,6 +709,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A340507D1A70523E00BB8501 /* grades_management_subjects.feature in Resources */,
+				A340507E1A70524300BB8501 /* grades_management_years.feature in Resources */,
 				B5A47B7B1A5EE7E700136BAF /* LoginView.xib in Resources */,
 				B546EAE61A5B38E40014820C /* Main.storyboard in Resources */,
 				A3BC004F1A6B32EE00D1B81F /* HighestGradedAssessmentsCell.xib in Resources */,

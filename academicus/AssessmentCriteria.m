@@ -108,7 +108,7 @@
         default: {
             //If the number of day exceeds a year, display the date instead
             if ([difference day] < 366) {
-                return [NSString stringWithFormat: @"You have %i days remaining", (int)[difference day]];
+                return [NSString stringWithFormat: @"Due in %i days", (int)[difference day]];
             } else {
                 NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
                 [dateFormatter setDateFormat:@"dd-MM-yyyy"];
@@ -122,8 +122,7 @@
 
 //Return a formatted string containing deatils for the portfolio page
 - (NSString*) toStringForPorfolio {
-    float weightedGrade = (([self.finalGrade floatValue] * [self.weighting floatValue]) / 100);
-    return [NSString stringWithFormat:@"                  %@: %.0f%%", self.name, weightedGrade];
+    return [NSString stringWithFormat:@"                  %@: %.0f%%", self.name, [self.finalGrade floatValue]];
 }
 
 
