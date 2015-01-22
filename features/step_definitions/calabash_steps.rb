@@ -14,6 +14,7 @@ def createQualification(name)
     macro 'I touch navbar button "Edit"'
     macro 'I touch "Add new qualification"'
     macro 'I enter "' + name + '" into the "Name" input field'
+    macro 'I enter "University" into the "Institution" input field'
     macro 'I touch navbar button "Done"'
     macro 'I touch navbar button "Done"'
 end

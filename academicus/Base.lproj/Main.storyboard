@@ -3731,7 +3731,7 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Where are you studying?" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p0l-if-8jx">
                                                     <rect key="frame" x="15" y="7" width="570" height="30"/>
-                                                    <accessibility key="accessibilityConfiguration" label="Name"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Institution"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                     <connections>
