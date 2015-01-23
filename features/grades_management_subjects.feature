@@ -82,6 +82,7 @@ Scenario: Cannot add a subject with a target grade above 100%
   And I touch "Add new subject"
   And I enter "COM4510" into the "Name" input field
   And I scroll down
+  And I wait
   And I clear "Target"
   And I enter "101" into the "Target" input field
   Then I should not see "101"
@@ -95,7 +96,11 @@ Scenario: Cannot add a subject with a teacher name longer than 20 characters
   And I touch "Add new subject"
   And I enter "COM4510" into the "Name" input field
   And I enter "0" into the "Weighting" input field
+  And I scroll down
+  And I wait
   And I enter "70" into the "Target" input field
+  And I scroll down
+  And I wait
   And I enter "123456789012345678901" into the "Teacher Name" input field
   And I touch navbar button "Done"
   Then I should see "Whoops!"
@@ -109,7 +114,11 @@ Scenario: Cannot add a subject with a name longer than 50 characters
   And I touch "Add new subject"
   And I enter "COM4510" into the "Name" input field
   And I enter "0" into the "Weighting" input field
+  And I scroll down
+  And I wait
   And I enter "70" into the "Target" input field
+  And I scroll down
+  And I wait
   And I enter "123456789012345678901234567890123456789012345678901" into the "Teacher Email" input field
   And I touch navbar button "Done"
   Then I should see "Whoops!"
@@ -123,7 +132,11 @@ Scenario: Add subject
   And I touch "Add new subject"
   And I enter "COM4510" into the "Name" input field
   And I enter "0" into the "Weighting" input field
+  And I scroll down
+  And I wait
   And I enter "70" into the "Target" input field
+  And I scroll down
+  And I wait
   And I enter "Mr. Teacher" into the "Teacher Name" input field
   And I enter "teacher@schoolmail.com" into the "Teacher Email" input field
   And I touch navbar button "Done"
@@ -133,12 +146,14 @@ Scenario: Add subject
 Scenario: Cannot add a subject if the total weighting is above 100%
   Given I have a qualification called "Degree" at "University"
   And "Degree" has a year called "Year 1" between "01-01-2014" and "12-12-2014"
-  And "Year 1" has a subject called "COM4510" with a weighting of "99"% and a target of "70"%
+  And "Year 1" has a subject called "Subject99" with a weighting of "99"% and a target of "70"%
   And I am on the Subjects page for "Year 1"
   When I touch navbar button "Edit"
   And I touch "Add new subject"
   And I enter "Test Subject" into the "Name" input field
   And I enter "2" into the "Weighting" input field
+  And I scroll down
+  And I wait
   And I enter "70" into the "Target" input field
   And I touch navbar button "Done"
   Then I should see "Whoops!"
@@ -153,8 +168,12 @@ Scenario: Visit edit subject page
   And I touch "COM4510"
   Then I should see navbar with title "Edit Subject"
   And I should see "COM4510"
-  And I should see "0"
+  And I should see "0.00"
+  And I scroll down
+  And I wait
   And I should see "70"
+  And I scroll down
+  And I wait
   And I should see "Mr. Teacher"
   And I should see "teacher@schoolmail.com"
 
@@ -175,10 +194,10 @@ Scenario: Edit subject
 Scenario: Delete Year
   Given I have a qualification called "Degree" at "University"
   And "Degree" has a year called "Year 1" between "01-01-2014" and "12-12-2014"
-  And "Year 1" has a subject called "COM4510" with a weighting of "0"% and a target of "70"%
+  And "Year 1" has a subject called "Maths" with a weighting of "0"% and a target of "70"%
   And I am on the Subjects page for "Year 1"
   When I touch navbar button "Edit"
-  And I touch "Delete COM4510"
+  And I touch "Delete Maths"
   And I touch "Delete"
-  Then I should not see "COM4510"
+  Then I should not see "Maths"
 

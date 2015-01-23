@@ -5,7 +5,7 @@ Feature: Grades Management - Years
 
 Scenario: Visit years page of a qualification
   Given I am on the Qualifications page
-  And I have a qualification called "Degree"
+  And I have a qualification called "Degree" at "University"
   When I touch "Degree"
   Then I should be on the Years page for "Degree"
 
@@ -66,18 +66,18 @@ Scenario: Add year
 Scenario: Visit edit years page
   Given I have a qualification called "Degree" at "University"
   And I am on the Years page for "Degree"
-  And "Degree" has a year called "Year 1" between "01-01-2014" and "12-12-2014"
+  And "Degree" has a year called "Year 1" between "01-01-2014" and "01-01-2015"
   When I touch navbar button "Edit"
   And I touch "Year 1"
   Then I should see "Edit Year"
   And I should see "Year 1"
-  And I should see "1 January 2014"
-  And I should see "12 December 2014"
+  And I should see "January 1, 2014"
+  And I should see "January 1, 2015"
 
 Scenario: Edit year
   Given I have a qualification called "Degree" at "University"
   And I am on the Years page for "Degree"
-  And "Degree" has a year called "Year 1" between "01-01-2014" and "12-12-2014"
+  And "Degree" has a year called "Year 1" between "01-01-2014" and "01-01-2015"
   When I touch navbar button "Edit"
   And I touch "Year 1"
   And I clear "Name"
@@ -90,7 +90,7 @@ Scenario: Edit year
 Scenario: Delete Year
   Given I have a qualification called "Degree" at "University"
   And I am on the Years page for "Degree"
-  And "Degree" has a year called "Year 2" between "01-01-2014" and "12-12-2014"
+  And "Degree" has a year called "Year 2" between "01-01-2014" and "01-01-2015"
   When I touch navbar button "Edit"
   And I touch "Delete Year 2"
   And I touch "Delete"

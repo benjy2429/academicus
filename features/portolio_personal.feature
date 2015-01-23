@@ -21,7 +21,7 @@ Scenario: Cannot enter a name over 30 characters
   Then I should see "Whoops!"
   And I should see "The name must be less than 30 characters"
 
-Scenario: Cannot enter a name over 30 characters
+Scenario: Cannot enter a telephone number over 30 characters
   Given I am on the Portfolio page
   When I touch "Personal"
   And I enter "1234567890123456" into the "Telephone" input field
@@ -32,6 +32,8 @@ Scenario: Cannot enter a name over 30 characters
 Scenario: Cannot enter a name over 30 characters
   Given I am on the Portfolio page
   When I touch "Personal"
+  And I scroll down
+  And I wait
   And I enter "123456789012345678901234567890123456789012345678901" into the "Email Address" input field
   And I touch navbar button "Save"
   Then I should see "Whoops!"
@@ -40,6 +42,8 @@ Scenario: Cannot enter a name over 30 characters
 Scenario: Cannot enter a name over 30 characters
   Given I am on the Portfolio page
   When I touch "Personal"
+  And I scroll down
+  And I wait
   And I enter "123456789012345678901234567890123456789012345678901" into the "Website" input field
   And I touch navbar button "Save"
   Then I should see "Whoops!"
@@ -48,17 +52,24 @@ Scenario: Cannot enter a name over 30 characters
 Scenario: No camera brings up an error message
   Given I am on the Portfolio page
   When I touch "Personal"
+  And I scroll down
+  And I wait
   And I touch "No Photo Selected"
+  And I wait
   Then I should see "Hmm..."
   And I should see "Your camera is unavailable at the moment"
 
 Scenario: Can select a photo from the photo library
   Given I am on the Portfolio page
   When I touch "Personal"
+  And I scroll down
+  And I wait
   And I touch "No Photo Selected"
+  And I wait
   And I touch "OK"
   And I touch "Select from existing photos"
-  Then I should see "No Photos or Videos"
+  And I wait
+  Then I should see navbar with title "Photos"
 
 Scenario: Tapping the address field opens the address search page
   Given I am on the Portfolio page
@@ -91,7 +102,7 @@ Scenario: Can add an address
   Then I should see "Apple Inc., Cupertino, 95014, United States"
   And I should not see "No Location Selected"
 
-Scenario: Can remove a address
+Scenario: Can remove an address
   Given I am on the Portfolio page
   When I touch "Personal"
   And I touch "Apple Inc., Cupertino, 95014, United States"
@@ -103,6 +114,8 @@ Scenario: Can add and save personal information
   Given I am on the Portfolio page
   When I touch "Personal"
   And I enter "Bob Smith" into the "Name" input field
+  And I scroll down
+  And I wait
   And I enter "01234567890" into the "Telephone" input field
   And I enter "test@test.com" into the "Email Address" input field
   And I enter "www.website.com" into the "Website" input field

@@ -18,8 +18,7 @@ Scenario: Subject target and current grade is shown but not subject details
   And I am on the Subjects page for "Year 1"
   When I touch "COM4510"
   Then I should see "70%"
-  And I should see "0%"
-  And I should not see text containing "Subject Completed"
+  And I should see "Subject Completed:  0%"
   And I should not see text containing "Mr. Teacher"
   And I should not see text containing "teacher@schoolmail.com"
 
@@ -29,7 +28,7 @@ Scenario: Can see the subject details when the header is expanded
   And "Year 1" has a subject called "COM4510" with a weighting of "0"% and a target of "70"% and a teacher name of "Mr. Teacher" and a teacher email of "teacher@schoolmail.com"
   And I am on the Assessments page for "COM4510"
   When I touch "Show subject details"
-  Then I should see "Subject Completed: 0%"
+  Then I should see "Subject Completed:  0%"
   And I should see "Teacher Name: Mr. Teacher"
   And I should see "Teacher Email:"
   And I should see "teacher@schoolmail.com"
@@ -41,6 +40,8 @@ Scenario: Teacher email is a link
   And "Year 1" has a subject called "COM4510" with a weighting of "0"% and a target of "70"% and a teacher name of "Mr. Teacher" and a teacher email of "teacher@schoolmail.com"
   And I am on the Assessments page for "COM4510"
   When I touch "Show subject details"
+  And I wait
+  And I wait
   And I touch "teacher@schoolmail.com"
   Then I should see navbar with title "New Message"
 
@@ -50,7 +51,7 @@ Scenario: The weighting error is visible with no assessments
   And "Year 1" has a subject called "COM4510" with a weighting of "0"% and a target of "70"%
   And I am on the Assessments page for "COM4510"
   When I touch "Show subject details"
-  Then I should see navbar with title "The assessment weightings for this subject do not total to 100%"
+  Then I should see "The assessment weightings for this subject do not total to 100%"
 
 Scenario: Cannot add an assessment without a name
   Given I have a qualification called "Degree" at "University"
@@ -109,6 +110,8 @@ Scenario: Add assessment
   And I touch "Add new assessment"
   And I enter "Exam" into the "Name" input field
   And I enter "0" into the "Weighting" input field
+  And I scroll down
+  And I wait
   And I touch "Deadline"
   And I change the date picker date to "01-01-2015"
   And I touch navbar button "Done"
@@ -128,7 +131,7 @@ Scenario: Cannot add an assessment if the total weighting is above 100%
   And I enter "Report" into the "Name" input field
   And I enter "2" into the "Weighting" input field
   And I touch navbar button "Done"
-  Then I should see "Whoops!
+  Then I should see "Whoops!"
   And I should see "The subject weighting is too high. The weighting for all assessments in a subject should total 100%"
 
 Scenario: Adding assessments that total 100% weighting removes the weighting error
@@ -155,8 +158,10 @@ Scenario: Visit edit assessment page
   And I touch "Exam"
   Then I should see navbar with title "Edit Assessment"
   And I should see "Exam"
-  And I should see "0"
-  And I should see "Thu, 1/1/15, 12:00 AM"
+  And I should see "0.00"
+  And I scroll down
+  And I wait
+  And I should see text containing "Thu, 1/1/15"
 
 Scenario: Edit assessment
   Given I have a qualification called "Degree" at "University"
@@ -168,6 +173,8 @@ Scenario: Edit assessment
   And I touch "Exam"
   When I clear "Name"
   And I enter "Quiz" into the "Name" input field
+  And I scroll down
+  And I wait
   And I touch "Deadline"
   And I change the date picker date to "02-02-2015"
   And I touch navbar button "Done"
@@ -183,7 +190,7 @@ Scenario: Delete Assessment
   Given I have a qualification called "Degree" at "University"
   And "Degree" has a year called "Year 1" between "01-01-2014" and "12-12-2014"
   And "Year 1" has a subject called "COM4510" with a weighting of "0"% and a target of "70"%
-  And "COM4510" has an assessment called "Quiz" with a weighting of "0"% due on "02-02-2015"
+  And "COM4510" has an assessment called "Quiz" with a weighting of "0"% due on "02-02-2015 12:00"
   And I am on the Assessments page for "COM4510"
   When I touch navbar button "Edit"
   And I touch the delete assessment button for "Quiz"
@@ -233,6 +240,8 @@ Scenario: Cannot add a grade with positive feedback longer than 300 characters
   And I am on the Assessments page for "COM4510"
   When I touch "Quiz"
   And I enter "0" into the "Final Grade" input field
+  And I scroll down
+  And I wait
   And I enter "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901" into the "Positive Feedback" input field
   And I touch navbar button "Done"
   Then I should see "Whoops!"
@@ -246,6 +255,8 @@ Scenario: Cannot add a grade with negative feedback longer than 300 characters
   And I am on the Assessments page for "COM4510"
   When I touch "Quiz"
   And I enter "0" into the "Final Grade" input field
+  And I scroll down
+  And I wait
   And I enter "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901" into the "Negative Feedback" input field
   And I touch navbar button "Done"
   Then I should see "Whoops!"
@@ -259,6 +270,8 @@ Scenario: Cannot add a grade with notes longer than 300 characters
   And I am on the Assessments page for "COM4510"
   When I touch "Quiz"
   And I enter "0" into the "Final Grade" input field
+  And I scroll down
+  And I wait
   And I enter "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901" into the "Notes" input field
   And I touch navbar button "Done"
   Then I should see "Whoops!"
@@ -274,7 +287,7 @@ Scenario: Can swipe on the rating to increase the value
   And I swipe right on number 2
   Then I should see a "★" button
 
-Scenario: Can swipe on the rating to increase the value
+Scenario: Can swipe on the rating to decrease the value
   Given I have a qualification called "Degree" at "University"
   And "Degree" has a year called "Year 1" between "01-01-2014" and "12-12-2014"
   And "Year 1" has a subject called "COM4510" with a weighting of "0"% and a target of "70"%
@@ -282,7 +295,7 @@ Scenario: Can swipe on the rating to increase the value
   And I am on the Assessments page for "COM4510"
   When I touch "Quiz"
   And I touch "1 Star"
-  And I swipe left
+  And I swipe left on number 2
   Then I should not see a "★" button 
 
 Scenario: Add grade to an assessment
