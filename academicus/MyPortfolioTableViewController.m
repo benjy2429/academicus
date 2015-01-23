@@ -12,6 +12,7 @@ static NSString * const cellIdentifier = @"myPortfolioCell";
 
 @implementation MyPortfolioTableViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -32,8 +33,7 @@ static NSString * const cellIdentifier = @"myPortfolioCell";
 }
 
 
-- (void)performFetch
-{
+- (void)performFetch {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
     // Get the objects from the managed object context
@@ -57,20 +57,24 @@ static NSString * const cellIdentifier = @"myPortfolioCell";
 }
 
 
-- (void)configureHeader
-{
+//This method configures the view area above the table view
+- (void)configureHeader {
+    //If the user has a personal photo we can display that
     if (self.portfolio.photo) {
         [self.profileImage setImage:[UIImage imageWithData:self.portfolio.photo]];
         self.profileImage.layer.borderColor = [[UIColor lightGrayColor] CGColor];
         self.profileImage.layer.borderWidth = 1.0f;
     } else {
+        //Otherwise use a stock photo
         UIImage *noPhotoImage = [[UIImage imageNamed:@"NoPhoto"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         [self.profileImage setImage:noPhotoImage];
         self.profileImage.tintColor = APP_TINT_COLOUR;
     }
+    //Round the image
     self.profileImage.layer.cornerRadius = 40;
     self.profileImage.layer.masksToBounds = YES;
     
+    //Display the users name
     self.nameLabel.text = (self.portfolio.name && ![self.portfolio.name isEqualToString:@""]) ? self.portfolio.name : @"You haven't filled in your name!";
     
     // Set the header shadow
@@ -80,6 +84,8 @@ static NSString * const cellIdentifier = @"myPortfolioCell";
     self.tableView.tableHeaderView.layer.shadowOpacity = 0.3;
 }
 
+
+#pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 5;
@@ -98,11 +104,14 @@ static NSString * const cellIdentifier = @"myPortfolioCell";
 }
 
 
+//Configure the current cell
 - (void)configureBasicCell:(MyPortfolioTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    
+    //This array will contain the cell contents
     NSMutableArray *contentStrings = [[NSMutableArray alloc] init];
     
+    //The content of the cell depends on the row
     switch (indexPath.row) {
+        //The first row contains contact information
         case 0: {
             cell.titleLabel.text = @"Contact Details";
             
@@ -112,8 +121,9 @@ static NSString * const cellIdentifier = @"myPortfolioCell";
             if (self.portfolio.address) { [contentStrings addObject:[NSString stringWithFormat:@"Address: %@, %@", self.portfolio.address.name, [self.portfolio.address fullAddress]]]; }
             cell.contentLabel.text = [contentStrings componentsJoinedByString:@"\n\n"];
             break;
-            
         }
+        
+        //The second row contains informaiton about the users academic progress
         case 1: {
             cell.titleLabel.text = @"Education";
             NSMutableArray* qualificationStrings = [[NSMutableArray alloc]init];
@@ -127,8 +137,9 @@ static NSString * const cellIdentifier = @"myPortfolioCell";
             cell.contentLabel.text = [qualificationStrings componentsJoinedByString:@"\n"];
             
             break;
-            
         }
+        
+        //This row contains work information
         case 2: {
             cell.titleLabel.text = @"Work Experience";
             
@@ -142,6 +153,8 @@ static NSString * const cellIdentifier = @"myPortfolioCell";
             cell.contentLabel.text = [contentStrings componentsJoinedByString:@"\n\n"];
             break;
         }
+            
+        //This cell contains the users achievements
         case 3: {
             cell.titleLabel.text = @"Achievements";
             
@@ -154,8 +167,9 @@ static NSString * const cellIdentifier = @"myPortfolioCell";
             
             cell.contentLabel.text = [contentStrings componentsJoinedByString:@"\n"];
             break;
-            
         }
+            
+        //This row is populated by the users hobbies
         case 4: {
             cell.titleLabel.text = @"Hobbies";
             cell.contentLabel.text = (self.portfolio.hobbies && ![self.portfolio.hobbies isEqualToString:@""]) ? [NSString stringWithFormat:@"%@", self.portfolio.hobbies] : @"" ;
@@ -163,7 +177,6 @@ static NSString * const cellIdentifier = @"myPortfolioCell";
             
         }
     }
-
 }
 
 
@@ -199,15 +212,18 @@ static NSString * const cellIdentifier = @"myPortfolioCell";
 
 #pragma mark - MFMailComposeViewControllerDelegate
 
-- (IBAction)exportMyPortfolio
-{
+//When the export portfolio button is clicked
+- (IBAction)exportMyPortfolio {
+    //Generate email body content
     NSString *body = [self generateEmailBody];
     
+    //Create and show a mail composer view
     MFMailComposeViewController *mailComposer = [[MFMailComposeViewController alloc] init];
     mailComposer.mailComposeDelegate = self;
     [mailComposer setSubject:@"Academicus Portfolio Export"];
     [mailComposer setMessageBody:body isHTML:YES];
     [mailComposer.navigationBar setTintColor:[UIColor whiteColor]];
+    //If we know their email we can add it to the recipients
     NSString *recipients = (self.portfolio.email && ![self.portfolio.email isEqualToString:@""]) ? self.portfolio.email : @"";
     [mailComposer setToRecipients:@[recipients]];
     
@@ -215,10 +231,11 @@ static NSString * const cellIdentifier = @"myPortfolioCell";
 }
 
 
-- (NSString *)generateEmailBody
-{
+//This method generates the content for the body of an email using the portfolio information
+- (NSString *)generateEmailBody {
     NSString *body = (self.portfolio.name && ![self.portfolio.name isEqualToString:@""]) ? [NSString stringWithFormat:@"<h1>%@'s Portfolio</h1>", self.portfolio.name] : @"";
     
+    //For each cell in the the table view add a corresponding cell to the email
     for (int i=0; i < [self.tableView numberOfRowsInSection:0]; i++) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
         
@@ -230,6 +247,7 @@ static NSString * const cellIdentifier = @"myPortfolioCell";
 
         [self configureBasicCell:emailCell atIndexPath:indexPath];
         
+        //Replace newlines with html breaks
         if (![emailCell.contentLabel.text isEqualToString:@""]) {
             NSString *contentWithBreaks = [emailCell.contentLabel.text stringByReplacingOccurrencesOfString:@"\n" withString:@"<br>"];
             body = [NSString stringWithFormat:@"%@<hr><h2>%@</h2><p>%@</p>", body, emailCell.titleLabel.text, contentWithBreaks];
@@ -239,19 +257,19 @@ static NSString * const cellIdentifier = @"myPortfolioCell";
 }
 
 
-- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
-{
+//Called when the user is finished with the mail composer
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
     switch (result) {
         case MFMailComposeResultFailed: {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message:@"Unfortunately your email could not be sent. Please check your internet connection or try again later." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
             break;
         }
-        default:
-            break;
+        default: break;
     }
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
+

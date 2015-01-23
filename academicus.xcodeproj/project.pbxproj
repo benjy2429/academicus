@@ -10,7 +10,6 @@
 		A34050761A703D9E00BB8501 /* MyPortfolioTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B586BF2B1A6B673900996991 /* MyPortfolioTableViewCell.m */; };
 		A34050771A703DC300BB8501 /* HighestRatedAssessmentsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A34E95471A6B4C1500D08274 /* HighestRatedAssessmentsCell.m */; };
 		A34050781A703DD400BB8501 /* PerformanceBySubjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A34E95511A6B4D4D00D08274 /* PerformanceBySubjectCell.m */; };
-		A340507C1A70523A00BB8501 /* grades_management_assessments.feature in Resources */ = {isa = PBXBuildFile; fileRef = B5A47B7C1A5F13AB00136BAF /* grades_management_assessments.feature */; };
 		A340507D1A70523E00BB8501 /* grades_management_subjects.feature in Resources */ = {isa = PBXBuildFile; fileRef = B5C99C371A5E22530074C5B3 /* grades_management_subjects.feature */; };
 		A340507E1A70524300BB8501 /* grades_management_years.feature in Resources */ = {isa = PBXBuildFile; fileRef = B5EDAD2C1A5B7E0100AD147A /* grades_management_years.feature */; };
 		A340507F1A70524700BB8501 /* grades_management_qualifications.feature in Resources */ = {isa = PBXBuildFile; fileRef = B585D55D1A5B490200AC36D1 /* grades_management_qualifications.feature */; };
@@ -22,6 +21,12 @@
 		A34E95591A6B4D7400D08274 /* AssessmentsOnTargetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A34E95561A6B4D7400D08274 /* AssessmentsOnTargetCell.m */; };
 		A34E955A1A6B4D7400D08274 /* AssessmentsOnTargetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A34E95571A6B4D7400D08274 /* AssessmentsOnTargetCell.xib */; };
 		A34E955B1A6B4D7400D08274 /* AssessmentsOnTargetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A34E95571A6B4D7400D08274 /* AssessmentsOnTargetCell.xib */; };
+		A35088B41A71D06000A5D8A1 /* AddMoreDataCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A35088B21A71D06000A5D8A1 /* AddMoreDataCell.m */; };
+		A35088B51A71D06000A5D8A1 /* AddMoreDataCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A35088B21A71D06000A5D8A1 /* AddMoreDataCell.m */; };
+		A35088B61A71D06000A5D8A1 /* AddMoreDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A35088B31A71D06000A5D8A1 /* AddMoreDataCell.xib */; };
+		A35088B71A71D06000A5D8A1 /* AddMoreDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A35088B31A71D06000A5D8A1 /* AddMoreDataCell.xib */; };
+		A35088B81A71D07200A5D8A1 /* NumberOfSubjectsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3A9608F1A717FCA009FF4F4 /* NumberOfSubjectsCell.xib */; };
+		A35088B91A71D07500A5D8A1 /* NumberOfSubjectsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A9608E1A717FCA009FF4F4 /* NumberOfSubjectsCell.m */; };
 		A377B6461A68717F00B33C97 /* Portfolio.m in Sources */ = {isa = PBXBuildFile; fileRef = A377B6451A68717F00B33C97 /* Portfolio.m */; };
 		A377B6471A68718E00B33C97 /* Portfolio.m in Sources */ = {isa = PBXBuildFile; fileRef = A377B6451A68717F00B33C97 /* Portfolio.m */; };
 		A3981DEF1A473E4200334345 /* SubjectsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3981DEE1A473E4200334345 /* SubjectsTableViewController.m */; };
@@ -42,6 +47,8 @@
 		A3A125E11A647D14006EC50D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3A125E01A647D14006EC50D /* Security.framework */; };
 		A3A3B6131A5DE3EA008D17E9 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A3B6121A5DE3EA008D17E9 /* LoginViewController.m */; };
 		A3A3B6181A5DFFBA008D17E9 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3A3B6171A5DFFBA008D17E9 /* LoginView.xib */; };
+		A3A960901A717FCA009FF4F4 /* NumberOfSubjectsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A9608E1A717FCA009FF4F4 /* NumberOfSubjectsCell.m */; };
+		A3A960911A717FCA009FF4F4 /* NumberOfSubjectsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3A9608F1A717FCA009FF4F4 /* NumberOfSubjectsCell.xib */; };
 		A3AC584B1A64B06F001B2151 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A3AC584A1A64B06F001B2151 /* KeychainItemWrapper.m */; };
 		A3AC584C1A64B06F001B2151 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A3AC584A1A64B06F001B2151 /* KeychainItemWrapper.m */; };
 		A3B02C471A6DCC26002E6683 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3B02C461A6DCC26002E6683 /* AddressBookUI.framework */; };
@@ -166,6 +173,9 @@
 		A34E95551A6B4D7400D08274 /* AssessmentsOnTargetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssessmentsOnTargetCell.h; sourceTree = "<group>"; };
 		A34E95561A6B4D7400D08274 /* AssessmentsOnTargetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssessmentsOnTargetCell.m; sourceTree = "<group>"; };
 		A34E95571A6B4D7400D08274 /* AssessmentsOnTargetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssessmentsOnTargetCell.xib; sourceTree = "<group>"; };
+		A35088B11A71D06000A5D8A1 /* AddMoreDataCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMoreDataCell.h; sourceTree = "<group>"; };
+		A35088B21A71D06000A5D8A1 /* AddMoreDataCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMoreDataCell.m; sourceTree = "<group>"; };
+		A35088B31A71D06000A5D8A1 /* AddMoreDataCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddMoreDataCell.xib; sourceTree = "<group>"; };
 		A377B6441A68717E00B33C97 /* Portfolio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Portfolio.h; sourceTree = "<group>"; };
 		A377B6451A68717F00B33C97 /* Portfolio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Portfolio.m; sourceTree = "<group>"; };
 		A3981DED1A473E4200334345 /* SubjectsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectsTableViewController.h; sourceTree = "<group>"; };
@@ -201,6 +211,9 @@
 		A3A3B6111A5DE3EA008D17E9 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		A3A3B6121A5DE3EA008D17E9 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		A3A3B6171A5DFFBA008D17E9 /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
+		A3A9608D1A717FCA009FF4F4 /* NumberOfSubjectsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberOfSubjectsCell.h; sourceTree = "<group>"; };
+		A3A9608E1A717FCA009FF4F4 /* NumberOfSubjectsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberOfSubjectsCell.m; sourceTree = "<group>"; };
+		A3A9608F1A717FCA009FF4F4 /* NumberOfSubjectsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NumberOfSubjectsCell.xib; sourceTree = "<group>"; };
 		A3AC58491A64B06F001B2151 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		A3AC584A1A64B06F001B2151 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		A3B02C461A6DCC26002E6683 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
@@ -444,6 +457,9 @@
 				A3BC00421A6B2D5E00D1B81F /* NumberOfAssessmentsCell.h */,
 				A3BC00431A6B2D5E00D1B81F /* NumberOfAssessmentsCell.m */,
 				A3BC00441A6B2D5E00D1B81F /* NumberOfAssessmentsCell.xib */,
+				A3A9608D1A717FCA009FF4F4 /* NumberOfSubjectsCell.h */,
+				A3A9608E1A717FCA009FF4F4 /* NumberOfSubjectsCell.m */,
+				A3A9608F1A717FCA009FF4F4 /* NumberOfSubjectsCell.xib */,
 				A3BC00491A6B32EE00D1B81F /* HighestGradedAssessmentsCell.h */,
 				A3BC004A1A6B32EE00D1B81F /* HighestGradedAssessmentsCell.m */,
 				A3BC004B1A6B32EE00D1B81F /* HighestGradedAssessmentsCell.xib */,
@@ -456,6 +472,9 @@
 				A34E95501A6B4D4D00D08274 /* PerformanceBySubjectCell.h */,
 				A34E95511A6B4D4D00D08274 /* PerformanceBySubjectCell.m */,
 				A34E95521A6B4D4D00D08274 /* PerformanceBySubjectCell.xib */,
+				A35088B11A71D06000A5D8A1 /* AddMoreDataCell.h */,
+				A35088B21A71D06000A5D8A1 /* AddMoreDataCell.m */,
+				A35088B31A71D06000A5D8A1 /* AddMoreDataCell.xib */,
 			);
 			name = "Statistic Views";
 			sourceTree = "<group>";
@@ -682,9 +701,10 @@
 				A34E95541A6B4D4D00D08274 /* PerformanceBySubjectCell.xib in Resources */,
 				B5EDAD2D1A5B7E0100AD147A /* grades_management_years.feature in Resources */,
 				A3BC00401A6B28DF00D1B81F /* NumberOfYearsCell.xib in Resources */,
+				A35088B61A71D06000A5D8A1 /* AddMoreDataCell.xib in Resources */,
 				A3A3B6181A5DFFBA008D17E9 /* LoginView.xib in Resources */,
+				A3A960911A717FCA009FF4F4 /* NumberOfSubjectsCell.xib in Resources */,
 				B5A6CA251A5B574C0041CEE9 /* navbar_steps.rb in Resources */,
-				A34050741A703D5800BB8501 /* generic_app.feature in Resources */,
 				B58FD33F1A70746500BE0D25 /* portfolio_work_experiece.feature in Resources */,
 				A3BC004E1A6B32EE00D1B81F /* HighestGradedAssessmentsCell.xib in Resources */,
 				B5EC09B61A70865A000B8E27 /* settings.feature in Resources */,
@@ -720,13 +740,14 @@
 				B585D5651A5B490200AC36D1 /* grades_management_qualifications.feature in Resources */,
 				B585D56A1A5B490200AC36D1 /* env.rb in Resources */,
 				B58FD3401A70746500BE0D25 /* portfolio_work_experiece.feature in Resources */,
-				A34050751A703D5800BB8501 /* generic_app.feature in Resources */,
 				B585D5681A5B490200AC36D1 /* 01_launch.rb in Resources */,
+				A35088B81A71D07200A5D8A1 /* NumberOfSubjectsCell.xib in Resources */,
 				B58FD3371A70657300BE0D25 /* portolio_personal.feature in Resources */,
 				A34E955B1A6B4D7400D08274 /* AssessmentsOnTargetCell.xib in Resources */,
 				B585D5691A5B490200AC36D1 /* 02_pre_stop_hooks.rb in Resources */,
 				B5EC09BA1A709258000B8E27 /* reminders.feature in Resources */,
 				B58FD33A1A706BE200BE0D25 /* portfolio_hobbies.feature in Resources */,
+				A35088B71A71D06000A5D8A1 /* AddMoreDataCell.xib in Resources */,
 				B5EC09B71A70865A000B8E27 /* settings.feature in Resources */,
 				B585D5661A5B490200AC36D1 /* calabash_steps.rb in Resources */,
 				B58FD33D1A706F1800BE0D25 /* portfolio_achievements.feature in Resources */,
@@ -760,6 +781,7 @@
 				B5FD432B1A51029D00AC583E /* Subject.m in Sources */,
 				A377B6461A68717F00B33C97 /* Portfolio.m in Sources */,
 				A3981DFB1A47596F00334345 /* AssessmentDetailTableViewController.m in Sources */,
+				A3A960901A717FCA009FF4F4 /* NumberOfSubjectsCell.m in Sources */,
 				A3981DEF1A473E4200334345 /* SubjectsTableViewController.m in Sources */,
 				A3B2E76D1A65C943000C993A /* Achievement.m in Sources */,
 				B5F232AF1A4F5D5D00EAFF93 /* DataModel.xcdatamodeld in Sources */,
@@ -777,6 +799,7 @@
 				B5030B191A438E1900E23378 /* QualificationsTableViewController.m in Sources */,
 				A34E95581A6B4D7400D08274 /* AssessmentsOnTargetCell.m in Sources */,
 				B5030B101A438DC100E23378 /* RemindersTableViewController.m in Sources */,
+				A35088B41A71D06000A5D8A1 /* AddMoreDataCell.m in Sources */,
 				B5A8465E1A50E2F2001D2E47 /* AssessmentCriteria.m in Sources */,
 				A39AA8E51A48B2FF00A757B4 /* AssessmentGradeTableViewController.m in Sources */,
 				A39B88F81A5C7E8B00F883EC /* PersonalTableViewController.m in Sources */,
@@ -803,6 +826,7 @@
 				B5C99C3C1A5E27950074C5B3 /* HobbiesTableViewController.m in Sources */,
 				B5C99C3D1A5E27950074C5B3 /* AchievementsTableViewController.m in Sources */,
 				B5A490661A6B176800506B7B /* MapViewController.m in Sources */,
+				A35088B91A71D07500A5D8A1 /* NumberOfSubjectsCell.m in Sources */,
 				B5C99C3E1A5E27950074C5B3 /* AchievementDetailTableViewController.m in Sources */,
 				B5C99C3F1A5E27950074C5B3 /* WorkTableViewController.m in Sources */,
 				B5C99C401A5E27950074C5B3 /* WorkDetailTableViewController.m in Sources */,
@@ -841,6 +865,7 @@
 				B546EADF1A5B38E40014820C /* PortfolioTableViewController.m in Sources */,
 				A34E95591A6B4D7400D08274 /* AssessmentsOnTargetCell.m in Sources */,
 				B5F238EA1A6F29D70072428C /* CLPlacemark+FullAddress.m in Sources */,
+				A35088B51A71D06000A5D8A1 /* AddMoreDataCell.m in Sources */,
 				B546EAE11A5B38E40014820C /* Qualification.m in Sources */,
 				B546EAE21A5B38E40014820C /* main.m in Sources */,
 			);

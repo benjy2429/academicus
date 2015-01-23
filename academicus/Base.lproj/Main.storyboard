@@ -840,7 +840,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="905-8x-fke">
+                        <view key="tableHeaderView" contentMode="scaleToFill" placeholderIntrinsicWidth="400" placeholderIntrinsicHeight="110" id="905-8x-fke">
                             <rect key="frame" x="0.0" y="64" width="600" height="568"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
@@ -901,7 +901,6 @@
                             </subviews>
                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             <constraints>
-                                <constraint firstAttribute="bottom" secondItem="s5c-We-srR" secondAttribute="bottom" id="8cq-bG-pwP"/>
                                 <constraint firstAttribute="centerX" secondItem="s5c-We-srR" secondAttribute="centerX" id="BOR-l6-znq"/>
                                 <constraint firstItem="Sqr-vK-1Dc" firstAttribute="top" secondItem="905-8x-fke" secondAttribute="top" constant="7" id="Sm4-Ia-dIE"/>
                                 <constraint firstItem="s5c-We-srR" firstAttribute="top" secondItem="905-8x-fke" secondAttribute="top" constant="20" id="gFJ-uT-6ku"/>
@@ -914,7 +913,6 @@
                                 <mask key="constraints">
                                     <exclude reference="Sm4-Ia-dIE"/>
                                     <exclude reference="hKB-jX-f9S"/>
-                                    <exclude reference="8cq-bG-pwP"/>
                                     <exclude reference="BOR-l6-znq"/>
                                     <exclude reference="gFJ-uT-6ku"/>
                                 </mask>
@@ -926,7 +924,6 @@
                                 <mask key="constraints">
                                     <include reference="Sm4-Ia-dIE"/>
                                     <include reference="hKB-jX-f9S"/>
-                                    <include reference="8cq-bG-pwP"/>
                                     <include reference="BOR-l6-znq"/>
                                     <include reference="gFJ-uT-6ku"/>
                                 </mask>
@@ -1488,7 +1485,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="bFp-F5-DQS">
+                        <view key="tableHeaderView" contentMode="scaleToFill" placeholderIntrinsicWidth="400" placeholderIntrinsicHeight="44" id="bFp-F5-DQS">
                             <rect key="frame" x="0.0" y="64" width="600" height="568"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
@@ -1554,7 +1551,6 @@
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="HHt-I3-BH7" secondAttribute="trailing" id="Fpx-Si-yAU"/>
                                 <constraint firstItem="HHt-I3-BH7" firstAttribute="leading" secondItem="bFp-F5-DQS" secondAttribute="leading" id="uGp-M3-HmV"/>
-                                <constraint firstAttribute="bottom" secondItem="HHt-I3-BH7" secondAttribute="bottom" id="w3a-yD-1Oc"/>
                                 <constraint firstItem="HHt-I3-BH7" firstAttribute="top" secondItem="bFp-F5-DQS" secondAttribute="top" id="zlI-pL-FaW"/>
                             </constraints>
                             <variation key="default">
@@ -1564,7 +1560,6 @@
                                 <mask key="constraints">
                                     <exclude reference="Fpx-Si-yAU"/>
                                     <exclude reference="uGp-M3-HmV"/>
-                                    <exclude reference="w3a-yD-1Oc"/>
                                     <exclude reference="zlI-pL-FaW"/>
                                 </mask>
                             </variation>
@@ -1575,7 +1570,6 @@
                                 <mask key="constraints">
                                     <include reference="Fpx-Si-yAU"/>
                                     <include reference="uGp-M3-HmV"/>
-                                    <include reference="w3a-yD-1Oc"/>
                                     <include reference="zlI-pL-FaW"/>
                                 </mask>
                             </variation>
@@ -1763,7 +1757,7 @@
                                 <action selector="cancel" destination="bj5-CF-ZUP" id="idC-8i-x3l"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="cAZ-Wf-deH">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="cAZ-Wf-deH">
                             <connections>
                                 <action selector="done" destination="bj5-CF-ZUP" id="DWZ-bc-QlR"/>
                             </connections>
@@ -1786,7 +1780,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="hpm-vU-amV">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="achievementCell" id="hpm-vU-amV">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hpm-vU-amV" id="BeA-R1-DNR">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -2556,7 +2550,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="1gU-d0-rQV">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="workExperienceCell" id="1gU-d0-rQV">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1gU-d0-rQV" id="azT-nF-wHx">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -4636,7 +4630,7 @@
                                                 </mask>
                                             </variation>
                                         </scrollView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The assessment weightings for this subject do not total to 100%" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PIc-h3-EIz">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Incomplete assessment weightings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PIc-h3-EIz">
                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.7824155746" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -5185,7 +5179,7 @@
                         <outlet property="exclamationLabel" destination="Fk0-d4-sUy" id="csg-Xz-4dW"/>
                         <outlet property="expandBtn" destination="8E4-pv-iYD" id="Qxu-sh-A8q"/>
                         <outlet property="headerView" destination="mKQ-9h-g2O" id="xLA-Vt-Ff0"/>
-                        <outlet property="moduleProgressLabel" destination="nbI-wN-L7B" id="BNp-b6-YX4"/>
+                        <outlet property="subjectProgressLabel" destination="nbI-wN-L7B" id="7Ri-Gf-cU3"/>
                         <outlet property="teacherEmailAddressButton" destination="oIS-oS-4hg" id="dOz-z4-5Th"/>
                         <outlet property="teacherEmailAddressLabel" destination="TQV-l4-J6n" id="HTh-4B-CAi"/>
                         <outlet property="teacherEmailScrollView" destination="EKw-dh-Ho7" id="btX-pt-pbc"/>
@@ -5199,24 +5193,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6zK-Cd-6IA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3465" y="-762"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="oFU-3U-cOZ">
-            <objects>
-                <viewController id="3sO-Am-a2N" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="IiD-Qv-ra9"/>
-                        <viewControllerLayoutGuide type="bottom" id="7Df-PR-v9t"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="3Gn-H8-orW">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dM1-wQ-oBu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4161" y="-765"/>
         </scene>
         <!--Add Assessment Criteria-->
         <scene sceneID="vn4-83-Zzf">
@@ -5366,9 +5342,6 @@
                                                     <nil key="highlightedColor"/>
                                                     <variation key="widthClass=compact" misplaced="YES">
                                                         <rect key="frame" x="15" y="12" width="370" height="21"/>
-                                                    </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="15" y="15" width="370" height="21"/>
                                                     </variation>
                                                 </label>
                                             </subviews>
@@ -5852,11 +5825,11 @@
         <image name="TabBarUserSelected" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="tRH-EP-YoQ"/>
         <segue reference="Xd4-sf-5Ck"/>
         <segue reference="Oh2-rM-KWX"/>
         <segue reference="EA4-An-DjK"/>
         <segue reference="NcP-Du-DyI"/>
-        <segue reference="Cud-FT-Sdr"/>
         <segue reference="w3R-es-5GT"/>
         <segue reference="R26-EY-otb"/>
     </inferredMetricsTieBreakers>

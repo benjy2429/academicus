@@ -1,21 +1,19 @@
 //
-//  MyPortfolioTableViewCell.m
+//  AddMoreDataCell.m
 //  academicus
 //
-//  Created by Ben on 18/01/2015.
+//  Created by Luke on 22/01/2015.
 //  Copyright (c) 2015 sheffield. All rights reserved.
 //
 
-#import "MyPortfolioTableViewCell.h"
+#import "AddMoreDataCell.h"
 
-@implementation MyPortfolioTableViewCell
+@implementation AddMoreDataCell
 
 - (void)awakeFromNib {}
-
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 }
-
 
 @end

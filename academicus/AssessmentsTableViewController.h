@@ -30,7 +30,7 @@
 // IBOutlets
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIButton *expandBtn;
-@property (weak, nonatomic) IBOutlet UILabel *moduleProgressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *subjectProgressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *teacherNameLabel;
 @property (weak, nonatomic) IBOutlet UIScrollView *teacherEmailScrollView;
 @property (weak, nonatomic) IBOutlet UILabel *teacherEmailAddressLabel;

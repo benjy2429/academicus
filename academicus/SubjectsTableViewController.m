@@ -293,10 +293,10 @@
         SubjectDetailTableViewController *controller = (SubjectDetailTableViewController*) navController.topViewController;
         controller.delegate = self;
         controller.managedObjectContext = self.managedObjectContext;
-        controller.weightingAllocated = [self.year weightingAllocated] - [controller.itemToEdit.yearWeighting floatValue];
-        
+       
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         controller.itemToEdit = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        controller.weightingAllocated = [self.year weightingAllocated] - [controller.itemToEdit.yearWeighting floatValue];
         
     }  else if ([segue.identifier isEqualToString:@"toAssessments"]) {
         AssessmentsTableViewController *controller = (AssessmentsTableViewController*) segue.destinationViewController;

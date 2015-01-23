@@ -11,13 +11,16 @@
 
 @interface PerformanceBySubjectCell : UITableViewCell
 
+//Storyboard elements
 @property (weak, nonatomic) IBOutlet UILabel *performanceTitle;
 @property (weak, nonatomic) IBOutlet UIView *performanceGraphView;
-@property (weak, nonatomic) IBOutlet UIView *selectedModuleColourBlock;
-@property (weak, nonatomic) IBOutlet UILabel *selectedModuleName;
-@property (weak, nonatomic) IBOutlet UILabel *selectedModuleGrade;
+@property (weak, nonatomic) IBOutlet UIView *selectedSubjectColourBlock;
+@property (weak, nonatomic) IBOutlet UILabel *selectedSubjectName;
+@property (weak, nonatomic) IBOutlet UILabel *selectedSubjectGrade;
 
 @property (strong) NSArray* subjects;
+
+//Animaiton properties
 @property (assign) float graphOriginX;
 @property (assign) float graphOriginY;
 @property (assign) float graphWidth;
