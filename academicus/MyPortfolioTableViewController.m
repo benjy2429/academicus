@@ -8,7 +8,7 @@
 
 #import "MyPortfolioTableViewController.h"
 
-static NSString * const cellIdentifier = @"myPortfolioCell";
+static NSString * const CELL_IDENTIFIER = @"myPortfolioCell";
 
 @implementation MyPortfolioTableViewController
 
@@ -98,7 +98,7 @@ static NSString * const cellIdentifier = @"myPortfolioCell";
 
 
 - (MyPortfolioTableViewCell *)basicCellAtIndexPath:(NSIndexPath *)indexPath {
-    MyPortfolioTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    MyPortfolioTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER forIndexPath:indexPath];
     [self configureBasicCell:cell atIndexPath:indexPath];
     return cell;
 }
@@ -186,7 +186,7 @@ static NSString * const cellIdentifier = @"myPortfolioCell";
     static MyPortfolioTableViewCell *sizingCell = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sizingCell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        sizingCell = [self.tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER];
     });
     
     [self configureBasicCell:sizingCell atIndexPath:indexPath];
@@ -242,7 +242,7 @@ static NSString * const cellIdentifier = @"myPortfolioCell";
         static MyPortfolioTableViewCell *emailCell = nil;
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
-            emailCell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            emailCell = [self.tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER];
         });
 
         [self configureBasicCell:emailCell atIndexPath:indexPath];
