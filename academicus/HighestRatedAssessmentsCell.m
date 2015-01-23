@@ -29,12 +29,15 @@ const float HIGHEST_RATED_DURATION = 1.0f;
     [self.secondTimer invalidate];
     [self.thirdTimer invalidate];
     
+    self.firstStar.textColor = APP_TINT_COLOUR;
+    self.secondStar.textColor = APP_TINT_COLOUR;
+    self.thirdStar.textColor = APP_TINT_COLOUR;
+    
     //If there is at least one assessment
     if ([ratingOrderedAssessments count] > 0) {
         //Use the assessment at position 0 to populate the first of the three highest assessment details
         AssessmentCriteria* assessment = (AssessmentCriteria*) ratingOrderedAssessments[0];
         self.firstRatingLabel.text = assessment.name;
-        self.firstStar.textColor = APP_TINT_COLOUR;
         self.firstSubjectLabel.text = assessment.subject.name;
         
         //Animate the rating value from 0 to the rating value using an NSTimer
@@ -54,7 +57,6 @@ const float HIGHEST_RATED_DURATION = 1.0f;
         //We can take the second assessment and populate the second of the three highest assessment details
         AssessmentCriteria* assessment = (AssessmentCriteria*) ratingOrderedAssessments[1];
         self.secondRatingLabel.text = assessment.name;
-        self.secondStar.textColor = APP_TINT_COLOUR;
         self.secondSubjectLabel.text = assessment.subject.name;
         
         //Animate the rating value from 0 to the rating value using an NSTimer
@@ -74,7 +76,6 @@ const float HIGHEST_RATED_DURATION = 1.0f;
         //Populate the thrid of the three highest assessment details with the third assessment in the array
         AssessmentCriteria* assessment = (AssessmentCriteria*) ratingOrderedAssessments[2];
         self.thirdRatingLabel.text = assessment.name;
-        self.thirdStar.textColor = APP_TINT_COLOUR;
         self.thirdSubjectLabel.text = assessment.subject.name;
 
         //Animate the rating value from 0 to the rating value using an NSTimer
