@@ -24,7 +24,7 @@
 @property (weak) id <AssessmentDetailTableViewControllerDelegate> delegate;
 @property (strong) AssessmentCriteria *itemToEdit;
 
-// Percentage of the module that has already been allocated (passed in)
+// Percentage of the subject that has already been allocated (passed in)
 @property (assign) float weightingAllocated;
 
 // IBOutlets

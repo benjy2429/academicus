@@ -121,7 +121,7 @@
     float sizePerField = 37.5;
     
     //Populate fields in this section based on information about the subject
-    self.moduleProgressLabel.text = [NSString stringWithFormat: @"Subject Completed: %2.f%%", self.subjectCompleted];
+    self.subjectProgressLabel.text = [NSString stringWithFormat: @"Subject Completed: %2.f%%", self.subjectCompleted];
     self.expandSize += sizePerField;
 
     if (![self.subject.teacherName isEqualToString:@""]) {
@@ -147,10 +147,10 @@
         self.exclamationLabel.hidden = YES;
     } else {
         CGRect frame = self.warningLabel.frame;
-        frame.size.height = 36;
+        frame.size.height = 18;
         [self.warningLabel setFrame:frame];
         self.exclamationLabel.hidden = NO;
-        self.expandSize += 50;
+        self.expandSize += 30;
     }
 }
 
@@ -180,8 +180,8 @@
             frame = self.exclamationLabel.frame;
             [self.exclamationLabel setFrame:CGRectMake(frame.origin.x, frame.origin.y+adjustmentSize, frame.size.width, frame.size.height)];
         } completion: ^(BOOL finished) {
-            CGRect frame = self.moduleProgressLabel.superview.frame;
-            [self.moduleProgressLabel.superview setFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, self.expandSize)];
+            CGRect frame = self.subjectProgressLabel.superview.frame;
+            [self.subjectProgressLabel.superview setFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, self.expandSize)];
             [self.expandBtn setTitle:@"Hide subject details" forState:UIControlStateNormal];
 
         }];

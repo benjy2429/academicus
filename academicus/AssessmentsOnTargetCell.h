@@ -10,9 +10,11 @@
 
 @interface AssessmentsOnTargetCell : UITableViewCell
 
+//Storyboard elements
 @property (weak, nonatomic) IBOutlet UILabel *onTargetLabel;
 @property (weak, nonatomic) IBOutlet UILabel *percentageOnTargetLabel;
 
+//Animation properties
 @property (strong) CAShapeLayer* offTargetCircle;
 @property (strong) CAShapeLayer* onTargetCircle;
 @property (strong) NSTimer* timer;
@@ -23,3 +25,4 @@
 - (void) configureCellWithMetTarget:(int)assessmentsOnTarget gradedAssessments: (int) assessmentsGraded;
 
 @end
+

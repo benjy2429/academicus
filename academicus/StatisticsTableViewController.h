@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+
 #import "NumberOfYearsCell.h"
 #import "NumberOfAssessmentsCell.h"
 #import "HighestGradedAssessmentsCell.h"
@@ -14,11 +15,14 @@
 #import "AssessmentsOnTargetCell.h"
 #import "NumberOfSubjectsCell.h"
 #import "PerformanceBySubjectCell.h"
+#import "AddMoreDataCell.h"
+
 #import "Qualification.h"
 #import "Subject.h"
 #import "AssessmentCriteria.h"
 
 
+//Define the different types of cells that will be displayed as enums
 typedef enum StatisticalCells : NSUInteger {
     NumberOfYearsStats,
     NumberOfAssessmentsStats,
@@ -26,7 +30,8 @@ typedef enum StatisticalCells : NSUInteger {
     HighestRatedAssessmentsStats,
     AssessmentsOnTargetStats,
     NumberOfSubjectsStats,
-    PerformanceBySubjectStats
+    PerformanceBySubjectStats,
+    AddMoreDataStats
 } StatisticalCells;
 
 
@@ -37,10 +42,11 @@ typedef enum StatisticalCells : NSUInteger {
 @property (strong) NSArray* assessments;
 @property (strong) NSArray* subjects;
 
-
+//Set when a qualification is selected
 @property (strong) Qualification* selectedQualification;
-@property (assign) BOOL qualificationVisible;
+@property (assign) BOOL isQualificationPickerVisible;
 
+//An array of the cells to display, defined in the order in which to display them
 @property (strong)  NSMutableArray* cellsToDisplay;
 
 @end

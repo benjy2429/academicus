@@ -56,7 +56,7 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Module Name Here" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIf-PC-oza">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subject Name Here" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIf-PC-oza">
                         <rect key="frame" x="71" y="342" width="185" height="21"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-ThinItalic" family="Helvetica Neue" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -90,9 +90,9 @@
             <connections>
                 <outlet property="performanceGraphView" destination="04f-sF-f1f" id="l05-Oj-2js"/>
                 <outlet property="performanceTitle" destination="e9P-nv-qxm" id="9ch-HV-a52"/>
-                <outlet property="selectedModuleColourBlock" destination="FZo-Yr-NA1" id="DUZ-bR-i2o"/>
-                <outlet property="selectedModuleGrade" destination="F4q-U6-HVU" id="oP6-0h-slW"/>
-                <outlet property="selectedModuleName" destination="TIf-PC-oza" id="qIL-uV-Vey"/>
+                <outlet property="selectedSubjectColourBlock" destination="FZo-Yr-NA1" id="pXp-Rn-59C"/>
+                <outlet property="selectedSubjectGrade" destination="F4q-U6-HVU" id="QuT-ph-rlZ"/>
+                <outlet property="selectedSubjectName" destination="TIf-PC-oza" id="mUX-3p-Bg9"/>
             </connections>
             <point key="canvasLocation" x="-2" y="106"/>
         </tableViewCell>

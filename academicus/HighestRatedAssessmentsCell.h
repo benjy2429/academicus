@@ -11,6 +11,7 @@
 
 @interface HighestRatedAssessmentsCell : UITableViewCell
 
+//Storyboard elements
 @property (weak, nonatomic) IBOutlet UILabel *ratingTitleLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *firstRatingLabel;

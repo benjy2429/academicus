@@ -10,17 +10,18 @@
 
 @implementation NumberOfSubjectsCell
 
-- (void)awakeFromNib {
-    // Initialization code
-}
+
+- (void)awakeFromNib {}
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
+
+//Configure the cell with the given number of subjects
 - (void) configureCellWithSubjects: (int) subjectCount {
+    //Display the label differently if there is only one subject
     if (subjectCount == 1) {
         self.subjectLabel.text = [NSString stringWithFormat: @"%i Subject", subjectCount];
     } else {

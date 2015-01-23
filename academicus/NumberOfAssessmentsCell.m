@@ -10,18 +10,18 @@
 
 @implementation NumberOfAssessmentsCell
 
-- (void)awakeFromNib {
-    // Initialization code
-}
+
+- (void)awakeFromNib {}
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
-- (void) configureCellWithAssessments: (int) numberOfAssessments
-{
+
+//Configure the cell with a number of assessments
+- (void) configureCellWithAssessments: (int) numberOfAssessments {
+    //Display the label differently if there is only one assessment
     if (numberOfAssessments == 1) {
         self.assessmentsLabel.text = [NSString stringWithFormat: @"%i Assessment", numberOfAssessments];
     } else {
@@ -29,4 +29,6 @@
     }
 }
 
+
 @end
+
