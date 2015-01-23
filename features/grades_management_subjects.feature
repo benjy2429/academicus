@@ -28,16 +28,16 @@ Scenario: Cannot add subject without a name
   Then I should see "Whoops!"
   And I should see "You must provide a name"
 
-Scenario: Cannot add a subject with a name longer than 30 characters
+Scenario: Cannot add a subject with a name longer than 50 characters
   Given I have a qualification called "Degree" at "University"
   And "Degree" has a year called "Year 1" between "01-01-2014" and "12-12-2014"
   And I am on the Subjects page for "Year 1"
   When I touch navbar button "Edit"
   And I touch "Add new subject"
-  And I enter "1234567890123456789012345678901" into the "Name" input field
+  And I enter "123456789012345678901234567890123456789012345678901" into the "Name" input field
   And I touch navbar button "Done"
   Then I should see "Whoops!"
-  And I should see "The name must be less than 30 characters"
+  And I should see "The name must be less than 50 characters"
 
 Scenario: Cannot add subject without a year weighting
   Given I have a qualification called "Degree" at "University"
@@ -88,7 +88,7 @@ Scenario: Cannot add a subject with a target grade above 100%
   Then I should not see "101"
   And I should see "10"
 
-Scenario: Cannot add a subject with a teacher name longer than 20 characters
+Scenario: Cannot add a subject with a teacher name longer than 50 characters
   Given I have a qualification called "Degree" at "University"
   And "Degree" has a year called "Year 1" between "01-01-2014" and "12-12-2014"
   And I am on the Subjects page for "Year 1"
@@ -101,10 +101,10 @@ Scenario: Cannot add a subject with a teacher name longer than 20 characters
   And I enter "70" into the "Target" input field
   And I scroll down
   And I wait
-  And I enter "123456789012345678901" into the "Teacher Name" input field
+  And I enter "123456789012345678901234567890123456789012345678901" into the "Teacher Name" input field
   And I touch navbar button "Done"
   Then I should see "Whoops!"
-  And I should see "The teacher name must be less than 20 characters"
+  And I should see "The teacher name must be less than 50 characters"
 
 Scenario: Cannot add a subject with a name longer than 50 characters
   Given I have a qualification called "Degree" at "University"
