@@ -63,6 +63,6 @@ Scenario: Delete achievement
   Given I am on the Achievements page
   And I have an achievement called "Test Achievement" achieved on "12-12-2012"
   When I touch navbar button "Edit"
-  And I touch "Delete Test Achievement"
+  And I touch "Delete Test Achievement, Achieved: 12 December 2012"
   And I touch "Delete"
   Then I should not see "Test Achievement"

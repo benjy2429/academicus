@@ -70,9 +70,9 @@
         [alert show];
         return false;
     }
-    //Check that the name length is less than 30
-    if ([self.nameField.text length] > 30) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The name must be less than 30 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+    //Check that the name length is less than 50
+    if ([self.nameField.text length] > 50) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The name must be less than 50 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
         [alert show];
         return false;
     }
@@ -100,9 +100,9 @@
         [alert show];
         return false;
     }
-    //Check that the teacher name length is less than 20
-    if ([self.teacherNameField.text length] > 20) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The teacher name must be less than 20 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+    //Check that the teacher name length is less than 50
+    if ([self.teacherNameField.text length] > 50) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The teacher name must be less than 50 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
         [alert show];
         return false;
     }

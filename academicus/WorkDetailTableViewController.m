@@ -74,7 +74,7 @@
     }
     //Check that the company name length is less than 40
     if ([self.companyNameField.text length] > 40) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The company name must be less than 100 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message: @"The company name must be less than 40 characters" delegate:self cancelButtonTitle: @"OK" otherButtonTitles:nil, nil];
         [alert show];
         return false;
     }

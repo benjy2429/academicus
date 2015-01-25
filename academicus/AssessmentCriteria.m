@@ -107,7 +107,9 @@
         case 1: return @"Due tomorrow"; break; //If due tomorrow
         default: {
             //If the number of day exceeds a year, display the date instead
-            if ([difference day] < 366) {
+            if ([difference day] < 0) {
+                return @"Deadline passed";
+            } else if ([difference day] < 366) {
                 return [NSString stringWithFormat: @"Due in %i days", (int)[difference day]];
             } else {
                 NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];

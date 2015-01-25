@@ -91,7 +91,7 @@ Scenario: Delete qualification
   Given I am on the Qualifications page
   And I have a qualification called "A-Level" at "College"
   When I touch navbar button "Edit"
-  And I touch "Delete A-Level"
+  And I touch "Delete A-Level, College"
   And I touch "Delete"
   Then I should not see "A-Level"
   And I should not see "College"

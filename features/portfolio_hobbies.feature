@@ -8,7 +8,7 @@ Scenario: Visit the hobbies page
   When I touch "Hobbies"
   Then I should be on the Hobbies page
 
-Scenario: Can add and save personal information
+Scenario: Can add and save hobbies
   Given I am on the Portfolio page
   When I touch "Hobbies"
   And I enter "Making iOS Apps, Photography, Swimming" into the "Hobbies" input field

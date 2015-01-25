@@ -237,6 +237,7 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="z08-Za-ShC">
                                                     <rect key="frame" x="-25" y="-15" width="51" height="31"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Passcode Lock"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="49" id="LWC-ES-Dk7"/>
                                                         <constraint firstAttribute="height" constant="31" id="U5P-wX-iya"/>
@@ -867,6 +868,7 @@
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <accessibility key="accessibilityConfiguration" label="logoView"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="90" id="O91-ak-JCO"/>
                                         <constraint firstAttribute="centerX" secondItem="m84-tR-CHa" secondAttribute="centerX" id="gTU-62-0zA"/>
@@ -1160,6 +1162,7 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LTn-y9-lts">
                                                     <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Name"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -1258,6 +1261,7 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Telephone" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZHt-Oe-i4Q">
                                                     <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Telephone"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                                 </textField>
@@ -1299,6 +1303,7 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CNK-Xi-Z7O">
                                                     <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Email Address"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -1340,6 +1345,7 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Website" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wah-7K-pM3">
                                                     <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Website"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -1694,6 +1700,7 @@
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qlr-nx-csP">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Hobbies"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
@@ -1813,6 +1820,7 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="soO-1b-PiP">
                                                     <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Name"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="eil-QV-QsE"/>
                                                     </constraints>
@@ -1868,6 +1876,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="St3-Zn-QXQ">
                                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Date Awarded"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="DX0-2K-bTs"/>
                                                     </constraints>
@@ -1925,6 +1934,7 @@
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3dk-0j-lGa">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Description"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
@@ -2029,6 +2039,7 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D7w-SF-uua">
                                                     <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Job Title"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="8vo-ZF-hKg"/>
                                                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="30" id="C8i-Mi-k5H"/>
@@ -2090,6 +2101,7 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZmN-Np-8uk">
                                                     <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Company Name"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="lO4-oZ-SlX"/>
                                                         <constraint firstAttribute="height" constant="30" id="ymz-R6-xmp"/>
@@ -2145,6 +2157,7 @@
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="201" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4pk-Hq-2bw">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Company Address"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <connections>
@@ -2201,6 +2214,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="72f-Q3-VTd">
                                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Start Date"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="gOl-Wg-QTC"/>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="h8p-dl-uJq"/>
@@ -2260,6 +2274,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="idF-8K-4ot">
                                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                    <accessibility key="accessibilityConfiguration" label="End Date"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="1Tx-j2-kY5"/>
                                                         <constraint firstAttribute="height" constant="21" id="Pws-Mt-R9d"/>
@@ -2320,6 +2335,7 @@
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3wj-pM-WxH">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Description"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
@@ -2371,6 +2387,7 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ply-Zo-qn5">
                                                     <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Referee Name"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="6Al-hn-GpX"/>
                                                         <constraint firstAttribute="height" constant="30" id="deB-eK-AQc"/>
@@ -2425,6 +2442,7 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cHd-Q4-2rg">
                                                     <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                                    <accessibility key="accessibilityConfiguration" label="Referee Email"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="NdD-iQ-3mj"/>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="b0r-Ms-gmw"/>
@@ -5448,6 +5466,7 @@
                                             <subviews>
                                                 <button tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZuQ-ci-eeO">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                    <accessibility key="accessibilityConfiguration" label="1 Star"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                     <state key="normal" title="☆">
                                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -5459,6 +5478,7 @@
                                                 </button>
                                                 <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m7x-fg-cxf">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                    <accessibility key="accessibilityConfiguration" label="2 Stars"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                     <state key="normal" title="☆">
                                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -5470,6 +5490,7 @@
                                                 </button>
                                                 <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZw-4n-LQ1">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                    <accessibility key="accessibilityConfiguration" label="3 Stars"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                     <state key="normal" title="☆">
                                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -5481,6 +5502,7 @@
                                                 </button>
                                                 <button opaque="NO" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O3A-s1-Zzh">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                    <accessibility key="accessibilityConfiguration" label="4 Stars"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                     <state key="normal" title="☆">
                                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -5492,6 +5514,7 @@
                                                 </button>
                                                 <button opaque="NO" tag="105" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EIt-3B-I8y">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                    <accessibility key="accessibilityConfiguration" label="5 Stars"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                     <state key="normal" title="☆">
                                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
