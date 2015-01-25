@@ -29,7 +29,7 @@ const float ASSESSMENTS_ON_TARGET_DURATION = 1.5f;
     [self.onTargetCircle removeFromSuperlayer];
     
     //Calculate the fraction of assessments on target
-    self.onTargetAmount = assessmentsOnTarget/(float)assessmentsGraded;
+    self.onTargetAmount = (assessmentsGraded == 0) ? 0 : assessmentsOnTarget/(float)assessmentsGraded;
     
     //Increment the value in the label from zero to the percentage of assessments on target by using an NSTimer
     self.currentLabelValue = 0;
